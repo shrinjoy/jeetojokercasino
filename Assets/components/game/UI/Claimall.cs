@@ -12,7 +12,7 @@ public class Claimall : MonoBehaviour
     {
         
         this.GetComponentInParent<AudioSource>().Play();
-        string command= "SELECT SUM(clm) as totalclaim  FROM [star].[dbo].[tasp]  WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id+" and status = 'Prize'";
+        string command= "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[tasp]  WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id+" and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -36,7 +36,7 @@ public class Claimall : MonoBehaviour
     }
     void removestat()
     {
-        string command = "UPDATE [star].[dbo].[tasp] set status='Claimed' WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + " and status = 'Prize'";
+        string command = "UPDATE [taas].[dbo].[tasp] set status='Claimed' WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + " and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;

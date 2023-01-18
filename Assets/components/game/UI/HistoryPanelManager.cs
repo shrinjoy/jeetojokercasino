@@ -42,7 +42,7 @@ public class HistoryPanelManager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "  SELECT  [result],[g_time] FROM [star].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime + "' and g_date='" + DateTime.Today.ToString("MM/dd/yyyy")+" "+ "00:00:00.000'";
+        sqlCmnd.CommandText = "  SELECT  [result],[g_time] FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime + "' and g_date='" + DateTime.Today.ToString("MM/dd/yyyy")+" "+ "00:00:00.000'";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while(sqlData.Read())

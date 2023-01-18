@@ -13,7 +13,7 @@ public class claimmanager : MonoBehaviour
     {
         
         this.GetComponent<AudioSource>().Play();
-        string command = "SELECT * FROM [star].[dbo].[tasp]  WHERE  ter_id="+GameObject.FindObjectOfType<userManager>().getUserData().id+" and g_id=" +gameid+ " and status='Prize' and bar='"+barcode+"'";
+        string command = "SELECT * FROM [taas].[dbo].[tasp]  WHERE  ter_id="+GameObject.FindObjectOfType<userManager>().getUserData().id+" and g_id=" +gameid+ " and status='Prize' and bar='"+barcode+"'";
         print(command);
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -39,7 +39,7 @@ public class claimmanager : MonoBehaviour
     }
     void removestat()
     {
-        string command = "UPDATE [star].[dbo].[tasp] set status='Claimed' WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id +"and g_id="+gameid+ " and status = 'Prize' and bar='"+barcode+"'";
+        string command = "UPDATE [taas].[dbo].[tasp] set status='Claimed' WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id +"and g_id="+gameid+ " and status = 'Prize' and bar='"+barcode+"'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;

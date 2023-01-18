@@ -30,7 +30,7 @@ public class details_setter : MonoBehaviour
             sqlCmnd.CommandTimeout = 60;
             sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
             sqlCmnd.CommandType = CommandType.Text;
-            sqlCmnd.CommandText = "SELECT * FROM [star].[dbo].[tasp] where ter_id="+GameObject.FindObjectOfType<userManager>().getUserData().id+" and g_id="+GameObject.FindObjectOfType<claimmanager>().gameid;//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[tasp] where ter_id="+GameObject.FindObjectOfType<userManager>().getUserData().id+" and g_id="+GameObject.FindObjectOfType<claimmanager>().gameid;//this is the sql command we use to get data about user
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
             if(sqlData.Read())
             {

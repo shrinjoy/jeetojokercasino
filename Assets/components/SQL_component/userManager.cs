@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class userManager : MonoBehaviour
-{
+{//
     [SerializeField]public userData data;
     public void setUserData(string id, string name, string password, string macid, string xcommpoint)
     {

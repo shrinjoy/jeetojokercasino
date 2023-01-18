@@ -58,7 +58,7 @@ public class login : MonoBehaviour
     {
         if(sqlm.canLogin(username.text.ToString(),password.text.ToString(),macid))
         {
-            asa.Play();
+          //  asa.Play();
             SceneManager.LoadScene(1);
         }
         

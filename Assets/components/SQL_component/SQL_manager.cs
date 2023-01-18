@@ -27,7 +27,7 @@ public class SQL_manager : MonoBehaviour
     //initSQL() inits the sql connection and opens it for other methods dependend on sql to run 
     public SqlConnection initSQL()
     {
-        string sqlConnectionString = @"Data Source=103.76.228.21\SA,1433;User ID = sa; Password=cron@123#;Initial Catalog = star";
+        string sqlConnectionString = @"Data Source=103.76.228.21\SA,1433;User ID = sa; Password=cron@123#;Initial Catalog = taas";
         SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
         sqlConnection.Open();
         return sqlConnection;
@@ -40,7 +40,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT * FROM[star].[dbo].[g_master] WHERE term_id =" + id + " and pass =" +pass;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT * FROM[taas].[dbo].[g_master] WHERE term_id =" + id + " and pass =" +pass;//this is the sql command we use to get data about user
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
@@ -88,7 +88,7 @@ public class SQL_manager : MonoBehaviour
     }
     public void addmacid(string macid,string termid)
     {
-        string command = "UPDATE [star].[dbo].[g_master] set newmacid='" + macid + "',flag=3 WHERE term_id=" + termid;
+        string command = "UPDATE [taas].[dbo].[g_master] set newmacid='" + macid + "',flag=3 WHERE term_id=" + termid;
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -109,7 +109,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT lim from [star].[dbo].[g_master] where term_id="+termid;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT lim from [taas].[dbo].[g_master] where term_id="+termid;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if(sqlData.Read())
         {
@@ -131,7 +131,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "UPDATE [star].[dbo].[g_master]  SET lim="+updatedbal+" WHERE term_id="+termid;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim="+updatedbal+" WHERE term_id="+termid;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
@@ -146,7 +146,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "UPDATE [star].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id=" + termid;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id=" + termid;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
@@ -161,7 +161,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT * FROM [star].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("yyyy-MM-dd")+"'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("yyyy-MM-dd")+"'";//this is the sql command we use to get data about user
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
@@ -189,7 +189,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT * FROM [star].[dbo].[g_rule12] WHERE tag=1";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {

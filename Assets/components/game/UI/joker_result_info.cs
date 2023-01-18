@@ -68,11 +68,11 @@ public class joker_result_info : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (mode == 0)
         {
-            sqlCmnd.CommandText = "SELECT  * FROM [star].[dbo].[resultsTaa] WHERE g_date='" + date + "'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[resultsTaa] WHERE g_date='" + date + "'";//this is the sql command we use to get data about user
         } 
         if(mode == 1)
         {
-            sqlCmnd.CommandText = "SELECT [star].[dbo].[tasp].bar,[star].[dbo].[tasp].g_id,[star].[dbo].[tasp].clm,[star].[dbo].[tasp].tot,[star].[dbo].[tasp].status,[star].[dbo].[tasp].g_time,[star].[dbo].[tasp].p_time,[star].[dbo].[resultsTaa].result as gameresult FROM [star].[dbo].[tasp],[star].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id;
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id;
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
     

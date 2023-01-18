@@ -46,7 +46,7 @@ public class jokerGameManager : timeManager
     }
     public void autoclaim()
     {
-        string command = "SELECT SUM(clm) as totalclaim  FROM [star].[dbo].[tasp]  WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + " and status = 'Prize'";
+        string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[tasp]  WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + " and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -70,7 +70,7 @@ public class jokerGameManager : timeManager
     }
     public void resetclaims()
     {
-        string command = "UPDATE [star].[dbo].[tasp] set status='Claimed' WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + " and status = 'Prize'";
+        string command = "UPDATE [taas].[dbo].[tasp] set status='Claimed' WHERE  ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + " and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -167,7 +167,7 @@ public class jokerGameManager : timeManager
             string gm = "gm";
             //string barcode = GameObject.FindObjectOfType<userManager>().getUserData().id + DateTime.Today.ToString().Replace("/", " ").Replace(" ", "") + DateTime.UtcNow.ToString().Replace("/", " ").Replace(" ", "");
             barcode = generatebarcode();
-            string command = "INSERT INTO [star].[dbo].[tasp] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11," +
+            string command = "INSERT INTO [taas].[dbo].[tasp] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11," +
                 "tot,qty," +
                 "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
                 + btns[0].betplaced + "," + btns[1].betplaced + "," + btns[2].betplaced + "," + btns[3].betplaced + "," + btns[4].betplaced + "," + btns[5].betplaced + "," + btns[6].betplaced + "," + btns[7].betplaced + "," + btns[8].betplaced + "," + btns[9].betplaced + "," + btns[10].betplaced + "," + btns[11].betplaced
@@ -411,7 +411,7 @@ public class jokerGameManager : timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text; 
-        sqlCmnd.CommandText = "SELECT [clm] FROM [star].[dbo].[tasp] where g_id="+GameObject.FindObjectOfType<betManager>().gameResultId +" and ter_id="+ GameObject.FindObjectOfType<userManager>().getUserData().id+"and status='Prize'";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tasp] where g_id="+GameObject.FindObjectOfType<betManager>().gameResultId +" and ter_id="+ GameObject.FindObjectOfType<userManager>().getUserData().id+"and status='Prize'";//this is the sql command we use to get data about user
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount=0;
