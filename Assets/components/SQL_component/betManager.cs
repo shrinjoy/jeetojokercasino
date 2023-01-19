@@ -12,8 +12,8 @@ public class betManager : MonoBehaviour
    
     private void Start()
     {
-        sqm = GameObject.FindGameObjectWithTag("SQLmanager").GetComponent<SQL_manager>();
-        
+        sqm = GameObject.FindObjectOfType<SQL_manager>();
+
     }
     public void setResultData(string gameresulttime,int gameid)
     {

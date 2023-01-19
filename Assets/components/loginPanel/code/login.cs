@@ -34,7 +34,7 @@ public class login : MonoBehaviour
 
     private void Start()
     {
-        sqlm = GameObject.FindWithTag("SQLmanager").GetComponent<SQL_manager>();
+        sqlm = GameObject.FindObjectOfType<SQL_manager>();
         macid = GetMACAddress();
         if(PlayerPrefs.GetString("storedata") =="yes")
         {
