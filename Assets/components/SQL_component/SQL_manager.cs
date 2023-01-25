@@ -14,8 +14,10 @@ public class SQL_manager : MonoBehaviour
    public TMPro.TMP_Text warningtext;
     private void Awake()
     {
+        SQLconn = new SqlConnection();
         DontDestroyOnLoad(this);
         SQLconn = initSQL();
+        print(SQLconn.State);
         print(DateTime.Today.ToString("yyyy-MM-dd"));
      
     }
@@ -40,6 +42,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
+        print(SQLconn.State);
         sqlCmnd.CommandText = "SELECT * FROM[taas].[dbo].[g_master] WHERE term_id ='" + id + "' and pass =" +pass;//this is the sql command we use to get data about user
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);

@@ -943,6 +943,7 @@ GameObject:
   - component: {fileID: 400989198}
   - component: {fileID: 400989197}
   - component: {fileID: 400989196}
+  - component: {fileID: 400989199}
   m_Layer: 0
   m_Name: sqlmanager
   m_TagString: GameController
@@ -1010,6 +1011,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warningtext: {fileID: 1160629646}
+--- !u!114 &400989199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400989194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c642bbd9419a7694987a703649765bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnableConsole: 1
+  m_ToggleKey: 289
+  m_ShowTimestamps: 1
+  m_DontDestroyOnLoad: 1
+  m_CanExportLogs: 1
+  m_GUISkin: {fileID: 0}
+  m_LogColor: {r: 1, g: 1, b: 1, a: 1}
+  m_WarningColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_ErrorColor: {r: 1, g: 0, b: 0, a: 1}
+  m_ExceptionColor: {r: 1, g: 0, b: 0, a: 1}
+  m_AssertColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &538181962
 GameObject:
   m_ObjectHideFlags: 0

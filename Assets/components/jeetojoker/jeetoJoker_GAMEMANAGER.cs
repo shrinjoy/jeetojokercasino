@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class jeetoJoker_GAMEMANAGER :timeManager
@@ -39,13 +40,16 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         print("started panel extension");
         while(Vector3.Distance(targetofresult.transform.position,resultpanel.transform.position)>0.1f)
         {
-            resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position, targetofresult.transform.position,Time.deltaTime*0.5f);
-        }
+            resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position, targetofresult.transform.position,Time.deltaTime*4.0f);
+            yield return new WaitForEndOfFrame();
+                
+                }
         yield return new WaitForSeconds(4);
         print("started panel dextension");
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f)
         {
-            resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position,result_starting_pos, Time.deltaTime * 0.5f);
+            resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position,result_starting_pos, Time.deltaTime * 4.0f);
+            yield return new WaitForEndOfFrame();
         }
         startedsequence = false;
         UpdateBalanceAndInfo();
