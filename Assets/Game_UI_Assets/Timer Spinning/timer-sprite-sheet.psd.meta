@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,9 +103,243 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: timer-sprite-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc37b6e4e9ea1a04f949dc2f8e9f7ce6
+      internalID: -847528724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 180
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b854cafd65ed0ef4288a38d7e142dd7a
+      internalID: 278719685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 180
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0cb00ade33673042a5f6d07625c6ecc
+      internalID: -1331009639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 180
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b735ed02bb5cd3942873a71e3c54af7b
+      internalID: -914480387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 180
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89aae0c99b2e4b940a6ea9fbd112f1b0
+      internalID: 1934507732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 559f3c981c966564b89394f0c799da87
+      internalID: -1734893469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a96961ec4339f04cb21ba80d0ba1731
+      internalID: -551527239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b30cae6e6c2a19043b92164b36d0ff26
+      internalID: 1747364413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_8
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eacbaa6088e711d42ab9fad53c4347da
+      internalID: -560352553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: timer-sprite-sheet_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 180.4
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c935f4416da76b4eab3ef9a4937f33e
+      internalID: -1279107102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +350,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      timer-sprite-sheet_4: 1934507732
+      timer-sprite-sheet_5: -1734893469
+      timer-sprite-sheet_3: -914480387
+      timer-sprite-sheet_1: 278719685
+      timer-sprite-sheet_7: 1747364413
+      timer-sprite-sheet_6: -551527239
+      timer-sprite-sheet_0: -847528724
+      timer-sprite-sheet_2: -1331009639
+      timer-sprite-sheet_9: -1279107102
+      timer-sprite-sheet_8: -560352553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

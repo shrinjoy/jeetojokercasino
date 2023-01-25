@@ -102,14 +102,14 @@ public class SQL_manager : MonoBehaviour
         sqlData.Close();
         sqlData.DisposeAsync();
     }
-    public int balance(int termid)
+    public int balance(string termid)
     {
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT lim from [taas].[dbo].[g_master] where term_id="+termid;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT lim from [taas].[dbo].[g_master] where term_id='"+termid+"'";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if(sqlData.Read())
         {
@@ -122,7 +122,7 @@ public class SQL_manager : MonoBehaviour
         sqlData.DisposeAsync();
         return 0;
     }
-    public void updatebalanceindatabase(int termid,int totalbetplaced)
+    public void updatebalanceindatabase(string termid,int totalbetplaced)
     {
         int mainbal = balance(termid);
         int updatedbal = mainbal-totalbetplaced ;
@@ -131,13 +131,13 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim="+updatedbal+" WHERE term_id="+termid;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim="+updatedbal+" WHERE term_id='"+termid+"'";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
         sqlData.DisposeAsync();
     }
-    public void addubalanceindatabase(int termid, int claim)
+    public void addubalanceindatabase(string termid, int claim)
     {
         int mainbal = balance(termid);
         int updatedbal = mainbal + claim;
@@ -146,7 +146,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id=" + termid;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id='" + termid+"'";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
@@ -197,9 +197,10 @@ public class SQL_manager : MonoBehaviour
             {
                 string time = sqlData["g_time"].ToString();
                 DateTime date = DateTime.ParseExact(time, "hh:mm:ss tt", System.Globalization.CultureInfo.CurrentCulture);
-               
-                if(this.GetComponent<betManager>()!=null)
+
+                if (this.GetComponent<betManager>() != null)
                 {
+                    print("setting time and id");
                     this.GetComponent<betManager>().setResultData(time, Convert.ToInt32(sqlData["id"].ToString()));
                 }
                 sqlData.Close();
@@ -215,9 +216,13 @@ public class SQL_manager : MonoBehaviour
             }
 
         }
-        sqlData.Close();
-        sqlData.DisposeAsync();
-        return DateTime.Now;
+        else
+        {
+            print("tag 1 not found");
+            sqlData.Close();
+            sqlData.DisposeAsync();
+            return DateTime.Now;
+        }
     }
 
 }
