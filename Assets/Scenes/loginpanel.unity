@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 400989197}
   - component: {fileID: 400989196}
   m_Layer: 0
-  m_Name: gamemanager
+  m_Name: sqlmanager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
