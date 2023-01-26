@@ -13,6 +13,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] GameObject targetofresult;
     [SerializeField] GameObject resultpanel;
     Vector3 result_starting_pos;
+    [SerializeField] FortuneWheelManager outtercirlcle;
+    [SerializeField] FortuneWheelManager innercircle;
     // Start is called before the first frame update
     bool startedsequence=false;
     private void Start()
@@ -43,7 +45,17 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position, targetofresult.transform.position,Time.deltaTime*4.0f);
             yield return new WaitForEndOfFrame();
                 
-                }
+        }
+        outtercirlcle.TurnWheel(0);
+        while(outtercirlcle.isspinning==true)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        innercircle.TurnWheel(0);
+        while (innercircle.isspinning == true)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         yield return new WaitForSeconds(4);
         print("started panel dextension");
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f)
