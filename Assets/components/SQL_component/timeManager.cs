@@ -12,7 +12,7 @@ public class timeManager : MonoBehaviour
     [HideInInspector]
     public int realtime;
     bool isGameSequenceRunning = false;
-   
+    public int selectedcoinamount = 2;
     public void Start()
     {
         timetillnextgame =GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);

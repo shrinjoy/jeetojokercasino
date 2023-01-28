@@ -15,6 +15,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     Vector3 result_starting_pos;
     [SerializeField] FortuneWheelManager outtercirlcle;
     [SerializeField] FortuneWheelManager innercircle;
+   
     // Start is called before the first frame update
     bool startedsequence=false;
     private void Start()
@@ -39,6 +40,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     }
     IEnumerator jeetojokersequence()
     {
+        GameObject.FindObjectOfType<MultiplierAnimation>().resetstate();
         print("started panel extension");
         while(Vector3.Distance(targetofresult.transform.position,resultpanel.transform.position)>0.1f)
         {
@@ -52,10 +54,12 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             yield return new WaitForEndOfFrame();
         }
         innercircle.TurnWheel(0);
+        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation("N"));
         while (innercircle.isspinning == true)
         {
             yield return new WaitForEndOfFrame();
         }
+        
         yield return new WaitForSeconds(4);
         print("started panel dextension");
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f)
