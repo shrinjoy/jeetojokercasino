@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/joker.unity
     guid: c8799ce1ede494949acaf1309995a621
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 69edbee2dc0a3bd46b5f884bc2652ecf, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: ac8c60de1ebb1874197f2adae06555ca, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a971ea87deb6e1f448c7bfdf221cb645, type: 2}

@@ -32,10 +32,7 @@ public class FortuneWheelManager : MonoBehaviour
         isspinning = true;
 
     }
-    private void Start()
-    {
-        
-    }
+  
     void FixedUpdate ()
     {
         

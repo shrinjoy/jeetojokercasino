@@ -38,6 +38,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     bool startedsequence =false;
     bool resultsentdone;
     string result;
+    string xresult;
     private void Start()
     {
         result_starting_pos = resultpanel.transform.position;
@@ -106,7 +107,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
         
         int bet = (totalbalance - totalbetplaced);
-        print(totalbetplaced+":"+bet);
+        
         bet = Mathf.Clamp(bet, 0, 999999999);
         balance.text = bet.ToString();
         balance2.text = bet.ToString();
@@ -117,17 +118,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
            
             
-           try
-            {
+           
                 result = GameObject.FindObjectOfType<betManager>().getResult("joker");
-                
-            }
-            catch (Exception e)
-            {
-                startedsequence = false;
-                GameSequence();
 
-            }
+             xresult = result.Substring(0, 4);
             startedsequence = true;
             StartCoroutine(jeetojokersequence());
         }
@@ -135,17 +129,17 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     IEnumerator jeetojokersequence()
     {
         markerimage.enabled = false;
-        print(result);
+        
         resultobject.SetActive(false);
         GameObject.FindObjectOfType<MultiplierAnimation>().resetstate();
-        print("started panel extension");
+       
         while(Vector3.Distance(targetofresult.transform.position,resultpanel.transform.position)>0.1f)
         {
             resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position, targetofresult.transform.position,Time.deltaTime*4.0f);
             yield return new WaitForEndOfFrame();
                 
         }
-        string xresult = result.Substring(0, 4);
+        
         int sector=0;
         if(xresult=="NR00"|| xresult == "NR01" || xresult == "NR02" || xresult == "NR03")
         {
@@ -198,7 +192,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         resultobject.SetActive(true);
         markerimage.enabled = true;
       
-        print("started panel dextension");
+        
         markerimage.sprite = brightmarker;
         yield return new WaitForSecondsRealtime(0.1f);
         markerimage.sprite = darkmarker;
@@ -261,7 +255,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-        print(intwinamount);
+
         win0.text =intwinamount.ToString();
         win1.text = intwinamount.ToString();
 

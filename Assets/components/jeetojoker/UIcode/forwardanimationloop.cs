@@ -13,16 +13,21 @@ public class forwardanimationloop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Playaniamtion", 1, 0.1f);
+        StartCoroutine(Playaniamtion());
     }
-    public void Playaniamtion()
+    IEnumerator Playaniamtion()
     {
-        counter = counter+ 1;
-        if(counter > sprites.Length-1 ) { 
-        
-        counter= 0; 
+        while (true)
+        {
+            counter = counter + 1;
+            if (counter > sprites.Length - 1)
+            {
+
+                counter = 0;
+            }
+            images.sprite = sprites[counter];
+            yield return new WaitForSecondsRealtime(0.2f);  
         }
-        images.sprite = sprites[counter];
     }
     
 }
