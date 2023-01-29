@@ -25,7 +25,7 @@ public class FortuneWheelManager : MonoBehaviour
     	    _currentLerpRotationTime = 0f;	
     	    // Fill the necessary angles (for example if you want to have 12 sectors you need to fill the angles with 30 degrees step)
     	    _sectorsAngles = sectors;  	
-    	    int fullCircles = 10;
+    	    int fullCircles = 6;
     	    float randomFinalAngle = _sectorsAngles[stoppinganglesector];
         // Here we set up how many circles our wheel should rotate before stop
         _finalAngle = -(fullCircles * 360 + randomFinalAngle);
@@ -36,12 +36,12 @@ public class FortuneWheelManager : MonoBehaviour
     {
         
     }
-    void Update ()
+    void FixedUpdate ()
     {
         
         float maxLerpRotationTime = 9.0f*curve.Evaluate(time);
         time += Time.deltaTime;
-        _currentLerpRotationTime += Time.deltaTime;
+        _currentLerpRotationTime += Time.fixedDeltaTime;
         if (_currentLerpRotationTime > maxLerpRotationTime || Circle.GetComponent<RectTransform>().eulerAngles.z == _finalAngle)
         {
             _currentLerpRotationTime = maxLerpRotationTime;

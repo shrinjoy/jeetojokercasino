@@ -25,6 +25,7 @@ public class ResultSetter : MonoBehaviour
             icon.sprite = sprites[2];
             textresult.text = "JS";
         }
+        //
         else if (result == "NR03")
         {
             icon.sprite = sprites[3];
@@ -43,12 +44,12 @@ public class ResultSetter : MonoBehaviour
         }
         else if (result == "NR06")
         {
-            icon.sprite = sprites[1];
+            icon.sprite = sprites[2];
             textresult.text = "QS";
         }
         else if (result == "NR07")
         {
-            icon.sprite = sprites[1];
+            icon.sprite = sprites[3];
             textresult.text = "QH";
         }
         //
@@ -64,12 +65,12 @@ public class ResultSetter : MonoBehaviour
         }
         else if (result == "NR10")
         {
-            icon.sprite = sprites[1];
+            icon.sprite = sprites[2];
             textresult.text = "KS";
         }
         else if (result == "NR11")
         {
-            icon.sprite = sprites[1];
+            icon.sprite = sprites[3];
             textresult.text = "KH";
         }
     }
