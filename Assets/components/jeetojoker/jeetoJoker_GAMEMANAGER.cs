@@ -31,6 +31,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] Sprite brightmarker;
     [SerializeField] Sprite darkmarker;
     [SerializeField] Image markerimage;
+    [SerializeField] TMPro.TMP_Text win0;
+    [SerializeField] TMPro.TMP_Text win1;
+
     // Start is called before the first frame update
     bool startedsequence =false;
     bool resultsentdone;
@@ -214,8 +217,11 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         yield return new WaitForSecondsRealtime(0.1f);
 
         markerimage.sprite = brightmarker;
+
+        getwinamount();
         UpdateBalanceAndInfo();
         resetTimer();
+       
         yield return new WaitForSeconds(1.0f);
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f)
         {
@@ -225,6 +231,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         startedsequence = false;
        
         resultsentdone= false;
+        GameObject.FindObjectOfType<clearbutton>().clearbets();
         yield return null;
     }
     public void UpdateBalanceAndInfo()
@@ -234,5 +241,30 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         balance2.text =totalbalance.ToString();
         gameid.text= GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
        
+    }
+    void getwinamount()
+    {
+       
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tasp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'and status='Prize'";//this is the sql command we use to get data about user
+        print(sqlCmnd.CommandText);
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        int intwinamount = 0;
+        while (sqlData.Read())
+        {
+
+            intwinamount += Convert.ToInt32(sqlData["clm"].ToString());
+        }
+        sqlData.Close();
+        sqlData.DisposeAsync();
+        print(intwinamount);
+        win0.text =intwinamount.ToString();
+        win1.text = intwinamount.ToString();
+
+
     }
 }
