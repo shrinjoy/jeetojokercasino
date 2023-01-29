@@ -32,13 +32,13 @@ public class FortuneWheelManager : MonoBehaviour
         isspinning = true;
 
     }
-   
+    private void Start()
+    {
+        
+    }
     void Update ()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            TurnWheel(1);
-        }
+        
         float maxLerpRotationTime = 9.0f*curve.Evaluate(time);
         time += Time.deltaTime;
         _currentLerpRotationTime += Time.deltaTime;

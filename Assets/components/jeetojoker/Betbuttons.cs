@@ -83,5 +83,10 @@ public class Betbuttons : MonoBehaviour
         {
             coinicon.sprite = coin500;
         }
+
+        
+
+        GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().FakeUpdateBalance();
+       
     }
 }

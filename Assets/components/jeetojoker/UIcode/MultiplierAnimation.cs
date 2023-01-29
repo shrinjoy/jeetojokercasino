@@ -8,9 +8,11 @@ public class MultiplierAnimation : MonoBehaviour
     // Start is called before the first frame update
     public TMPro.TMP_Text multiplier;
     public GameObject multiplier_point;
+    public RectTransform multiplierlisttextobject;
     float fontsizefinal;
     float fontsizeinitial;
     Vector3 startingpos;
+   
     private void Start()
     {
         fontsizeinitial = multiplier.fontSize;
@@ -27,9 +29,7 @@ public class MultiplierAnimation : MonoBehaviour
     }
     public IEnumerator multiplieranimation(string multipliertext)
     {
-        //
        
-        yield return new  WaitForSecondsRealtime(1.0f);
         multiplier.text = multipliertext;
          
             while(Vector3.Distance(multiplier.transform.position, multiplier_point.transform.position) > 0.1f)
