@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class jeetoJoker_GAMEMANAGER :timeManager
 {
     [Header("Balance and Info")]
+    [SerializeField] GameObject noinputpanel;
     [SerializeField]   TMPro.TMP_Text balance;
     [SerializeField] TMPro.TMP_Text balance2;
     [SerializeField]   TMPro.TMP_Text gameid;
@@ -70,13 +71,14 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
         if(realtime<6 && resultsentdone==false)
         {
-            betinfotext.text = "No more bets please";
+            noinputpanel.SetActive(true);
             sendResult();
             resultsentdone=true;
         }
     }
     public void sendResult()
     {
+        betinfotext.text = "Your bets have been accepted";
         if (totalbalance > (totalbalance-totalbetplaced) && totalbetplaced > 0)
         {
             string status = "Print";
@@ -102,8 +104,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             print(totalbetplaced);
             GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id,totalbetplaced);
             UpdateBalanceAndInfo();
-
+          
         }
+        betinfotext.text = "No more bets please";
     }
         public string generatebarcode()
         {
