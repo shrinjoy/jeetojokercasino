@@ -37,7 +37,7 @@ public class FortuneWheelManager : MonoBehaviour
     {
         
         float maxLerpRotationTime = 9.0f*curve.Evaluate(time);
-        time += Time.deltaTime;
+        time += Time.fixedDeltaTime;
         _currentLerpRotationTime += Time.fixedDeltaTime;
         if (_currentLerpRotationTime > maxLerpRotationTime || Circle.GetComponent<RectTransform>().eulerAngles.z == _finalAngle)
         {

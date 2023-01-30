@@ -99,6 +99,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
             sqldata.Close();
             sqldata.DisposeAsync();
+            print(totalbetplaced);
             GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id,totalbetplaced);
             UpdateBalanceAndInfo();
 
@@ -147,14 +148,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public void addlast9gameresults()
     {
         string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
-        string starttime = DateTime.Parse(endtime).AddMinutes(-18).ToString("hh:mm:ss tt");
+        string endtime2 = DateTime.Parse(endtime).AddMinutes(-4).ToString("hh:mm:ss tt");
+        string starttime = DateTime.Parse(endtime).AddMinutes(-20).ToString("hh:mm:ss tt");
         int i = 0;
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime + "' and g_date='" + DateTime.Today.ToString("MM/dd/yyyy") + " " + "00:00:00.000'";
+        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime2 + "' and g_date='" + DateTime.Today.ToString("MM/dd/yyyy") + " " + "00:00:00.000'";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
@@ -199,8 +201,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         outtercirlcle.TurnWheel(sector);
         
         while(outtercirlcle.isspinning==true)
-        {
-            yield return new WaitForEndOfFrame();
+        {//
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08")
         {
@@ -226,7 +228,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         while (innercircle.isspinning == true)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         marqueeanim.enabled = false;
         StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
