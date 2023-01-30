@@ -12,7 +12,7 @@ public class marquee : MonoBehaviour
     {
        
         startingpos = this.GetComponent<RectTransform>().position;
-        finalpos = startingpos + new Vector3(1800, 0, 0);
+        finalpos = startingpos + new Vector3(2200, 0, 0);
         this.GetComponent<TMPro.TMP_Text>().enabled = true;
     }
     private void OnDisable()
@@ -21,11 +21,11 @@ public class marquee : MonoBehaviour
        this.GetComponent<TMPro.TMP_Text>().enabled= false;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isActiveAndEnabled)
         {
-            this.GetComponent<RectTransform>().position += new Vector3(50.0f, 0, 0);
+            this.GetComponent<RectTransform>().position += new Vector3(30.0f, 0, 0);
             if (this.GetComponent<RectTransform>().position.x > finalpos.x)
             {
                 this.GetComponent<RectTransform>().position = startingpos;
