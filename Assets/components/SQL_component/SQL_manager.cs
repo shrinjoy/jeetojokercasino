@@ -164,7 +164,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("yyyy-MM-dd")+"'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("yyyy/MM/dd")+"'";//this is the sql command we use to get data about user
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())

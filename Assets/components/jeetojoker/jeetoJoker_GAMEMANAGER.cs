@@ -62,18 +62,22 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             betinfotext.text = "Place your chips";
         }
 
-        if(realtime<=15)
+        if(realtime<=15 && realtime >11)
         {
             betinfotext.text = "Last Chance";
 
         }
 
 
-        if(realtime<6 && resultsentdone==false)
+        if(realtime<11 && resultsentdone==false)
         {
             noinputpanel.SetActive(true);
             sendResult();
             resultsentdone=true;
+        }
+        if(realtime<11 && resultsentdone)
+        {
+            betinfotext.text = "no more bets please";
         }
     }
     public void sendResult()
@@ -89,7 +93,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
                 "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
                 + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount
                 + "," + totalbetplaced + "," + totalbetplaced+ ","
-                + "'" + DateTime.Today + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Now + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 2 + ")";
+                + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd")+" "+DateTime.Now.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
             print(command);
             SqlCommand sqlCmnd = new SqlCommand();
             SqlDataReader sqldata = null;
@@ -106,7 +110,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             UpdateBalanceAndInfo();
           
         }
-        betinfotext.text = "No more bets please";
+        
     }
         public string generatebarcode()
         {
@@ -164,11 +168,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
         {
-            print(sqlData["result"].ToString() + ":" + sqlData["status"].ToString());
+           
             // gb.transform.position = content.transform.position;
             // gb.transform.rotation = Quaternion.identity;
-            resultsetter[i].setResult(sqlData["result"].ToString());
-            i =i+1;
+            if (i <= resultsetter.Length - 1)
+            {
+                resultsetter[i].setResult(sqlData["result"].ToString());
+               
+            }
+            i = i + 1;
         }
         sqlData.Close();
         sqlData.DisposeAsync();
@@ -273,9 +281,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         startedsequence = false;
        
         resultsentdone= false;
-        addlast9gameresults();
+        
         GameObject.FindObjectOfType<clearbutton>().clearbets();
-
+        noinputpanel.SetActive(false);
+        addlast9gameresults();
         yield return null;
     }
     public void UpdateBalanceAndInfo()
@@ -306,7 +315,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-
+        print("winamount:" + intwinamount);
         win0.text =intwinamount.ToString();
         win1.text = intwinamount.ToString();
 
