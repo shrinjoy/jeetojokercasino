@@ -17,7 +17,7 @@ public class marquee : MonoBehaviour
     }
     private void OnDisable()
     {
-
+        this.transform.position = startingpos;
        this.GetComponent<TMPro.TMP_Text>().enabled= false;
     }
     // Update is called once per frame

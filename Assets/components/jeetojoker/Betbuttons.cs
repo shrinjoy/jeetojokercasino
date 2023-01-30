@@ -17,7 +17,7 @@ public class Betbuttons : MonoBehaviour
     [SerializeField] Sprite coin50;
     [SerializeField] Sprite coin100;
     [SerializeField] Sprite coin500;
-
+    [SerializeField] FakeBetbuttons fakebetbutton;
 
 
     [SerializeField] UnityEngine.UI.Image coinicon;
@@ -30,8 +30,11 @@ public class Betbuttons : MonoBehaviour
     {
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == false)
         {
-            betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
-            updateBetButtonData();
+            if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().fakebalance)
+            {
+                betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                updateBetButtonData();
+            }
         }
         else if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
@@ -41,6 +44,7 @@ public class Betbuttons : MonoBehaviour
         // Update is called once per frame
         public void updateBetButtonData()
         {
+            fakebetbutton.updateBetButtonData(betamount);
             betamounttext.text = betamount.ToString();
             coinicon.color = new Color(Color.white.r, Color.white.g, Color.white.b, 255);
             if (betamount <= 0)

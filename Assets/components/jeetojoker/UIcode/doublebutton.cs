@@ -8,8 +8,11 @@ public class doublebutton : MonoBehaviour
     {
         foreach (Betbuttons bt in GameObject.FindObjectsOfType<Betbuttons>())
         {
-            bt.betamount *= 2;
-            bt.updateBetButtonData();   
+            if ((bt.betamount * 2) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().fakebalance)
+            {
+                bt.betamount *= 2;
+                bt.updateBetButtonData();
+            }
         }
     }
 }

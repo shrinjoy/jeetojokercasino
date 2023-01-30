@@ -23,8 +23,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField]marquee marqueeanim;
     [SerializeField] GameObject resultobject;
     [SerializeField]TMPro.TMP_Text datetimetext;
-    public int totalbetplaced=0;
-    int totalbalance=0;
+     int totalbetplaced=0;
+     int totalbalance=0;
+    public int fakebalance=0;
     [SerializeField] TMPro.TMP_Text playamount;
     [SerializeField] TMPro.TMP_Text playamount2;
     [SerializeField] Betbuttons[] bet_buttons;
@@ -33,26 +34,43 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] Image markerimage;
     [SerializeField] TMPro.TMP_Text win0;
     [SerializeField] TMPro.TMP_Text win1;
-
+    [SerializeField] ResultSetter[] resultsetter;
+    [SerializeField] ResultSetter panelresult;
     // Start is called before the first frame update
     bool startedsequence =false;
     bool resultsentdone;
     string result;
     string xresult;
+    [SerializeField] TMPro.TMP_Text betinfotext;
     private void Start()
     {
         result_starting_pos = resultpanel.transform.position;
-
+       
         base.Start();   
-        UpdateBalanceAndInfo(); 
+        UpdateBalanceAndInfo();
+        addlast9gameresults();
     }
     // Update is called once per frame
     void Update()
     {
         timer.text=Mathf.Clamp( realtime,0,999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-        if(realtime<10 && resultsentdone==false)
+        
+        if(realtime >= 15)
         {
+            betinfotext.text = "Place your chips";
+        }
+
+        if(realtime<=15)
+        {
+            betinfotext.text = "Last Chance";
+
+        }
+
+
+        if(realtime<6 && resultsentdone==false)
+        {
+            betinfotext.text = "No more bets please";
             sendResult();
             resultsentdone=true;
         }
@@ -107,7 +125,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
         
         int bet = (totalbalance - totalbetplaced);
-        
+        fakebalance = bet;
         bet = Mathf.Clamp(bet, 0, 999999999);
         balance.text = bet.ToString();
         balance2.text = bet.ToString();
@@ -125,6 +143,30 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             startedsequence = true;
             StartCoroutine(jeetojokersequence());
         }
+    }
+    public void addlast9gameresults()
+    {
+        string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
+        string starttime = DateTime.Parse(endtime).AddMinutes(-18).ToString("hh:mm:ss tt");
+        int i = 0;
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime + "' and g_date='" + DateTime.Today.ToString("MM/dd/yyyy") + " " + "00:00:00.000'";
+        print(sqlCmnd.CommandText);
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        while (sqlData.Read())
+        {
+            print(sqlData["result"].ToString() + ":" + sqlData["status"].ToString());
+            // gb.transform.position = content.transform.position;
+            // gb.transform.rotation = Quaternion.identity;
+            resultsetter[i].setResult(sqlData["result"].ToString());
+            i =i+1;
+        }
+        sqlData.Close();
+        sqlData.DisposeAsync();
     }
     IEnumerator jeetojokersequence()
     {
@@ -176,6 +218,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             sector = 3;
         }
+        panelresult.setResult(xresult);
 
         innercircle.TurnWheel(sector);
         marqueeanim.enabled = true;
@@ -225,7 +268,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         startedsequence = false;
        
         resultsentdone= false;
+        addlast9gameresults();
         GameObject.FindObjectOfType<clearbutton>().clearbets();
+
         yield return null;
     }
     public void UpdateBalanceAndInfo()
@@ -233,6 +278,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
         balance.text=totalbalance.ToString();
         balance2.text =totalbalance.ToString();
+        fakebalance = totalbalance;
         gameid.text= GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
        
     }
