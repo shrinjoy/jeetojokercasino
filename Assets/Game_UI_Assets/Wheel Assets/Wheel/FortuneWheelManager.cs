@@ -18,6 +18,7 @@ public class FortuneWheelManager : MonoBehaviour
     public GameObject Circle;
 
     public float duration = 9.0f;
+    public int circlecount = 6;
     // Rotatable Object with rewards
     public void TurnWheel (int stoppinganglesector)
     {
@@ -25,7 +26,7 @@ public class FortuneWheelManager : MonoBehaviour
     	    _currentLerpRotationTime = 0f;	
     	    // Fill the necessary angles (for example if you want to have 12 sectors you need to fill the angles with 30 degrees step)
     	    _sectorsAngles = sectors;  	
-    	    int fullCircles = 6;
+    	    int fullCircles = circlecount;
     	    float randomFinalAngle = _sectorsAngles[stoppinganglesector];
         // Here we set up how many circles our wheel should rotate before stop
         _finalAngle = -(fullCircles * 360 + randomFinalAngle);

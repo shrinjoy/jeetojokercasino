@@ -15,8 +15,9 @@ public class timeManager : MonoBehaviour
     public int selectedcoinamount = 2;
     public void Start()
     {
-        timetillnextgame =GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
-        realtime = (int)(timetillnextgame - DateTime.Now.ToUniversalTime()).TotalSeconds;
+        timetillnextgame =GameObject.FindObjectOfType<SQL_manager>().timeForNextGame().AddSeconds(-5);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
+        realtime = (int)(timetillnextgame - DateTime.Now.ToUniversalTime()).TotalSeconds ;
+       
 
     }
 
@@ -44,8 +45,9 @@ public class timeManager : MonoBehaviour
     }
     public void resetTimer()
     {
-        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);       
+        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame().AddSeconds(-5);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);       
         realtime = (int)(timetillnextgame - DateTime.Now.ToUniversalTime()).TotalSeconds;
+    
         print("clock reseted new game in :" + realtime);
         isGameSequenceRunning = false;
     }

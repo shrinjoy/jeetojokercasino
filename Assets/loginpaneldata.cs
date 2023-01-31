@@ -13,4 +13,8 @@ public class loginpaneldata : MonoBehaviour
         id.text =GameObject.FindObjectOfType<userManager>().getUserData().id;
 
     }
+    public void exitGame()
+    {
+        Application.Quit();
+    }
 }

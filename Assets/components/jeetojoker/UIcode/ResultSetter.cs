@@ -35,7 +35,7 @@ public class ResultSetter : MonoBehaviour
         else if (result == "NR04")
         {
             icon.sprite = sprites[0];
-            textresult.text = "QS";
+            textresult.text = "QC";
         }
         else if (result == "NR05")
         {
@@ -56,7 +56,7 @@ public class ResultSetter : MonoBehaviour
         else if (result == "NR08")
         {
             icon.sprite = sprites[0];
-            textresult.text = "kC";
+            textresult.text = "KC";
         }
         else if (result == "NR09")
         {
