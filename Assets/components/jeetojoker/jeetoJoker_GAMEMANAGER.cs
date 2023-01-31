@@ -33,8 +33,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] Sprite brightmarker;
     [SerializeField] Sprite darkmarker;
     [SerializeField] Image markerimage;
-    [SerializeField]public TMPro.TMP_Text win0;
-    [SerializeField]public TMPro.TMP_Text win1;
+    [SerializeField] TMPro.TMP_Text win0;
+    [SerializeField] TMPro.TMP_Text win1;
     [SerializeField] ResultSetter[] resultsetter;
     [SerializeField] ResultSetter panelresult;
     // Start is called before the first frame update
@@ -188,7 +188,6 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlData.DisposeAsync();
         yield return null;
     }
-    
     IEnumerator jeetojokersequence()
     {
         markerimage.enabled = false;
