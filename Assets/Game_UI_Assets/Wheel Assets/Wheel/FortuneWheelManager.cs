@@ -16,9 +16,14 @@ public class FortuneWheelManager : MonoBehaviour
     public bool isspinning=false;
     public float[] sectors;
     public GameObject Circle;
+<<<<<<< HEAD
 
     public float duration = 9.0f;
     public int circlecount = 6;
+=======
+   
+    
+>>>>>>> parent of e385f47 (update)
     // Rotatable Object with rewards
     public void TurnWheel (int stoppinganglesector)
     {
@@ -37,7 +42,7 @@ public class FortuneWheelManager : MonoBehaviour
     void FixedUpdate ()
     {
         
-        float maxLerpRotationTime = duration*curve.Evaluate(time);
+        float maxLerpRotationTime = 9.0f*curve.Evaluate(time);
         time += Time.fixedDeltaTime;
         _currentLerpRotationTime += Time.fixedDeltaTime;
         if (_currentLerpRotationTime > maxLerpRotationTime || Circle.GetComponent<RectTransform>().eulerAngles.z == _finalAngle)

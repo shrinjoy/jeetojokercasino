@@ -8695,8 +8695,11 @@ MonoBehaviour:
   - 330
   - 360
   Circle: {fileID: 1378575525}
+<<<<<<< HEAD
   duration: 7
   circlecount: 8
+=======
+>>>>>>> parent of e385f47 (update)
 --- !u!1 &1384874778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7054339178014333306, guid: 24a89ac2a1d5d0744993444802a00546, type: 3}
@@ -11091,8 +11094,11 @@ MonoBehaviour:
   - 330
   - 360
   Circle: {fileID: 1827616864}
+<<<<<<< HEAD
   duration: 6
   circlecount: 6
+=======
+>>>>>>> parent of e385f47 (update)
 --- !u!224 &1837518070 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2074034521476066614, guid: 73bec4d5ce68751468fc7bad2c534e16, type: 3}

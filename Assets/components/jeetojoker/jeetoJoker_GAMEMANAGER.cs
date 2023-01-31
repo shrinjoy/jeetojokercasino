@@ -218,7 +218,11 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         
         outtercirlcle.TurnWheel(sector);
-      
+        
+        while(outtercirlcle.isspinning==true)
+        {//
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
         if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08")
         {
             sector = 0;
