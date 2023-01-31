@@ -49,6 +49,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
        
         base.Start();   
         StartCoroutine(UpdateBalanceAndInfo());
+
         StartCoroutine(addlast9gameresults());
     }
     // Update is called once per frame
