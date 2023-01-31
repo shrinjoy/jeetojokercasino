@@ -2490,10 +2490,18 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.1, y: -9.1}
 =======
   m_AnchoredPosition: {x: -6.099993, y: -9.1}
 >>>>>>> parent of 0a3ed78 (update)
+=======
+  m_AnchoredPosition: {x: -11.1, y: -9.1}
+>>>>>>> parent of 7032d27 (xd)
+=======
+  m_AnchoredPosition: {x: -11.1, y: -9.1}
+>>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 61.725, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341350248
@@ -2730,10 +2738,18 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
 =======
   m_AnchoredPosition: {x: 30.600067, y: 7}
 >>>>>>> parent of 0a3ed78 (update)
+=======
+  m_AnchoredPosition: {x: 39.7, y: 7}
+>>>>>>> parent of 7032d27 (xd)
+=======
+  m_AnchoredPosition: {x: 39.7, y: 7}
+>>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 45.2288, y: 64.0844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382357013
@@ -3522,10 +3538,18 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
 =======
   m_AnchoredPosition: {x: 30.600067, y: 7}
 >>>>>>> parent of 0a3ed78 (update)
+=======
+  m_AnchoredPosition: {x: 39.7, y: 7}
+>>>>>>> parent of 7032d27 (xd)
+=======
+  m_AnchoredPosition: {x: 39.7, y: 7}
+>>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 45.2288, y: 64.0844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563387924
@@ -4239,7 +4263,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.675136
+  orthographic size: 4.21875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5010,10 +5034,18 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
 =======
   m_AnchoredPosition: {x: 30.600067, y: 7}
 >>>>>>> parent of 0a3ed78 (update)
+=======
+  m_AnchoredPosition: {x: 39.7, y: 7}
+>>>>>>> parent of 7032d27 (xd)
+=======
+  m_AnchoredPosition: {x: 39.7, y: 7}
+>>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 45.2288, y: 64.0844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834950578
@@ -10105,10 +10137,18 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.9, y: -9.1}
 =======
   m_AnchoredPosition: {x: -6.8999925, y: -9.1}
 >>>>>>> parent of 0a3ed78 (update)
+=======
+  m_AnchoredPosition: {x: -11.9, y: -9.1}
+>>>>>>> parent of 7032d27 (xd)
+=======
+  m_AnchoredPosition: {x: -11.9, y: -9.1}
+>>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 61.725, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701506684
@@ -11620,10 +11660,18 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.7, y: -9.1}
 =======
   m_AnchoredPosition: {x: -6.6999927, y: -9.1}
 >>>>>>> parent of 0a3ed78 (update)
+=======
+  m_AnchoredPosition: {x: -11.7, y: -9.1}
+>>>>>>> parent of 7032d27 (xd)
+=======
+  m_AnchoredPosition: {x: -11.7, y: -9.1}
+>>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 61.725, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906822883
