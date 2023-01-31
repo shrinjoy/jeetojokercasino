@@ -2447,11 +2447,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330804547}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &341350246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,19 +2484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.1, y: -9.1}
-=======
-  m_AnchoredPosition: {x: -6.099993, y: -9.1}
->>>>>>> parent of 0a3ed78 (update)
-=======
-  m_AnchoredPosition: {x: -11.1, y: -9.1}
->>>>>>> parent of 7032d27 (xd)
-=======
-  m_AnchoredPosition: {x: -11.1, y: -9.1}
->>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 61.725, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341350248
@@ -2620,10 +2603,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341350246}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
->>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!224 &358256407 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3262145360431411269, guid: 9a48bef830be2d54e84d14f5bac26e06, type: 3}
@@ -2697,11 +2676,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &382357011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,19 +2711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
-=======
-  m_AnchoredPosition: {x: 30.600067, y: 7}
->>>>>>> parent of 0a3ed78 (update)
-=======
-  m_AnchoredPosition: {x: 39.7, y: 7}
->>>>>>> parent of 7032d27 (xd)
-=======
-  m_AnchoredPosition: {x: 39.7, y: 7}
->>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 45.2288, y: 64.0844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382357013
@@ -2790,10 +2752,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382357011}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
->>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1001 &441731620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3497,11 +3455,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542246434}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &563387922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3537,19 +3490,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
-=======
-  m_AnchoredPosition: {x: 30.600067, y: 7}
->>>>>>> parent of 0a3ed78 (update)
-=======
-  m_AnchoredPosition: {x: 39.7, y: 7}
->>>>>>> parent of 7032d27 (xd)
-=======
-  m_AnchoredPosition: {x: 39.7, y: 7}
->>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 45.2288, y: 64.0844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563387924
@@ -3590,10 +3531,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563387922}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
->>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!224 &593890739 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3621993810917684781, guid: 61d6b421c3eeeb64cbb7f3d482daee01, type: 3}
@@ -4993,11 +4930,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.3920898, y: -0.1377945}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &834950576
 GameObject:
   m_ObjectHideFlags: 0
@@ -5033,19 +4965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
-=======
-  m_AnchoredPosition: {x: 30.600067, y: 7}
->>>>>>> parent of 0a3ed78 (update)
-=======
-  m_AnchoredPosition: {x: 39.7, y: 7}
->>>>>>> parent of 7032d27 (xd)
-=======
-  m_AnchoredPosition: {x: 39.7, y: 7}
->>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 45.2288, y: 64.0844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &834950578
@@ -5086,10 +5006,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834950576}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
->>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &837523408
 GameObject:
   m_ObjectHideFlags: 0
@@ -8695,11 +8611,8 @@ MonoBehaviour:
   - 330
   - 360
   Circle: {fileID: 1378575525}
-<<<<<<< HEAD
   duration: 7
   circlecount: 8
-=======
->>>>>>> parent of e385f47 (update)
 --- !u!1 &1384874778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7054339178014333306, guid: 24a89ac2a1d5d0744993444802a00546, type: 3}
@@ -10097,11 +10010,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 344415752181560041, guid: 1ec4335bab897cd4ab9b005940fe3878, type: 3}
   m_PrefabInstance: {fileID: 344415751712117922}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &1701506682
 GameObject:
   m_ObjectHideFlags: 0
@@ -10139,19 +10047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.9, y: -9.1}
-=======
-  m_AnchoredPosition: {x: -6.8999925, y: -9.1}
->>>>>>> parent of 0a3ed78 (update)
-=======
-  m_AnchoredPosition: {x: -11.9, y: -9.1}
->>>>>>> parent of 7032d27 (xd)
-=======
-  m_AnchoredPosition: {x: -11.9, y: -9.1}
->>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 61.725, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701506684
@@ -10270,10 +10166,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701506682}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
->>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &1724597772
 GameObject:
   m_ObjectHideFlags: 0
@@ -11094,11 +10986,8 @@ MonoBehaviour:
   - 330
   - 360
   Circle: {fileID: 1827616864}
-<<<<<<< HEAD
   duration: 6
   circlecount: 6
-=======
->>>>>>> parent of e385f47 (update)
 --- !u!224 &1837518070 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2074034521476066614, guid: 73bec4d5ce68751468fc7bad2c534e16, type: 3}
@@ -11623,11 +11512,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905269442}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &1906822881
 GameObject:
   m_ObjectHideFlags: 0
@@ -11665,19 +11549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.7, y: -9.1}
-=======
-  m_AnchoredPosition: {x: -6.6999927, y: -9.1}
->>>>>>> parent of 0a3ed78 (update)
-=======
-  m_AnchoredPosition: {x: -11.7, y: -9.1}
->>>>>>> parent of 7032d27 (xd)
-=======
-  m_AnchoredPosition: {x: -11.7, y: -9.1}
->>>>>>> parent of 7032d27 (xd)
   m_SizeDelta: {x: 61.725, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906822883
@@ -11796,10 +11668,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906822881}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
->>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 --- !u!224 &1920801241 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 248482385971309435, guid: 5732058b9e0f9cf4bbe4697acc3fbf79, type: 3}
