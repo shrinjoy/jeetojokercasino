@@ -2449,10 +2449,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &341350246
@@ -2493,11 +2490,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.1, y: -9.1}
-=======
-  m_AnchoredPosition: {x: -6.099993, y: -9.1}
->>>>>>> parent of 0a3ed78 (update)
 =======
   m_AnchoredPosition: {x: -6.099993, y: -9.1}
 >>>>>>> parent of 0a3ed78 (update)
@@ -2620,10 +2613,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 341350246}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!224 &358256407 stripped
@@ -2701,10 +2691,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &382357011
@@ -2743,11 +2730,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
-=======
-  m_AnchoredPosition: {x: 30.600067, y: 7}
->>>>>>> parent of 0a3ed78 (update)
 =======
   m_AnchoredPosition: {x: 30.600067, y: 7}
 >>>>>>> parent of 0a3ed78 (update)
@@ -2792,10 +2775,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 382357011}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1001 &441731620
@@ -3503,10 +3483,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &563387922
@@ -3545,11 +3522,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
-=======
-  m_AnchoredPosition: {x: 30.600067, y: 7}
->>>>>>> parent of 0a3ed78 (update)
 =======
   m_AnchoredPosition: {x: 30.600067, y: 7}
 >>>>>>> parent of 0a3ed78 (update)
@@ -3594,10 +3567,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 563387922}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!224 &593890739 stripped
@@ -5001,10 +4971,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &834950576
@@ -5043,11 +5010,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: 39.7, y: 7}
-=======
-  m_AnchoredPosition: {x: 30.600067, y: 7}
->>>>>>> parent of 0a3ed78 (update)
 =======
   m_AnchoredPosition: {x: 30.600067, y: 7}
 >>>>>>> parent of 0a3ed78 (update)
@@ -5092,10 +5055,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 834950576}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &837523408
@@ -10104,10 +10064,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &1701506682
@@ -10148,11 +10105,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.9, y: -9.1}
-=======
-  m_AnchoredPosition: {x: -6.8999925, y: -9.1}
->>>>>>> parent of 0a3ed78 (update)
 =======
   m_AnchoredPosition: {x: -6.8999925, y: -9.1}
 >>>>>>> parent of 0a3ed78 (update)
@@ -10275,10 +10228,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 1701506682}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &1724597772
@@ -11629,10 +11579,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!1 &1906822881
@@ -11673,11 +11620,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_AnchoredPosition: {x: -11.7, y: -9.1}
-=======
-  m_AnchoredPosition: {x: -6.6999927, y: -9.1}
->>>>>>> parent of 0a3ed78 (update)
 =======
   m_AnchoredPosition: {x: -6.6999927, y: -9.1}
 >>>>>>> parent of 0a3ed78 (update)
@@ -11800,10 +11743,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 1906822881}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> parent of 7032d27 (xd)
-=======
->>>>>>> parent of 0a3ed78 (update)
 =======
 >>>>>>> parent of 0a3ed78 (update)
 --- !u!224 &1920801241 stripped
