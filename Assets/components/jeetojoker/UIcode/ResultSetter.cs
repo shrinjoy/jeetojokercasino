@@ -8,6 +8,7 @@ public class ResultSetter : MonoBehaviour
     [SerializeField] Image icon;
     [SerializeField] Sprite[] sprites;
     [SerializeField] TMPro.TMP_Text textresult;
+    public bool nonresult = false;
     public void setResult(string result)
     {
         if(result=="NR00")
@@ -72,6 +73,10 @@ public class ResultSetter : MonoBehaviour
         {
             icon.sprite = sprites[3];
             textresult.text = "KH";
+        }
+        if(nonresult==true)
+        {
+            textresult.text = textresult.text.Substring(0, 1);
         }
     }
 }
