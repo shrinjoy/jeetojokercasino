@@ -33,8 +33,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] Sprite brightmarker;
     [SerializeField] Sprite darkmarker;
     [SerializeField] Image markerimage;
-    [SerializeField] TMPro.TMP_Text win0;
-    [SerializeField] TMPro.TMP_Text win1;
+    [SerializeField]public TMPro.TMP_Text win0;
+    [SerializeField]public TMPro.TMP_Text win1;
     [SerializeField] ResultSetter[] resultsetter;
     [SerializeField] ResultSetter panelresult;
     // Start is called before the first frame update
@@ -43,13 +43,13 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     string result;
     string xresult;
     [SerializeField] TMPro.TMP_Text betinfotext;
+    public bool resetData = false;
     private void Start()
     {
         result_starting_pos = resultpanel.transform.position;
        
         base.Start();   
         StartCoroutine(UpdateBalanceAndInfo());
-
         StartCoroutine(addlast9gameresults());
     }
     // Update is called once per frame
@@ -57,6 +57,20 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     {
         timer.text=Mathf.Clamp( realtime,0,999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+        if(resetData==true)
+        {
+            try
+            {
+                StartCoroutine(UpdateBalanceAndInfo());
+                StartCoroutine(addlast9gameresults());
+                StartCoroutine(getwinamount());
+                resetData = true;
+            }
+            catch { 
+              resetData= false;
+            }
+       
+        }
         
         if(realtime >= 15)
         {
@@ -144,19 +158,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     {
        if(startedsequence== false)
         {
-
-            try
-            {
-
-                result = GameObject.FindObjectOfType<betManager>().getResult("joker");
-            }
-            catch(System.Exception e)
-            {
-                this.GameSequence();
-            }
-             xresult = result.Substring(0, 4);
             startedsequence = true;
             StartCoroutine(jeetojokersequence());
+            result = GameObject.FindObjectOfType<betManager>().getResult("joker");
+            xresult = result.Substring(0, 4);
         }
     }
     public IEnumerator addlast9gameresults()
@@ -191,6 +196,12 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     }
     IEnumerator jeetojokersequence()
     {
+
+       
+       
+
+
+
         markerimage.enabled = false;
         
         resultobject.SetActive(false);
@@ -202,8 +213,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             yield return new WaitForEndOfFrame();
                 
         }
-        
+       
         int sector=0;
+
+
        
         if(xresult=="NR00"|| xresult == "NR01" || xresult == "NR02" || xresult == "NR03")
         {
@@ -274,9 +287,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         markerimage.sprite = brightmarker;
 
         
-        StartCoroutine(UpdateBalanceAndInfo());
-       
-       
+        
         yield return new WaitForSeconds(1.0f);
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f)
         {
@@ -289,19 +300,19 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         GameObject.FindObjectOfType<clearbutton>().clearbets();
         noinputpanel.SetActive(false);
-      
+        resetData = true;
         yield return null;
     }
     IEnumerator  UpdateBalanceAndInfo()
     {
-        StartCoroutine(getwinamount());
+       
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
         balance.text=totalbalance.ToString();
         balance2.text =totalbalance.ToString();
         fakebalance = totalbalance;
         gameid.text= GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
         resetTimer();
-        StartCoroutine(addlast9gameresults());
+        
         yield return null;
        
     }
