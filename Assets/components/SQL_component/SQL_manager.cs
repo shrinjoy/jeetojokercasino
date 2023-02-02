@@ -26,6 +26,25 @@ public class SQL_manager : MonoBehaviour
        
 
     }
+    public DateTime get_time()
+    {
+        DateTime dt = new DateTime();
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = "SELECT GETDATE() as CurrentTime";//this is the sql command we use to get data about user
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        if (sqlData.Read())
+        {
+            dt = DateTime.Parse(sqlData["CurrentTime"].ToString());
+        }
+        sqlData.Close();
+        sqlData.DisposeAsync();
+        dt = DateTime.Parse(dt.ToString("hh:mm:ss tt"));
+        return dt;
+    }
     //initSQL() inits the sql connection and opens it for other methods dependend on sql to run 
     public SqlConnection initSQL()
     {
@@ -192,23 +211,22 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1;";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {
             if (sqlData["g_time"] != null)
             {
                 string time = sqlData["g_time"].ToString();
-                DateTime date = DateTime.ParseExact(time, "hh:mm:ss tt", System.Globalization.CultureInfo.CurrentCulture);
+                DateTime date = DateTime.Parse(DateTime.Parse(time).ToString("hh:mm:ss tt"));
 
                 if (this.GetComponent<betManager>() != null)
                 {
-                    print("setting time and id");
                     this.GetComponent<betManager>().setResultData(time, Convert.ToInt32(sqlData["id"].ToString()));
                 }
                 sqlData.Close();
                 sqlData.DisposeAsync();
-                return (date.ToUniversalTime());
+                return (date);
             }
             else
             {
@@ -219,13 +237,9 @@ public class SQL_manager : MonoBehaviour
             }
 
         }
-        else
-        {
-            print("tag 1 not found");
-            sqlData.Close();
-            sqlData.DisposeAsync();
-            return DateTime.Now;
-        }
+        sqlData.Close();
+        sqlData.DisposeAsync();
+        return DateTime.Now;
     }
 
 }

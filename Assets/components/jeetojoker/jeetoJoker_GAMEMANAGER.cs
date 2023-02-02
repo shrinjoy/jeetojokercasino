@@ -37,8 +37,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField]public TMPro.TMP_Text win1;
     [SerializeField] ResultSetter[] resultsetter;
     [SerializeField] ResultSetter panelresult;
+    bool sequenceended = true;
     // Start is called before the first frame update
-    bool startedsequence =false;
+  
     bool resultsentdone;
     string result;
     string xresult;
@@ -55,7 +56,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     // Update is called once per frame
     void Update()
     {
-        timer.text=Mathf.Clamp( realtime,0,999).ToString();
+        timer.text=Mathf.Clamp((int)realtime,0,999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
         if(resetData==true)
         {
@@ -63,7 +64,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             {
                 StartCoroutine(UpdateBalanceAndInfo());
                 StartCoroutine(addlast9gameresults());
-                StartCoroutine(getwinamount());
+                getwinamount();
                 resetData = true;
             }
             catch { 
@@ -84,7 +85,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         //
 
-        if(realtime<10 && resultsentdone==false)
+        if(realtime<11 && resultsentdone==false)
         {
             noinputpanel.SetActive(true);
             StartCoroutine(sendResult());
@@ -98,6 +99,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public IEnumerator sendResult()
     {
         betinfotext.text = "Your bets have been accepted";
+        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (totalbalance > (totalbalance-totalbetplaced) && totalbetplaced > 0)
         {
             string status = "Print";
@@ -108,7 +110,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
                 "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
                 + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount
                 + "," + totalbetplaced + "," + totalbetplaced+ ","
-                + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd")+" "+DateTime.Now.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
+                + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd")+" "+currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
             print(command);
             SqlCommand sqlCmnd = new SqlCommand();
             SqlDataReader sqldata = null;
@@ -156,13 +158,26 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     }
     public override void GameSequence()
     {
-       if(startedsequence== false)
+        try
         {
-            startedsequence = true;
-            StartCoroutine(jeetojokersequence());
-            result = GameObject.FindObjectOfType<betManager>().getResult("joker");
-            xresult = result.Substring(0, 4);
+            if (sequenceended == true)
+            {
+                result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("joker");
+                if (result != null && sequenceended == true)
+                {
+                    print("game sequnce started");
+
+                    sequenceended = false;
+                    StartCoroutine(jeetojokersequence());
+                }
+            }
         }
+        catch (Exception ex)
+        {
+            print("failed to get result");
+            this.GameSequence();
+        }
+
     }
     public IEnumerator addlast9gameresults()
     {
@@ -196,12 +211,6 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     }
     IEnumerator jeetojokersequence()
     {
-
-       
-       
-
-
-
         markerimage.enabled = false;
         
         resultobject.SetActive(false);
@@ -213,11 +222,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             yield return new WaitForEndOfFrame();
                 
         }
-       
-        int sector=0;
-
-
-       
+        int sector=0;   
         if(xresult=="NR00"|| xresult == "NR01" || xresult == "NR02" || xresult == "NR03")
         {
             sector = 0;
@@ -289,18 +294,19 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         
         yield return new WaitForSeconds(1.0f);
-        while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f)
+        while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f )
         {
             resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position,result_starting_pos, Time.deltaTime * 4.0f);
             yield return new WaitForEndOfFrame();
         }
-        startedsequence = false;
+        
        
         resultsentdone= false;
         
         GameObject.FindObjectOfType<clearbutton>().clearbets();
         noinputpanel.SetActive(false);
         resetData = true;
+        sequenceended = true;
         yield return null;
     }
     IEnumerator  UpdateBalanceAndInfo()
@@ -316,29 +322,41 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         yield return null;
        
     }
-    IEnumerator getwinamount()
+    void getwinamount()
     {
-       
+
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tasp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'and status='Prize'";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tasp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + "and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'";//this is the sql command we use to get data about user
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
         while (sqlData.Read())
         {
+            if (sqlData["clm"] != null || sqlData["clm"] != "Null")
+            {
+                intwinamount += Convert.ToInt32(sqlData["clm"].ToString());
+            }
 
-            intwinamount += Convert.ToInt32(sqlData["clm"].ToString());
+
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-        print("winamount:" + intwinamount);
-        win0.text =intwinamount.ToString();
-        win1.text = intwinamount.ToString();
-        yield return null;
+        if (intwinamount > 0)
+        {
+            print("winamount:" + intwinamount);
+            win0.text = "WIN:" + intwinamount;
+            win1.text = "WIN:" + intwinamount;
+        }
+        if (intwinamount <= 0)
+        {
+            print("no win amount");
+            win0.text = "";
+            win1.text = "";
+        }
 
     }
 }
