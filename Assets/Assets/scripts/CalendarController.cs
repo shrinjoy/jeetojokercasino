@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,9 +18,12 @@ public class CalendarController : MonoBehaviour
 
     private DateTime _dateTime;
     public static CalendarController _calendarInstance;
-
+    public string datetimeyear;
+    public TMPro.TMP_Text calendertext;
     void Start()
     {
+        datetimeyear = DateTime.Today.ToString("dd-MM-yyyy");
+        calendertext.text = datetimeyear;
         _calendarInstance = this;
         Vector3 startPos = _item.transform.localPosition;
         _dateItems.Clear();
@@ -32,7 +36,7 @@ public class CalendarController : MonoBehaviour
             item.transform.SetParent(_item.transform.parent);
             item.transform.localScale = Vector3.one;
             item.transform.localRotation = Quaternion.identity;
-            item.transform.localPosition = new Vector3((i % 7) * 31 + startPos.x, startPos.y - (i / 7) * 25, startPos.z);
+            item.transform.localPosition = new Vector3((i % 7) * 38 + startPos.x, startPos.y - (i / 7) * 25, startPos.z);
 
             _dateItems.Add(item);
         }
@@ -70,7 +74,7 @@ public class CalendarController : MonoBehaviour
         _yearNumText.text = _dateTime.Year.ToString();
         _monthNumText.text = _dateTime.Month.ToString();
     }
-
+   
     int GetDays(DayOfWeek day)
     {
         switch (day)
@@ -83,7 +87,6 @@ public class CalendarController : MonoBehaviour
             case DayOfWeek.Saturday: return 6;
             case DayOfWeek.Sunday: return 0;
         }
-
         return 0;
     }
     public void YearPrev()
@@ -110,17 +113,20 @@ public class CalendarController : MonoBehaviour
         CreateCalendar();
     }
 
-    public void ShowCalendar(Text target)
+    public void ShowCalendar()
     {
         _calendarPanel.SetActive(true);
-        _target = target;
-        _calendarPanel.transform.position = new Vector3(965, 475, 0);//Input.mousePosition-new Vector3(0,120,0);
+        
+    
     }
 
     Text _target;
     public void OnDateItemClick(string day)
     {
-        _target.text = _yearNumText.text + "Year" + _monthNumText.text + "Month" + day+"Day";
+      
+        datetimeyear = day + "/" + _monthNumText.text + "/" + _yearNumText.text;
+        calendertext.text = datetimeyear;
         _calendarPanel.SetActive(false);
+
     }
 }

@@ -12,6 +12,7 @@ public class SQL_manager : MonoBehaviour
    
    public  SqlConnection SQLconn;
    public TMPro.TMP_Text warningtext;
+   public DateTime server_day;
     private void Awake()
     {
         SQLconn = new SqlConnection();
@@ -42,6 +43,7 @@ public class SQL_manager : MonoBehaviour
         }
         sqlData.Close();
         sqlData.DisposeAsync();
+        server_day = DateTime.Parse(dt.ToString("dd-MMM-yyyy"));
         dt = DateTime.Parse(dt.ToString("hh:mm:ss tt"));
         return dt;
     }

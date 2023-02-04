@@ -58,20 +58,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     {
         timer.text=Mathf.Clamp((int)realtime,0,999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-        if(resetData==true)
-        {
-            try
-            {
-                StartCoroutine(UpdateBalanceAndInfo());
-                StartCoroutine(addlast9gameresults());
-                getwinamount();
-                resetData = true;
-            }
-            catch { 
-              resetData= false;
-            }
        
-        }
         
         if(realtime >= 15)
         {
@@ -222,6 +209,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             yield return new WaitForEndOfFrame();
                 
         }
+        xresult = result.Substring(0, 4);
         int sector=0;   
         if(xresult=="NR00"|| xresult == "NR01" || xresult == "NR02" || xresult == "NR03")
         {
@@ -291,8 +279,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
         markerimage.sprite = brightmarker;
 
-        
-        
+
+        getwinamount();
         yield return new WaitForSeconds(1.0f);
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f )
         {
@@ -305,7 +293,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         GameObject.FindObjectOfType<clearbutton>().clearbets();
         noinputpanel.SetActive(false);
-        resetData = true;
+       
+        
         sequenceended = true;
         yield return null;
     }
@@ -330,7 +319,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tasp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id=" + GameObject.FindObjectOfType<userManager>().getUserData().id + "and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tasp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'";//this is the sql command we use to get data about user
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
@@ -345,11 +334,13 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
+        
         if (intwinamount > 0)
         {
             print("winamount:" + intwinamount);
-            win0.text = "WIN:" + intwinamount;
-            win1.text = "WIN:" + intwinamount;
+            GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
+            win0.text = intwinamount.ToString();
+            win1.text = intwinamount.ToString();
         }
         if (intwinamount <= 0)
         {
@@ -357,6 +348,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             win0.text = "";
             win1.text = "";
         }
+        StartCoroutine(UpdateBalanceAndInfo());
 
+        StartCoroutine(addlast9gameresults());
     }
 }
