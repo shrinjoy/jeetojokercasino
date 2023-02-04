@@ -14,6 +14,7 @@ public class historypanel : MonoBehaviour
    
     public void onResultsbuttonClicked()
     {
+        print("report button clicked");
         foreach (Transform tf in content.GetComponentInChildren<Transform>())
         {
             if (tf != content.transform)
@@ -21,6 +22,7 @@ public class historypanel : MonoBehaviour
                 Destroy(tf.gameObject);
             }
         }
+        
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;

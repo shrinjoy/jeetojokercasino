@@ -17,14 +17,15 @@ public class CalendarController : MonoBehaviour
     const int _totalDateNum = 42;
 
     private DateTime _dateTime;
-    public static CalendarController _calendarInstance;
+    public  CalendarController _calendarInstance;
     public string datetimeyear;
     public TMPro.TMP_Text calendertext;
     void Start()
     {
-        datetimeyear = DateTime.Today.ToString("dd-MM-yyyy");
+        datetimeyear = DateTime.Today.ToString("dd-MMM-yyyy");
         calendertext.text = datetimeyear;
-        _calendarInstance = this;
+       
+       
         Vector3 startPos = _item.transform.localPosition;
         _dateItems.Clear();
         _dateItems.Add(_item);
@@ -89,6 +90,25 @@ public class CalendarController : MonoBehaviour
         }
         return 0;
     }
+    string GetMonth(string month)
+    {
+        switch (month)
+        {
+            case "1": return "Jan";
+            case "2": return "Feb";
+            case "3": return "Mar";
+            case "4": return "Apr";
+            case "5": return "May";
+            case "6": return "Jun";
+            case "7": return "Jul";
+            case "8": return "Aug";
+            case "9": return "Sep";
+            case "10": return "Oct";
+            case "11": return "Nov";
+            case "12": return "Dec";
+        }
+        return "Jan";
+    }
     public void YearPrev()
     {
         _dateTime = _dateTime.AddYears(-1);
@@ -123,8 +143,11 @@ public class CalendarController : MonoBehaviour
     Text _target;
     public void OnDateItemClick(string day)
     {
-      
-        datetimeyear = day + "/" + _monthNumText.text + "/" + _yearNumText.text;
+
+        datetimeyear = (day + "-" +GetMonth(_monthNumText.text)+ "-" + _yearNumText.text);
+       // datetimeyear = DateTime.Parse(datetimeyear).ToString("dd-MMM-yyyy");
+
+        print(calendertext.name);
         calendertext.text = datetimeyear;
         _calendarPanel.SetActive(false);
 

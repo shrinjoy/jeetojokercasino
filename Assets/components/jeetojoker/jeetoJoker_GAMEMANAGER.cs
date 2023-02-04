@@ -37,6 +37,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField]public TMPro.TMP_Text win1;
     [SerializeField] ResultSetter[] resultsetter;
     [SerializeField] ResultSetter panelresult;
+    [SerializeField] GameObject infopanel;
     bool sequenceended = true;
     // Start is called before the first frame update
   
@@ -68,12 +69,13 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         if(realtime<=15 && realtime >11)
         {
             betinfotext.text = "Last Chance";
-
+           
         }
         //
 
         if(realtime<11 && resultsentdone==false)
         {
+            infopanel.SetActive(false);
             noinputpanel.SetActive(true);
             StartCoroutine(sendResult());
             resultsentdone=true;

@@ -6,6 +6,7 @@ public class CalendarDateItem : MonoBehaviour {
 
     public void OnDateItemClick()
     {
-        CalendarController._calendarInstance.OnDateItemClick(gameObject.GetComponentInChildren<Text>().text);
+        GetComponentInParent<CalendarController>().OnDateItemClick(gameObject.GetComponentInChildren<Text>().text);
+        print(gameObject.GetComponentInChildren<Text>().text);
     }
 }
