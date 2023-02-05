@@ -40,8 +40,8 @@ public class Results_panel : MonoBehaviour
         while (sqlData.Read())
         {
            GameObject gb = (GameObject)Instantiate(resultsprefab);
-           gb.transform.SetParent(content.transform);
-           resultsprefab.transform.position = Vector3.zero;
+           gb.transform.SetParent(content.transform,false);
+          
            gb.GetComponent<Results_object_info>().setResult(sqlData["result"].ToString(), sqlData["g_time"].ToString());
         }
         sqlData.Close();
