@@ -38,10 +38,65 @@ public class historypanel : MonoBehaviour
              GameObject gb = (GameObject)Instantiate(prefabitem);
              gb.transform.SetParent(content.transform,false);
              
-             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), sqlData["gameresult"].ToString());
+             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), converttoresult(sqlData["gameresult"].ToString()));
         }
         sqlData.Close();
         sqlData.DisposeAsync();
 
+    }
+    public string converttoresult(string result)
+    {
+        if (result == "NR00")
+        {
+            return "JC";
+        }
+        else if (result == "NR01")
+        {
+            return "JD";
+        }
+        else if (result == "NR02")
+        {
+            return  "JS";
+        }
+        //
+        else if (result == "NR03")
+        {
+            return "JH";
+        }
+        //
+        else if (result == "NR04")
+        {
+            return "QC";
+        }
+        else if (result == "NR05")
+        {
+            return "QD";
+        }
+        else if (result == "NR06")
+        {
+            return "QS";
+        }
+        else if (result == "NR07")
+        {
+            return "QH";
+        }
+        //
+        else if (result == "NR08")
+        {
+            return "KC";
+        }
+        else if (result == "NR09")
+        {
+            return "KD";
+        }
+        else if (result == "NR10")
+        {
+            return "KS";
+        }
+        else if (result == "NR11")
+        {
+            return "KH";
+        }
+        return "Null";
     }
 }

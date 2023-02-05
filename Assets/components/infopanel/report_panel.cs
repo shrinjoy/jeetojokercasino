@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using UnityEngine;
+using System.Drawing;
 
 public class report_panel : MonoBehaviour
 {
@@ -56,4 +57,5 @@ public class report_panel : MonoBehaviour
         sqlData.Close();
         sqlData.DisposeAsync();
     }
+   
 }
