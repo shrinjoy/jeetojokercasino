@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class doublebutton : MonoBehaviour
 {
+    [SerializeField]AudioSource asa;
     public void doublebets()
     {
+        asa.Play(); 
         foreach (Betbuttons bt in GameObject.FindObjectsOfType<Betbuttons>())
         {
             if ((bt.betamount * 2) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().fakebalance)

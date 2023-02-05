@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using ZXing.QrCode.Internal;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class jeetoJoker_GAMEMANAGER :timeManager
 {
@@ -38,6 +39,13 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] ResultSetter[] resultsetter;
     [SerializeField] ResultSetter panelresult;
     [SerializeField] GameObject infopanel;
+    [SerializeField] TMPro.TMP_Text winamount_panel_wintext;
+    [SerializeField] GameObject winamount_panel;
+    [SerializeField] AudioClip gamestartaudiosource;
+    [SerializeField] AudioClip wheelspinning;
+    [SerializeField] AudioClip last15sec;
+    [SerializeField] AudioClip nomoreplay;
+    [SerializeField] AudioClip winaudio;
     bool sequenceended = true;
     // Start is called before the first frame update
   
@@ -49,7 +57,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     private void Start()
     {
         result_starting_pos = resultpanel.transform.position;
-       
+        GetComponent<AudioSource>().clip = gamestartaudiosource;
+        GetComponent<AudioSource>().Play();
         base.Start();   
         StartCoroutine(UpdateBalanceAndInfo());
         StartCoroutine(addlast9gameresults());
@@ -68,6 +77,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
         if(realtime<=15 && realtime >11)
         {
+            GetComponent<AudioSource>().clip = last15sec;
+            GetComponent<AudioSource>().Play();
             betinfotext.text = "Last Chance";
            
         }
@@ -75,6 +86,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
         if(realtime<11 && resultsentdone==false)
         {
+            GetComponent<AudioSource>().clip =  nomoreplay;
+            GetComponent<AudioSource>().Play();
             infopanel.SetActive(false);
             noinputpanel.SetActive(true);
             StartCoroutine(sendResult());
@@ -89,32 +102,40 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     {
         betinfotext.text = "Your bets have been accepted";
         DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-        if (totalbalance > (totalbalance-totalbetplaced) && totalbetplaced > 0)
-        {
-            string status = "Print";
-            string gm = "gm";
-            string barcode = generatebarcode();
-            string command = "INSERT INTO [taas].[dbo].[tasp] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11," +
-                "tot,qty," +
-                "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
-                + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount
-                + "," + totalbetplaced + "," + totalbetplaced+ ","
-                + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd")+" "+currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
-            print(command);
-            SqlCommand sqlCmnd = new SqlCommand();
-            SqlDataReader sqldata = null;
-            sqlCmnd.CommandTimeout = 60;
-            sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-            sqlCmnd.CommandType = CommandType.Text;
-            sqlCmnd.CommandText = command;
-            sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
+            {
+            if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
+            {
+                string status = "Print";
+                string gm = "gm";
+                string barcode = generatebarcode();
+                string command = "INSERT INTO [taas].[dbo].[tasp] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11," +
+                    "tot,qty," +
+                    "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
+                    + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount
+                    + "," + totalbetplaced + "," + totalbetplaced + ","
+                    + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
+                print(command);
+                SqlCommand sqlCmnd = new SqlCommand();
+                SqlDataReader sqldata = null;
+                sqlCmnd.CommandTimeout = 60;
+                sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+                sqlCmnd.CommandType = CommandType.Text;
+                sqlCmnd.CommandText = command;
+                sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
 
-            sqldata.Close();
-            sqldata.DisposeAsync();
-            print(totalbetplaced);
-            GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id,totalbetplaced);
-            UpdateBalanceAndInfo();
-          
+                sqldata.Close();
+                sqldata.DisposeAsync();
+                print(totalbetplaced);
+                GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
+                UpdateBalanceAndInfo();
+
+            }
+        }
+        
+        else
+        {
+            SceneManager.LoadScene(0);
         }
         yield return null;
      
@@ -244,6 +265,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             sector = 3;
         }
+        GetComponent<AudioSource>().loop = true;
+        GetComponent<AudioSource>().clip = wheelspinning;
+        GetComponent<AudioSource>().Play();
         panelresult.setResult(xresult);
 
         innercircle.TurnWheel(sector);
@@ -254,7 +278,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             yield return new WaitForSecondsRealtime(0.01f);
         }
+        GetComponent<AudioSource>().loop = false;
         marqueeanim.enabled = false;
+
         StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
         yield return new WaitForSeconds(1.0f);
         resultobject.GetComponent<ResultSetter>().setResult(xresult);//result.Substring(0, 4));
@@ -283,7 +309,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
 
         getwinamount();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
+        winamount_panel.SetActive(false);
+        GetComponent<AudioSource>().Stop();
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f )
         {
             resultpanel.transform.position = Vector3.Lerp(resultpanel.transform.position,result_starting_pos, Time.deltaTime * 4.0f);
@@ -298,6 +326,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
        
         
         sequenceended = true;
+        GetComponent<AudioSource>().clip = gamestartaudiosource;
+        GetComponent<AudioSource>().Play();
         yield return null;
     }
     IEnumerator  UpdateBalanceAndInfo()
@@ -325,11 +355,14 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
+     
         while (sqlData.Read())
         {
             if (sqlData["clm"] != null || sqlData["clm"] != "Null")
             {
                 intwinamount += Convert.ToInt32(sqlData["clm"].ToString());
+                winamount_panel.SetActive(true);
+                winamount_panel_wintext.text = intwinamount.ToString();
             }
 
 
@@ -339,6 +372,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         if (intwinamount > 0)
         {
+            GetComponent<AudioSource>().clip = winaudio;
+            GetComponent<AudioSource>().Play();
             print("winamount:" + intwinamount);
             GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
             win0.text = intwinamount.ToString();
@@ -353,5 +388,6 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         StartCoroutine(UpdateBalanceAndInfo());
 
         StartCoroutine(addlast9gameresults());
+       
     }
 }

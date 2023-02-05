@@ -72,7 +72,7 @@ public class SQL_manager : MonoBehaviour
             if (sqlData["pass"].ToString() == pass && sqlData["term_id"].ToString()==id)
             {
                 print("pass found with id");
-                if (sqlData["macid"].ToString() != macid)
+                if (sqlData["macid"].ToString() == macid)
                 {
                     print("mac id found");
                     if (this.GetComponent<userManager>())
@@ -112,7 +112,8 @@ public class SQL_manager : MonoBehaviour
     }
     public void addmacid(string macid,string termid)
     {
-        string command = "UPDATE [taas].[dbo].[g_master] set newmacid='" + macid + "',flag=3 WHERE term_id=" + termid;
+        //
+        string command = "UPDATE [taas].[dbo].[g_master] set newmacid='" + macid + "',flag=3 WHERE term_id='" + termid+"'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -120,6 +121,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText =command;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        print(sqlCmnd.CommandText);
         if (sqlData.Read())
         {
         }

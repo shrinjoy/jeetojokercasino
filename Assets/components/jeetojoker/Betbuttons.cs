@@ -28,6 +28,7 @@ public class Betbuttons : MonoBehaviour
     // Start is called before the first frame update
     public void onBetButtonClick()
     {
+        GetComponentInParent<AudioSource>().Play();
         GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().win0.text = "0";
         GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().win1.text = "0";
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == false)

@@ -19,17 +19,8 @@ public class login : MonoBehaviour
     [SerializeField] AudioSource asa;
     string GetMACAddress()
     {
-        NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-        String sMacAddress = string.Empty;
-        foreach (NetworkInterface adapter in nics)
-        {
-            if (sMacAddress == String.Empty)// only return MAC Address from first card  
-            {
-                IPInterfaceProperties properties = adapter.GetIPProperties();
-                sMacAddress = adapter.GetPhysicalAddress().ToString();
-            }
-        }
-        return sMacAddress;
+        
+        return SystemInfo.deviceUniqueIdentifier;
     }
 
     private void Start()
@@ -56,9 +47,10 @@ public class login : MonoBehaviour
     }                                                                              
     public void loginuser()
     {
+        print(macid);
         if(sqlm.canLogin(username.text.ToString(),password.text.ToString(),macid))
         {
-          //  asa.Play();
+            asa.Play();
             SceneManager.LoadScene(1);
         }
         

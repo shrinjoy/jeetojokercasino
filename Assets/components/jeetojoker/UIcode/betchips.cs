@@ -20,7 +20,8 @@ public class betchips : MonoBehaviour
     public void onSelected()
     {
         
-        foreach(betchips chip in GameObject.FindObjectsOfType<betchips>())
+        GetComponentInParent<AudioSource>().Play();
+        foreach (betchips chip in GameObject.FindObjectsOfType<betchips>())
         {
             chip.resetChip();
         }
