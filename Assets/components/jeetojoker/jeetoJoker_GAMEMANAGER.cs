@@ -55,6 +55,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     string xresult;
     [SerializeField] TMPro.TMP_Text betinfotext;
     public bool resetData = false;
+    bool updatedata = true;
     private void Start()
     {
         base.Start();
@@ -72,7 +73,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         timer.text=Mathf.Clamp((int)realtime,0,999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
        
-        
+        if(updatedata ==true)
+        {
+            StartCoroutine(UpdateBalanceAndInfo());
+
+            StartCoroutine(addlast9gameresults());
+            updatedata = false;
+        }
+
+
         if(realtime >= 15)
         {
             betinfotext.text = "Place your chips";
@@ -311,7 +320,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         markerimage.sprite = brightmarker;
 
 
-        StartCoroutine(getwinamount());
+        getwinamount();
+        yield return new WaitForSeconds(1.0f);
+        coinflipobject.SetActive(false);
         yield return new WaitForSeconds(4.0f);
         winamount_panel.SetActive(false);
         GetComponent<AudioSource>().Stop();
@@ -331,6 +342,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sequenceended = true;
         GetComponent<AudioSource>().clip = gamestartaudiosource;
         GetComponent<AudioSource>().Play();
+        updatedata = true;
         yield return null;
     }
     IEnumerator  UpdateBalanceAndInfo()
@@ -346,7 +358,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         yield return null;
        
     }
-    IEnumerator getwinamount()
+    void getwinamount()
     {
 
         SqlCommand sqlCmnd = new SqlCommand();
@@ -381,8 +393,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             if (intwinamount>900)
             {
                 coinflipobject.SetActive(true);
-                yield return new WaitForSeconds(1.0f);
-                coinflipobject.SetActive(false);
+              
 
             }
 
@@ -399,10 +410,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             win0.text = "";
             win1.text = "";
         }
-        StartCoroutine(UpdateBalanceAndInfo());
-
-        StartCoroutine(addlast9gameresults());
-        yield return null;
+       
+       
        
     }
 }
