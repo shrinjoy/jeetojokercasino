@@ -389,14 +389,14 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         if (intwinamount > 0)
         {
-            coindanceobject.SetActive(true);
+            
             GetComponent<AudioSource>().clip = winaudio;
             GetComponent<AudioSource>().Play();
 
             if (intwinamount>900)
             {
                 coinflipobject.SetActive(true);
-              
+                coindanceobject.SetActive(true);
 
             }
 
