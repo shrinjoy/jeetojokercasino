@@ -12,8 +12,9 @@ public class forwardanimationloop : MonoBehaviour
     int counter = 0;
     public float waittime = 0.2f;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
+        
         StartCoroutine(Playaniamtion());
     }
     IEnumerator Playaniamtion()
