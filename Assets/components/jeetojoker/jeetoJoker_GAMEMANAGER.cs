@@ -47,6 +47,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] AudioClip nomoreplay;
     [SerializeField] AudioClip winaudio;
     bool sequenceended = true;
+    [SerializeField]GameObject coinflipobject;
     // Start is called before the first frame update
   
     bool resultsentdone;
@@ -308,7 +309,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         markerimage.sprite = brightmarker;
 
 
-        getwinamount();
+       StartCoroutine(getwinamount());
         yield return new WaitForSeconds(2.0f);
         winamount_panel.SetActive(false);
         GetComponent<AudioSource>().Stop();
@@ -343,7 +344,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         yield return null;
        
     }
-    void getwinamount()
+    IEnumerator getwinamount()
     {
 
         SqlCommand sqlCmnd = new SqlCommand();
@@ -372,6 +373,16 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         if (intwinamount > 0)
         {
+           
+            if(intwinamount>900)
+            {
+                coinflipobject.SetActive(true);
+                yield return new WaitForSeconds(1.0f);
+                coinflipobject.SetActive(false);
+
+            }
+
+
             GetComponent<AudioSource>().clip = winaudio;
             GetComponent<AudioSource>().Play();
             print("winamount:" + intwinamount);
@@ -388,6 +399,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         StartCoroutine(UpdateBalanceAndInfo());
 
         StartCoroutine(addlast9gameresults());
+        yield return null;
        
     }
 }

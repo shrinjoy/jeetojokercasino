@@ -11,8 +11,8 @@ public class SQL_manager : MonoBehaviour
 {
    
    public  SqlConnection SQLconn;
-   public TMPro.TMP_Text warningtext;
-   public DateTime server_day;
+    [SerializeField] GameObject badmacid;
+    public DateTime server_day;
     private void Awake()
     {
         SQLconn = new SqlConnection();
@@ -87,7 +87,7 @@ public class SQL_manager : MonoBehaviour
                 if (sqlData["macid"].ToString() != macid)
                 {
                     print("invalid mac id");
-                    warningtext.text = "Please wait for admin approval";
+                    StartCoroutine(showmacnogowarning());
                     sqlData.Close();
                     sqlData.DisposeAsync();
                     addmacid(macid,id);
@@ -99,7 +99,7 @@ public class SQL_manager : MonoBehaviour
             if (sqlData["pass"].ToString() != pass || sqlData["term_id"].ToString() != id|| sqlData["pass"].ToString()==null || sqlData["term_id"].ToString() == null)
             {
                 
-                warningtext.text = "Invalid ID or Password";
+               
                 sqlData.Close();
                 sqlData.DisposeAsync();
                 return false;
@@ -109,6 +109,13 @@ public class SQL_manager : MonoBehaviour
         sqlData.Close();
         sqlData.DisposeAsync();
         return false;
+    }
+    IEnumerator showmacnogowarning()
+    {
+        badmacid.SetActive(true);
+        yield return new WaitForSecondsRealtime(2.0f);
+        badmacid.SetActive(false);
+
     }
     public void addmacid(string macid,string termid)
     {

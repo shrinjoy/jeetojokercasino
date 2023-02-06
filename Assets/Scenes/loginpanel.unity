@@ -877,6 +877,7 @@ MonoBehaviour:
   - {fileID: -1700014206, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
   - {fileID: -617675461, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
   images: {fileID: 296401061}
+  waittime: 0.2
 --- !u!114 &296401061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c296efd09b3bb143af1b83dfaccc827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningtext: {fileID: 1160629646}
+  badmacid: {fileID: 429243401}
 --- !u!114 &400989199
 MonoBehaviour:
   m_ObjectHideFlags: 0

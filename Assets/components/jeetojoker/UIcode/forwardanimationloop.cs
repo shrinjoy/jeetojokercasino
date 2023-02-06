@@ -10,6 +10,7 @@ public class forwardanimationloop : MonoBehaviour
     [SerializeField] Sprite[] sprites;
     [SerializeField] Image images;
     int counter = 0;
+    public float waittime = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class forwardanimationloop : MonoBehaviour
                 counter = 0;
             }
             images.sprite = sprites[counter];
-            yield return new WaitForSecondsRealtime(0.2f);  
+            yield return new WaitForSecondsRealtime(waittime);  
         }
     }
     
