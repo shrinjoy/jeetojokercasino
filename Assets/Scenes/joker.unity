@@ -879,8 +879,8 @@ MonoBehaviour:
   winamount_panel_wintext: {fileID: 1611230622}
   winamount_panel: {fileID: 393910428}
   gamestartaudiosource: {fileID: 8300000, guid: 009486cce3f573b468834a732d3ab4d5, type: 3}
-  wheelspinning: {fileID: 8300000, guid: e90489f863e2a2c41a789f96333c5480, type: 3}
-  last15sec: {fileID: 8300000, guid: 16fd84f64743f254d95e0c31244f3b54, type: 3}
+  wheelspinning: {fileID: 8300000, guid: d86693d33d0ec7b4fbfbde32d214faad, type: 3}
+  last15sec: {fileID: 8300000, guid: 3073834e3db844246bce361959f78429, type: 3}
   nomoreplay: {fileID: 8300000, guid: 8b20e36def081b947aeaea4b0684fdda, type: 3}
   winaudio: {fileID: 8300000, guid: abf92562e9842324696f500c66299efd, type: 3}
   coinflipobject: {fileID: 1710847882}

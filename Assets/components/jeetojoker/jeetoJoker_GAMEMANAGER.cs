@@ -57,12 +57,14 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public bool resetData = false;
     private void Start()
     {
+        base.Start();
         result_starting_pos = resultpanel.transform.position;
         GetComponent<AudioSource>().clip = gamestartaudiosource;
         GetComponent<AudioSource>().Play();
-        base.Start();   
+       
         StartCoroutine(UpdateBalanceAndInfo());
         StartCoroutine(addlast9gameresults());
+
     }
     // Update is called once per frame
     void Update()
@@ -201,7 +203,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime2 + "' and g_date='" + DateTime.Today.ToString("MM/dd/yyyy") + " " + "00:00:00.000'";
+        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime2 + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy")+"'";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
@@ -209,7 +211,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
            
             // gb.transform.position = content.transform.position;
             // gb.transform.rotation = Quaternion.identity;
-            if (i <= resultsetter.Length - 1)
+            if (i < resultsetter.Length)
             {
                 resultsetter[i].setResult(sqlData["result"].ToString());
                
@@ -309,8 +311,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         markerimage.sprite = brightmarker;
 
 
-       StartCoroutine(getwinamount());
-        yield return new WaitForSeconds(2.0f);
+        StartCoroutine(getwinamount());
+        yield return new WaitForSeconds(4.0f);
         winamount_panel.SetActive(false);
         GetComponent<AudioSource>().Stop();
         while (Vector3.Distance(result_starting_pos, resultpanel.transform.position) > 0.1f )

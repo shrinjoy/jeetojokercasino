@@ -12,6 +12,7 @@ public class SQL_manager : MonoBehaviour
    
    public  SqlConnection SQLconn;
     [SerializeField] GameObject badmacid;
+    [SerializeField] TMPro.TMP_Text warningtext;
     public DateTime server_day;
     private void Awake()
     {
@@ -69,10 +70,10 @@ public class SQL_manager : MonoBehaviour
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {
-            if (sqlData["pass"].ToString() == pass && sqlData["term_id"].ToString()==id)
+            if (sqlData["pass"].ToString() == pass && sqlData["term_id"].ToString()==id )
             {
                 print("pass found with id");
-                if (sqlData["macid"].ToString() == macid)
+                if (sqlData["macid"].ToString() == macid && Convert.ToInt32(sqlData["flag"].ToString()) != 5)
                 {
                     print("mac id found");
                     if (this.GetComponent<userManager>())
@@ -84,10 +85,11 @@ public class SQL_manager : MonoBehaviour
                         return true;
                     }
                 }
-                if (sqlData["macid"].ToString() != macid)
+               else if (sqlData["macid"].ToString() != macid || Convert.ToInt32(sqlData["flag"].ToString()) == 5)
                 {
                     print("invalid mac id");
                     StartCoroutine(showmacnogowarning());
+                    warningtext.text = "Please Contact Office";
                     sqlData.Close();
                     sqlData.DisposeAsync();
                     addmacid(macid,id);
