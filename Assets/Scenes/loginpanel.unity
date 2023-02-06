@@ -808,7 +808,6 @@ GameObject:
   - component: {fileID: 296401059}
   - component: {fileID: 296401062}
   - component: {fileID: 296401061}
-  - component: {fileID: 296401060}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -825,8 +824,8 @@ RectTransform:
   m_GameObject: {fileID: 296401058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.210601, y: 2.210601, z: 2.210601}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.47, y: 2.47, z: 2.47}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2027631574}
   m_RootOrder: -1
@@ -836,48 +835,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000079756, y: 312}
   m_SizeDelta: {x: 100, y: 91.5897}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &296401060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296401058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1aebfa232b87e40897485f5dbaf8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: -1885312980, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 983405597, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 1082985371, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -162500686, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 789351248, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -539115677, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 371780765, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 1698534492, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 1075886593, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -1478763888, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 1499789549, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -100367406, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 854589618, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 841027102, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 3459805, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 1461555519, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 1482713090, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -733980595, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 187037163, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 265950575, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -317204217, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -748572568, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -71710240, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: 877479151, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -1720261489, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -1700014206, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  - {fileID: -617675461, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
-  images: {fileID: 296401061}
-  waittime: 0.2
 --- !u!114 &296401061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,7 +855,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1885312980, guid: 6023f8eb0774c644487e62b9b746568c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa867fa3186716946ae7361601db7429, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
