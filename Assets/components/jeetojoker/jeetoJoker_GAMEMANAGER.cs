@@ -375,8 +375,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
         if (intwinamount > 0)
         {
-           
-            if(intwinamount>900)
+            GetComponent<AudioSource>().clip = winaudio;
+            GetComponent<AudioSource>().Play();
+
+            if (intwinamount>900)
             {
                 coinflipobject.SetActive(true);
                 yield return new WaitForSeconds(1.0f);
@@ -385,8 +387,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             }
 
 
-            GetComponent<AudioSource>().clip = winaudio;
-            GetComponent<AudioSource>().Play();
+           
             print("winamount:" + intwinamount);
             GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
             win0.text = intwinamount.ToString();
