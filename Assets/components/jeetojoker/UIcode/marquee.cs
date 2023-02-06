@@ -7,7 +7,7 @@ public class marquee : MonoBehaviour
     // Start is called before the first frame update
     Vector3 startingpos;
     Vector3 finalpos;
-
+    public float speed = 5.0f;
     private void OnEnable()
     {
        
@@ -25,7 +25,7 @@ public class marquee : MonoBehaviour
     {
         if (isActiveAndEnabled)
         {
-            this.GetComponent<RectTransform>().position += new Vector3(30.0f, 0, 0);
+            this.GetComponent<RectTransform>().position += new Vector3(30.0f, 0, 0)*Time.deltaTime*speed;
             if (this.GetComponent<RectTransform>().position.x > finalpos.x)
             {
                 this.GetComponent<RectTransform>().position = startingpos;

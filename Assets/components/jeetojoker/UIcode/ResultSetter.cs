@@ -13,65 +13,65 @@ public class ResultSetter : MonoBehaviour
         if(result=="NR00")
         {
             icon.sprite = sprites[0];
-            textresult.text = "JC";
+            textresult.text = "J";
         }
         else if (result == "NR01")
         {
             icon.sprite = sprites[1];
-            textresult.text = "JD";
+            textresult.text = "J";
         }
         else if (result == "NR02")
         {
             icon.sprite = sprites[2];
-            textresult.text = "JS";
+            textresult.text = "J";
         }
         //
         else if (result == "NR03")
         {
             icon.sprite = sprites[3];
-            textresult.text = "JH";
+            textresult.text = "J";
         }
         //
         else if (result == "NR04")
         {
             icon.sprite = sprites[0];
-            textresult.text = "QC";
+            textresult.text = "Q";
         }
         else if (result == "NR05")
         {
             icon.sprite = sprites[1];
-            textresult.text = "QD";
+            textresult.text = "Q";
         }
         else if (result == "NR06")
         {
             icon.sprite = sprites[2];
-            textresult.text = "QS";
+            textresult.text = "Q";
         }
         else if (result == "NR07")
         {
             icon.sprite = sprites[3];
-            textresult.text = "QH";
+            textresult.text = "Q";
         }
         //
         else if (result == "NR08")
         {
             icon.sprite = sprites[0];
-            textresult.text = "KC";
+            textresult.text = "K";
         }
         else if (result == "NR09")
         {
             icon.sprite = sprites[1];
-            textresult.text = "KD";
+            textresult.text = "K";
         }
         else if (result == "NR10")
         {
             icon.sprite = sprites[2];
-            textresult.text = "KS";
+            textresult.text = "K";
         }
         else if (result == "NR11")
         {
             icon.sprite = sprites[3];
-            textresult.text = "KH";
+            textresult.text = "K";
         }
     }
 }
