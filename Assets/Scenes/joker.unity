@@ -19333,7 +19333,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1ff91b6321bebfe4e9ad1ff65ac5bbe2, type: 3}
   - {fileID: 21300000, guid: f3be005b0ddc21346bfd32c54191a18f, type: 3}
   images: {fileID: 1710847885}
-  waittime: 0.02
+  waittime: 0.1
 --- !u!114 &1710847885
 MonoBehaviour:
   m_ObjectHideFlags: 0
