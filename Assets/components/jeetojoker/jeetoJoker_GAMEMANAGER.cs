@@ -49,6 +49,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     bool sequenceended = true;
     [SerializeField]GameObject coinflipobject;
     [SerializeField] GameObject coindanceobject;
+    bool lastchance = false;
     // Start is called before the first frame update
   
     bool resultsentdone;
@@ -79,6 +80,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             StartCoroutine(UpdateBalanceAndInfo());
 
             StartCoroutine(addlast9gameresults());
+            resetTimer();
             updatedata = false;
         }
 
@@ -86,14 +88,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         if(realtime >= 15)
         {
             betinfotext.text = "Place your chips";
+            lastchance = true;
         }
 
-        if(realtime<=15 && realtime >11)
+        if(realtime<=15 && realtime >14)
         {
             GetComponent<AudioSource>().clip = last15sec;
             GetComponent<AudioSource>().Play();
             betinfotext.text = "Last Chance";
-           
+            lastchance = true;
         }
         //
 
@@ -103,15 +106,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             GetComponent<AudioSource>().Play();
             infopanel.SetActive(false);
             noinputpanel.SetActive(true);
-            StartCoroutine(sendResult());
+            sendResult();
             resultsentdone=true;
         }
         if(realtime<11 && resultsentdone)
         {
-            betinfotext.text = "no more bets please";
+            betinfotext.text = "no more bet";
         }
     }
-    public IEnumerator sendResult()
+    public void sendResult()
     {
         betinfotext.text = "Your bets have been accepted";
         DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
@@ -141,7 +144,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
                 sqldata.DisposeAsync();
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
-                UpdateBalanceAndInfo();
+                StartCoroutine(UpdateBalanceAndInfo());
 
             }
         }
@@ -150,7 +153,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             SceneManager.LoadScene(0);
         }
-        yield return null;
+      
      
     }
         public string generatebarcode()
@@ -355,7 +358,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         balance2.text =totalbalance.ToString();
         fakebalance = totalbalance;
         gameid.text= GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
-        resetTimer();
+       
         
         yield return null;
        

@@ -18,7 +18,7 @@ public class timeManager : MonoBehaviour
     {
         timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
 
-        servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(-5);
+        servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);
         print("server time:" + servertime);
 
@@ -57,7 +57,7 @@ public class timeManager : MonoBehaviour
     {
         timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
 
-        servertime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);
         print("server time:" + servertime);
 
