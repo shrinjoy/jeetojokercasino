@@ -14,9 +14,10 @@ public class timeManager : MonoBehaviour
     protected double realtime = 0;
     bool isGameSequenceRunning = false;
     public int selectedcoinamount=2;
+   [SerializeField] int mode = 0;
     public void Start()
     {
-        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
+        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
 
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);
@@ -55,7 +56,7 @@ public class timeManager : MonoBehaviour
     }
     public void resetTimer()
     {
-        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame();//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
+        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
 
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);

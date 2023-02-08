@@ -196,8 +196,14 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("yyyy/MM/dd")+"'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("dd-MMM-yyyy")+"'";//this is the sql command we use to get data about user
         }
+        if (gamename == "bihari16")
+        {
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[results16] WHERE g_time=" + "'" + time + "'" + " and g_date=" + "'" + DateTime.Today.ToString("dd-MMM-yyyy") + "'";//this is the sql command we use to get data about user
+
+        }
+        print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {
@@ -205,10 +211,18 @@ public class SQL_manager : MonoBehaviour
             if (gamename == "joker")
             {
                 result = sqlData["result"].ToString()+sqlData["status"].ToString();
+                print("results:" + result);
                 sqlData.Close();
                 sqlData.DisposeAsync();
             }
-            
+            if (gamename == "bihari16")
+            {
+                result = sqlData["result"].ToString() + sqlData["status"].ToString();
+                print("results:" + result);
+                sqlData.Close();
+                sqlData.DisposeAsync();
+            }
+
             sqlData.Close();
             sqlData.DisposeAsync();
             return result;
@@ -217,14 +231,22 @@ public class SQL_manager : MonoBehaviour
         sqlData.DisposeAsync();
         return null;
     }
-    public DateTime timeForNextGame()
+    public DateTime timeForNextGame(int mode=0)
     {
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1;";//this is the sql command we use to get data about user
+        if (mode == 0)
+        {
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1;";//this is the sql command we use to get data about user
+        }
+        if(mode==1)
+        {
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule16] WHERE tag=1;";//this is the sql command we use to get data about user
+
+        }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {

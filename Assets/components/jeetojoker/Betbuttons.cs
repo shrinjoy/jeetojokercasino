@@ -24,90 +24,120 @@ public class Betbuttons : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image image;
     [SerializeField] TMPro.TMP_Text betamounttext;
     public int betamount;
+    [SerializeField] int mode = 0;
 
     // Start is called before the first frame update
     public void onBetButtonClick()
     {
         GetComponentInParent<AudioSource>().Play();
-        GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().win0.text = "0";
-        GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().win1.text = "0";
+        if (mode == 0)
+        {
+            GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().win0.text = "0";
+            GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().win1.text = "0";
+        }
+        if (mode == 1)
+        {
+
+            GameObject.FindObjectOfType<bihari16>().win0.text = "0";
+            GameObject.FindObjectOfType<bihari16>().win1.text = "0";
+        }
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == false)
         {
-            if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().fakebalance)
+            if (mode == 0)
             {
-                betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
-                updateBetButtonData();
+                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().fakebalance)
+                {
+                    betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                    updateBetButtonData();
+
+
+                }
             }
+                if (mode == 1)
+                {
+                    if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<bihari16>().fakebalance)
+                    {
+                        betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                        updateBetButtonData();
+                    }
+                }
+            
         }
         else if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
             resetBetbutton();
         }
     }
-        // Update is called once per frame
-        public void updateBetButtonData()
+    // Update is called once per frame
+    public void updateBetButtonData()
+    {
+        fakebetbutton.updateBetButtonData(betamount);
+        betamounttext.text = betamount.ToString();
+        coinicon.color = new Color(Color.white.r, Color.white.g, Color.white.b, 255);
+        if (betamount <= 0)
         {
-            fakebetbutton.updateBetButtonData(betamount);
-            betamounttext.text = betamount.ToString();
-            coinicon.color = new Color(Color.white.r, Color.white.g, Color.white.b, 255);
-            if (betamount <= 0)
-            {
-                betamounttext.text = "Play";
-                coinicon.color = new Color(0, 0, 0, 0);
-                image.sprite = betbuttonnormal;
-            }
-            if (betamount >= 10)
-            {
+            betamounttext.text = "Play";
+            coinicon.color = new Color(0, 0, 0, 0);
+            image.sprite = betbuttonnormal;
+        }
+        if (betamount >= 10)
+        {
 
-                image.sprite = betbuttonupto10;
-            }
-            if (betamount >= 50)
-            {
-                image.sprite = betbuttonupto50;
-            }
-            else if (betamount >= 100)
-            {
-                image.sprite = betbuttonupto100;
-            }
-            if (betamount >= 1)
-            {
-                coinicon.sprite = coin1;
-            }
-            if (betamount >= 2)
-            {
-                coinicon.sprite = coin2;
-            }
-            if (betamount >= 5)
-            {
-                coinicon.sprite = coin5;
-            }
-            if (betamount >= 10)
-            {
-                coinicon.sprite = coin10;
-            }
-            if (betamount >= 50)
-            {
-                coinicon.sprite = coin50;
-            }
-            if (betamount >= 100)
-            {
-                coinicon.sprite = coin100;
-            }
-            if (betamount >= 500)
-            {
-                coinicon.sprite = coin500;
-            }
+            image.sprite = betbuttonupto10;
+        }
+        if (betamount >= 50)
+        {
+            image.sprite = betbuttonupto50;
+        }
+        else if (betamount >= 100)
+        {
+            image.sprite = betbuttonupto100;
+        }
+        if (betamount >= 1)
+        {
+            coinicon.sprite = coin1;
+        }
+        if (betamount >= 2)
+        {
+            coinicon.sprite = coin2;
+        }
+        if (betamount >= 5)
+        {
+            coinicon.sprite = coin5;
+        }
+        if (betamount >= 10)
+        {
+            coinicon.sprite = coin10;
+        }
+        if (betamount >= 50)
+        {
+            coinicon.sprite = coin50;
+        }
+        if (betamount >= 100)
+        {
+            coinicon.sprite = coin100;
+        }
+        if (betamount >= 500)
+        {
+            coinicon.sprite = coin500;
+        }
 
 
-
+        if (mode == 0)
+        {
             GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().FakeUpdateBalance();
-
         }
-    
-        public void resetBetbutton()
+        if (mode == 1)
         {
-            betamount = 0;
-            updateBetButtonData();
+            GameObject.FindObjectOfType<bihari16>().FakeUpdateBalance();
         }
-    
+
+    }
+
+    public void resetBetbutton()
+    {
+        betamount = 0;
+        updateBetButtonData();
+    }
+
 }

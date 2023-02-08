@@ -8,70 +8,162 @@ public class ResultSetter : MonoBehaviour
     [SerializeField] Image icon;
     [SerializeField] Sprite[] sprites;
     [SerializeField] TMPro.TMP_Text textresult;
+    [SerializeField]int mode = 0;
     public void setResult(string result)
     {
-        if(result=="NR00")
+        if (mode == 0)
         {
-            icon.sprite = sprites[0];
-            textresult.text = "J";
+            if (result == "NR00")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "J";
+            }
+            else if (result == "NR01")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "J";
+            }
+            else if (result == "NR02")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "J";
+            }
+            //
+            else if (result == "NR03")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "J";
+            }
+            //
+            else if (result == "NR04")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "Q";
+            }
+            else if (result == "NR05")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "Q";
+            }
+            else if (result == "NR06")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "Q";
+            }
+            else if (result == "NR07")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "Q";
+            }
+            //
+            else if (result == "NR08")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "K";
+            }
+            else if (result == "NR09")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "K";
+            }
+            else if (result == "NR10")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "K";
+            }
+            else if (result == "NR11")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "K";
+            }
         }
-        else if (result == "NR01")
+        else if(mode==1)
         {
-            icon.sprite = sprites[1];
-            textresult.text = "J";
-        }
-        else if (result == "NR02")
-        {
-            icon.sprite = sprites[2];
-            textresult.text = "J";
-        }
-        //
-        else if (result == "NR03")
-        {
-            icon.sprite = sprites[3];
-            textresult.text = "J";
-        }
-        //
-        else if (result == "NR04")
-        {
-            icon.sprite = sprites[0];
-            textresult.text = "Q";
-        }
-        else if (result == "NR05")
-        {
-            icon.sprite = sprites[1];
-            textresult.text = "Q";
-        }
-        else if (result == "NR06")
-        {
-            icon.sprite = sprites[2];
-            textresult.text = "Q";
-        }
-        else if (result == "NR07")
-        {
-            icon.sprite = sprites[3];
-            textresult.text = "Q";
-        }
-        //
-        else if (result == "NR08")
-        {
-            icon.sprite = sprites[0];
-            textresult.text = "K";
-        }
-        else if (result == "NR09")
-        {
-            icon.sprite = sprites[1];
-            textresult.text = "K";
-        }
-        else if (result == "NR10")
-        {
-            icon.sprite = sprites[2];
-            textresult.text = "K";
-        }
-        else if (result == "NR11")
-        {
-            icon.sprite = sprites[3];
-            textresult.text = "K";
+            if (result == "NR00")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "A";
+            }
+            else if (result == "NR01")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "A";
+            }
+            else if (result == "NR02")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "A";
+            }
+            //
+            else if (result == "NR03")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "A";
+            }
+            //
+            ////////////////////////////////
+            else if (result == "NR04")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "K";
+            }
+            else if (result == "NR05")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "K";
+            }
+            else if (result == "NR06")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "k";
+            }
+            else if (result == "NR07")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "k";
+            }
+            ///////////////////////////////////////
+            else if (result == "NR08")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "Q";
+            }
+            else if (result == "NR09")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "Q";
+            }
+            else if (result == "NR10")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "Q";
+            }
+            else if (result == "NR11")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "Q";
+            }
+            ////////////////////////////////////////////
+            else if (result == "NR12")
+            {
+                icon.sprite = sprites[0];
+                textresult.text = "J";
+            }
+            else if (result == "NR13")
+            {
+                icon.sprite = sprites[1];
+                textresult.text = "J";
+            }
+            else if (result == "NR14")
+            {
+                icon.sprite = sprites[2];
+                textresult.text = "J";
+            }
+            else if (result == "NR15")
+            {
+                icon.sprite = sprites[3];
+                textresult.text = "J";
+            }
         }
     }
 }
