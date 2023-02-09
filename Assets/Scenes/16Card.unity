@@ -13610,6 +13610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asa: {fileID: 880539319}
+  mode: 1
 --- !u!1001 &880920045
 PrefabInstance:
   m_ObjectHideFlags: 0
