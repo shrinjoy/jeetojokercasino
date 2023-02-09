@@ -41,6 +41,8 @@ public class Betbuttons : MonoBehaviour
             GameObject.FindObjectOfType<bihari16>().win0.text = "0";
             GameObject.FindObjectOfType<bihari16>().win1.text = "0";
         }
+      
+
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == false)
         {
             if (mode == 0)
@@ -53,18 +55,20 @@ public class Betbuttons : MonoBehaviour
 
                 }
             }
-                if (mode == 1)
+            if (mode == 1)
+            {
+                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<bihari16>().fakebalance)
                 {
-                    if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<bihari16>().fakebalance)
-                    {
-                        betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
-                        updateBetButtonData();
-                    }
+                    betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                    updateBetButtonData();
+                   
                 }
-            
+            }
+
         }
-        else if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
+       else  if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
+            print("1 remove bet");
             resetBetbutton();
         }
     }
