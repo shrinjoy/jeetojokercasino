@@ -46,6 +46,7 @@ public class bihari16 : timeManager
     bool sequenceended = true;
     [SerializeField] GameObject coinflipobject;
     [SerializeField] GameObject coindanceobject;
+    [SerializeField] Image timerprogress;
     bool lastchance = false;
     // Start is called before the first frame update
 
@@ -71,7 +72,7 @@ public class bihari16 : timeManager
     {
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-
+        timerprogress.fillAmount = Convert.ToInt32(timer.text) / 120.0f;
         if (updatedata == true)
         {
             StartCoroutine(UpdateBalanceAndInfo());
@@ -101,7 +102,7 @@ public class bihari16 : timeManager
         {
             GetComponent<AudioSource>().clip = nomoreplay;
             GetComponent<AudioSource>().Play();
-          //  infopanel.SetActive(false);
+           infopanel.SetActive(false);
             noinputpanel.SetActive(true);
            sendResult();
             resultsentdone = true;
@@ -250,34 +251,46 @@ public class bihari16 : timeManager
         int sector = 0;
         if (xresult == "NR00" || xresult == "NR01" || xresult == "NR02" || xresult == "NR03")
         {
-            sector = 0;
+            //  A
+            sector = 1;
         }
         else if (xresult == "NR04" || xresult == "NR05" || xresult == "NR06" || xresult == "NR07")
         {
-            sector = 1;
+            //  k
+            sector = 0;
         }
         else if (xresult == "NR08" || xresult == "NR09" || xresult == "NR10" || xresult == "NR11")
         {
+            //  q
+            sector = 3;
+        }
+        else if (xresult == "NR12" || xresult == "NR13" || xresult == "NR14" || xresult == "NR15")
+        {
+            //  j
             sector = 2;
         }
 
         outtercirlcle.TurnWheel(sector);
 
-        if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08")
+        if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08" || xresult == "NR11")
         {
-            sector = 0;
-        }
-        else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09")
-        {
+            //HEART
             sector = 1;
         }
-        else if (xresult == "NR02" || xresult == "NR06" || xresult == "NR10")
+        else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09" || xresult == "NR12")
         {
+            //SPADE
+            sector = 3;
+        }
+        else if (xresult == "NR02" || xresult == "NR06" || xresult == "NR10" || xresult == "NR14")
+        {
+            //DIAMON
             sector = 2;
         }
-        else if (xresult == "NR03" || xresult == "NR07" || xresult == "NR11")
+        else if (xresult == "NR03" || xresult == "NR07" || xresult == "NR11" || xresult == "NR15")
         {
-            sector = 3;
+            //CLOVER
+            sector = 0;
         }
         GetComponent<AudioSource>().loop = true;
         GetComponent<AudioSource>().clip = wheelspinning;

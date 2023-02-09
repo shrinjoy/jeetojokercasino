@@ -21,7 +21,8 @@ public class SQL_manager : MonoBehaviour
         SQLconn = initSQL();
         print(SQLconn.State);
         print(DateTime.Today.ToString("yyyy-MM-dd"));
-     
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
     }
     public void Update()
     {
