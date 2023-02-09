@@ -23,7 +23,7 @@ public class timeManager : MonoBehaviour
         print("time till next game:" + timetillnextgame);
         print("server time:" + servertime);
 
-        double ts = (timetillnextgame - servertime).TotalSeconds;
+        double ts =timetillnextgame.Subtract(servertime).TotalSeconds;
         realtime = ts;
         print(realtime);
         StartCoroutine(timeloop());
@@ -62,7 +62,8 @@ public class timeManager : MonoBehaviour
         print("time till next game:" + timetillnextgame);
         print("server time:" + servertime);
 
-        double ts = (timetillnextgame - servertime).TotalSeconds;
+         double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
+
         realtime = ts;
         print(realtime);
     }
