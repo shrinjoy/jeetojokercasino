@@ -82,21 +82,28 @@ public class ResultSetter : MonoBehaviour
             if (result == "NR00")
             {
                 icon.sprite = sprites[0];
+                //h
                 textresult.text = "A";
             }
             else if (result == "NR01")
             {
+                //s
+
                 icon.sprite = sprites[1];
                 textresult.text = "A";
             }
             else if (result == "NR02")
             {
+                //d
+
                 icon.sprite = sprites[2];
                 textresult.text = "A";
             }
             //
             else if (result == "NR03")
             {
+                //c
+
                 icon.sprite = sprites[3];
                 textresult.text = "A";
             }

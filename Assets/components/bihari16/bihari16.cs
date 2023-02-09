@@ -73,6 +73,7 @@ public class bihari16 : timeManager
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
         timerprogress.fillAmount = Convert.ToInt32(timer.text) / 120.0f;
+       
         if (updatedata == true)
         {
             StartCoroutine(UpdateBalanceAndInfo());
@@ -272,20 +273,20 @@ public class bihari16 : timeManager
 
         outtercirlcle.TurnWheel(sector);
 
-        if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08" || xresult == "NR11")
+        if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08" || xresult == "NR12")
         {
             //HEART
-            sector = 1;
+            sector = 3;
         }
-        else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09" || xresult == "NR12")
+        else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09" || xresult == "NR13")
         {
             //SPADE
-            sector = 3;
+            sector = 2;
         }
         else if (xresult == "NR02" || xresult == "NR06" || xresult == "NR10" || xresult == "NR14")
         {
             //DIAMON
-            sector = 2;
+            sector = 1;
         }
         else if (xresult == "NR03" || xresult == "NR07" || xresult == "NR11" || xresult == "NR15")
         {
