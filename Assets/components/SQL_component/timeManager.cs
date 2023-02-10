@@ -22,7 +22,11 @@ public class timeManager : MonoBehaviour
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);
         print("server time:" + servertime);
-
+        if (timetillnextgame.ToString("hh-mm-ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh-mm-ss tt") == "01:00:00 AM")
+        {
+            //patch; 
+        timetillnextgame=    timetillnextgame.AddDays(1);
+        }
         double ts =timetillnextgame.Subtract(servertime).TotalSeconds;
         realtime = ts;
         print(realtime);
@@ -61,8 +65,12 @@ public class timeManager : MonoBehaviour
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);
         print("server time:" + servertime);
-
-         double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
+        if (timetillnextgame.ToString("hh-mm-ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh-mm-ss tt") == "01:00:00 AM")
+        {
+            //patch; 
+            timetillnextgame = timetillnextgame.AddDays(1);
+        }
+        double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
 
         realtime = ts;
         print(realtime);
