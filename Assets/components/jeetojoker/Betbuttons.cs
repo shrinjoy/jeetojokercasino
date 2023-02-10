@@ -84,6 +84,11 @@ public class Betbuttons : MonoBehaviour
             coinicon.color = new Color(0, 0, 0, 0);
             image.sprite = betbuttonnormal;
         }
+
+        if(betamount > 0 && mode ==1) {
+            image.sprite = betbuttonupto10;
+        }
+
         if (betamount >= 10)
         {
 

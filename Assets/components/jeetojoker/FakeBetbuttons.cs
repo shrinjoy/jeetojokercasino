@@ -22,12 +22,16 @@ public class FakeBetbuttons : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image image;
     [SerializeField] TMPro.TMP_Text betamounttext;
     public int betamount;
-
+    int mode = 0;
  
     // Update is called once per frame
     public void updateBetButtonData(int betamount)
     {
         betamounttext.text = betamount.ToString();
+        if(mode ==1 && betamount >0)
+        {
+            image.sprite = betbuttonupto10;
+        }
         coinicon.color = new Color(Color.white.r, Color.white.g, Color.white.b, 255);
         if (betamount <= 0)
         {

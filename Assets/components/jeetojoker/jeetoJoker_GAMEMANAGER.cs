@@ -227,7 +227,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             if (i < resultsetter.Length)
             {
                 resultsetter[i].setResult(sqlData["result"].ToString());
-                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier("10X");// sqlData["status"].ToString());
+                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
 
 
             }
@@ -287,7 +287,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().clip = wheelspinning;
         GetComponent<AudioSource>().Play();
         panelresult.setResult(xresult);
-        panelresult.GetComponent<multiplier_resultpanel>().ShowMultiplier("10X");//result.Substring(4));
+        panelresult.GetComponent<multiplier_resultpanel>().ShowMultiplier(result.Substring(4));
         innercircle.TurnWheel(sector);
         marqueeanim.enabled = true;
       
@@ -299,9 +299,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().loop = false;
         marqueeanim.enabled = false;
 
-        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation("10X"));//result.Substring(4)));
+        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
         yield return new WaitForSeconds(1.0f);
-        resultobject.GetComponent<ResultSetter>().setResult(xresult);//result.Substring(0, 4));
+        resultobject.GetComponent<ResultSetter>().setResult(result.Substring(0, 4));
         resultobject.SetActive(true);
         markerimage.enabled = true;
       

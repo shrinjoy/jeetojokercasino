@@ -229,7 +229,7 @@ public class bihari16 : timeManager
             if (i < resultsetter.Length)
             {
                 resultsetter[i].setResult(sqlData["result"].ToString());
-                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier("10X");//sqlData["status"].ToString());
+                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
 
             }
             i = i + 1;
@@ -313,10 +313,9 @@ public class bihari16 : timeManager
         GetComponent<AudioSource>().loop = false;
         marqueeanim.enabled = false;
 
-        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation("10X"));//result.Substring(4)));
+        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
         yield return new WaitForSeconds(1.0f);
-        resultobject.GetComponent<ResultSetter>().setResult(xresult);//result.Substring(0, 4));
-        resultobject.GetComponent<ResultSetter>().setResult("10X");//result.Substring(4));
+        resultobject.GetComponent<ResultSetter>().setResult(xresult);
         resultobject.SetActive(true);
         markerimage.enabled = true;
 

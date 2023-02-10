@@ -5322,7 +5322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: N
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b45788c5e2b7f9c40bdc4fcd6816fa0e, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: abe6e5f9c733e7d4c8191c3d7bde4421, type: 2}
@@ -6308,7 +6308,7 @@ MonoBehaviour:
   coinicon: {fileID: 1991395548}
   image: {fileID: 1752105117}
   betamounttext: {fileID: 385706629}
-  betamount: 0
+  betamount: 1
 --- !u!1 &359302360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7401,7 +7401,7 @@ MonoBehaviour:
   coinicon: {fileID: 96494055}
   image: {fileID: 239496505}
   betamounttext: {fileID: 2048764283}
-  betamount: 0
+  betamount: 1
 --- !u!114 &419908586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10724,7 +10724,7 @@ MonoBehaviour:
   coinicon: {fileID: 1890051134}
   image: {fileID: 1856868023}
   betamounttext: {fileID: 1763981756}
-  betamount: 0
+  betamount: 1
 --- !u!114 &646746934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12788,7 +12788,7 @@ MonoBehaviour:
   coinicon: {fileID: 1764813304}
   image: {fileID: 553712618}
   betamounttext: {fileID: 369161275}
-  betamount: 0
+  betamount: 1
 --- !u!114 &808477392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13239,7 +13239,7 @@ MonoBehaviour:
   coinicon: {fileID: 935244811}
   image: {fileID: 77834693}
   betamounttext: {fileID: 1445742818}
-  betamount: 0
+  betamount: 1
 --- !u!114 &821857026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16094,7 +16094,7 @@ MonoBehaviour:
   coinicon: {fileID: 863832706}
   image: {fileID: 876648744}
   betamounttext: {fileID: 1223210413}
-  betamount: 0
+  betamount: 1
 --- !u!114 &965224427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18585,7 +18585,7 @@ MonoBehaviour:
   coinicon: {fileID: 1090061676}
   image: {fileID: 16053644}
   betamounttext: {fileID: 1766135260}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1096731534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21734,7 +21734,7 @@ MonoBehaviour:
   coinicon: {fileID: 942800805}
   image: {fileID: 1272396822}
   betamounttext: {fileID: 1677506920}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1306958724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22174,7 +22174,7 @@ MonoBehaviour:
   coinicon: {fileID: 873288958}
   image: {fileID: 2096870141}
   betamounttext: {fileID: 1652163413}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1319720623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22701,7 +22701,7 @@ MonoBehaviour:
   coinicon: {fileID: 1341108943}
   image: {fileID: 1640988132}
   betamounttext: {fileID: 1010929959}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1370947658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26512,7 +26512,7 @@ MonoBehaviour:
   coinicon: {fileID: 353976629}
   image: {fileID: 959496870}
   betamounttext: {fileID: 730737995}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1661879473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27088,19 +27088,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189680, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_fontSize
-      value: 24.4
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189680, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_margin.x
-      value: 8.552481
+      value: 0.22665787
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189680, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_margin.y
-      value: 21.856312
+      value: -0.34585425
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189680, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_margin.z
-      value: -40.086178
+      value: -0.67733383
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189680, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_fontAsset
@@ -27152,7 +27152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189681, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 51.7958
+      value: 25.898
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189681, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_LocalScale.x
@@ -27196,11 +27196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189681, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -8.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189681, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 17.9
+      value: 13.8
       objectReference: {fileID: 0}
     - target: {fileID: 8194926593919189681, guid: 3b88a9e459b488849b95ed19f9454805, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -28709,7 +28709,7 @@ MonoBehaviour:
   coinicon: {fileID: 936968748}
   image: {fileID: 302787082}
   betamounttext: {fileID: 274551091}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1755456932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30903,7 +30903,7 @@ MonoBehaviour:
   coinicon: {fileID: 350593692}
   image: {fileID: 78629444}
   betamounttext: {fileID: 1225020577}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1868879591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32409,7 +32409,7 @@ MonoBehaviour:
   coinicon: {fileID: 413270726}
   image: {fileID: 2114155269}
   betamounttext: {fileID: 271796292}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1962431964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32560,7 +32560,7 @@ MonoBehaviour:
   coinicon: {fileID: 883567513}
   image: {fileID: 558262238}
   betamounttext: {fileID: 1587630694}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1965044709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32697,7 +32697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e337d671ca0dd874fa9daf8de4524947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  betbuttonnormal: {fileID: 21300000, guid: ea39709aa2ec7784bae2d20fd9149e14, type: 3}
+  betbuttonnormal: {fileID: 21300000, guid: 4630b16c6bbcdc446b2aaac32cb649ad, type: 3}
   betbuttonupto10: {fileID: 21300000, guid: 4630b16c6bbcdc446b2aaac32cb649ad, type: 3}
   betbuttonupto50: {fileID: 21300000, guid: 4630b16c6bbcdc446b2aaac32cb649ad, type: 3}
   betbuttonupto100: {fileID: 21300000, guid: 4630b16c6bbcdc446b2aaac32cb649ad, type: 3}
@@ -32711,7 +32711,7 @@ MonoBehaviour:
   coinicon: {fileID: 2053317999}
   image: {fileID: 1923223967}
   betamounttext: {fileID: 1387968141}
-  betamount: 0
+  betamount: 1
 --- !u!114 &1974206383
 MonoBehaviour:
   m_ObjectHideFlags: 0
