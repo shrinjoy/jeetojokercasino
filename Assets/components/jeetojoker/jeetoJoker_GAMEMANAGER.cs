@@ -216,7 +216,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '" + starttime + "' and '" + endtime2 + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy")+"'";
+        sqlCmnd.CommandText = " SELECT TOP (9)  * FROM [taas].[dbo].[resultsTaa] order by [taas].[dbo].[resultsTaa] .id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
@@ -227,7 +227,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             if (i < resultsetter.Length)
             {
                 resultsetter[i].setResult(sqlData["result"].ToString());
-               
+                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier("10X");// sqlData["status"].ToString());
+
+
             }
             i = i + 1;
         }
@@ -285,7 +287,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().clip = wheelspinning;
         GetComponent<AudioSource>().Play();
         panelresult.setResult(xresult);
-
+        panelresult.GetComponent<multiplier_resultpanel>().ShowMultiplier("10X");//result.Substring(4));
         innercircle.TurnWheel(sector);
         marqueeanim.enabled = true;
       
@@ -297,7 +299,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().loop = false;
         marqueeanim.enabled = false;
 
-        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
+        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation("10X"));//result.Substring(4)));
         yield return new WaitForSeconds(1.0f);
         resultobject.GetComponent<ResultSetter>().setResult(xresult);//result.Substring(0, 4));
         resultobject.SetActive(true);

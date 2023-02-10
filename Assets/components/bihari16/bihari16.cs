@@ -70,6 +70,7 @@ public class bihari16 : timeManager
     // Update is called once per frame
     void Update()
     {
+       
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
         timerprogress.fillAmount = Convert.ToInt32(timer.text) / 120.0f;
@@ -112,6 +113,8 @@ public class bihari16 : timeManager
         {
             betinfotext.text = "no more bet";
         }
+       
+       
     }
     public void sendResult()
     {
@@ -215,7 +218,7 @@ public class bihari16 : timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "  SELECT  * FROM [taas].[dbo].[results16] where  g_time between '" + starttime + "' and '" + endtime2 + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "'";
+        sqlCmnd.CommandText = " SELECT TOP (9) id, * FROM [taas].[dbo].[results16] order by [taas].[dbo].[results16] .id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
@@ -226,6 +229,7 @@ public class bihari16 : timeManager
             if (i < resultsetter.Length)
             {
                 resultsetter[i].setResult(sqlData["result"].ToString());
+                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier("10X");//sqlData["status"].ToString());
 
             }
             i = i + 1;
@@ -275,18 +279,18 @@ public class bihari16 : timeManager
 
         if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08" || xresult == "NR12")
         {
-            //HEART
-            sector = 3;
+            //spade
+            sector = 1;
         }
         else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09" || xresult == "NR13")
         {
-            //SPADE
+            //heart
             sector = 2;
         }
         else if (xresult == "NR02" || xresult == "NR06" || xresult == "NR10" || xresult == "NR14")
         {
             //DIAMON
-            sector = 1;
+            sector = 4;
         }
         else if (xresult == "NR03" || xresult == "NR07" || xresult == "NR11" || xresult == "NR15")
         {
@@ -309,9 +313,10 @@ public class bihari16 : timeManager
         GetComponent<AudioSource>().loop = false;
         marqueeanim.enabled = false;
 
-        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
+        StartCoroutine(GameObject.FindObjectOfType<MultiplierAnimation>().multiplieranimation("10X"));//result.Substring(4)));
         yield return new WaitForSeconds(1.0f);
         resultobject.GetComponent<ResultSetter>().setResult(xresult);//result.Substring(0, 4));
+        resultobject.GetComponent<ResultSetter>().setResult("10X");//result.Substring(4));
         resultobject.SetActive(true);
         markerimage.enabled = true;
 

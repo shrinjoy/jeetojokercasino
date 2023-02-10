@@ -197,11 +197,12 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[resultsTaa] WHERE g_time=" + "'" + time + "'"+" and g_date="+"'"+ DateTime.Today.ToString("dd-MMM-yyyy")+"'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='"+time+"' ORDER by id desc";//this is the sql command we use to get data about user
         }
         if (gamename == "bihari16")
         {
-            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[results16] WHERE g_time=" + "'" + time + "'" + " and g_date=" + "'" + DateTime.Today.ToString("dd-MMM-yyyy") + "'";//this is the sql command we use to get data about user
+
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "' ORDER by id desc";//this is the sql command we use to get data about user
 
         }
         print(sqlCmnd.CommandText);
@@ -241,11 +242,11 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (mode == 0)
         {
-            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1;";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1";//this is the sql command we use to get data about user
         }
         if(mode==1)
         {
-            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule16] WHERE tag=1;";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule16] WHERE tag=1";//this is the sql command we use to get data about user
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
