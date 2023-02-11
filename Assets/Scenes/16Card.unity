@@ -2243,15 +2243,16 @@ MonoBehaviour:
   win0: {fileID: 543159362}
   win1: {fileID: 1662341164}
   resultsetter:
-  - {fileID: 1445610531}
-  - {fileID: 1447827089}
-  - {fileID: 1048574181}
-  - {fileID: 961166785}
-  - {fileID: 1027964413}
-  - {fileID: 185330868}
-  - {fileID: 1257416146}
-  - {fileID: 574480118}
+  - {fileID: 1915132846}
   - {fileID: 880920047}
+  - {fileID: 574480118}
+  - {fileID: 1257416146}
+  - {fileID: 185330868}
+  - {fileID: 1027964413}
+  - {fileID: 961166785}
+  - {fileID: 1048574181}
+  - {fileID: 1447827089}
+  - {fileID: 1445610531}
   panelresult: {fileID: 1915132846}
   infopanel: {fileID: 1741466538}
   winamount_panel_wintext: {fileID: 1596210107}

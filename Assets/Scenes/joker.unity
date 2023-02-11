@@ -843,15 +843,16 @@ MonoBehaviour:
   win0: {fileID: 5648452901667949380}
   win1: {fileID: 596607841}
   resultsetter:
-  - {fileID: 341350248}
-  - {fileID: 1701506684}
-  - {fileID: 1906822883}
-  - {fileID: 1349932977}
-  - {fileID: 445131578}
-  - {fileID: 1905269444}
-  - {fileID: 1188874477}
-  - {fileID: 1802474324}
+  - {fileID: 915911610}
   - {fileID: 76378001}
+  - {fileID: 1802474324}
+  - {fileID: 1188874477}
+  - {fileID: 1905269444}
+  - {fileID: 445131578}
+  - {fileID: 1349932977}
+  - {fileID: 1906822883}
+  - {fileID: 1701506684}
+  - {fileID: 341350248}
   panelresult: {fileID: 915911610}
   infopanel: {fileID: 1953235836}
   winamount_panel_wintext: {fileID: 1611230622}

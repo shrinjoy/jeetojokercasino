@@ -122,12 +122,12 @@ public class ResultSetter : MonoBehaviour
             else if (result == "NR06")
             {
                 icon.sprite = sprites[2];
-                textresult.text = "k";
+                textresult.text = "K";
             }
             else if (result == "NR07")
             {
                 icon.sprite = sprites[3];
-                textresult.text = "k";
+                textresult.text = "K";
             }
             ///////////////////////////////////////
             else if (result == "NR08")

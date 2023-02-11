@@ -58,6 +58,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] TMPro.TMP_Text betinfotext;
     public bool resetData = false;
     bool updatedata = true;
+   [SerializeField] bool firstrun = true;
     private void Start()
     {
         base.Start();
@@ -66,7 +67,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().Play();
        
         StartCoroutine(UpdateBalanceAndInfo());
-        StartCoroutine(addlast9gameresults());
+      //  StartCoroutine(addlast9gameresults());
 
     }
     // Update is called once per frame
@@ -214,6 +215,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
 
     }
+   //
     public IEnumerator addlast9gameresults()
     {
         string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
@@ -225,18 +227,22 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = " SELECT TOP (9)  * FROM [taas].[dbo].[resultsTaa] order by [taas].[dbo].[resultsTaa] .id desc";
+        sqlCmnd.CommandText = " SELECT TOP (10)  * FROM [taas].[dbo].[resultsTaa] order by [taas].[dbo].[resultsTaa] .id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+       
         while (sqlData.Read())
         {
+            print(sqlData["result"].ToString());
            
             // gb.transform.position = content.transform.position;
             // gb.transform.rotation = Quaternion.identity;
             if (i < resultsetter.Length)
             {
-                resultsetter[i].setResult(sqlData["result"].ToString());
-                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
+              
+                    resultsetter[i].setResult(sqlData["result"].ToString());
+                    resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
+                
 
 
             }
