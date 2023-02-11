@@ -2119,15 +2119,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7340479358008476077, guid: a17d7fb1d8584334db81037c28266635, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106286, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: waittime
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106286, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: sprites.Array.size
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106287, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 636.3167
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106287, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 496.7926
       objectReference: {fileID: 0}
     - target: {fileID: 7340479358470106287, guid: a17d7fb1d8584334db81037c28266635, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 369
+      value: 366
       objectReference: {fileID: 0}
     - target: {fileID: 7340479358470106287, guid: a17d7fb1d8584334db81037c28266635, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -173
+      value: -69.9543
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106289, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106289, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7340479358470106289, guid: a17d7fb1d8584334db81037c28266635, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2232,7 +2260,7 @@ MonoBehaviour:
   wheelspinning: {fileID: 8300000, guid: 1eeb4ac244a2fbb479f85eda42c6d442, type: 3}
   last15sec: {fileID: 8300000, guid: 3073834e3db844246bce361959f78429, type: 3}
   nomoreplay: {fileID: 8300000, guid: 8b20e36def081b947aeaea4b0684fdda, type: 3}
-  winaudio: {fileID: 8300000, guid: 6626ef7902baf534f9c04b34216ab539, type: 3}
+  winaudio: {fileID: 8300000, guid: be0f19958719f434ca2969058430b18a, type: 3}
   coinflipobject: {fileID: 1176432483}
   coindanceobject: {fileID: 121666566}
   timerprogress: {fileID: 633534131}
