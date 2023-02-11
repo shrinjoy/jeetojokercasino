@@ -112,7 +112,7 @@ public class bihari16 : timeManager
         }
         if (realtime < 10 && betplaced)
         {
-            betinfotext.text = "Your bets have been accepted";
+            betinfotext.text = "No more bet";
         }
         if (realtime < 10 && betplaced==false)
         {
@@ -120,7 +120,7 @@ public class bihari16 : timeManager
         }
         if (realtime < 8 &&  betplaced==true )
         {
-            betinfotext.text = "No more bet";
+            betinfotext.text = "Your bets have been accepted";
         }
 
     }
