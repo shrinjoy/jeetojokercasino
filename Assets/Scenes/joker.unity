@@ -16641,6 +16641,10 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4846084591222983699, guid: c5498e289d1d85343862fbed9d5c60ab, type: 3}
+      propertyPath: m_text
+      value: 10X 9X 8X 7X 6X 5X 4X 3X 2X 1X N
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846084591222983699, guid: c5498e289d1d85343862fbed9d5c60ab, type: 3}
       propertyPath: m_fontColor.b
       value: 0
       objectReference: {fileID: 0}
