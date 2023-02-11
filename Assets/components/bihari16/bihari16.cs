@@ -56,6 +56,7 @@ public class bihari16 : timeManager
     [SerializeField] TMPro.TMP_Text betinfotext;
     public bool resetData = false;
     bool updatedata = true;
+    bool betplaced = false;
     private void Start()
     {
         base.Start();
@@ -109,12 +110,19 @@ public class bihari16 : timeManager
            sendResult();
             resultsentdone = true;
         }
-        if (realtime < 11 && resultsentdone)
+        if (realtime < 10 && betplaced)
+        {
+            betinfotext.text = "your bets have been accepted";
+        }
+        if (realtime < 10 && betplaced==false)
         {
             betinfotext.text = "no more bet";
         }
-       
-       
+        if (realtime < 8 &&  betplaced==true )
+        {
+            betinfotext.text = "no more bet";
+        }
+
     }
     public void sendResult()
     {
@@ -149,6 +157,7 @@ public class bihari16 : timeManager
                 StartCoroutine(UpdateBalanceAndInfo());
 
             }
+            betplaced = true;
         }
 
         else
@@ -158,6 +167,7 @@ public class bihari16 : timeManager
 
 
     }
+    
     public string generatebarcode()
     {
         string output = null;
