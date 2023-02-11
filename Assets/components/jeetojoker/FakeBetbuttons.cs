@@ -22,7 +22,7 @@ public class FakeBetbuttons : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image image;
     [SerializeField] TMPro.TMP_Text betamounttext;
     public int betamount;
-    int mode = 0;
+   [SerializeField] int mode = 0;
  
     // Update is called once per frame
     public void updateBetButtonData(int betamount)

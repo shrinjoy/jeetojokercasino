@@ -2119,7 +2119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7340479358008476077, guid: a17d7fb1d8584334db81037c28266635, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7340479358470106286, guid: a17d7fb1d8584334db81037c28266635, type: 3}
       propertyPath: waittime
@@ -6336,7 +6336,8 @@ MonoBehaviour:
   coinicon: {fileID: 1991395548}
   image: {fileID: 1752105117}
   betamounttext: {fileID: 385706629}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!1 &359302360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7429,7 +7430,8 @@ MonoBehaviour:
   coinicon: {fileID: 96494055}
   image: {fileID: 239496505}
   betamounttext: {fileID: 2048764283}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &419908586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9912,6 +9914,18 @@ PrefabInstance:
       value: Status_TxtBox
       objectReference: {fileID: 0}
     - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
+      propertyPath: m_fontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
+      propertyPath: m_margin.x
+      value: -133.99747
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
+      propertyPath: m_margin.z
+      value: -124.17554
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 36ba5b3883399194ead360704d0cdb13, type: 2}
@@ -9920,9 +9934,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 3563300970586734648, guid: 36ba5b3883399194ead360704d0cdb13, type: 2}
+    - target: {fileID: 7281661531381113499, guid: b1af6921beddc234391148dd96a38e68, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10752,7 +10774,8 @@ MonoBehaviour:
   coinicon: {fileID: 1890051134}
   image: {fileID: 1856868023}
   betamounttext: {fileID: 1763981756}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &646746934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12816,7 +12839,8 @@ MonoBehaviour:
   coinicon: {fileID: 1764813304}
   image: {fileID: 553712618}
   betamounttext: {fileID: 369161275}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &808477392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13267,7 +13291,8 @@ MonoBehaviour:
   coinicon: {fileID: 935244811}
   image: {fileID: 77834693}
   betamounttext: {fileID: 1445742818}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &821857026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16122,7 +16147,8 @@ MonoBehaviour:
   coinicon: {fileID: 863832706}
   image: {fileID: 876648744}
   betamounttext: {fileID: 1223210413}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &965224427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18613,7 +18639,8 @@ MonoBehaviour:
   coinicon: {fileID: 1090061676}
   image: {fileID: 16053644}
   betamounttext: {fileID: 1766135260}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1096731534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21762,7 +21789,8 @@ MonoBehaviour:
   coinicon: {fileID: 942800805}
   image: {fileID: 1272396822}
   betamounttext: {fileID: 1677506920}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1306958724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22202,7 +22230,8 @@ MonoBehaviour:
   coinicon: {fileID: 873288958}
   image: {fileID: 2096870141}
   betamounttext: {fileID: 1652163413}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1319720623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22729,7 +22758,8 @@ MonoBehaviour:
   coinicon: {fileID: 1341108943}
   image: {fileID: 1640988132}
   betamounttext: {fileID: 1010929959}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1370947658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26540,7 +26570,8 @@ MonoBehaviour:
   coinicon: {fileID: 353976629}
   image: {fileID: 959496870}
   betamounttext: {fileID: 730737995}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1661879473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28737,7 +28768,8 @@ MonoBehaviour:
   coinicon: {fileID: 936968748}
   image: {fileID: 302787082}
   betamounttext: {fileID: 274551091}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1755456932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30931,7 +30963,8 @@ MonoBehaviour:
   coinicon: {fileID: 350593692}
   image: {fileID: 78629444}
   betamounttext: {fileID: 1225020577}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1868879591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32437,7 +32470,8 @@ MonoBehaviour:
   coinicon: {fileID: 413270726}
   image: {fileID: 2114155269}
   betamounttext: {fileID: 271796292}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1962431964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32588,7 +32622,8 @@ MonoBehaviour:
   coinicon: {fileID: 883567513}
   image: {fileID: 558262238}
   betamounttext: {fileID: 1587630694}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1965044709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32739,7 +32774,8 @@ MonoBehaviour:
   coinicon: {fileID: 2053317999}
   image: {fileID: 1923223967}
   betamounttext: {fileID: 1387968141}
-  betamount: 1
+  betamount: 0
+  mode: 1
 --- !u!114 &1974206383
 MonoBehaviour:
   m_ObjectHideFlags: 0

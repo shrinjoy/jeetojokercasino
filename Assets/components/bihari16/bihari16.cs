@@ -112,21 +112,21 @@ public class bihari16 : timeManager
         }
         if (realtime < 10 && betplaced)
         {
-            betinfotext.text = "your bets have been accepted";
+            betinfotext.text = "Your bets have been accepted";
         }
         if (realtime < 10 && betplaced==false)
         {
-            betinfotext.text = "no more bet";
+            betinfotext.text = "No more bet";
         }
         if (realtime < 8 &&  betplaced==true )
         {
-            betinfotext.text = "no more bet";
+            betinfotext.text = "No more bet";
         }
 
     }
     public void sendResult()
     {
-        betinfotext.text = "Your bets have been accepted";
+      
         DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
@@ -155,9 +155,10 @@ public class bihari16 : timeManager
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
+                betplaced = true;
 
             }
-            betplaced = true;
+           
         }
 
         else
@@ -384,7 +385,7 @@ public class bihari16 : timeManager
         balance2.text = totalbalance.ToString();
         fakebalance = totalbalance;
         gameid.text = GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
-
+        betplaced = false;
 
         yield return null;
 

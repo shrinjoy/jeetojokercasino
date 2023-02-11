@@ -51,7 +51,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     [SerializeField] GameObject coindanceobject;
     bool lastchance = false;
     // Start is called before the first frame update
-  
+    bool betplaced=false;
     bool resultsentdone;
     string result;
     string xresult;
@@ -109,14 +109,22 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             sendResult();
             resultsentdone=true;
         }
-        if(realtime<11 && resultsentdone)
+        if (realtime < 10 && betplaced)
         {
-            betinfotext.text = "no more bet";
+            betinfotext.text = "Your bets have been accepted";
+        }
+        if (realtime < 10 && betplaced == false)
+        {
+            betinfotext.text = "No more bet";
+        }
+        if (realtime < 8 && betplaced == true)
+        {
+            betinfotext.text = "No more bet";
         }
     }
     public void sendResult()
     {
-        betinfotext.text = "Your bets have been accepted";
+      
         DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
             {
@@ -145,6 +153,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
+                betplaced = true;
 
             }
         }
@@ -350,6 +359,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().clip = gamestartaudiosource;
         GetComponent<AudioSource>().Play();
         updatedata = true;
+        betplaced= false;
         yield return null;
     }
     IEnumerator  UpdateBalanceAndInfo()
