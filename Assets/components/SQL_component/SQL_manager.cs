@@ -195,14 +195,18 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
+        if(time == "12:00:00 AM" || time == "01:00:00 AM")
+        {
+            server_day = server_day.AddDays(1);
+        }
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='"+time+ "' ORDER by [taas].[dbo].[resultsTaa].id desc";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='"+time+ "'  and g_date='"+server_day+"' ORDER by id desc";//this is the sql command we use to get data about user
         }
         if (gamename == "bihari16")
         {
 
-            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "' ORDER by [taas].[dbo].[results16].id desc";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "'and g_date='"+server_day+"' and g_date='"+server_day+"' ORDER by id desc";//this is the sql command we use to get data about user
 
         }
         print(sqlCmnd.CommandText);
@@ -213,6 +217,7 @@ public class SQL_manager : MonoBehaviour
             if (gamename == "joker")
             {
                 result = sqlData["result"].ToString()+sqlData["status"].ToString();
+               
                 print("results:" + result);
                 sqlData.Close();
                 sqlData.DisposeAsync();
@@ -220,6 +225,7 @@ public class SQL_manager : MonoBehaviour
             if (gamename == "bihari16")
             {
                 result = sqlData["result"].ToString() + sqlData["status"].ToString();
+               
                 print("results:" + result);
                 sqlData.Close();
                 sqlData.DisposeAsync();//

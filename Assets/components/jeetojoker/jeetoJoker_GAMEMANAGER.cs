@@ -230,7 +230,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsTaa]  where g_time between '" + starttime + "' and '" + endtime + "' order by [taas].[dbo].[resultsTaa].id desc";
+        sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsTaa] order by [taas].[dbo].[resultsTaa].id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
