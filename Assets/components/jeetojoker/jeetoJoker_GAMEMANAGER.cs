@@ -81,7 +81,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             StartCoroutine(UpdateBalanceAndInfo());
 
             StartCoroutine(addlast9gameresults());
-            resetTimer();
+           
             updatedata = false;
         }
 
@@ -215,41 +215,42 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
 
     }
-   //
+    //
     public IEnumerator addlast9gameresults()
     {
         string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
-        string endtime2 = DateTime.Parse(endtime).AddMinutes(-4).ToString("hh:mm:ss tt");
+        
+
         string starttime = DateTime.Parse(endtime).AddMinutes(-20).ToString("hh:mm:ss tt");
         int i = 0;
+
         SqlCommand sqlCmnd = new SqlCommand();
+        //
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = " SELECT TOP (10)  * FROM [taas].[dbo].[resultsTaa] order by [taas].[dbo].[resultsTaa] .id desc";
+        sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsTaa]  where g_time between '" + starttime + "' and '" + endtime + "' order by [taas].[dbo].[resultsTaa].id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-       
         while (sqlData.Read())
         {
-            print(sqlData["result"].ToString());
-           
-            // gb.transform.position = content.transform.position;
-            // gb.transform.rotation = Quaternion.identity;
+
             if (i < resultsetter.Length)
             {
-              
-                    resultsetter[i].setResult(sqlData["result"].ToString());
-                    resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
-                
+
+                resultsetter[i].setResult(sqlData["result"].ToString());
+                resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
+
 
 
             }
+
             i = i + 1;
         }
         sqlData.Close();
         sqlData.DisposeAsync();
+        resetTimer();
         yield return null;
     }
     IEnumerator jeetojokersequence()

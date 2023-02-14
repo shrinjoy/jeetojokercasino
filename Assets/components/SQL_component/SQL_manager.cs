@@ -197,12 +197,12 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='"+time+"' ORDER by id desc";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='"+time+ "' ORDER by [taas].[dbo].[resultsTaa].id desc";//this is the sql command we use to get data about user
         }
         if (gamename == "bihari16")
         {
 
-            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "' ORDER by id desc";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "' ORDER by [taas].[dbo].[results16].id desc";//this is the sql command we use to get data about user
 
         }
         print(sqlCmnd.CommandText);
@@ -222,7 +222,7 @@ public class SQL_manager : MonoBehaviour
                 result = sqlData["result"].ToString() + sqlData["status"].ToString();
                 print("results:" + result);
                 sqlData.Close();
-                sqlData.DisposeAsync();
+                sqlData.DisposeAsync();//
             }
 
             sqlData.Close();

@@ -81,7 +81,7 @@ public class bihari16 : timeManager
             StartCoroutine(UpdateBalanceAndInfo());
 
             StartCoroutine(addlast9gameresults());
-            resetTimer();
+            
             updatedata = false;
         }
 
@@ -222,7 +222,7 @@ public class bihari16 : timeManager
     public IEnumerator addlast9gameresults()
     {
         string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
-        string endtime2 = DateTime.Parse(endtime).AddMinutes(-4).ToString("hh:mm:ss tt");
+        
         string starttime = DateTime.Parse(endtime).AddMinutes(-20).ToString("hh:mm:ss tt");
         int i = 0;
       
@@ -232,7 +232,7 @@ public class bihari16 : timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = " SELECT TOP (10) id, * FROM [taas].[dbo].[results16] order by [taas].[dbo].[results16] .id desc";
+        sqlCmnd.CommandText = " SELECT TOP (10) id, * FROM [taas].[dbo].[results16]  where g_time between '"+starttime+"' and '"+endtime+"' order by [taas].[dbo].[results16] .id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
@@ -252,6 +252,7 @@ public class bihari16 : timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
+        resetTimer();
         yield return null;
     }
     IEnumerator bihari6sequence()
