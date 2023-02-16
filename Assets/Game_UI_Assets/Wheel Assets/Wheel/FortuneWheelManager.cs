@@ -19,7 +19,15 @@ public class FortuneWheelManager : MonoBehaviour
 
     public float duration = 9.0f;
     public int circlecount = 6;
+    public bool spinonstart = false;
     // Rotatable Object with rewards
+    private void Start()
+    {
+        if (spinonstart == true)
+        {
+            TurnWheel(0);
+        }
+    }
     public void TurnWheel (int stoppinganglesector)
     {
     	// Player has enough money to turn the wheel    

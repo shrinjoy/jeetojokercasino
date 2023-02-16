@@ -148,17 +148,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225067955}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1412804398}
+  m_Father: {fileID: 1932945516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000049114, y: 0.000049114}
+  m_AnchoredPosition: {x: -354.00006, y: 0.000049114}
   m_SizeDelta: {x: 284.8249, y: 284.8249}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225067957
@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 1412804398}
   - component: {fileID: 1412804400}
   - component: {fileID: 1412804399}
+  - component: {fileID: 1412804401}
   m_Layer: 5
   m_Name: Circle
   m_TagString: Untagged
@@ -503,8 +504,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 225067956}
+  m_Children: []
   m_Father: {fileID: 1932945516}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -551,6 +551,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412804397}
   m_CullTransparentMesh: 1
+--- !u!114 &1412804401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412804397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83cc5075d81c034e9b21e56fc6fb282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.5304729
+      outSlope: -0.5304729
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.47083333
+      value: 0.7502357
+      inSlope: -0.029238671
+      outSlope: -0.029238671
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.47199553
+      outSlope: 0.47199553
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isspinning: 0
+  sectors:
+  - 36
+  - 72
+  - 108
+  - 144
+  - 180
+  - 216
+  - 252
+  - 288
+  - 324
+  - 360
+  Circle: {fileID: 1412804397}
+  duration: 9
+  circlecount: 6
+  spinonstart: 1
 --- !u!1 &1861112845
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +745,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1412804398}
+  - {fileID: 225067956}
   m_Father: {fileID: 351222792}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
