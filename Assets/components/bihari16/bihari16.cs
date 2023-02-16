@@ -6,6 +6,8 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using ZXing.QrCode.Internal;
+
 public class bihari16 : timeManager
 {
     [Header("Balance and Info")]
@@ -57,6 +59,7 @@ public class bihari16 : timeManager
     public bool resetData = false;
     bool updatedata = true;
     bool betplaced = false;
+    DateTime currenttime;
     private void Start()
     {
         base.Start();
@@ -66,6 +69,7 @@ public class bihari16 : timeManager
 
         StartCoroutine(UpdateBalanceAndInfo());
         StartCoroutine(addlast9gameresults());
+        currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
 
     }
     // Update is called once per frame
@@ -81,7 +85,7 @@ public class bihari16 : timeManager
             StartCoroutine(UpdateBalanceAndInfo());
 
             StartCoroutine(addlast9gameresults());
-            
+            resetTimer();
             updatedata = false;
         }
 
@@ -127,9 +131,14 @@ public class bihari16 : timeManager
     public void sendResult()
     {
       
-        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
+            foreach (Betbuttons btns in bet_buttons)
+            {
+
+                GameObject.FindObjectOfType<clearbutton>().addtolist(btns);
+            }
             if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
             {
                 string status = "Print";
@@ -254,7 +263,7 @@ public class bihari16 : timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-        resetTimer();
+        
         yield return null;
     }
     IEnumerator bihari6sequence()
@@ -374,8 +383,8 @@ public class bihari16 : timeManager
 
 
         resultsentdone = false;
-
         GameObject.FindObjectOfType<clearbutton>().clearbets();
+        
         noinputpanel.SetActive(false);
 
 
@@ -451,8 +460,28 @@ public class bihari16 : timeManager
             win0.text = "";
             win1.text = "";
         }
+        removestat();
 
+        //
+    }
+    void removestat()
+    {
+        //
+        string command = "UPDATE [taas].[dbo].[bet16] set status='Claimed' WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
 
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        print(command);
+        if (sqlData.Read()) { 
+        
+        }
 
+        sqlData.Close();
+        sqlData.DisposeAsync();
     }
 }

@@ -59,6 +59,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public bool resetData = false;
     bool updatedata = true;
    [SerializeField] bool firstrun = true;
+    DateTime currenttime;
     private void Start()
     {
         base.Start();
@@ -67,7 +68,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().Play();
        
         StartCoroutine(UpdateBalanceAndInfo());
-      //  StartCoroutine(addlast9gameresults());
+        currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        //  StartCoroutine(addlast9gameresults());
 
     }
     // Update is called once per frame
@@ -81,7 +83,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             StartCoroutine(UpdateBalanceAndInfo());
 
             StartCoroutine(addlast9gameresults());
-           
+            resetTimer();
             updatedata = false;
         }
 
@@ -126,9 +128,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public void sendResult()
     {
       
-        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
             {
+                foreach(Betbuttons btns in bet_buttons)
+            {
+
+                GameObject.FindObjectOfType<clearbutton>().addtolist(btns);
+            }
+
             if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
             {
                 string status = "Print";
@@ -250,7 +258,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-        resetTimer();
+      
         yield return null;
     }
     IEnumerator jeetojokersequence()
@@ -359,6 +367,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         resultsentdone= false;
         
         GameObject.FindObjectOfType<clearbutton>().clearbets();
+       
         noinputpanel.SetActive(false);
        
         
@@ -435,8 +444,26 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             win0.text = "";
             win1.text = "";
         }
+
+        removestat();
        
-       
-       
+    }
+    void removestat()
+    {
+        string command = "UPDATE [taas].[dbo].[tasp] set status='Claimed'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id +"' and status = 'Prize'";
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        if (sqlData.Read())
+        {
+
+        }
+        print(command);
+        sqlData.Close();
+        sqlData.DisposeAsync();
     }
 }
