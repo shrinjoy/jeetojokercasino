@@ -5,33 +5,58 @@ using System.Data.SqlClient;
 using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class spin2win_manager : timeManager
 {
     [SerializeField] TMPro.TMP_Text gameIDtext;
     [SerializeField] TMPro.TMP_Text betplacedtext;
-    [SerializeField] TMPro.TMP_Text wintext;
+    [SerializeField] TMPro.TMP_Text balance;
+
+    [SerializeField]public TMPro.TMP_Text wintext;
     [SerializeField] TMPro.TMP_Text timetext;
     [SerializeField] Image Timerprogressbar;
     [SerializeField] FortuneWheelManager fortunewheelobject;
     [SerializeField] GameObject marker;
     [SerializeField] GameObject ResultPanel_content;
     [SerializeField] GameObject ResultsPanel_content_object;
+    [SerializeField] S2Pbutton[] bet_buttons;
     bool sequenceended = true;
     bool ResetData = false;
     string result;
+    int totalbetplaced;
+    int totalbalance;
+    int fakebalance;
+    bool betplaced=false;
+    [SerializeField] GameObject statusobject;
+
+    [SerializeField] GameObject winpanel;
+    [SerializeField] TMP_Text wintextonwinpanel;
+    [SerializeField] GameObject coinflipanimation;
+    [SerializeField] TMP_Text resulttext;
     private void Start()
     {
        base.Start();
-        StartCoroutine(addlastgameresults());
+       StartCoroutine(addlastgameresults());
+       StartCoroutine(UpdateBalanceAndInfo());
 
+        showstatus("Place your bets");
     }
     private void Update()
     {
         if(ResetData==true)
         {
             StartCoroutine(addlastgameresults());
+          
+            StartCoroutine(UpdateBalanceAndInfo());
+            foreach(S2Pbutton bt in bet_buttons)
+            {
+                bt.resetbet();
+            }
+            showstatus("Place your bets");
             ResetData = false;
+            sequenceended = true;
         }
 
 
@@ -42,8 +67,52 @@ public class spin2win_manager : timeManager
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
         
         Timerprogressbar.fillAmount =1.0f- (float)(realtime /120.0);
+        if(realtime==15)
+        {
+            showstatus("Last Chance");
+        }
+        if(realtime ==10 && totalbetplaced >0)
+        {
+            showstatus("Your bets have been accepted");
+        }
+        if(realtime ==10 && totalbetplaced <1)
+        {
+            showstatus("No more bet please");
+        }
+        if (realtime == 8 && totalbetplaced > 0)
+        {
+            showstatus("No more bet please");
+        }
         timetext.text = niceTime;
+        if(realtime<11 && betplaced==false)
+        {
+            sendResult();
+            betplaced= true;
+        }
        
+
+    }
+     public void showstatus(string st)
+    {
+     StartCoroutine(   statusanim(st));
+    }
+    IEnumerator statusanim(string text)
+    {
+        statusobject.SetActive(true);
+        statusobject.GetComponentInChildren<TMP_Text>().text = text;
+        yield return new WaitForSecondsRealtime(2.0f);
+        statusobject.SetActive(false);
+    }
+    IEnumerator UpdateBalanceAndInfo()
+    {
+
+        totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
+        balance.text = totalbalance.ToString();
+        gameIDtext.text = GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
+        fakebalance = totalbalance;
+
+        resetTimer();
+        yield return null;
 
     }
     public IEnumerator addlastgameresults()
@@ -106,10 +175,27 @@ public class spin2win_manager : timeManager
         }
 
     }
+    public void FakeUpdateBalance()
+    {
+        totalbetplaced = 0;
+        foreach (S2Pbutton bt in GameObject.FindObjectsOfType<S2Pbutton>())
+        {
+            totalbetplaced += bt.betamount;
+        }
+        betplacedtext.text = totalbetplaced.ToString();
+       
+
+
+        int bet = (totalbalance - totalbetplaced);
+        fakebalance = bet;
+        bet = Mathf.Clamp(bet, 0, 999999999);
+        balance.text = bet.ToString();
+      
+    }
     IEnumerator Spin2Win()
     {
         marker.SetActive(false);
-
+        resulttext.text = "";
         int sector = 0;
         string xresult = result.Substring(0, 4);
         #region RESULT_CONVERSION
@@ -171,13 +257,151 @@ public class spin2win_manager : timeManager
         {
             yield return new WaitForEndOfFrame();
         }
+        
+        resulttext.text = ResultConverters.S2w_ResultConverter(xresult);
+        resulttext.enabled = true;
+        getwinamount();
+        yield return new WaitForSeconds(1);
+        coinflipanimation.SetActive(false);
+       
 
-        ResetData = true;
-        resetTimer();
         marker.SetActive(true);
-        sequenceended= true;
-      
+        
+        
+        betplaced= false;
+        
+        ResetData = true;
+        
+        yield return new WaitForSecondsRealtime(2.0f);
+        winpanel.SetActive(false);
         yield return null;
     }
+    public void sendResult()
+    {
 
+       DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
+        {
+           
+            if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
+            {
+                string status = "Print";
+                string gm = "gm";
+                string barcode = generatebarcode();
+                string command = "INSERT INTO [taas].[dbo].[tengp] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09," +
+                    "tot,qty," +
+                    "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
+                    + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount
+                    + "," + totalbetplaced + "," + totalbetplaced + ","
+                    + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
+                print(command);
+                SqlCommand sqlCmnd = new SqlCommand();
+                SqlDataReader sqldata = null;
+                sqlCmnd.CommandTimeout = 60;
+                sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+                sqlCmnd.CommandType = CommandType.Text;
+                sqlCmnd.CommandText = command;
+                sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+
+                sqldata.Close();
+                sqldata.DisposeAsync();
+                print(totalbetplaced);
+                GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
+                StartCoroutine(UpdateBalanceAndInfo());
+                betplaced = true;
+
+            }
+        }
+
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+
+
+    }
+    public string generatebarcode()
+    {
+        string output = null;
+        string[] alphabets = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+
+        output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
+        print(output);
+        return output;
+    }
+    void getwinamount()
+    {
+
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tengp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "'";//this is the sql command we use to get data about user
+        print(sqlCmnd.CommandText);
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        int intwinamount = 0;
+
+        while (sqlData.Read())
+        {
+            if (sqlData["clm"] != null || sqlData["clm"] != "Null")
+            {
+                intwinamount += Convert.ToInt32(sqlData["clm"].ToString());
+               // winamount_panel.SetActive(true);
+                //winamount_panel_wintext.text = intwinamount.ToString();
+            }
+
+
+        }
+        sqlData.Close();
+        sqlData.DisposeAsync();
+
+        if (intwinamount > 0)
+        {
+
+            // GetComponent<AudioSource>().clip = winaudio;
+            //GetComponent<AudioSource>().Play();
+            winpanel.SetActive(true);
+            if (intwinamount > 900)
+            {
+               
+                coinflipanimation.SetActive(true);
+            }
+
+
+
+            print("winamount:" + intwinamount);
+            GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
+          
+            wintext.text = intwinamount.ToString();
+            wintextonwinpanel.text = intwinamount.ToString();   
+            winpanel.SetActive(true);   
+        }
+        if (intwinamount <= 0)
+        {
+            print("no win amount");
+            wintext.text = " "; 
+        }
+
+        removestat();
+
+    }
+    void removestat()
+    {
+        string command = "UPDATE [taas].[dbo].[tengp] set status='Claimed'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqlData = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        if (sqlData.Read())
+        {
+
+        }
+        print(command);
+        sqlData.Close();
+        sqlData.DisposeAsync();
+    }
 }
