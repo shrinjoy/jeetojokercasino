@@ -9612,6 +9612,7 @@ MonoBehaviour:
   Circle: {fileID: 1378575525}
   duration: 7
   circlecount: 8
+  spinonstart: 0
 --- !u!1 &1384874778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7054339178014333306, guid: 24a89ac2a1d5d0744993444802a00546, type: 3}
@@ -12206,6 +12207,7 @@ MonoBehaviour:
   Circle: {fileID: 1827616864}
   duration: 6
   circlecount: 6
+  spinonstart: 0
 --- !u!224 &1837518070 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2074034521476066614, guid: 73bec4d5ce68751468fc7bad2c534e16, type: 3}
@@ -16502,6 +16504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 542246435}
     m_Modifications:
+    - target: {fileID: 4846084591222983697, guid: c5498e289d1d85343862fbed9d5c60ab, type: 3}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4846084591222983698, guid: c5498e289d1d85343862fbed9d5c60ab, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1
