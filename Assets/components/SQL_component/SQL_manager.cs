@@ -209,6 +209,12 @@ public class SQL_manager : MonoBehaviour
             sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "'and g_date='"+ server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
 
         }
+        if (gamename == "spin2win")
+        {
+
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results].result,[taas].[dbo].[results].status FROM [taas].[dbo].[results] WHERE g_time='" + time + "'and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
+
+        }
         print(sqlCmnd.CommandText);//
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
@@ -230,7 +236,14 @@ public class SQL_manager : MonoBehaviour
                 sqlData.Close();
                 sqlData.DisposeAsync();//
             }
+            if (gamename == "spin2win")
+            {
+                result = sqlData["result"].ToString() + sqlData["status"].ToString();
 
+                print("results:" + result);
+                sqlData.Close();
+                sqlData.DisposeAsync();//
+            }
             sqlData.Close();
             sqlData.DisposeAsync();
             return result;
@@ -253,6 +266,11 @@ public class SQL_manager : MonoBehaviour
         if(mode==1)
         {
             sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule16] WHERE tag=1";//this is the sql command we use to get data about user
+
+        }
+        if (mode == 2)
+        {
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule10] WHERE tag=1";//this is the sql command we use to get data about user
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);

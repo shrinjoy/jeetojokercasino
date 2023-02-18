@@ -25,7 +25,10 @@ public class betchips : MonoBehaviour
         {
             chip.resetChip();
         }
-        GameObject.FindObjectOfType<timeManager>().selectedcoinamount = coin_value;
+        if (GameObject.FindObjectOfType<timeManager>() != null)
+        {
+            GameObject.FindObjectOfType<timeManager>().selectedcoinamount = coin_value;
+        }
         isselected = true;
         cr =  StartCoroutine(playchipanimation());
         backgroundcoinimage.SetActive(true);

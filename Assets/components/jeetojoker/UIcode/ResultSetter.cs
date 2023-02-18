@@ -52,7 +52,7 @@ public class ResultSetter : MonoBehaviour
             }
             else if (result == "NR07")
             {
-                icon.sprite = sprites[3];
+                icon.sprite = sprites[3];//clover
                 textresult.text = "Q";
             }
             //

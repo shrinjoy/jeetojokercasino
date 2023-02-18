@@ -40,7 +40,7 @@ public class timeManager : MonoBehaviour
 
         while (true)
         {
-            if (realtime < 0.0f)
+            if (realtime <= 0.0f)
             {
 
 
