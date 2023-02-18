@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MultiplierAnimation_single : MonoBehaviour
 {
-    string[] multiplier_text_objects = { "10x", "9x", "8x", "7x", "6x", "5x", "4x", "3x", "2x", "1x", "N" };
+    string[] multiplier_text_objects = { "10X", "9X", "8X", "7X", "6X", "5X", "4X", "3X", "2X", "1X", "N" };
     [SerializeField] TMP_Text multipliertext=null;
     int counter = 0;
     [SerializeField] Transform multipliertarget;

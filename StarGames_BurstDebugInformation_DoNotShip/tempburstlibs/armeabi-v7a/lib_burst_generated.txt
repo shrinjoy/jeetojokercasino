@@ -154,9 +154,9 @@ Library: lib_burst_generated
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.Runtime.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
+--root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Core.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Burst.dll
---root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Collections.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.AdaptivePerformance.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Services.Core.Telemetry.dll
@@ -379,9 +379,9 @@ Library: lib_burst_generated
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Core.Runtime.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
+--root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Core.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Burst.dll
---root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Collections.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.AdaptivePerformance.dll
 --root-assembly=D:\GameWorkspace\jeetojokercasino\Temp\StagingArea\Data\Managed\Unity.Services.Core.Telemetry.dll
