@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 5409872}
   - component: {fileID: 5409871}
   - component: {fileID: 5409873}
+  - component: {fileID: 5409874}
   m_Layer: 5
   m_Name: double_btn
   m_TagString: Untagged
@@ -244,7 +245,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5409871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5409874}
+        m_TargetAssemblyTypeName: s2wdouble, Assembly-CSharp
+        m_MethodName: onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5409874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd1f67622812cd4dbc784649330565b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &15984669
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +284,7 @@ GameObject:
   - component: {fileID: 15984672}
   - component: {fileID: 15984670}
   m_Layer: 5
-  m_Name: btn_0 (9)
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +312,7 @@ MonoBehaviour:
   coinimage: {fileID: 349412046}
   betamounttext: {fileID: 718800029}
   betamount: 0
+  clickcount: 0
 --- !u!224 &15984671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -889,7 +915,7 @@ GameObject:
   - component: {fileID: 78640826}
   - component: {fileID: 78640829}
   m_Layer: 5
-  m_Name: btn_0
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,6 +1059,7 @@ MonoBehaviour:
   coinimage: {fileID: 885401875}
   betamounttext: {fileID: 590321233}
   betamount: 0
+  clickcount: 0
 --- !u!1 &80898223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1924,7 @@ GameObject:
   - component: {fileID: 242905277}
   - component: {fileID: 242905276}
   - component: {fileID: 242905278}
+  - component: {fileID: 242905279}
   m_Layer: 5
   m_Name: 8_btnR
   m_TagString: Untagged
@@ -2006,7 +2034,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 242905276}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 242905279}
+        m_TargetAssemblyTypeName: randombutton_s2p, Assembly-CSharp
+        m_MethodName: placerandombets
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &242905279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242905274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8211ebeee3ba994c97d534319e8d45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  betsplaceable: 8
+  generatednumbers: 
 --- !u!1 &243619513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,7 +2230,7 @@ GameObject:
   - component: {fileID: 258270286}
   - component: {fileID: 258270289}
   m_Layer: 5
-  m_Name: btn_0 (1)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2320,6 +2374,7 @@ MonoBehaviour:
   coinimage: {fileID: 277906570}
   betamounttext: {fileID: 544712868}
   betamount: 0
+  clickcount: 0
 --- !u!1 &267961098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,7 +2801,7 @@ GameObject:
   - component: {fileID: 321983418}
   - component: {fileID: 321983421}
   m_Layer: 5
-  m_Name: btn_0 (2)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2890,6 +2945,7 @@ MonoBehaviour:
   coinimage: {fileID: 1541239107}
   betamounttext: {fileID: 1235010566}
   betamount: 0
+  clickcount: 0
 --- !u!1 &349412043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3062,6 +3118,7 @@ GameObject:
   - component: {fileID: 396834432}
   - component: {fileID: 396834431}
   - component: {fileID: 396834433}
+  - component: {fileID: 396834434}
   m_Layer: 5
   m_Name: even_btn
   m_TagString: Untagged
@@ -3171,7 +3228,36 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 396834431}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 396834434}
+        m_TargetAssemblyTypeName: BetplaceSameType_S2W, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &396834434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396834429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a41153137363e74b8afaefdf67f4a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  betbuttons:
+  - {fileID: 258270289}
+  - {fileID: 1784492022}
+  - {fileID: 2033655128}
+  - {fileID: 666674388}
 --- !u!1 &406355007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4449,6 +4535,7 @@ GameObject:
   - component: {fileID: 568618992}
   - component: {fileID: 568618991}
   - component: {fileID: 568618993}
+  - component: {fileID: 568618994}
   m_Layer: 5
   m_Name: odds_btn
   m_TagString: Untagged
@@ -4558,7 +4645,38 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 568618991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568618994}
+        m_TargetAssemblyTypeName: BetplaceSameType_S2W, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &568618994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568618989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a41153137363e74b8afaefdf67f4a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  betbuttons:
+  - {fileID: 78640829}
+  - {fileID: 15984670}
+  - {fileID: 321983421}
+  - {fileID: 954280478}
+  - {fileID: 1482149378}
+  - {fileID: 1287049460}
 --- !u!1 &590321231
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,7 +5054,7 @@ GameObject:
   - component: {fileID: 666674385}
   - component: {fileID: 666674388}
   m_Layer: 5
-  m_Name: btn_0 (7)
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5080,6 +5198,7 @@ MonoBehaviour:
   coinimage: {fileID: 648069379}
   betamounttext: {fileID: 2024518857}
   betamount: 0
+  clickcount: 0
 --- !u!1 &700297642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5092,6 +5211,7 @@ GameObject:
   - component: {fileID: 700297645}
   - component: {fileID: 700297644}
   - component: {fileID: 700297646}
+  - component: {fileID: 700297647}
   m_Layer: 5
   m_Name: 6_btnR
   m_TagString: Untagged
@@ -5201,7 +5321,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 700297644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 700297647}
+        m_TargetAssemblyTypeName: randombutton_s2p, Assembly-CSharp
+        m_MethodName: placerandombets
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &700297647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700297642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8211ebeee3ba994c97d534319e8d45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  betsplaceable: 6
+  generatednumbers: 
 --- !u!1 &718800028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6625,7 +6771,7 @@ GameObject:
   - component: {fileID: 954280475}
   - component: {fileID: 954280478}
   m_Layer: 5
-  m_Name: btn_0 (4)
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6769,6 +6915,7 @@ MonoBehaviour:
   coinimage: {fileID: 535367599}
   betamounttext: {fileID: 2030547990}
   betamount: 0
+  clickcount: 0
 --- !u!1 &1076506652
 GameObject:
   m_ObjectHideFlags: 0
@@ -7926,7 +8073,7 @@ GameObject:
   - component: {fileID: 1287049457}
   - component: {fileID: 1287049460}
   m_Layer: 5
-  m_Name: btn_0 (8)
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8070,6 +8217,7 @@ MonoBehaviour:
   coinimage: {fileID: 1525712040}
   betamounttext: {fileID: 1332873036}
   betamount: 0
+  clickcount: 0
 --- !u!1 &1296060865
 GameObject:
   m_ObjectHideFlags: 0
@@ -8805,6 +8953,7 @@ MonoBehaviour:
   ResultPanel_content: {fileID: 1731761112}
   ResultsPanel_content_object: {fileID: 6414035357321537895, guid: 8e6488c11cca45c4cbb5742f114d22c3, type: 3}
   bet_buttons:
+  - {fileID: 15984670}
   - {fileID: 78640829}
   - {fileID: 258270289}
   - {fileID: 321983421}
@@ -8814,12 +8963,13 @@ MonoBehaviour:
   - {fileID: 1482149378}
   - {fileID: 666674388}
   - {fileID: 1287049460}
-  - {fileID: 15984670}
+  fakebalance: 0
   statusobject: {fileID: 406355007}
   winpanel: {fileID: 1772811877}
   wintextonwinpanel: {fileID: 80898225}
   coinflipanimation: {fileID: 1138553585}
   resulttext: {fileID: 1858607619}
+  noinput: {fileID: 1467980563}
 --- !u!4 &1375540994
 Transform:
   m_ObjectHideFlags: 0
@@ -9455,6 +9605,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415691653}
   m_CullTransparentMesh: 1
+--- !u!1 &1467980563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467980564}
+  - component: {fileID: 1467980566}
+  - component: {fileID: 1467980565}
+  m_Layer: 5
+  m_Name: noinput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1467980564
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467980563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1861112849}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1467980565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467980563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1467980566
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467980563}
+  m_CullTransparentMesh: 1
 --- !u!1 &1482149373
 GameObject:
   m_ObjectHideFlags: 0
@@ -9469,7 +9695,7 @@ GameObject:
   - component: {fileID: 1482149375}
   - component: {fileID: 1482149378}
   m_Layer: 5
-  m_Name: btn_0 (6)
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9613,6 +9839,7 @@ MonoBehaviour:
   coinimage: {fileID: 1568094593}
   betamounttext: {fileID: 2105492251}
   betamount: 0
+  clickcount: 0
 --- !u!1 &1497407238
 GameObject:
   m_ObjectHideFlags: 0
@@ -11327,6 +11554,7 @@ GameObject:
   - component: {fileID: 1672010088}
   - component: {fileID: 1672010087}
   - component: {fileID: 1672010089}
+  - component: {fileID: 1672010090}
   m_Layer: 5
   m_Name: clear_btn
   m_TagString: Untagged
@@ -11436,7 +11664,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672010087}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1672010090}
+        m_TargetAssemblyTypeName: S2Wclear_repeat, Assembly-CSharp
+        m_MethodName: clear_clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1672010090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672010085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac49444c6ef5bc7489afa4736ee64a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearbuttontext: {fileID: 858210182}
 --- !u!1 &1729257760
 GameObject:
   m_ObjectHideFlags: 0
@@ -11449,6 +11702,7 @@ GameObject:
   - component: {fileID: 1729257763}
   - component: {fileID: 1729257762}
   - component: {fileID: 1729257764}
+  - component: {fileID: 1729257765}
   m_Layer: 5
   m_Name: 2_btnR
   m_TagString: Untagged
@@ -11558,7 +11812,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1729257762}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1729257765}
+        m_TargetAssemblyTypeName: randombutton_s2p, Assembly-CSharp
+        m_MethodName: placerandombets
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1729257765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729257760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8211ebeee3ba994c97d534319e8d45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  betsplaceable: 2
+  generatednumbers: 
 --- !u!1 &1731761112
 GameObject:
   m_ObjectHideFlags: 0
@@ -11876,7 +12156,7 @@ GameObject:
   - component: {fileID: 1784492019}
   - component: {fileID: 1784492022}
   m_Layer: 5
-  m_Name: btn_0 (3)
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12020,6 +12300,7 @@ MonoBehaviour:
   coinimage: {fileID: 2046653909}
   betamounttext: {fileID: 784242984}
   betamount: 0
+  clickcount: 0
 --- !u!1 &1807639856
 GameObject:
   m_ObjectHideFlags: 0
@@ -12520,6 +12801,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 351222792}
+  - {fileID: 1467980564}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13660,7 +13942,7 @@ GameObject:
   - component: {fileID: 2033655125}
   - component: {fileID: 2033655128}
   m_Layer: 5
-  m_Name: btn_0 (5)
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13804,6 +14086,7 @@ MonoBehaviour:
   coinimage: {fileID: 437223654}
   betamounttext: {fileID: 2128080413}
   betamount: 0
+  clickcount: 0
 --- !u!1 &2046653907
 GameObject:
   m_ObjectHideFlags: 0
@@ -14061,6 +14344,7 @@ GameObject:
   - component: {fileID: 2060587598}
   - component: {fileID: 2060587597}
   - component: {fileID: 2060587599}
+  - component: {fileID: 2060587600}
   m_Layer: 5
   m_Name: 4_btnR
   m_TagString: Untagged
@@ -14170,7 +14454,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2060587597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2060587600}
+        m_TargetAssemblyTypeName: randombutton_s2p, Assembly-CSharp
+        m_MethodName: placerandombets
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2060587600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060587595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8211ebeee3ba994c97d534319e8d45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  betsplaceable: 4
+  generatednumbers: 
 --- !u!1 &2105492249
 GameObject:
   m_ObjectHideFlags: 0

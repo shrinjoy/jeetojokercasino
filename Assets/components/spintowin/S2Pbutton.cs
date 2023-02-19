@@ -10,17 +10,16 @@ public class S2Pbutton : MonoBehaviour
     [SerializeField] Image coinimage;
     [SerializeField] TMP_Text betamounttext;
     public int betamount;
-    int clickcount;
+    public int clickcount;
     public void onclick()
     {
         
-        if (GameObject.FindObjectOfType<RemoveButton>().removebets == false)
+        if (GameObject.FindObjectOfType<RemoveButton>().removebets == false && (betamount+GameObject.FindObjectOfType<timeManager>().selectedcoinamount)<=GameObject.FindObjectOfType<spin2win_manager>().fakebalance)
         {
             betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
             clickcount += 1;
             clickcount = Mathf.Clamp(clickcount, 0, cointsprite.Length - 1);
-            coinimage.sprite = cointsprite[clickcount];
-            betamounttext.text = betamount.ToString();
+            updateUI();
         }
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
@@ -29,6 +28,12 @@ public class S2Pbutton : MonoBehaviour
         }
         GameObject.FindObjectOfType<spin2win_manager>().FakeUpdateBalance();
         GameObject.FindObjectOfType<spin2win_manager>().wintext.text = "";
+    }
+    public void updateUI()
+    {
+        coinimage.sprite = cointsprite[clickcount];
+        betamounttext.text = betamount.ToString();
+
     }
     public void resetbet()
     {

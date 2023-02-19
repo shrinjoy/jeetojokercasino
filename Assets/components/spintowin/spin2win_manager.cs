@@ -27,7 +27,7 @@ public class spin2win_manager : timeManager
     string result;
     int totalbetplaced;
     int totalbalance;
-    int fakebalance;
+    public int fakebalance;
     bool betplaced=false;
     [SerializeField] GameObject statusobject;
 
@@ -35,6 +35,8 @@ public class spin2win_manager : timeManager
     [SerializeField] TMP_Text wintextonwinpanel;
     [SerializeField] GameObject coinflipanimation;
     [SerializeField] TMP_Text resulttext;
+    [SerializeField] GameObject noinput;
+  
     private void Start()
     {
        base.Start();
@@ -57,10 +59,17 @@ public class spin2win_manager : timeManager
             showstatus("Place your bets");
             ResetData = false;
             sequenceended = true;
+            betplacedtext.text = "0";
         }
-
-
-        realtime = Mathf.Clamp((float)realtime, 0, 999);
+        if(realtime<10)
+        {
+            noinput.SetActive(true);
+        }
+        if (realtime > 10)
+        {
+         noinput.SetActive(false);
+        }
+            realtime = Mathf.Clamp((float)realtime, 0, 999);
         int minutes = Mathf.FloorToInt((float)realtime / 60F);
         int seconds = Mathf.FloorToInt((float)realtime - minutes * 60);
        
