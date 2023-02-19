@@ -3603,7 +3603,7 @@ MonoBehaviour:
   coin_image: {fileID: 1670189207}
   backgroundcoinimage: {fileID: 1223875478}
   coin_value: 2
-  enabledonstart: 1
+  enabledonstart: 0
 --- !u!114 &446945618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   coin_image: {fileID: 1144050022}
   backgroundcoinimage: {fileID: 1620471809}
   coin_value: 500
-  enabledonstart: 1
+  enabledonstart: 0
 --- !u!114 &496877356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4929,7 +4929,7 @@ MonoBehaviour:
   coin_image: {fileID: 16493577}
   backgroundcoinimage: {fileID: 1405010542}
   coin_value: 100
-  enabledonstart: 1
+  enabledonstart: 0
 --- !u!114 &598365138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7620,7 +7620,7 @@ MonoBehaviour:
   coin_image: {fileID: 295787474}
   backgroundcoinimage: {fileID: 901113794}
   coin_value: 10
-  enabledonstart: 1
+  enabledonstart: 0
 --- !u!114 &1208767892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10458,7 +10458,7 @@ MonoBehaviour:
   coin_image: {fileID: 1843065453}
   backgroundcoinimage: {fileID: 2001437666}
   coin_value: 5
-  enabledonstart: 1
+  enabledonstart: 0
 --- !u!114 &1564604498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12401,7 +12401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1807639857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15218,7 +15218,7 @@ MonoBehaviour:
   coin_image: {fileID: 730684437}
   backgroundcoinimage: {fileID: 243619513}
   coin_value: 50
-  enabledonstart: 1
+  enabledonstart: 0
 --- !u!114 &2143305864
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,10 +13,14 @@ public class betchips : MonoBehaviour
     Vector3 finalSize;
     [SerializeField] int coin_value;
     [SerializeField]bool enabledonstart=false;
-    private void Start()
+    private void Awake()
     {
         initialSize= transform.localScale;
         finalSize = initialSize * 1.02f;
+      
+    }
+    private void Start()
+    {
         if (enabledonstart == true)
         {
             onSelected();//
@@ -24,7 +28,7 @@ public class betchips : MonoBehaviour
     }
     public void onSelected()
     {
-        
+        print("btselectd:" + coin_value);
         GetComponentInParent<AudioSource>().Play();
         foreach (betchips chip in GameObject.FindObjectsOfType<betchips>())
         {
@@ -45,10 +49,7 @@ public class betchips : MonoBehaviour
         isselected = false;
         backgroundcoinimage.SetActive(false);
         coin_image.localScale = initialSize;
-        if (cr != null)
-        {
-            StopCoroutine(cr);
-        }
+      
         
     }
     IEnumerator playchipanimation()
