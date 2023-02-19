@@ -30,7 +30,7 @@ public class spin2win_manager : timeManager
     public int fakebalance;
     bool betplaced=false;
     [SerializeField] GameObject statusobject;
-
+    [SerializeField] TMP_Text datetimetext;
     [SerializeField] GameObject winpanel;
     [SerializeField] TMP_Text wintextonwinpanel;
     [SerializeField] GameObject coinflipanimation;
@@ -47,7 +47,8 @@ public class spin2win_manager : timeManager
     }
     private void Update()
     {
-        if(ResetData==true)
+        datetimetext.text= DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt"); 
+        if (ResetData==true)
         {
             StartCoroutine(addlastgameresults());
           

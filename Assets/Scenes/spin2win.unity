@@ -9047,6 +9047,7 @@ MonoBehaviour:
   - {fileID: 1287049460}
   fakebalance: 0
   statusobject: {fileID: 406355007}
+  datetimetext: {fileID: 1296060867}
   winpanel: {fileID: 1772811877}
   wintextonwinpanel: {fileID: 80898225}
   coinflipanimation: {fileID: 1138553585}
