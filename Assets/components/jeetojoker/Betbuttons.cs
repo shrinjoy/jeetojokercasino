@@ -25,8 +25,12 @@ public class Betbuttons : MonoBehaviour
     [SerializeField] TMPro.TMP_Text betamounttext;
     public int betamount;
     [SerializeField] int mode = 0;
-
+   
     // Start is called before the first frame update
+    public void Start()
+    {
+      
+    }
     public void onBetButtonClick()
     {
         GetComponentInParent<AudioSource>().Play();
@@ -61,7 +65,8 @@ public class Betbuttons : MonoBehaviour
                 {
                     betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
                     updateBetButtonData();
-                   
+                  
+                  
                 }
             }
 
@@ -69,7 +74,9 @@ public class Betbuttons : MonoBehaviour
        else  if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
             print("1 remove bet");
-            resetBetbutton();
+            betamount -= 1;
+            updateBetButtonData();
+            GameObject.FindObjectOfType<RemoveButton>().onclickremove();
         }
     }
     // Update is called once per frame

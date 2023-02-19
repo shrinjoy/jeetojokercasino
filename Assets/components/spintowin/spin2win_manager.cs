@@ -198,7 +198,7 @@ public class spin2win_manager : timeManager
         int bet = (totalbalance - totalbetplaced);
         fakebalance = bet;
         bet = Mathf.Clamp(bet, 0, 999999999);
-        balance.text = bet.ToString();
+      //  balance.text = bet.ToString();
       
     }
     IEnumerator Spin2Win()

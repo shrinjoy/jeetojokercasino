@@ -23,7 +23,20 @@ public class S2Pbutton : MonoBehaviour
         }
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
-            resetbet();
+            if(betamount>0)
+            {
+                betamount -= GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                updateUI();
+                if (betamount < 1)
+                {
+                    resetbet();
+                }
+
+            }
+            
+         
+            GameObject.FindObjectOfType<RemoveButton>().onclickremove();
+           
 
         }
         GameObject.FindObjectOfType<spin2win_manager>().FakeUpdateBalance();

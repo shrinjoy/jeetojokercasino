@@ -12,10 +12,15 @@ public class betchips : MonoBehaviour
     Vector3 initialSize;
     Vector3 finalSize;
     [SerializeField] int coin_value;
+    [SerializeField]bool enabledonstart=false;
     private void Start()
     {
         initialSize= transform.localScale;
         finalSize = initialSize * 1.02f;
+        if (enabledonstart == true)
+        {
+            onSelected();//
+        }
     }
     public void onSelected()
     {

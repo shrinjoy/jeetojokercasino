@@ -2761,6 +2761,7 @@ MonoBehaviour:
   betamounttext: {fileID: 233083909}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!1001 &185330866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4244,6 +4245,7 @@ MonoBehaviour:
   betamounttext: {fileID: 523374802}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &267254323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4833,6 +4835,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1933361395}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &292989360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5635,6 +5638,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1234826923}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &331351141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8082,6 +8086,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1185627910}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &519571051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10193,6 +10198,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1123862162}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &611286508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12997,6 +13003,7 @@ MonoBehaviour:
   betamounttext: {fileID: 612675475}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &816401831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16428,6 +16435,7 @@ MonoBehaviour:
   betamounttext: {fileID: 2015290641}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &994269270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22599,6 +22607,7 @@ MonoBehaviour:
   betamounttext: {fileID: 4419062}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1361854574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24328,6 +24337,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1600245773}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1466993262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25659,6 +25669,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1233315397}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1610485454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27898,6 +27909,7 @@ MonoBehaviour:
   betamounttext: {fileID: 321862333}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1723860077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29116,6 +29128,7 @@ MonoBehaviour:
   betamounttext: {fileID: 999030107}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1784418342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29627,6 +29640,7 @@ MonoBehaviour:
   betamounttext: {fileID: 675051223}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1816921273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29792,6 +29806,7 @@ MonoBehaviour:
   betamounttext: {fileID: 559402462}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1843096487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31430,6 +31445,7 @@ MonoBehaviour:
   betamounttext: {fileID: 1067850653}
   betamount: 0
   mode: 1
+  enabledonstart: 0
 --- !u!114 &1909817396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33041,6 +33057,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 351222792}
     m_Modifications:
+    - target: {fileID: 1308335431799446249, guid: b8c14292dca54ad46b31b6d809072c35, type: 3}
+      propertyPath: enabledonstart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1308335432698598212, guid: b8c14292dca54ad46b31b6d809072c35, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

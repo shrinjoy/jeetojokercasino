@@ -197,8 +197,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         int bet = (totalbalance - totalbetplaced);
         fakebalance = bet;
         bet = Mathf.Clamp(bet, 0, 999999999);
-        balance.text = bet.ToString();
-        balance2.text = bet.ToString();
+       // balance.text = bet.ToString();
+       // balance2.text = bet.ToString();
     }
     public override void GameSequence()
     {
