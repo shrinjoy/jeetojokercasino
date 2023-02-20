@@ -25,7 +25,7 @@ public class spin2win_manager : timeManager
     bool sequenceended = true;
     bool ResetData = false;
     string result;
-    int totalbetplaced;
+    public int totalbetplaced;
     int totalbalance;
     public int fakebalance;
     bool betplaced=false;
@@ -53,10 +53,7 @@ public class spin2win_manager : timeManager
             StartCoroutine(addlastgameresults());
           
             StartCoroutine(UpdateBalanceAndInfo());
-            foreach(S2Pbutton bt in bet_buttons)
-            {
-                bt.resetbet();
-            }
+            GameObject.FindObjectOfType<S2Wclear_repeat>().clear();
             showstatus("Place your bets");
             ResetData = false;
             sequenceended = true;
@@ -282,7 +279,6 @@ public class spin2win_manager : timeManager
         
         ResetData = true;
         
-        yield return new WaitForSecondsRealtime(2.0f);
         winpanel.SetActive(false);
         yield return null;
     }
@@ -315,6 +311,17 @@ public class spin2win_manager : timeManager
 
                 sqldata.Close();
                 sqldata.DisposeAsync();
+                GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Clear();
+                foreach (S2Pbutton btns in bet_buttons)
+                {
+
+                    
+                    BetbuttonData data = new BetbuttonData();
+                    data.betbutton = btns;
+                    data.betamount = btns.betamount;
+                    data.clicks = btns.clickcount;
+                    GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Add(data);
+                }
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());

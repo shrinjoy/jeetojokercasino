@@ -168,6 +168,51 @@ public class Results_object_info : MonoBehaviour
             }
 
         }
+        if(mode==2)
+        {
+            datetime.text = timestring;
+            icon.sprite = null;
+            if (result == "NR00")
+            {     
+                textresult.text = "0";
+            }
+            else if (result == "NR01")
+            {
+             textresult.text = "1";
+            }
+            else if (result == "NR02")
+            {
+                textresult.text = "2";
+            }
+            else if (result == "NR03")
+            {
+                textresult.text = "3";
+            }
+            else if (result == "NR04")
+            {
+                textresult.text = "4";
+            }
+            else if (result == "NR05")
+            {
+                textresult.text = "5";
+            }
+            else if (result == "NR06")
+            {
+                textresult.text = "6";
+            }
+            else if (result == "NR07")
+            {
+                textresult.text = "7";
+            }
+            else if (result == "NR08")
+            {
+                textresult.text = "8";
+            }
+            else if (result == "NR09")
+            {
+                textresult.text = "9";
+            }
+        }
     }
   
 }

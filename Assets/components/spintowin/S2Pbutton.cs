@@ -35,7 +35,7 @@ public class S2Pbutton : MonoBehaviour
             }
             
          
-            GameObject.FindObjectOfType<RemoveButton>().onclickremove();
+          //  GameObject.FindObjectOfType<RemoveButton>().onclickremove();
            
 
         }

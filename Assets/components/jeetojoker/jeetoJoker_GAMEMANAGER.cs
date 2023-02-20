@@ -227,7 +227,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public IEnumerator addlast9gameresults()
     {
         string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
-        
+
 
         string starttime = DateTime.Parse(endtime).AddMinutes(-20).ToString("hh:mm:ss tt");
         int i = 0;
@@ -238,7 +238,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsTaa] order by [taas].[dbo].[resultsTaa].id desc";
+        sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsTaa]   order by [taas].[dbo].[resultsTaa].id desc";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
@@ -246,6 +246,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
             if (i < resultsetter.Length)
             {
+                print(sqlData["id"].ToString());
 
                 resultsetter[i].setResult(sqlData["result"].ToString());
                 resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
@@ -258,7 +259,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-      
+
         yield return null;
     }
     IEnumerator jeetojokersequence()

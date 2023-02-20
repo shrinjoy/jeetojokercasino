@@ -76,7 +76,7 @@ public class Betbuttons : MonoBehaviour
             print("1 remove bet");
             betamount -= 1;
             updateBetButtonData();
-            GameObject.FindObjectOfType<RemoveButton>().onclickremove();
+          //  GameObject.FindObjectOfType<RemoveButton>().onclickremove();
         }
     }
     // Update is called once per frame

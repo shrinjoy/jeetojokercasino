@@ -416,7 +416,6 @@ MonoBehaviour:
   betamounttext: {fileID: 27018805}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1 &27290959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,10 +1039,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1334392039}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 76378002}
   mode: 0
 --- !u!114 &76378002
@@ -1800,7 +1799,6 @@ MonoBehaviour:
   betamounttext: {fileID: 136899726}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1 &143079550
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,7 +2156,6 @@ MonoBehaviour:
   betamounttext: {fileID: 169966567}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1 &231778445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,10 +2877,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 382357013}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 341350249}
   mode: 0
 --- !u!114 &341350249
@@ -3697,10 +3694,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1427580863}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 445131579}
   mode: 0
 --- !u!114 &445131579
@@ -4984,7 +4981,6 @@ MonoBehaviour:
   betamounttext: {fileID: 710361320}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1 &730276452
 GameObject:
   m_ObjectHideFlags: 0
@@ -5908,7 +5904,6 @@ MonoBehaviour:
   betamounttext: {fileID: 815015040}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1 &818824876
 GameObject:
   m_ObjectHideFlags: 0
@@ -8304,7 +8299,6 @@ MonoBehaviour:
   betamounttext: {fileID: 1121147115}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1001 &1182349186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8577,10 +8571,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 500625796}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 1188874478}
   mode: 0
 --- !u!114 &1188874478
@@ -8910,7 +8904,6 @@ MonoBehaviour:
   betamounttext: {fileID: 1209890086}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1 &1233125716
 GameObject:
   m_ObjectHideFlags: 0
@@ -9292,10 +9285,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1658682546}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 1349932978}
   mode: 0
 --- !u!114 &1349932978
@@ -10152,7 +10145,6 @@ MonoBehaviour:
   betamounttext: {fileID: 1469799104}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!224 &1492114637 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1851330814545649040, guid: 3e2524dc9b647964386ec55bb1d24906, type: 3}
@@ -10602,7 +10594,6 @@ MonoBehaviour:
   betamounttext: {fileID: 1607016357}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!114 &1611230622 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7434166514496729019, guid: 7f0f4fd877adc95468b53d720ef09e6f, type: 3}
@@ -11254,10 +11245,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 834950578}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 1701506685}
   mode: 0
 --- !u!114 &1701506685
@@ -11528,10 +11519,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 450419907}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 1802474325}
   mode: 0
 --- !u!114 &1802474325
@@ -12645,10 +12636,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 322567207}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 1905269445}
   mode: 0
 --- !u!114 &1905269445
@@ -12817,10 +12808,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 563387924}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 1906822884}
   mode: 0
 --- !u!114 &1906822884
@@ -13408,7 +13399,6 @@ MonoBehaviour:
   betamounttext: {fileID: 2028465905}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1001 &2047379399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13626,7 +13616,6 @@ MonoBehaviour:
   betamounttext: {fileID: 2047379402}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!1001 &248482385199362722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14440,6 +14429,22 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1513217180600072893, guid: 92a9cef56c5c9774fb81ac66d805d0c9, type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+    - target: {fileID: 1513217180600072893, guid: 92a9cef56c5c9774fb81ac66d805d0c9, type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+    - target: {fileID: 1513217180600072893, guid: 92a9cef56c5c9774fb81ac66d805d0c9, type: 3}
+      propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+    - target: {fileID: 1513217180600072893, guid: 92a9cef56c5c9774fb81ac66d805d0c9, type: 3}
+      propertyPath: sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
     - target: {fileID: 1513217181677407758, guid: 92a9cef56c5c9774fb81ac66d805d0c9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 60.9039
@@ -16484,7 +16489,6 @@ MonoBehaviour:
   betamounttext: {fileID: 4836673646773538953}
   betamount: 0
   mode: 0
-  enabledonstart: 0
 --- !u!114 &4836673646773538953 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4836673645849005899, guid: 8f580ae4218124b4894f4e08831953cd, type: 3}

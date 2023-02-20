@@ -15,23 +15,23 @@ public class ResultSetter : MonoBehaviour
         {
             if (result == "NR00")
             {
-                icon.sprite = sprites[0];
+                icon.sprite = sprites[0];//heart
                 textresult.text = "J";
             }
             else if (result == "NR01")
             {
-                icon.sprite = sprites[1];
+                icon.sprite = sprites[1];//spade
                 textresult.text = "J";
             }
             else if (result == "NR02")
             {
-                icon.sprite = sprites[2];
+                icon.sprite = sprites[2];//diamond
                 textresult.text = "J";
             }
             //
             else if (result == "NR03")
             {
-                icon.sprite = sprites[3];
+                icon.sprite = sprites[3];//clover
                 textresult.text = "J";
             }
             //

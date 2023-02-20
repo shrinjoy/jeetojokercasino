@@ -38,6 +38,11 @@ public class historypanel : MonoBehaviour
             sqlCmnd.CommandText = "SELECT [taas].[dbo].[bet16].id,[taas].[dbo].[bet16].bar,[taas].[dbo].[bet16].g_id,[taas].[dbo].[bet16].g_date,[taas].[dbo].[bet16].ter_id,[taas].[dbo].[bet16].clm,[taas].[dbo].[bet16].tot,[taas].[dbo].[bet16].status,[taas].[dbo].[bet16].g_time,[taas].[dbo].[bet16].p_time,[taas].[dbo].[results16].result as gameresult FROM [taas].[dbo].[bet16],[taas].[dbo].[results16] WHERE results16.g_date=bet16.g_date and results16.g_time=bet16.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[bet16].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
 
         }
+        if (mode == 2)
+        {
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
+
+        }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         print(sqlCmnd.CommandText);
        
@@ -180,6 +185,54 @@ public class historypanel : MonoBehaviour
                 return "JH";
             }
            
+        }
+        if (mode == 2)
+        {
+            if (result == "NR00")
+            {
+                return "0";
+            }
+            else if (result == "NR01")
+            {
+                return "1";
+            }
+            else if (result == "NR02")
+            {
+                return "2";
+            }
+            //
+            else if (result == "NR03")
+            {
+                return "3";
+            }
+            //
+            else if (result == "NR04")
+            {
+                return "4";
+            }
+            else if (result == "NR05")
+            {
+                return "5";
+            }
+            else if (result == "NR06")
+            {
+                return "6";
+            }
+            else if (result == "NR07")
+            {
+                return "7";
+            }
+            //
+            else if (result == "NR08")
+            {
+                return "8";
+            }
+            else if (result == "NR09")
+            {
+                return "9";
+            }
+            
+            return "Null";
         }
         return "Null";
     }
