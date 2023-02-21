@@ -60,6 +60,7 @@ public class bihari16 : timeManager
     bool updatedata = true;
     bool betplaced = false;
     DateTime currenttime;
+    [SerializeField] GameObject uwinanimation;
     private void Start()
     {
         base.Start();
@@ -86,6 +87,7 @@ public class bihari16 : timeManager
 
             StartCoroutine(addlast9gameresults());
             resetTimer();
+            uwinanimation.SetActive(false);
             updatedata = false;
         }
 
@@ -446,10 +448,11 @@ public class bihari16 : timeManager
 
             GetComponent<AudioSource>().clip = winaudio;
             GetComponent<AudioSource>().Play();
-
+            uwinanimation.SetActive(true);
+            coinflipobject.SetActive(true);
             if (intwinamount > 900)
             {
-                coinflipobject.SetActive(true);
+                
                 coindanceobject.SetActive(true);
 
             }

@@ -36,7 +36,7 @@ public class spin2win_manager : timeManager
     [SerializeField] GameObject coinflipanimation;
     [SerializeField] TMP_Text resulttext;
     [SerializeField] GameObject noinput;
-  
+    [SerializeField] GameObject uwinanimation;
     private void Start()
     {
        base.Start();
@@ -51,7 +51,7 @@ public class spin2win_manager : timeManager
         if (ResetData==true)
         {
             StartCoroutine(addlastgameresults());
-          
+            uwinanimation.SetActive(false);
             StartCoroutine(UpdateBalanceAndInfo());
             GameObject.FindObjectOfType<S2Wclear_repeat>().clear();
             showstatus("Place your bets");
@@ -268,8 +268,11 @@ public class spin2win_manager : timeManager
         resulttext.text = ResultConverters.S2w_ResultConverter(xresult);
         resulttext.enabled = true;
         getwinamount();
+       
         yield return new WaitForSeconds(1);
         coinflipanimation.SetActive(false);
+        yield return new WaitForSeconds(3);
+       
        
 
         marker.SetActive(true);
@@ -277,9 +280,11 @@ public class spin2win_manager : timeManager
         
         betplaced= false;
         
-        ResetData = true;
+        
         
         winpanel.SetActive(false);
+        yield return new WaitForSeconds(4.0f);
+        ResetData = true;
         yield return null;
     }
     public void sendResult()
@@ -379,11 +384,9 @@ public class spin2win_manager : timeManager
             // GetComponent<AudioSource>().clip = winaudio;
             //GetComponent<AudioSource>().Play();
             winpanel.SetActive(true);
-            if (intwinamount > 900)
-            {
-               
-                coinflipanimation.SetActive(true);
-            }
+            uwinanimation.SetActive(true);
+            coinflipanimation.SetActive(true);
+           
 
 
 

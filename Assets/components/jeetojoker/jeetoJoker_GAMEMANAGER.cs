@@ -60,6 +60,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     bool updatedata = true;
    [SerializeField] bool firstrun = true;
     DateTime currenttime;
+    public GameObject uwinanimationcircle;
     private void Start()
     {
         base.Start();
@@ -84,6 +85,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
             StartCoroutine(addlast9gameresults());
             resetTimer();
+            uwinanimationcircle.SetActive(false);
             updatedata = false;
         }
 
@@ -432,10 +434,11 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             
             GetComponent<AudioSource>().clip = winaudio;
             GetComponent<AudioSource>().Play();
-
+            uwinanimationcircle.SetActive(true);
+            coinflipobject.SetActive(true);
             if (intwinamount>900)
             {
-                coinflipobject.SetActive(true);
+               
                 coindanceobject.SetActive(true);
 
             }

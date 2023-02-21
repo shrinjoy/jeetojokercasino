@@ -867,6 +867,7 @@ MonoBehaviour:
   betinfotext: {fileID: 7281661530776268660}
   resetData: 0
   firstrun: 1
+  uwinanimationcircle: {fileID: 1377140793}
 --- !u!82 &59117728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5047,7 +5048,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.69891
+  orthographic size: 3.675136
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9491,6 +9492,7 @@ GameObject:
   - component: {fileID: 1377140794}
   - component: {fileID: 1377140796}
   - component: {fileID: 1377140795}
+  - component: {fileID: 1377140797}
   m_Layer: 5
   m_Name: uwin_autist
   m_TagString: Untagged
@@ -9556,6 +9558,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377140793}
   m_CullTransparentMesh: 1
+--- !u!114 &1377140797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377140793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a96b07f2eadc9419bfd753cb8b5ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -20
 --- !u!1 &1378575525
 GameObject:
   m_ObjectHideFlags: 0
