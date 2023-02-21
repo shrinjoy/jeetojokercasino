@@ -44,7 +44,7 @@ public class detailsbutton : MonoBehaviour
             while (sqldata.Read())
             {
                 GameObject gb = GameObject.Instantiate(detailsprefab, content.transform.position, Quaternion.identity,content.transform);
-                gb.GetComponent<betdetails_prefab>().SetData(sqldata["nam"].ToString(), sqldata["ply"].ToString(), sqldata["win"].ToString());
+                gb.GetComponent<betdetails_prefab>().SetData(sqldata["nam"].ToString(), sqldata["ply"].ToString(), sqldata["win"].ToString(),0);
 
             }
             sqldata.Close();
