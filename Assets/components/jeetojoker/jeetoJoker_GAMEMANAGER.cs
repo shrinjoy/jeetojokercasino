@@ -124,6 +124,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             betinfotext.text = "Your bets have been accepted";
         }
+        
     }
     public void sendResult()
     {
@@ -131,11 +132,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
             {
-                foreach(Betbuttons btns in bet_buttons)
-            {
-
-                GameObject.FindObjectOfType<clearbutton>().addtolist(btns);
-            }
+                
 
             if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
             {
@@ -159,6 +156,17 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
                 sqldata.Close();
                 sqldata.DisposeAsync();
+                GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
+                foreach (Betbuttons btns in bet_buttons)
+                {
+
+
+                    BetbuttonData2 data = new BetbuttonData2();
+                    data.betbutton = btns;
+                    data.betamount = btns.betamount;
+
+                    GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
+                }
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
@@ -294,19 +302,19 @@ public class jeetoJoker_GAMEMANAGER :timeManager
       
         if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08")
         {
-            sector = 0;
+            sector = 3;
         }
         else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09")
         {
-            sector = 1;
+            sector = 2;
         }
         else if (xresult == "NR02" || xresult == "NR06" || xresult == "NR10")
         {
-            sector = 2;
+            sector = 5;
         }
         else if (xresult == "NR03" || xresult == "NR07" || xresult == "NR11")
         {
-            sector = 3;
+            sector = 0;
         }
         GetComponent<AudioSource>().loop = true;
         GetComponent<AudioSource>().clip = wheelspinning;
@@ -366,8 +374,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         
        
         resultsentdone= false;
-        
-        GameObject.FindObjectOfType<clearbutton>().clearbets();
+
+        GameObject.FindObjectOfType<clearbutton>().clear();
        
         noinputpanel.SetActive(false);
        

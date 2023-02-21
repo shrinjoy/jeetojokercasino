@@ -5,60 +5,61 @@ using UnityEngine;
 
 public class clearbutton : MonoBehaviour
 {
-    [SerializeField]AudioSource asa;
-    [SerializeField] TMP_Text canceltext;
-
-    public List<betbuttondata> btd=  new List<betbuttondata>();
-    bool cancel = true;
-    public void clearbets()
+    public List<BetbuttonData2> betbuttons2 = new List<BetbuttonData2>();
+    [SerializeField]public TMP_Text clearbuttontext;
+    public bool allowrepeat = false;
+    public void clear_clicked()
     {
-        if (btd.Count < 1)
+        if (betbuttons2.Count > 0 && allowrepeat == true)
         {
-            canceltext.text = "Clear";
-            cancel = true;
+            repeat();
         }
-        else if (btd.Count > 0)
+        else if (betbuttons2.Count > 0 && allowrepeat == false)
         {
-            canceltext.text = "Repeat";
 
-            cancel = false;
+            clear();
+
         }
-
-        asa.Play();
-       
-            foreach (Betbuttons bt in GameObject.FindObjectsOfType<Betbuttons>())
-            {
-                bt.resetBetbutton();
-            }
-        
-       
-        
+        else if (betbuttons2.Count < 1 && allowrepeat == false)
+        {
+            clear();
+        }
     }
+
     public void repeat()
     {
-        if (cancel == false)
+
+        foreach (BetbuttonData2 btd in betbuttons2)
         {
-            foreach (betbuttondata d in btd)
+            if (btd.betamount > 0)
             {
-                d.betbutton.betamount = d.betamount;
-                d.betbutton.updateBetButtonData();
-            }
-            btd.Clear();
-            canceltext.text = "Clear";
+                btd.betbutton.betamount = btd.betamount;
+                btd.betbutton.updateBetButtonData();
+            } 
+        }
+        clearbuttontext.text = "Clear";
+        allowrepeat = false;
+    }
+
+    public void clear()
+    {
+        foreach (Betbuttons bt in GameObject.FindObjectsOfType<Betbuttons>())
+        {
+            bt.resetBetbutton();
+            // bt.updateUI();
+        }
+        if (betbuttons2.Count > 0)
+        {
+            clearbuttontext.text = "Repeat";
+            allowrepeat = true;
         }
     }
-    public void addtolist(Betbuttons btnd)
-    {
-        betbuttondata data = new betbuttondata();
-        data.betbutton = btnd;
-        data.betamount = btnd.betamount;
-        btd.Add(data);  
-    }
-    
-    [System.Serializable]
-    public struct betbuttondata
-    {
-        public int betamount;
-        public Betbuttons betbutton;
-    }
+}
+
+[System.Serializable]
+public struct BetbuttonData2
+{
+    public int clicks;
+    public int betamount;
+    public Betbuttons betbutton;
 }

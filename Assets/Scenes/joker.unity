@@ -17514,7 +17514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5939492324224476257, guid: 6e102d2698d7e1643961cf9d012d32b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5939492324224476257, guid: 6e102d2698d7e1643961cf9d012d32b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -17542,7 +17542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5939492324224476257, guid: 6e102d2698d7e1643961cf9d012d32b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: clearbets
+      value: clear_clicked
       objectReference: {fileID: 0}
     - target: {fileID: 5939492324224476257, guid: 6e102d2698d7e1643961cf9d012d32b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -17596,9 +17596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0be65bf62004784fa97e58cbbcb5157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asa: {fileID: 5939492323942794165}
-  canceltext: {fileID: 5939492323942794166}
-  btd: []
+  betbuttons2: []
+  clearbuttontext: {fileID: 5939492323942794166}
+  allowrepeat: 0
 --- !u!82 &5939492323942794165
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17714,6 +17714,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 634579387}
     m_Modifications:
+    - target: {fileID: 6625318328133125133, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328133125133, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328336151069, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328336151069, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328545396227, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328545396227, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328635523212, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328635523212, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328635523212, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318328635523212, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318329091534307, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318329091534307, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6625318329133572422, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17801,6 +17849,14 @@ PrefabInstance:
     - target: {fileID: 6625318329133572423, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
       propertyPath: m_Name
       value: Info_Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318329133572423, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625318329135541523, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1094.5352
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

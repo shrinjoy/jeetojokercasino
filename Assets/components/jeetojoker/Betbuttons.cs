@@ -33,6 +33,8 @@ public class Betbuttons : MonoBehaviour
     }
     public void onBetButtonClick()
     {
+        GameObject.FindObjectOfType<clearbutton>().allowrepeat = false;
+        GameObject.FindObjectOfType<clearbutton>().clearbuttontext.text = "Clear";
         GetComponentInParent<AudioSource>().Play();
         if (mode == 0)
         {

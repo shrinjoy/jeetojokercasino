@@ -134,11 +134,7 @@ public class bihari16 : timeManager
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
-            foreach (Betbuttons btns in bet_buttons)
-            {
-
-                GameObject.FindObjectOfType<clearbutton>().addtolist(btns);
-            }
+            
             if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
             {
                 string status = "Print";
@@ -161,6 +157,17 @@ public class bihari16 : timeManager
 
                 sqldata.Close();
                 sqldata.DisposeAsync();
+                GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
+                foreach (Betbuttons btns in bet_buttons)
+                {
+
+
+                    BetbuttonData2 data = new BetbuttonData2();
+                    data.betbutton = btns;
+                    data.betamount = btns.betamount;
+                  
+                    GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
+                }
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
@@ -383,7 +390,7 @@ public class bihari16 : timeManager
 
 
         resultsentdone = false;
-        GameObject.FindObjectOfType<clearbutton>().clearbets();
+        GameObject.FindObjectOfType<clearbutton>().clear();
         
         noinputpanel.SetActive(false);
 

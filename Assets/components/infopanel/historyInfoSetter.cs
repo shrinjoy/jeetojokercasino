@@ -21,7 +21,7 @@ public class historyInfoSetter : MonoBehaviour
     }
     public void onclickhistory()
     {
-        GameObject.FindObjectOfType<historypanel>().barcode = serialnumber.text;
+        GameObject.FindObjectOfType<historypanel>().barcode =gameid.text;
     }
 
 
