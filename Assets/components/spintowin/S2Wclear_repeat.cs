@@ -9,10 +9,12 @@ public class S2Wclear_repeat : MonoBehaviour
    
    public List<BetbuttonData> betbuttons2 = new List<BetbuttonData>();
     [SerializeField]public TMP_Text clearbuttontext;
+
    public bool allowrepeat = false;
     public void clear_clicked()
     {
-      if(betbuttons2.Count>0&&allowrepeat==true)
+        GetComponentInParent<AudioSource>().Play();
+        if (betbuttons2.Count>0&&allowrepeat==true)
         {
             repeat();
         }

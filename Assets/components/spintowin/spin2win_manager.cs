@@ -37,12 +37,20 @@ public class spin2win_manager : timeManager
     [SerializeField] TMP_Text resulttext;
     [SerializeField] GameObject noinput;
     [SerializeField] GameObject uwinanimation;
+    [SerializeField] AudioClip placeyourbets;
+    [SerializeField] AudioClip nomorebets;
+    [SerializeField] AudioClip lastchance;
+    [SerializeField] AudioClip wheelspinningsound;
+    [SerializeField] AudioClip winsound;
+    [SerializeField] AudioClip nowinsound;
+
     private void Start()
     {
        base.Start();
        StartCoroutine(addlastgameresults());
        StartCoroutine(UpdateBalanceAndInfo());
-
+        GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
+        GameObject.FindObjectOfType<AudioSource>().Play();
         showstatus("Place your bets");
     }
     private void Update()
@@ -58,6 +66,8 @@ public class spin2win_manager : timeManager
             ResetData = false;
             sequenceended = true;
             betplacedtext.text = "0";
+            GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
+            GameObject.FindObjectOfType<AudioSource>().Play();
         }
         if(realtime<10)
         {
@@ -76,6 +86,8 @@ public class spin2win_manager : timeManager
         Timerprogressbar.fillAmount =1.0f- (float)(realtime /120.0);
         if(realtime==15)
         {
+            GameObject.FindObjectOfType<AudioSource>().clip = lastchance;
+            GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("Last Chance");
         }
         if(realtime ==10 && totalbetplaced >0)
@@ -84,10 +96,14 @@ public class spin2win_manager : timeManager
         }
         if(realtime ==10 && totalbetplaced <1)
         {
+            GameObject.FindObjectOfType<AudioSource>().clip = nomorebets;
+            GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("No more bet please");
         }
         if (realtime == 8 && totalbetplaced > 0)
         {
+            GameObject.FindObjectOfType<AudioSource>().clip = nomorebets;
+            GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("No more bet please");
         }
         timetext.text = niceTime;
@@ -101,7 +117,7 @@ public class spin2win_manager : timeManager
     }
      public void showstatus(string st)
     {
-     StartCoroutine(   statusanim(st));
+     StartCoroutine(statusanim(st));
     }
     IEnumerator statusanim(string text)
     {
@@ -258,6 +274,8 @@ public class spin2win_manager : timeManager
         }
 #endregion
         print(sector);
+        GameObject.FindObjectOfType<AudioSource>().clip = wheelspinningsound;
+        GameObject.FindObjectOfType<AudioSource>().Play();
         fortunewheelobject.TurnWheel(sector);
         GameObject.FindObjectOfType<MultiplierAnimation_single>().PlayMultiplierAnimation(result.Substring(4));
         while (fortunewheelobject.isspinning == true)
@@ -267,6 +285,8 @@ public class spin2win_manager : timeManager
         
         resulttext.text = ResultConverters.S2w_ResultConverter(xresult);
         resulttext.enabled = true;
+        GameObject.FindObjectOfType<AudioSource>().clip = nowinsound;
+        GameObject.FindObjectOfType<AudioSource>().Play();
         getwinamount();
        
         yield return new WaitForSeconds(1);
@@ -386,8 +406,9 @@ public class spin2win_manager : timeManager
             winpanel.SetActive(true);
             uwinanimation.SetActive(true);
             coinflipanimation.SetActive(true);
-           
 
+   GameObject.FindObjectOfType<AudioSource>().clip = winsound;
+            GameObject.FindObjectOfType<AudioSource>().Play();
 
 
             print("winamount:" + intwinamount);

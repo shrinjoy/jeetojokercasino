@@ -8,6 +8,7 @@ public class SetPanelChanger : MonoBehaviour
     public GameObject targetPanel;
    public void setPanelData()
     {
+        GetComponentInParent<AudioSource>().Play();
         changer.Targetpanel = targetPanel;
         changer.changepanel();
     }
