@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class s2wdouble : MonoBehaviour
             {
                 bt.betamount += bt.betamount;
                 bt.clickcount += 1;
+                bt.clickcount = Math.Clamp(bt.clickcount, 0,5);
                 bt.updateUI();
             }
 

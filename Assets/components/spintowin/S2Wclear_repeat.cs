@@ -8,7 +8,7 @@ public class S2Wclear_repeat : MonoBehaviour
 {
    
    public List<BetbuttonData> betbuttons2 = new List<BetbuttonData>();
-    [SerializeField] TMP_Text clearbuttontext;
+    [SerializeField]public TMP_Text clearbuttontext;
    public bool allowrepeat = false;
     public void clear_clicked()
     {

@@ -13,8 +13,8 @@ public class S2Pbutton : MonoBehaviour
     public int clickcount;
     public void onclick()
     {
-        GameObject.FindObjectOfType<clearbutton>().allowrepeat = false;
-        GameObject.FindObjectOfType<clearbutton>().clearbuttontext.text = "Clear";
+        GameObject.FindObjectOfType<S2Wclear_repeat>().allowrepeat = false;
+        GameObject.FindObjectOfType<S2Wclear_repeat>().clearbuttontext.text = "Clear";
         if (GameObject.FindObjectOfType<RemoveButton>().removebets == false && (betamount+GameObject.FindObjectOfType<timeManager>().selectedcoinamount)<=GameObject.FindObjectOfType<spin2win_manager>().fakebalance)
         {
             betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
