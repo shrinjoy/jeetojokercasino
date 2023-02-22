@@ -201,7 +201,7 @@ public class SQL_manager : MonoBehaviour
         }
         if (gamename == "joker")
         {
-            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='"+time+ "'  and g_date='"+server_day.ToString("dd-MMM-yyyy")+"' ORDER by id desc";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].g_date,[taas].[dbo].[resultsTaa].g_time,[taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='" + time+ "'  and g_date='"+server_day.ToString("dd-MMM-yyyy")+"' ORDER by id desc";//this is the sql command we use to get data about user
         }
         if (gamename == "bihari16")
         {
@@ -219,9 +219,11 @@ public class SQL_manager : MonoBehaviour
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {
+            
             string result = "";
             if (gamename == "joker")
             {
+                print(sqlData["g_date"].ToString() + sqlData["g_time"].ToString());
                 result = sqlData["result"].ToString()+sqlData["status"].ToString();
                
                 print("results:" + result);

@@ -303,19 +303,20 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         outtercirlcle.TurnWheel(sector);
       
         if (xresult == "NR00" || xresult == "NR04" || xresult == "NR08")
-        {
+        {//heart
             sector = 3;
         }
         else if (xresult == "NR01" || xresult == "NR05" || xresult == "NR09")
-        {
+        {//spade
             sector = 2;
         }
         else if (xresult == "NR02" || xresult == "NR06" || xresult == "NR10")
         {
+            //diamond
             sector = 5;
         }
         else if (xresult == "NR03" || xresult == "NR07" || xresult == "NR11")
-        {
+        {//clover
             sector = 0;
         }
         GetComponent<AudioSource>().loop = true;
