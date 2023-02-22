@@ -63,54 +63,54 @@ public class historypanel : MonoBehaviour
         if (mode == 0) { 
         if (result == "NR00")
         {
-            return "JC";
+            return "JH";
         }
         else if (result == "NR01")
         {
-            return "JD";
+            return "JS";
         }
         else if (result == "NR02")
         {
-            return  "JS";
+            return  "JD";
         }
         //
         else if (result == "NR03")
         {
-            return "JH";
+            return "JC";
         }
         //
         else if (result == "NR04")
         {
-            return "QC";
+            return "QH";
         }
         else if (result == "NR05")
         {
-            return "QD";
+            return "QS";
         }
         else if (result == "NR06")
         {
-            return "QS";
+            return "QD";
         }
         else if (result == "NR07")
         {
-            return "QH";
+            return "QC";
         }
         //
         else if (result == "NR08")
         {
-            return "KC";
+            return "KH";
         }
         else if (result == "NR09")
         {
-            return "KD";
+            return "KS";
         }
         else if (result == "NR10")
         {
-            return "KS";
+            return "KD";
         }
         else if (result == "NR11")
         {
-            return "KH";
+            return "KC";
         }
         return "Null";
             }
@@ -118,73 +118,73 @@ public class historypanel : MonoBehaviour
         {
             if (result == "NR00")
             {
-                return "AC";
+                return "AH";
             }
             else if (result == "NR01")
             {
-                return "AD";
+                return "AS";
             }
             else if (result == "NR02")
             {
-                return "AS";
+                return "AD";
             }
             //
             else if (result == "NR03")
             {
-                return "AH";
+                return "AC";
             }
             //
             else if (result == "NR04")
             {
-                return "KC";
+                return "KH";
             }
             else if (result == "NR05")
             {
-                return "KD";
+                return "KS";
             }
             else if (result == "NR06")
             {
-                return "KS";
+                return "KD";
             }
             else if (result == "NR07")
             {
-                return "KH";
+                return "KC";
             }
             //
             else if (result == "NR08")
             {
-                return "QC";
+                return "QH";
             }
             else if (result == "NR09")
             {
-                return "QD";
+                return "QS";
             }
             else if (result == "NR10")
             {
-                return "QS";
+                return "QD";
             }
             else if (result == "NR11")
             {
-                return "QH";
+                return "QC";
             }
             //
             else if (result == "NR12")
             {
-                return "JC";
+                return "JH";
             }
             else if (result == "NR13")
             {
-                return "JD";
+                return "JS";
             }
             else if (result == "NR14")
             {
-                return "JS";
+                return "JD";
             }
             else if (result == "NR15")
             {
-                return "JH";
+                return "JC";
             }
-           
+           //
         }
         if (mode == 2)
         {

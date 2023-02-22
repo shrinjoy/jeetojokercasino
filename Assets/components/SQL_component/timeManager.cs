@@ -21,7 +21,7 @@ public class timeManager : MonoBehaviour
 
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(7);
         print("time till next game:" + timetillnextgame);
-        print("server time:" + servertime);
+        print("server time:" + servertime);//time patch 
         if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             //patch; 
