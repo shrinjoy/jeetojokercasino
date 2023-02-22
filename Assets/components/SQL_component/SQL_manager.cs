@@ -195,7 +195,7 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        if(time == "12:00:00 AM" || time == "01:00:00 AM")
+        if(DateTime.Parse(time).ToString("hh:mm:ss tt") == "12:00:00 AM" || DateTime.Parse(time).ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             server_day = server_day.AddDays(1);
         }

@@ -18,12 +18,12 @@ public class betdetails_prefab : MonoBehaviour
         if(mode==0)
         {
 
-            betpositiontext.text = bp.Substring(0, 1);
+            betpositiontext.text = bp;
             playamount.text = pa;
             wontext.text = w;
             if(bp.Substring(1)=="H")
             {
-                iconpng.sprite = sprites[0];
+                iconpng.sprite = sprites[0];//heart
             }
             else if (bp.Substring(1) == "S")
             {

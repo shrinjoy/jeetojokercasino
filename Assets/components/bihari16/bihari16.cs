@@ -78,7 +78,7 @@ public class bihari16 : timeManager
     {
        
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
-        datetimetext.text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+        datetimetext.text = DateTime.Now.AddSeconds(30).ToString("yyyy-MM-dd hh:mm:ss tt");
         timerprogress.fillAmount = Convert.ToInt32(timer.text) / 120.0f;
        
         if (updatedata == true)
