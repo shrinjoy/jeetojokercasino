@@ -364,10 +364,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1019088200625062624}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 4011877332188282214}
   datetime: {fileID: 4011877332436082192}
 --- !u!1 &6235388716245480546

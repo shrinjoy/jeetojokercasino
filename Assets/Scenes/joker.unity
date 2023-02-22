@@ -5187,7 +5187,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.489011
+  orthographic size: 3.675136
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6707,10 +6707,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 330804549}
   sprites:
-  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
-  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
-  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
   - {fileID: 21300000, guid: 0f9992d7cfe963f4299bb7d162cbcd72, type: 3}
+  - {fileID: 21300000, guid: 931cde9c84f833e4f9537061900677e4, type: 3}
+  - {fileID: 21300000, guid: 4e2703b3ca6923149ad849bc53d42a71, type: 3}
+  - {fileID: 21300000, guid: e7eced943bd15b24985613528fdf6999, type: 3}
   textresult: {fileID: 915911611}
   mode: 0
 --- !u!114 &915911611
