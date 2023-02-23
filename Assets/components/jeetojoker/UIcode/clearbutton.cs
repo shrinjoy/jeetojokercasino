@@ -49,6 +49,11 @@ public class clearbutton : MonoBehaviour
 
     public void clear()
     {
+        foreach (BetplaceSametype bts in GameObject.FindObjectsOfType<BetplaceSametype>())
+        {
+            bts.reset();
+        }
+
         foreach (Betbuttons bt in GameObject.FindObjectsOfType<Betbuttons>())
         {
             bt.resetBetbutton();

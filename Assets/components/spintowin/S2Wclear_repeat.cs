@@ -13,6 +13,7 @@ public class S2Wclear_repeat : MonoBehaviour
    public bool allowrepeat = false;
     public void clear_clicked()
     {
+        GetComponentInParent<AudioSource>().Stop();
         GetComponentInParent<AudioSource>().Play();
         if (betbuttons2.Count>0&&allowrepeat==true)
         {

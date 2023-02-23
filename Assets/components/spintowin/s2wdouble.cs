@@ -9,6 +9,7 @@ public class s2wdouble : MonoBehaviour
     {
         foreach (S2Pbutton bt in GameObject.FindObjectsOfType<S2Pbutton>())
         {
+            GetComponentInParent<AudioSource>().Stop();
             GetComponentInParent<AudioSource>().Play();
 
             if ( bt.betamount>0&& (bt.betamount * 2) < GameObject.FindObjectOfType<spin2win_manager>().fakebalance)

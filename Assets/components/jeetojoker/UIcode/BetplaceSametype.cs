@@ -43,32 +43,36 @@ public class BetplaceSametype : MonoBehaviour
         }
         if (bam > 0)
         {
-            betplaytext.text = bam.ToString();
+            betplaytext.text = GameObject.FindObjectOfType<timeManager>().selectedcoinamount.ToString();
             betplaytext.color = Color.black;
 
-            if (bam > 1)
+            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount ==1)
             {
                 img.sprite = sprites[1];
             }
-            if(bam>5)
+            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount == 2)
             {
                 img.sprite = sprites[2];
             }
-            if(bam >10)
+            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount == 5)
             {
                 img.sprite = sprites[3];
             }
-            if (bam > 50)
+            if(GameObject.FindObjectOfType<timeManager>().selectedcoinamount==10)
             {
                 img.sprite = sprites[4];
             }
-            if (bam > 100)
+            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount==50)
             {
                 img.sprite = sprites[5];
             }
-            if (bam > 500)
+            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount==100)
             {
                 img.sprite = sprites[6];
+            }
+            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount==500)
+            {
+                img.sprite = sprites[7];
             }
         }
     }
