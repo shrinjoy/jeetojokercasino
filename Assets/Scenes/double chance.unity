@@ -2323,6 +2323,7 @@ GameObject:
   - component: {fileID: 437078748}
   - component: {fileID: 437078750}
   - component: {fileID: 437078749}
+  - component: {fileID: 437078751}
   m_Layer: 5
   m_Name: gren_wheel (1)
   m_TagString: Untagged
@@ -2388,6 +2389,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437078747}
   m_CullTransparentMesh: 1
+--- !u!114 &437078751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437078747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83cc5075d81c034e9b21e56fc6fb282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.5841668
+      outSlope: -0.5841668
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1441041
+      value: 0.91581917
+      inSlope: -0.3438634
+      outSlope: -0.3438634
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49166664
+      value: 0.8798256
+      inSlope: 0.010802109
+      outSlope: 0.010802109
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.88578695
+      value: 0.92915535
+      inSlope: 0.37272465
+      outSlope: 0.37272465
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.6202851
+      outSlope: 0.6202851
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isspinning: 0
+  sectors:
+  - 36
+  - 72
+  - 108
+  - 144
+  - 180
+  - 216
+  - 252
+  - 288
+  - 324
+  - 360
+  Circle: {fileID: 437078747}
+  duration: 9
+  circlecount: 6
+  spinonstart: 1
 --- !u!1 &452821545
 GameObject:
   m_ObjectHideFlags: 0
@@ -6446,6 +6526,7 @@ GameObject:
   - component: {fileID: 1410899829}
   - component: {fileID: 1410899831}
   - component: {fileID: 1410899830}
+  - component: {fileID: 1410899832}
   m_Layer: 5
   m_Name: gren_wheel
   m_TagString: Untagged
@@ -6511,6 +6592,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410899828}
   m_CullTransparentMesh: 1
+--- !u!114 &1410899832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410899828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83cc5075d81c034e9b21e56fc6fb282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.5841668
+      outSlope: -0.5841668
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1441041
+      value: 0.91581917
+      inSlope: -0.3438634
+      outSlope: -0.3438634
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49166664
+      value: 0.8798256
+      inSlope: 0.010802109
+      outSlope: 0.010802109
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.88578695
+      value: 0.92915535
+      inSlope: 0.37272465
+      outSlope: 0.37272465
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.6202851
+      outSlope: 0.6202851
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isspinning: 0
+  sectors:
+  - 36
+  - 72
+  - 108
+  - 144
+  - 180
+  - 216
+  - 252
+  - 288
+  - 324
+  - 360
+  Circle: {fileID: 1410899828}
+  duration: 9
+  circlecount: 6
+  spinonstart: 1
 --- !u!1 &1461625727
 GameObject:
   m_ObjectHideFlags: 0
