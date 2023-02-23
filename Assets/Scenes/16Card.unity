@@ -3265,8 +3265,18 @@ MonoBehaviour:
   gbs:
   - {fileID: 1816921270}
   - {fileID: 331351138}
-  - {fileID: 1784418339}
-  - {fileID: 1843096484}
+  - {fileID: 1466993259}
+  - {fileID: 292989357}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 1924986864}
+  betplaytext: {fileID: 1789702422}
 --- !u!1 &213513561
 GameObject:
   m_ObjectHideFlags: 0
@@ -11637,6 +11647,16 @@ MonoBehaviour:
   - {fileID: 611286505}
   - {fileID: 267254320}
   - {fileID: 1816921270}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 252462379}
+  betplaytext: {fileID: 1194631243}
 --- !u!1 &712772161
 GameObject:
   m_ObjectHideFlags: 0
@@ -12547,9 +12567,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gbs:
   - {fileID: 611286505}
-  - {fileID: 1361854571}
-  - {fileID: 816401828}
-  - {fileID: 1723860074}
+  - {fileID: 519571048}
+  - {fileID: 1784418339}
+  - {fileID: 1843096484}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 1310526384}
+  betplaytext: {fileID: 843483435}
 --- !u!1 &763370174
 GameObject:
   m_ObjectHideFlags: 0
@@ -12913,8 +12943,18 @@ MonoBehaviour:
   gbs:
   - {fileID: 176133630}
   - {fileID: 1909817393}
-  - {fileID: 1466993259}
-  - {fileID: 292989357}
+  - {fileID: 816401828}
+  - {fileID: 1723860074}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 2035916556}
+  betplaytext: {fileID: 584559911}
 --- !u!1 &808477389
 GameObject:
   m_ObjectHideFlags: 0
@@ -13749,6 +13789,16 @@ MonoBehaviour:
   - {fileID: 1361854571}
   - {fileID: 519571048}
   - {fileID: 331351138}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 19627163}
+  betplaytext: {fileID: 258536462}
 --- !u!1 &839497935
 GameObject:
   m_ObjectHideFlags: 0
@@ -17649,6 +17699,16 @@ MonoBehaviour:
   - {fileID: 816401828}
   - {fileID: 994269267}
   - {fileID: 1784418339}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 1379686439}
+  betplaytext: {fileID: 1881155199}
 --- !u!1001 &1048574179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18076,6 +18136,16 @@ MonoBehaviour:
   - {fileID: 1723860074}
   - {fileID: 1610485451}
   - {fileID: 1843096484}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 432189598}
+  betplaytext: {fileID: 1898631486}
 --- !u!1 &1065243089
 GameObject:
   m_ObjectHideFlags: 0
@@ -28599,6 +28669,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6625318328179303530, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6625318328336151069, guid: 0ad72bac522e91943bcac1c19887a908, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -34052,9 +34126,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gbs:
   - {fileID: 267254320}
-  - {fileID: 519571048}
+  - {fileID: 1361854571}
   - {fileID: 994269267}
   - {fileID: 1610485451}
+  sprites:
+  - {fileID: 21300000, guid: 2c32a4f92ccb3b740b8ae6e22b718456, type: 3}
+  - {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  - {fileID: 21300000, guid: afe44b316fb34084ebd724cf8bd46403, type: 3}
+  - {fileID: 21300000, guid: 50877e7bc5594f84e99bc9937c687cf2, type: 3}
+  - {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
+  - {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
+  img: {fileID: 1310493399}
+  betplaytext: {fileID: 1932411516}
 --- !u!1 &2008943214
 GameObject:
   m_ObjectHideFlags: 0

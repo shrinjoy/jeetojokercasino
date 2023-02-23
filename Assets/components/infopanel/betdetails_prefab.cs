@@ -11,10 +11,10 @@ public class betdetails_prefab : MonoBehaviour
     [SerializeField] TMP_Text wontext;
     [SerializeField] Sprite[] sprites;
     [SerializeField] Image iconpng;
-    int mode = 0;
+   
     public void SetData(string bp,string pa,string w,int m)
     {
-        mode = m;
+      int  mode = m;
         if(mode==0)
         {
 
@@ -41,6 +41,15 @@ public class betdetails_prefab : MonoBehaviour
 
             }
 
+        }
+        if(mode==2)
+        {
+            iconpng.gameObject.SetActive(false);
+         
+            betpositiontext.text= bp;
+            playamount.text = pa;
+            wontext.text = w;   
+            
         }
     }
 

@@ -10,6 +10,12 @@ public class clearbutton : MonoBehaviour
     public bool allowrepeat = false;
     public void clear_clicked()
     {
+        foreach(BetplaceSametype bts in GameObject.FindObjectsOfType<BetplaceSametype>())
+        {
+            bts.reset();
+        }
+
+
         if (betbuttons2.Count > 0 && allowrepeat == true)
         {
             repeat();
