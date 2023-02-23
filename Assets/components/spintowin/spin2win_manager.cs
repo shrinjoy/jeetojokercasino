@@ -71,11 +71,11 @@ public class spin2win_manager : timeManager
         }
         if(realtime<10)
         {
-         //   noinput.SetActive(true);
+           noinput.SetActive(true);
         }
         if (realtime > 10)
         {
-         //noinput.SetActive(false);
+         noinput.SetActive(false);
         }
             realtime = Mathf.Clamp((float)realtime, 0, 999);
         int minutes = Mathf.FloorToInt((float)realtime / 60F);

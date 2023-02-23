@@ -76,5 +76,17 @@ public class BetplaceSametype : MonoBehaviour
             }
         }
     }
-  
+    private void Update()
+    {
+        int bam = 0;
+        foreach (GameObject bt in gbs)
+        {
+            bam += bt.GetComponent<Betbuttons>().betamount;
+        }
+        if(bam <1)
+        {
+            reset();
+        }
+    }
+
 }
