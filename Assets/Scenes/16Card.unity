@@ -4839,7 +4839,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 1962431963}
+  fakebetbutton: {fileID: 1974206382}
   coinicon: {fileID: 1852605661}
   image: {fileID: 72927905}
   betamounttext: {fileID: 1933361395}
@@ -8093,7 +8093,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 1096731533}
+  fakebetbutton: {fileID: 1868879590}
   coinicon: {fileID: 1397341584}
   image: {fileID: 20208215}
   betamounttext: {fileID: 1185627910}
@@ -13176,7 +13176,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 1306958723}
+  fakebetbutton: {fileID: 419908585}
   coinicon: {fileID: 1933810840}
   image: {fileID: 835753002}
   betamounttext: {fileID: 612675475}
@@ -23038,7 +23038,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 1868879590}
+  fakebetbutton: {fileID: 1096731533}
   coinicon: {fileID: 936064482}
   image: {fileID: 1243326483}
   betamounttext: {fileID: 4419062}
@@ -24906,7 +24906,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 419908585}
+  fakebetbutton: {fileID: 1661879472}
   coinicon: {fileID: 1236986287}
   image: {fileID: 104919842}
   betamounttext: {fileID: 1600245773}
@@ -28476,7 +28476,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 1965044708}
+  fakebetbutton: {fileID: 1962431963}
   coinicon: {fileID: 551989732}
   image: {fileID: 214961579}
   betamounttext: {fileID: 321862333}
