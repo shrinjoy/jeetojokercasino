@@ -43,7 +43,9 @@ public class spin2win_manager : timeManager
     [SerializeField] AudioClip wheelspinningsound;
     [SerializeField] AudioClip winsound;
     [SerializeField] AudioClip nowinsound;
-
+    bool lastbettextshown=false;
+    bool betplacedshown = false;
+    bool nomorebetsshown = false;
     private void Start()
     {
        base.Start();
@@ -68,6 +70,10 @@ public class spin2win_manager : timeManager
             betplacedtext.text = "0";
             GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
             GameObject.FindObjectOfType<AudioSource>().Play();
+            betplaced = false;
+            lastbettextshown= false;
+            betplacedshown = false;
+            nomorebetsshown = false;
         }
         if(realtime<10)
         {
@@ -75,7 +81,7 @@ public class spin2win_manager : timeManager
         }
         if (realtime > 10)
         {
-         noinput.SetActive(false);
+            noinput.SetActive(false);
         }
             realtime = Mathf.Clamp((float)realtime, 0, 999);
         int minutes = Mathf.FloorToInt((float)realtime / 60F);
@@ -84,24 +90,29 @@ public class spin2win_manager : timeManager
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
         
         Timerprogressbar.fillAmount =1.0f- (float)(realtime /120.0);
-        if(realtime==15)
+        if(realtime<=15 && lastbettextshown==false)
         {
+            lastbettextshown= true;
             GameObject.FindObjectOfType<AudioSource>().clip = lastchance;
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("Last Chance");
         }
-        if(realtime ==10 && totalbetplaced >0)
+        if(realtime <10 && totalbetplaced >0 && betplacedshown==false)
         {
+            betplacedshown = true;
             showstatus("Your bets have been accepted");
         }
-        if(realtime ==10 && totalbetplaced <1)
+        if(realtime <10 && totalbetplaced <1 && nomorebetsshown==false)
         {
+            nomorebetsshown= true;
             GameObject.FindObjectOfType<AudioSource>().clip = nomorebets;
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("No more bet please");
         }
-        if (realtime == 8 && totalbetplaced > 0)
+        if (realtime < 8 && totalbetplaced > 0 && nomorebetsshown==false)
         {
+            nomorebetsshown = true;
+
             GameObject.FindObjectOfType<AudioSource>().clip = nomorebets;
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("No more bet please");
@@ -109,8 +120,9 @@ public class spin2win_manager : timeManager
         timetext.text = niceTime;
         if(realtime<11 && betplaced==false)
         {
-            sendResult();
-            betplaced= true;
+            betplaced = true;
+           StartCoroutine( sendResult());
+            
         }
        
 
@@ -298,7 +310,7 @@ public class spin2win_manager : timeManager
         marker.SetActive(true);
         
         
-        betplaced= false;
+       
         
         
         
@@ -307,13 +319,13 @@ public class spin2win_manager : timeManager
         ResetData = true;
         yield return null;
     }
-    public void sendResult()
+    IEnumerator sendResult()
     {
 
        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
-           
+            print("called sebt result");
             if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
             {
                 string status = "Print";
@@ -350,7 +362,7 @@ public class spin2win_manager : timeManager
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
-                betplaced = true;
+              
 
             }
         }
@@ -360,7 +372,7 @@ public class spin2win_manager : timeManager
             SceneManager.LoadScene(0);
         }
 
-
+        yield return null;
     }
     public string generatebarcode()
     {
@@ -407,7 +419,7 @@ public class spin2win_manager : timeManager
             uwinanimation.SetActive(true);
             coinflipanimation.SetActive(true);
 
-   GameObject.FindObjectOfType<AudioSource>().clip = winsound;
+            GameObject.FindObjectOfType<AudioSource>().clip = winsound;
             GameObject.FindObjectOfType<AudioSource>().Play();
 
 
