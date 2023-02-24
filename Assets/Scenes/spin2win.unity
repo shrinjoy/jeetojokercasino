@@ -5598,7 +5598,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 666674388}
+      - m_Target: {fileID: 1482149378}
         m_TargetAssemblyTypeName: S2Pbutton, Assembly-CSharp
         m_MethodName: onclick
         m_Mode: 1
@@ -11037,7 +11037,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1482149378}
+      - m_Target: {fileID: 666674388}
         m_TargetAssemblyTypeName: S2Pbutton, Assembly-CSharp
         m_MethodName: onclick
         m_Mode: 1
