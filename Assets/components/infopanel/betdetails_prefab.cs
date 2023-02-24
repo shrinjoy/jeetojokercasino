@@ -14,12 +14,17 @@ public class betdetails_prefab : MonoBehaviour
    
     public void SetData(string bp,string pa,string w,int m)
     {
+        print(w);
       int  mode = m;
         if(mode==0)
         {
 
             betpositiontext.text = bp;
             playamount.text = pa;
+            if(w == "NULL" || w == null || w.Trim() == string.Empty)
+            {
+                w = "0";
+            }
             wontext.text = w;
             if(bp.Substring(1)=="H")
             {
@@ -45,7 +50,10 @@ public class betdetails_prefab : MonoBehaviour
         if(mode==2)
         {
             iconpng.gameObject.SetActive(false);
-         
+            if (w == "NULL" || w == null || w.Trim()  ==string.Empty)
+            {
+                w = "0";
+            }
             betpositiontext.text= bp;
             playamount.text = pa;
             wontext.text = w;   
