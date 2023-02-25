@@ -16,7 +16,7 @@ public class betdetails_prefab : MonoBehaviour
     {
         print(w);
       int  mode = m;
-        if(mode==0)
+        if(mode==0 || mode==1)
         {
 
             betpositiontext.text = bp;

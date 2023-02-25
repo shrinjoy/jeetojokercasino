@@ -9,6 +9,7 @@ public class BetplaceSametype : MonoBehaviour
     [SerializeField] Sprite[] sprites;
     [SerializeField] Image img;
     [SerializeField] TMPro.TMP_Text betplaytext;
+    int clickcount = 0;
     Color initialcolor;
     private void Start()
     {
@@ -20,9 +21,11 @@ public class BetplaceSametype : MonoBehaviour
         betplaytext.text = "Play";
         img.sprite = sprites[0];
         betplaytext.color = initialcolor;
+        clickcount= 0;
     }
     public void onclickBPST()
     {
+        clickcount += 1;
         foreach(GameObject gb in gbs)
         {
             gb.GetComponent<Betbuttons>().onBetButtonClick();
@@ -43,34 +46,34 @@ public class BetplaceSametype : MonoBehaviour
         }
         if (bam > 0)
         {
-            betplaytext.text = GameObject.FindObjectOfType<timeManager>().selectedcoinamount.ToString();
+            betplaytext.text = clickcount.ToString();
             betplaytext.color = Color.black;
 
-            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount ==1)
+            if (clickcount >=1)
             {
                 img.sprite = sprites[1];
             }
-            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount == 2)
+            if (clickcount>= 2)
             {
                 img.sprite = sprites[2];
             }
-            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount == 5)
+            if (clickcount >= 5)
             {
                 img.sprite = sprites[3];
             }
-            if(GameObject.FindObjectOfType<timeManager>().selectedcoinamount==10)
+            if(clickcount>=10)
             {
                 img.sprite = sprites[4];
             }
-            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount==50)
+            if (clickcount>=50)
             {
                 img.sprite = sprites[5];
             }
-            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount==100)
+            if (clickcount>=100)
             {
                 img.sprite = sprites[6];
             }
-            if (GameObject.FindObjectOfType<timeManager>().selectedcoinamount==500)
+            if (clickcount>=500)
             {
                 img.sprite = sprites[7];
             }
