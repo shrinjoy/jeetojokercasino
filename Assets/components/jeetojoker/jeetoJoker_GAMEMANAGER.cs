@@ -77,7 +77,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     void Update()
     {
         timer.text=Mathf.Clamp((int)realtime,0,999).ToString();
-        datetimetext.text = DateTime.Now.AddSeconds(30).ToString("yyyy-MM-dd hh:mm:ss tt");
+        datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
        
         if(updatedata ==true)
         {

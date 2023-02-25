@@ -57,7 +57,7 @@ public class spin2win_manager : timeManager
     }
     private void Update()
     {
-        datetimetext.text = DateTime.Now.AddSeconds(30).ToString("yyyy-MM-dd hh:mm:ss tt"); 
+        datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt"); 
         if (ResetData==true)
         {
             StartCoroutine(addlastgameresults());
