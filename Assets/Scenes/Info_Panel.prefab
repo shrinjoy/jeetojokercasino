@@ -884,7 +884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 238, y: -0.22429657}
+  m_AnchoredPosition: {x: 450, y: -0.22429657}
   m_SizeDelta: {x: 75.1898, y: 39.7399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6625318327094654043
@@ -1976,7 +1976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450, y: 3.1121902}
+  m_AnchoredPosition: {x: 238, y: 3.1121902}
   m_SizeDelta: {x: 157.269, y: 39.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6625318327410495906
@@ -4803,8 +4803,8 @@ MonoBehaviour:
   to_time: {fileID: 0}
   salepoint: {fileID: 6625318328942740684}
   winpoint: {fileID: 6625318327897190160}
-  commipoint: {fileID: 6625318327164595460}
-  ntppoint: {fileID: 6625318327639271597}
+  commipoint: {fileID: 6625318327639271597}
+  ntppoint: {fileID: 6625318327164595460}
   operatorpoint: {fileID: 6625318328910214041}
   tocalender: {fileID: 6513570115973781520}
   fromcalender: {fileID: 6513570116747691701}
