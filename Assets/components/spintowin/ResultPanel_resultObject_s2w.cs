@@ -26,6 +26,7 @@ public class ResultPanel_resultObject_s2w : MonoBehaviour
         if (Result.Substring(4) != "N")
         {
             //normal mode
+            normalobject.SetActive(false);
             multiplierobject.SetActive(true);
             multiplieResultText.text = ResultConverters.S2w_ResultConverter(Result.Substring(0,4));
             multiplierText.text = Result.Substring(4);

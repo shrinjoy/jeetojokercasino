@@ -25,7 +25,7 @@ public class BetplaceSametype : MonoBehaviour
     }
     public void onclickBPST()
     {
-        clickcount += 1;
+        clickcount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
         foreach(GameObject gb in gbs)
         {
             gb.GetComponent<Betbuttons>().onBetButtonClick();
