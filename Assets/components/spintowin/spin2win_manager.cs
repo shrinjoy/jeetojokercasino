@@ -26,7 +26,7 @@ public class spin2win_manager : timeManager
     bool ResetData = false;
     string result;
     public int totalbetplaced;
-    int totalbalance;
+    public int totalbalance;
     public int fakebalance;
     bool betplaced=false;
     [SerializeField] GameObject statusobject;

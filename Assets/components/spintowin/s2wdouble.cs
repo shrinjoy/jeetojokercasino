@@ -12,7 +12,7 @@ public class s2wdouble : MonoBehaviour
         {
            asa.Play();
 
-            if ( bt.betamount>0&& (bt.betamount * 2) < GameObject.FindObjectOfType<spin2win_manager>().fakebalance)
+            if ( bt.betamount>0&& (bt.betamount * 2) <= GameObject.FindObjectOfType<spin2win_manager>().totalbalance)
             {
                 bt.betamount += bt.betamount;
                 bt.clickcount += 1;

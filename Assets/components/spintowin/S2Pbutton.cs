@@ -16,7 +16,7 @@ public class S2Pbutton : MonoBehaviour
         GetComponentInParent<AudioSource>().Play();
         GameObject.FindObjectOfType<S2Wclear_repeat>().allowrepeat = false;
         GameObject.FindObjectOfType<S2Wclear_repeat>().clearbuttontext.text = "Clear";
-        if (GameObject.FindObjectOfType<RemoveButton>().removebets == false && (betamount+GameObject.FindObjectOfType<timeManager>().selectedcoinamount)<=GameObject.FindObjectOfType<spin2win_manager>().fakebalance)
+        if (GameObject.FindObjectOfType<RemoveButton>().removebets == false && (betamount+GameObject.FindObjectOfType<timeManager>().selectedcoinamount)<=GameObject.FindObjectOfType<spin2win_manager>().totalbalance)
         {
             betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
             clickcount += 1;

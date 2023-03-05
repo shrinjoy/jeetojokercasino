@@ -53,7 +53,7 @@ public class Betbuttons : MonoBehaviour
         {
             if (mode == 0)
             {
-                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().fakebalance)
+                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().totalbalance)
                 {
                     betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
                     updateBetButtonData();
@@ -63,7 +63,7 @@ public class Betbuttons : MonoBehaviour
             }
             if (mode == 1)
             {
-                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) < GameObject.FindObjectOfType<bihari16>().fakebalance)
+                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<bihari16>().totalbalance)
                 {
                     betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
                     updateBetButtonData();
@@ -76,7 +76,7 @@ public class Betbuttons : MonoBehaviour
        else  if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
             print("1 remove bet");
-            betamount -= 1;
+            betamount -= FindObjectOfType<timeManager>().selectedcoinamount;
             updateBetButtonData();
           //  GameObject.FindObjectOfType<RemoveButton>().onclickremove();
         }

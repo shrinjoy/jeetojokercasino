@@ -25,7 +25,7 @@ public class bihari16 : timeManager
     [SerializeField] GameObject resultobject;
     [SerializeField] TMPro.TMP_Text datetimetext;
     int totalbetplaced = 0;
-    int totalbalance = 0;
+    public int totalbalance = 0;
     public int fakebalance = 0;
     [SerializeField] TMPro.TMP_Text playamount;
     [SerializeField] TMPro.TMP_Text playamount2;

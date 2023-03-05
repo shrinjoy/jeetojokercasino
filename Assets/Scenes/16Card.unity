@@ -2217,6 +2217,7 @@ MonoBehaviour:
   marqueeanim: {fileID: 1387050669}
   resultobject: {fileID: 1528019336}
   datetimetext: {fileID: 1082061205}
+  totalbalance: 0
   fakebalance: 0
   playamount: {fileID: 2011519225}
   playamount2: {fileID: 1662341165}
@@ -30435,7 +30436,7 @@ MonoBehaviour:
   coin50: {fileID: 21300000, guid: 35a7391e036330546b3a5ff97dd2f9a3, type: 3}
   coin100: {fileID: 21300000, guid: 1aa4132a8d1291b4daba6929633e449c, type: 3}
   coin500: {fileID: 21300000, guid: bdc0cab58ede238429841abe11d315c8, type: 3}
-  fakebetbutton: {fileID: 1974206382}
+  fakebetbutton: {fileID: 1965044708}
   coinicon: {fileID: 600896931}
   image: {fileID: 1920819484}
   betamounttext: {fileID: 559402462}
