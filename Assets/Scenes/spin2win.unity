@@ -5526,7 +5526,7 @@ GameObject:
   - component: {fileID: 666674385}
   - component: {fileID: 666674388}
   m_Layer: 5
-  m_Name: 8
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10216,10 +10216,11 @@ MonoBehaviour:
   - {fileID: 1784492022}
   - {fileID: 954280478}
   - {fileID: 2033655128}
-  - {fileID: 1482149378}
   - {fileID: 666674388}
+  - {fileID: 1482149378}
   - {fileID: 1287049460}
   totalbetplaced: 0
+  totalbalance: 0
   fakebalance: 0
   statusobject: {fileID: 406355007}
   datetimetext: {fileID: 1296060867}
@@ -10965,7 +10966,7 @@ GameObject:
   - component: {fileID: 1482149375}
   - component: {fileID: 1482149378}
   m_Layer: 5
-  m_Name: 7
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15768,8 +15769,8 @@ RectTransform:
   - {fileID: 1784492018}
   - {fileID: 954280474}
   - {fileID: 2033655124}
-  - {fileID: 1482149374}
   - {fileID: 666674384}
+  - {fileID: 1482149374}
   - {fileID: 1287049456}
   - {fileID: 15984671}
   m_Father: {fileID: 351222792}
