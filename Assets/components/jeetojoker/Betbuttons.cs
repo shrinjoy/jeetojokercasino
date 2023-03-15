@@ -31,6 +31,16 @@ public class Betbuttons : MonoBehaviour
     {
       
     }
+
+    public int gettotalbetplaced()
+    {
+        int a = 0;
+        foreach(Betbuttons bt in FindObjectsOfType<Betbuttons>())
+        {
+            a += bt.betamount;
+        }
+        return a;
+    }
     public void onBetButtonClick()
     {
         GameObject.FindObjectOfType<clearbutton>().allowrepeat = false;
@@ -53,22 +63,31 @@ public class Betbuttons : MonoBehaviour
         {
             if (mode == 0)
             {
-                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().totalbalance)
+                if ((this.gettotalbetplaced() + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().totalbalance)
                 {
                     betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+
                     updateBetButtonData();
 
 
                 }
+                else
+                {
+                    GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().showstat("Not enough balance");
+                }
             }
             if (mode == 1)
             {
-                if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<bihari16>().totalbalance)
+                if ((this.gettotalbetplaced() + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<bihari16>().totalbalance)
                 {
                     betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
                     updateBetButtonData();
                   
                   
+                }
+                else
+                {
+                    GameObject.FindObjectOfType<bihari16>().showstat("Not enough balance");
                 }
             }
 

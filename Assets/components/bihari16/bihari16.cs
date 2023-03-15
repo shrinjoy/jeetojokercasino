@@ -75,6 +75,22 @@ public class bihari16 : timeManager
 
     }
     // Update is called once per frame
+    Coroutine cr;
+    public void showstat(string stat)
+    {
+
+        if (cr != null)
+        {
+            StopCoroutine(cr);
+        }
+        cr = StartCoroutine(Ishowstat(stat));
+    }
+    public IEnumerator Ishowstat(string txt)
+    {
+        betinfotext.text = txt;
+        yield return new WaitForSeconds(2.0f);
+        betinfotext.text = null;
+    }
     void Update()
     {
        
@@ -95,7 +111,7 @@ public class bihari16 : timeManager
 
         if (realtime >= 15)
         {
-            betinfotext.text = "Place your chips";
+            showstat( "Place your chips");
             lastchance = true;
         }
 
@@ -103,7 +119,7 @@ public class bihari16 : timeManager
         {
             GetComponent<AudioSource>().clip = last15sec;
             GetComponent<AudioSource>().Play();
-            betinfotext.text = "Last Chance";
+            showstat("Last Chance");
             lastchance = true;
         }
         //
@@ -119,15 +135,15 @@ public class bihari16 : timeManager
         }
         if (realtime < 10 && betplaced)
         {
-            betinfotext.text = "No more bet";
+           showstat( "No more bet");
         }
         if (realtime < 10 && betplaced==false)
         {
-            betinfotext.text = "No more bet";
+            showstat( "No more bet");
         }
         if (realtime < 8 &&  betplaced==true )
         {
-            betinfotext.text = "Your bets have been accepted";
+            showstat("Your bets have been accepted");
         }
 
     }

@@ -13,7 +13,7 @@ public class doublebutton : MonoBehaviour
         {
             if (mode == 0)
             {
-                if ((bt.betamount * 2) <= GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().totalbalance)
+                if ((bt.betamount * 2) < GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().totalbalance)
                 {
                     bt.betamount *= 2;
                     bt.updateBetButtonData();
@@ -21,7 +21,7 @@ public class doublebutton : MonoBehaviour
             }
             else if(mode==1)
             {
-                if ((bt.betamount * 2) <= GameObject.FindObjectOfType<bihari16>().totalbalance)
+                if ((bt.betamount * 2) < GameObject.FindObjectOfType<bihari16>().totalbalance)
                 {
                     bt.betamount *= 2;
                     bt.updateBetButtonData();//
