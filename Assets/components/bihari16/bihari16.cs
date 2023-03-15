@@ -89,8 +89,12 @@ public class bihari16 : timeManager
     {
         betinfotext.text = txt;
         yield return new WaitForSeconds(2.0f);
-        betinfotext.text = null;
+        if (realtime > 15)
+        {
+            betinfotext.text = "Place your chips";
+        }
     }
+    bool placeyoubetsshiown = false;
     void Update()
     {
        
@@ -109,10 +113,11 @@ public class bihari16 : timeManager
         }
 
 
-        if (realtime >= 15)
+        if (realtime >= 15 &&placeyoubetsshiown==false)
         {
             showstat( "Place your chips");
             lastchance = true;
+            placeyoubetsshiown=true;
         }
 
         if (realtime <= 15 && realtime > 14)

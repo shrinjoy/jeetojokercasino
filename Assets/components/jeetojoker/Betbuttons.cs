@@ -73,6 +73,7 @@ public class Betbuttons : MonoBehaviour
                 }
                 else
                 {
+                    print("not enough points");
                     GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().showstat("Not enough balance");
                 }
             }

@@ -75,6 +75,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
     }
     // Update is called once per frame
+    bool placeyourbetsshow = false;
     void Update()
     {
         timer.text=Mathf.Clamp((int)realtime,0,999).ToString();
@@ -88,13 +89,15 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             resetTimer();
             uwinanimationcircle.SetActive(false);
             updatedata = false;
+            placeyourbetsshow = false;
         }
 
 
-        if(realtime >= 15)
+        if(realtime >= 15 &&placeyourbetsshow==false)
         {
             
             showstat("Place your chips");
+            placeyourbetsshow = true;
             lastchance = true;
         }
 
@@ -144,7 +147,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     {
         betinfotext.text = txt;
         yield return new WaitForSeconds(2.0f);
-        betinfotext.text = null;
+        if(realtime>15)
+        betinfotext.text = "Place your chips";
     }
     public void sendResult()
     {
