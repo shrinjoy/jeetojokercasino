@@ -321,9 +321,12 @@ public class spin2win_manager : timeManager
         ResetData = true;
         yield return null;
     }
+    public void sendbetdata()
+    {
+        StartCoroutine(sendResult());
+    }
     IEnumerator sendResult()
     {
-
        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
@@ -360,12 +363,13 @@ public class spin2win_manager : timeManager
                     data.betamount = btns.betamount;
                     data.clicks = btns.clickcount;
                     GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Add(data);
+                    btns.resetbet();
                 }
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
-              
-
+                showstatus("your bet has been accepted ID:"+barcode);
+               
             }
         }
 
@@ -373,8 +377,8 @@ public class spin2win_manager : timeManager
         {
             SceneManager.LoadScene(0);
         }
-
-        yield return null;
+        betplacedtext.text = "0";
+       yield return null;
     }
     public string generatebarcode()
     {

@@ -6651,7 +6651,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.675136
+  orthographic size: 4.21875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -20242,9 +20242,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: doublebutton, Assembly-CSharp
-        m_MethodName: doublebets
+      - m_Target: {fileID: 59117727}
+        m_TargetAssemblyTypeName: jeetoJoker_GAMEMANAGER, Assembly-CSharp
+        m_MethodName: sendResult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

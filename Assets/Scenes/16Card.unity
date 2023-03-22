@@ -639,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2074034521476066614, guid: 73bec4d5ce68751468fc7bad2c534e16, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 31.00003
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 2074034521476066614, guid: 73bec4d5ce68751468fc7bad2c534e16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -24284,9 +24284,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: doublebutton, Assembly-CSharp
-        m_MethodName: doublebets
+      - m_Target: {fileID: 122804085}
+        m_TargetAssemblyTypeName: bihari16, Assembly-CSharp
+        m_MethodName: sendResult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

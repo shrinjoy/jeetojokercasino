@@ -129,7 +129,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         if (realtime < 8 && betplaced == true)
         {
-            showstat("Your bets have been accepted") ;
+            //showstat("Your bets have been accepted") ;
         }
         
     }
@@ -181,6 +181,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
                 sqldata.Close();
                 sqldata.DisposeAsync();
                 GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
+                print(totalbetplaced);
                 foreach (Betbuttons btns in bet_buttons)
                 {
 
@@ -191,11 +192,14 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
                     GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
                 }
-                print(totalbetplaced);
+               
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
                 betplaced = true;
-
+                playamount.text = "0";
+                playamount2.text = "0";
+                showstat("Your bets have been accepted ID:"+barcode);
+                GameObject.FindObjectOfType<clearbutton>().clear();
             }
         }
         
@@ -203,8 +207,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             SceneManager.LoadScene(0);
         }
-      
-     
+        GameObject.FindObjectOfType<clearbutton>().clear();
+
     }
         public string generatebarcode()
         {
@@ -291,7 +295,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-
+        
         yield return null;
     }
     IEnumerator jeetojokersequence()

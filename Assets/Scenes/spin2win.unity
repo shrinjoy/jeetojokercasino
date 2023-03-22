@@ -12197,9 +12197,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BetplaceSameType_S2W, Assembly-CSharp
-        m_MethodName: OnButtonClick
+      - m_Target: {fileID: 1375540993}
+        m_TargetAssemblyTypeName: spin2win_manager, Assembly-CSharp
+        m_MethodName: sendbetdata
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

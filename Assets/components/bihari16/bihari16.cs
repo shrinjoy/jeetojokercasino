@@ -148,7 +148,7 @@ public class bihari16 : timeManager
         }
         if (realtime < 8 &&  betplaced==true )
         {
-            showstat("Your bets have been accepted");
+           // showstat("Your bets have been accepted");
         }
 
     }
@@ -182,6 +182,7 @@ public class bihari16 : timeManager
                 sqldata.Close();
                 sqldata.DisposeAsync();
                 GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
+                print(totalbetplaced);
                 foreach (Betbuttons btns in bet_buttons)
                 {
 
@@ -191,12 +192,13 @@ public class bihari16 : timeManager
                     data.betamount = btns.betamount;
                   
                     GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
+                    btns.resetBetbutton();
                 }
-                print(totalbetplaced);
+               
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
                 betplaced = true;
-
+                showstat("Your Bets have been accepted ID:"+barcode);
             }
            
         }
@@ -205,7 +207,7 @@ public class bihari16 : timeManager
         {
             SceneManager.LoadScene(0);
         }
-
+        GameObject.FindObjectOfType<clearbutton>().clear();
 
     }
     
