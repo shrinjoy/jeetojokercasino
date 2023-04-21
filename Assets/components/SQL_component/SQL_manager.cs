@@ -167,7 +167,10 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
+
         sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim="+updatedbal+" WHERE term_id='"+termid+"'";//this is the sql command we use to get data about user
+
+        print("new balance is:" + updatedbal);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
