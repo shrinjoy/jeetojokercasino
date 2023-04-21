@@ -279,6 +279,7 @@ public class SQL_manager : MonoBehaviour
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        print(sqlCmnd.CommandText);
         if (sqlData.Read())
         {
             if (sqlData["g_time"] != null)
