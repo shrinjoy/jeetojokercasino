@@ -51,7 +51,7 @@ public class bihari16 : timeManager
     [SerializeField] Image timerprogress;
     bool lastchance = false;
     // Start is called before the first frame update
-
+    bool anybetplaced = false;
     bool resultsentdone;
     string result;
     string xresult;
@@ -135,7 +135,7 @@ public class bihari16 : timeManager
             GetComponent<AudioSource>().Play();
            infopanel.SetActive(false);
             noinputpanel.SetActive(true);
-           sendResult();
+        
             resultsentdone = true;
         }
         if (realtime < 10 && betplaced)

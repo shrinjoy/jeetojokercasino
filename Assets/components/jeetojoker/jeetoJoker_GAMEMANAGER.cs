@@ -116,7 +116,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             GetComponent<AudioSource>().Play();
             infopanel.SetActive(false);
             noinputpanel.SetActive(true);
-            sendResult();
+            
             resultsentdone=true;
         }
         if (realtime < 10 && betplaced)

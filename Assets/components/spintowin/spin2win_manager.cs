@@ -43,6 +43,7 @@ public class spin2win_manager : timeManager
     [SerializeField] AudioClip wheelspinningsound;
     [SerializeField] AudioClip winsound;
     [SerializeField] AudioClip nowinsound;
+    bool anybetsplaced = false;
     bool lastbettextshown=false;
     bool betplacedshown = false;
     bool nomorebetsshown = false;
@@ -75,6 +76,7 @@ public class spin2win_manager : timeManager
             lastbettextshown= false;
             betplacedshown = false;
             nomorebetsshown = false;
+            anybetsplaced = false;
         }
         if(realtime<10)
         {
@@ -98,7 +100,7 @@ public class spin2win_manager : timeManager
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("Last Chance");
         }
-        if(realtime <10 && totalbetplaced >0 && betplacedshown==false)
+        if(realtime <10 && totalbetplaced >0 && betplacedshown==false && anybetsplaced==true)
         {
             betplacedshown = true;
             showstatus("Your bets have been accepted");
@@ -122,7 +124,7 @@ public class spin2win_manager : timeManager
         if(realtime<11 && betplaced==false)
         {
             betplaced = true;
-           StartCoroutine( sendResult());
+          
             
         }
        
@@ -333,6 +335,7 @@ public class spin2win_manager : timeManager
             print("called sebt result");
             if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
             {
+                anybetsplaced = true;
                 string status = "Print";
                 string gm = "gm";
                 string barcode = generatebarcode();
