@@ -116,19 +116,27 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             GetComponent<AudioSource>().Play();
             infopanel.SetActive(false);
             noinputpanel.SetActive(true);
-            
-            resultsentdone=true;
+            foreach (Betbuttons btns in bet_buttons)
+            {
+
+
+                btns.resetBetbutton();
+            }
+            resultsentdone =true;
         }
         if (realtime < 10 && betplaced)
         {
             showstat("No more bets");
+            
         }
         if (realtime < 10 && betplaced == false)
         { 
              showstat("No more bets");
+           
         }
         if (realtime < 8 && betplaced == true)
         {
+
             //showstat("Your bets have been accepted") ;
         }
         
@@ -158,7 +166,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             {
                 
 
-            if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
+            if ( (totalbalance - totalbetplaced)>=0 && totalbetplaced > 0)
             {
                 string status = "Print";
                 string gm = "gm";

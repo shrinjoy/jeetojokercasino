@@ -45,6 +45,7 @@ public class S2Wclear_repeat : MonoBehaviour
         }
         clearbuttontext.text = "Clear";
         allowrepeat = false;
+        GameObject.FindObjectOfType<spin2win_manager>().FakeUpdateBalance();
     }
 
     public void clear()
@@ -52,8 +53,11 @@ public class S2Wclear_repeat : MonoBehaviour
         foreach (S2Pbutton bt in GameObject.FindObjectsOfType<S2Pbutton>())
         {
             bt.resetbet();
+
             // bt.updateUI();
         }
+        GameObject.FindObjectOfType<spin2win_manager>().FakeUpdateBalance();
+
         if(betbuttons2.Count>0)
         {
             clearbuttontext.text = "Repeat";

@@ -137,13 +137,19 @@ public class bihari16 : timeManager
             noinputpanel.SetActive(true);
         
             resultsentdone = true;
+            foreach (Betbuttons btns in bet_buttons)
+            {
+
+                btns.resetBetbutton();
+            }
         }
         if (realtime < 10 && betplaced)
         {
-           showstat( "No more bet");
+            showstat("No more bet");
         }
         if (realtime < 10 && betplaced==false)
         {
+           
             showstat( "No more bet");
         }
         if (realtime < 8 &&  betplaced==true )
@@ -159,7 +165,7 @@ public class bihari16 : timeManager
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
             
-            if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
+            if ((totalbalance-totalbetplaced) >= 0 && totalbalance>0 && totalbetplaced > 0)
             {
                 string status = "Print";
                 string gm = "gm";
@@ -178,13 +184,13 @@ public class bihari16 : timeManager
                 sqlCmnd.CommandType = CommandType.Text;
                 sqlCmnd.CommandText = command;
                 sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-
+               
                 sqldata.Close();
                 sqldata.DisposeAsync();
-                GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
                 print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
 
+                GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
                 foreach (Betbuttons btns in bet_buttons)
                 {
 
@@ -196,10 +202,14 @@ public class bihari16 : timeManager
                     GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
                     btns.resetBetbutton();
                 }
-               
+              
+                
+              
+              
                 StartCoroutine(UpdateBalanceAndInfo());
                 betplaced = true;
                 showstat("Your Bets have been accepted ID:"+barcode);
+               
             }
            
         }
@@ -432,6 +442,11 @@ public class bihari16 : timeManager
     {
 
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
+       if(totalbalance<0)
+        {
+            totalbalance = 0;
+        }
+        
         balance.text = totalbalance.ToString();
         balance2.text = totalbalance.ToString();
         fakebalance = totalbalance;

@@ -103,7 +103,8 @@ public class spin2win_manager : timeManager
         if(realtime <10 && totalbetplaced >0 && betplacedshown==false && anybetsplaced==true)
         {
             betplacedshown = true;
-            showstatus("Your bets have been accepted");
+          
+            // showstatus("Your bets have been accepted");
         }
         if(realtime <10 && totalbetplaced <1 && nomorebetsshown==false)
         {
@@ -111,6 +112,7 @@ public class spin2win_manager : timeManager
             GameObject.FindObjectOfType<AudioSource>().clip = nomorebets;
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("No more bet please");
+           
         }
         if (realtime < 8 && totalbetplaced > 0 && nomorebetsshown==false)
         {
@@ -124,8 +126,13 @@ public class spin2win_manager : timeManager
         if(realtime<11 && betplaced==false)
         {
             betplaced = true;
-          
-            
+            foreach (S2Pbutton btns in bet_buttons)
+            {
+
+                btns.resetbet();
+            }
+            FakeUpdateBalance();
+
         }
        
 
@@ -145,6 +152,10 @@ public class spin2win_manager : timeManager
     {
 
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
+        if (totalbalance < 0)
+        {
+            totalbalance = 0;
+        }
         balance.text = totalbalance.ToString();
         gameIDtext.text = GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
         fakebalance = totalbalance;
@@ -333,7 +344,7 @@ public class spin2win_manager : timeManager
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
             print("called sebt result");
-            if (totalbalance > (totalbalance - totalbetplaced) && totalbetplaced > 0)
+            if ((totalbalance -totalbetplaced)>=0 && totalbalance>0&&  totalbetplaced > 0)
             {
                 anybetsplaced = true;
                 string status = "Print";

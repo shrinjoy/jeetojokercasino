@@ -96,8 +96,11 @@ public class Betbuttons : MonoBehaviour
        else  if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
             print("1 remove bet");
-            betamount -= FindObjectOfType<timeManager>().selectedcoinamount;
-            updateBetButtonData();
+            if (betamount > 0)
+            {
+                betamount -= FindObjectOfType<timeManager>().selectedcoinamount;
+                updateBetButtonData();
+            }
           //  GameObject.FindObjectOfType<RemoveButton>().onclickremove();
         }
     }
