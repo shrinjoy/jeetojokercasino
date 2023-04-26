@@ -52,7 +52,7 @@ public class historypanel : MonoBehaviour
              GameObject gb = (GameObject)Instantiate(prefabitem);
              gb.transform.SetParent(content.transform,false);
              
-             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), converttoresult(sqlData["gameresult"].ToString()));
+             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), converttoresult(sqlData["gameresult"].ToString()), sqlData["status"].ToString());
         }
         sqlData.Close();
         sqlData.DisposeAsync();
