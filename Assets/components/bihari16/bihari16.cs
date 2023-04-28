@@ -172,10 +172,10 @@ public class bihari16 : timeManager
                 string barcode = generatebarcode();
                 string command = "INSERT INTO [taas].[dbo].[bet16] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15," +
                     "tot,qty," +
-                    "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag) values ("
+                    "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag,st_point) values ("
                     + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount + "," + bet_buttons[12].betamount + "," + bet_buttons[13].betamount + "," + bet_buttons[14].betamount + "," + bet_buttons[15].betamount
                     + "," + totalbetplaced + "," + totalbetplaced + ","
-                    + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + ")";
+                    + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 +","+totalbalance+ ")";
                 print(command);
                 SqlCommand sqlCmnd = new SqlCommand();
                 SqlDataReader sqldata = null;
