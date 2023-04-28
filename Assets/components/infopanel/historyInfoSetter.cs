@@ -22,7 +22,7 @@ public class historyInfoSetter : MonoBehaviour
         wintext.text = win;
 
         resulttext.text = result;
-        if(status.ToLower() == "//" )
+        if(status.ToLower() == "print" )
         {
             status = "N/W";
         }

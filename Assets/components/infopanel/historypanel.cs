@@ -14,7 +14,7 @@ public class historypanel : MonoBehaviour
     public int mode = 0;
     public void onResultsbuttonClicked()
     {
-        //("report button clicked");
+        print("report button clicked");
         foreach (Transform tf in content.GetComponentInChildren<Transform>())
         {
             if (tf != content.transform)
@@ -44,7 +44,7 @@ public class historypanel : MonoBehaviour
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        //(sqlCmnd.CommandText);
+        print(sqlCmnd.CommandText);
        
         ////
         while (sqlData.Read())

@@ -14,7 +14,7 @@ public class betdetails_prefab : MonoBehaviour
    
     public void SetData(string bp,string pa,string w,int m)
     {
-        //(w);
+        print(w);
       int  mode = m;
         if(mode==0 || mode==1)
         {

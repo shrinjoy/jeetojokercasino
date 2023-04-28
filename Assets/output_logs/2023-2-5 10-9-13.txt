@@ -1,23 +1,23 @@
 [LOG] [10:8:42] Open
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:66)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:8:42] SELECT * FROM[taas].[dbo].[g_master] WHERE term_id ='P122801' and pass =12345
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:68)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:8:42] pass found with id
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:74)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:8:42] mac id found
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:77)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
@@ -28,76 +28,76 @@ TMPro.TextMeshProUGUI:LoadFontAsset () (at Library/PackageCache/com.unity.textme
 TMPro.TextMeshProUGUI:Awake () (at Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs:121)
 
 [LOG] [10:8:51] time till next game:2/5/2023 10:10:00 AM
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 timeManager:Start () (at Assets/components/SQL_component/timeManager.cs:22)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:53)
 
 [LOG] [10:8:51] server time:2/5/2023 10:08:55 AM
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 timeManager:Start () (at Assets/components/SQL_component/timeManager.cs:23)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:53)
 
 [LOG] [10:8:51] 65
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 timeManager:Start () (at Assets/components/SQL_component/timeManager.cs:27)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:53)
 
 [LOG] [10:8:51] time till next game:2/5/2023 10:10:00 AM
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 timeManager:resetTimer () (at Assets/components/SQL_component/timeManager.cs:61)
 jeetoJoker_GAMEMANAGER/<UpdateBalanceAndInfo>d__41:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:311)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:54)
 
 [LOG] [10:8:51] server time:2/5/2023 10:09:00 AM
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 timeManager:resetTimer () (at Assets/components/SQL_component/timeManager.cs:62)
 jeetoJoker_GAMEMANAGER/<UpdateBalanceAndInfo>d__41:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:311)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:54)
 
 [LOG] [10:8:51] 60
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 timeManager:resetTimer () (at Assets/components/SQL_component/timeManager.cs:66)
 jeetoJoker_GAMEMANAGER/<UpdateBalanceAndInfo>d__41:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:311)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:54)
 
 [LOG] [10:8:51]   SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '09:50:00 AM' and '10:06:00 AM' and g_date='02/05/2023 00:00:00.000'
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 jeetoJoker_GAMEMANAGER/<addlast9gameresults>d__39:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:183)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:55)
 
 [LOG] [10:9:4] report button clicked
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 historypanel:onResultsbuttonClicked () (at Assets/components/infopanel/historypanel.cs:17)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:9:4] SELECT [taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,[taas].[dbo].[tasp].clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id='P122801' and [taas].[dbo].[tasp].g_date='05-Feb-2023' order by g_id desc
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 historypanel:onResultsbuttonClicked () (at Assets/components/infopanel/historypanel.cs:33)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:9:9] from_date_text
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 CalendarController:OnDateItemClick (string) (at Assets/Assets/scripts/CalendarController.cs:150)
 CalendarDateItem:OnDateItemClick () (at Assets/Assets/scripts/CalendarDateItem.cs:9)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:9:9] 5
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 CalendarDateItem:OnDateItemClick () (at Assets/Assets/scripts/CalendarDateItem.cs:10)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:9:12] date_select_report
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 CalendarController:OnDateItemClick (string) (at Assets/Assets/scripts/CalendarController.cs:150)
 CalendarDateItem:OnDateItemClick () (at Assets/Assets/scripts/CalendarDateItem.cs:9)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [10:9:12] 26
-UnityEngine.MonoBehaviour:// (object)
+UnityEngine.MonoBehaviour:print (object)
 CalendarDateItem:OnDateItemClick () (at Assets/Assets/scripts/CalendarDateItem.cs:10)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 

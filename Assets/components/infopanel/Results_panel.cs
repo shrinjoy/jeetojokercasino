@@ -26,7 +26,7 @@ public class Results_panel : MonoBehaviour
                 }
             }
         }
-        //("result button clicked");
+        print("result button clicked");
         DateTime dt = new DateTime();
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -47,7 +47,7 @@ public class Results_panel : MonoBehaviour
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
 
-        //(sqlCmnd.CommandText);
+        print(sqlCmnd.CommandText);
         while (sqlData.Read())
         {
            GameObject gb = (GameObject)Instantiate(resultsprefab);

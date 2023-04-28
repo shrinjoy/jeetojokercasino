@@ -22,15 +22,8 @@ public class betManager : MonoBehaviour
     }
     public string getResult(string gamemode)
     {
-        try
-        {
-            string gameResult = sqm.betResult(gameResultTime, gameResultId, gamemode);
-
-            return gameResult;
-        }
-        catch
-        {
-            return null;
-        }
+      string  gameResult = sqm.betResult(gameResultTime, gameResultId,gamemode);
+      
+        return gameResult;
     }
 }

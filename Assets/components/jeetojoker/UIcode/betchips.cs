@@ -28,7 +28,7 @@ public class betchips : MonoBehaviour
     }
     public void onSelected()
     {
-        //("btselectd:" + coin_value);
+        print("btselectd:" + coin_value);
         GetComponentInParent<AudioSource>().Play();
         foreach (betchips chip in GameObject.FindObjectsOfType<betchips>())
         {

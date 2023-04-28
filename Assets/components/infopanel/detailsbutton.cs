@@ -16,7 +16,7 @@ public class detailsbutton : MonoBehaviour
         detailspanel.SetActive(true);
         try
         {
-            //("mode:" + mode);
+            print("mode:" + mode);
             if (GameObject.FindObjectOfType<historypanel>().barcode != null)
             {
                 foreach (Transform t in content.GetComponentsInChildren<Transform>())
@@ -45,7 +45,7 @@ public class detailsbutton : MonoBehaviour
                 {
                     cmnd = "select '0' nam, a00 ply, CASE WHEN r.result='NR00' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '1' nam, a01 ply, CASE WHEN r.result='NR01' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '2' nam, a02 ply, CASE WHEN r.result='NR02' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '3' nam, a03 ply, CASE WHEN r.result='NR03' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '4' nam, a04 ply, CASE WHEN r.result='NR04' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '5' nam, a05 ply, CASE WHEN r.result='NR05' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '6' nam, a06 ply, CASE WHEN r.result='NR06' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '7' nam, a07 ply, CASE WHEN r.result='NR07' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '8' nam, a08 ply, CASE WHEN r.result='NR08' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "' union all select '9' nam, a09 ply, CASE WHEN r.result='NR09' THEN  t.clm ELSE  '0' END as win from tengp t,results r  where t.g_date=r.g_date and t.g_time=r.g_time and bar='" + GameObject.FindObjectOfType<historypanel>().barcode + "'";
                 }
-                //(cmnd);
+                print(cmnd);
                 SqlCommand sqlCmnd = new SqlCommand();
                 SqlDataReader sqldata = null;
                 sqlCmnd.CommandTimeout = 60;

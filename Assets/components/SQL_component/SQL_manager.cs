@@ -9,39 +9,24 @@ using System;
 
 public class SQL_manager : MonoBehaviour
 {
-
-    public SqlConnection SQLconn;
+   
+   public  SqlConnection SQLconn;
     [SerializeField] GameObject badmacid;
     [SerializeField] TMPro.TMP_Text warningtext;
     public DateTime server_day;
-
-
-    public void ConnecttoServer()
+    private void Awake()
     {
-        try
-        {
-            SQLconn = new SqlConnection();
-            DontDestroyOnLoad(this);
-            SQLconn = initSQL();
-           
-            Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        }
-        catch (Exception ex)
-        {
-            Awake();
-        }
-    }
-    private async void Awake()
-    {
+        SQLconn = new SqlConnection();
+        DontDestroyOnLoad(this);
+        SQLconn = initSQL();
+        print(SQLconn.State);
+        print(DateTime.Today.ToString("yyyy-MM-dd"));
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        ConnecttoServer();
     }
     public void Update()
     {
-        if (SQLconn.State == ConnectionState.Closed)
-        {
-            ConnecttoServer();
-        }
+       
 
     }
     public DateTime get_time()
@@ -73,25 +58,25 @@ public class SQL_manager : MonoBehaviour
         return sqlConnection;
     }
     //canLogin() checks if user with certain id and pass is present in data base if not then it will return false other wise it will return true
-    public bool canLogin(string id, string pass, string macid)
+    public bool canLogin(string id,string pass,string macid)
     {
         SqlCommand sqlCmnd = new SqlCommand();
-        SqlDataReader sqlData = null;
+        SqlDataReader sqlData=null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-       
-        sqlCmnd.CommandText = "SELECT * FROM[taas].[dbo].[g_master] WHERE term_id ='" + id + "' and pass =" + pass;//this is the sql command we use to get data about user
-       
+        print(SQLconn.State);
+        sqlCmnd.CommandText = "SELECT * FROM[taas].[dbo].[g_master] WHERE term_id ='" + id + "' and pass =" +pass;//this is the sql command we use to get data about user
+        print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {
-            if (sqlData["pass"].ToString() == pass && sqlData["term_id"].ToString() == id)
+            if (sqlData["pass"].ToString() == pass && sqlData["term_id"].ToString()==id )
             {
-                //("pass found with id");
+                print("pass found with id");
                 if (sqlData["macid"].ToString() == macid && Convert.ToInt32(sqlData["flag"].ToString()) != 5)
                 {
-                    //("mac id found");
+                    print("mac id found");
                     if (this.GetComponent<userManager>())
                     {
                         this.GetComponent<userManager>().setUserData(sqlData["term_id"].ToString(), sqlData["term_name"].ToString(), sqlData["pass"].ToString(), sqlData["macid"].ToString(), sqlData["comm"].ToString());
@@ -101,32 +86,28 @@ public class SQL_manager : MonoBehaviour
                         return true;
                     }
                 }
-                else if (sqlData["macid"].ToString() != macid || Convert.ToInt32(sqlData["flag"].ToString()) == 5)
+               else if (sqlData["macid"].ToString() != macid || Convert.ToInt32(sqlData["flag"].ToString()) == 5)
                 {
-                    //("invalid mac id");
+                    print("invalid mac id");
                     StartCoroutine(showmacnogowarning());
                     warningtext.text = "Please Contact Office";
                     sqlData.Close();
                     sqlData.DisposeAsync();
-                    addmacid(macid, id);
+                    addmacid(macid,id);
                     return false;
                 }
-
-
+              
+                
             }
-            if (sqlData["pass"].ToString() != pass || sqlData["term_id"].ToString() != id || sqlData["pass"].ToString() == null || sqlData["term_id"].ToString() == null)
+            if (sqlData["pass"].ToString() != pass || sqlData["term_id"].ToString() != id|| sqlData["pass"].ToString()==null || sqlData["term_id"].ToString() == null)
             {
-
-
+                
+               
                 sqlData.Close();
                 sqlData.DisposeAsync();
                 return false;
             }
 
-        }
-        else
-        {
-            warningtext.text = "Invalid Username or Password";
         }
         sqlData.Close();
         sqlData.DisposeAsync();
@@ -139,18 +120,18 @@ public class SQL_manager : MonoBehaviour
         badmacid.SetActive(false);
 
     }
-    public void addmacid(string macid, string termid)
+    public void addmacid(string macid,string termid)
     {
         //
-        string command = "UPDATE [taas].[dbo].[g_master] set newmacid='" + macid + "',flag=3 WHERE term_id='" + termid + "'";
+        string command = "UPDATE [taas].[dbo].[g_master] set newmacid='" + macid + "',flag=3 WHERE term_id='" + termid+"'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
+        sqlCmnd.CommandText =command;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        //(sqlCmnd.CommandText);
+        print(sqlCmnd.CommandText);
         if (sqlData.Read())
         {
         }
@@ -164,29 +145,32 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT lim from [taas].[dbo].[g_master] where term_id='" + termid + "'";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "SELECT lim from [taas].[dbo].[g_master] where term_id='"+termid+"'";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        if (sqlData.Read())
+        if(sqlData.Read())
         {
             int bal = Convert.ToInt32(sqlData["lim"].ToString());
             sqlData.Close();
-            sqlData.DisposeAsync();
+            sqlData.DisposeAsync() ;
             return bal;
         }
         sqlData.Close();
         sqlData.DisposeAsync();
         return 0;
     }
-    public void updatebalanceindatabase(string termid, int totalbetplaced)
+    public void updatebalanceindatabase(string termid,int totalbetplaced)
     {
         int mainbal = balance(termid);
-        int updatedbal = mainbal - totalbetplaced;
+        int updatedbal = mainbal-totalbetplaced ;
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id='" + termid + "'";//this is the sql command we use to get data about user
+
+        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim="+updatedbal+" WHERE term_id='"+termid+"'";//this is the sql command we use to get data about user
+
+        print("new balance is:" + updatedbal);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
@@ -201,88 +185,79 @@ public class SQL_manager : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id='" + termid + "'";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master]  SET lim=" + updatedbal + " WHERE term_id='" + termid+"'";//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         sqlData.Read();
         sqlData.Close();
         sqlData.DisposeAsync();
     }
-    public string betResult(string time, int id, string gamename)
+    public string betResult(string time,int id,string gamename)
     {
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
-        string result = null;
-        try
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        if(DateTime.Parse(time).ToString("hh:mm:ss tt") == "12:00:00 AM" || DateTime.Parse(time).ToString("hh:mm:ss tt") == "01:00:00 AM")
+        {
+            server_day = server_day.AddDays(1);
+        }
+        if (gamename == "joker")
+        {
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].g_date,[taas].[dbo].[resultsTaa].g_time,[taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='" + time+ "'  and g_date='"+server_day.ToString("dd-MMM-yyyy")+"' ORDER by id desc";//this is the sql command we use to get data about user
+        }
+        if (gamename == "bihari16")
+        {
+
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "'and g_date='"+ server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
+
+        }
+        if (gamename == "spin2win")
+        {
+
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results].result,[taas].[dbo].[results].status FROM [taas].[dbo].[results] WHERE g_time='" + time + "'and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
+
+        }
+        print(sqlCmnd.CommandText);//
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        if (sqlData.Read())
         {
             
-            sqlCmnd.CommandTimeout = 60;
-            sqlCmnd.Connection = SQLconn;
-            sqlCmnd.CommandType = CommandType.Text;
-            if (DateTime.Parse(time).ToString("hh:mm:ss tt") == "12:00:00 AM" || DateTime.Parse(time).ToString("hh:mm:ss tt") == "01:00:00 AM")
-            {
-                server_day = server_day.AddDays(1);
-            }
+            string result = "";
             if (gamename == "joker")
             {
-                sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsTaa].g_date,[taas].[dbo].[resultsTaa].g_time,[taas].[dbo].[resultsTaa].result,[taas].[dbo].[resultsTaa].status FROM [taas].[dbo].[resultsTaa] WHERE g_time='" + time + "'  and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
+                print(sqlData["g_date"].ToString() + sqlData["g_time"].ToString());
+                result = sqlData["result"].ToString()+sqlData["status"].ToString();
+               
+                print("results:" + result);
+                sqlData.Close();
+                sqlData.DisposeAsync();
             }
             if (gamename == "bihari16")
             {
-
-                sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results16].result,[taas].[dbo].[results16].status FROM [taas].[dbo].[results16] WHERE g_time='" + time + "'and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
-
+                result = sqlData["result"].ToString() + sqlData["status"].ToString();
+               
+                print("results:" + result);
+                sqlData.Close();
+                sqlData.DisposeAsync();//
             }
             if (gamename == "spin2win")
             {
+                result = sqlData["result"].ToString() + sqlData["status"].ToString();
 
-                sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results].result,[taas].[dbo].[results].status FROM [taas].[dbo].[results] WHERE g_time='" + time + "'and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
-
-            }
-            //  //(sqlCmnd.CommandText);//
-            sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            if (sqlData.Read())
-            {
-
-              
-                if (gamename == "joker")
-                {
-                    //(sqlData["g_date"].ToString() + sqlData["g_time"].ToString());
-                    result = sqlData["result"].ToString() + sqlData["status"].ToString();
-
-                    //("results:" + result);
-                    sqlData.Close();
-                    sqlData.DisposeAsync();
-                }
-                if (gamename == "bihari16")
-                {
-                    result = sqlData["result"].ToString() + sqlData["status"].ToString();
-
-                    //("results:" + result);
-                    sqlData.Close();
-                    sqlData.DisposeAsync();//
-                }
-                if (gamename == "spin2win")
-                {
-                    result = sqlData["result"].ToString() + sqlData["status"].ToString();
-
-                    //("results:" + result);
-                    sqlData.Close();
-                    sqlData.DisposeAsync();//
-                }
+                print("results:" + result);
                 sqlData.Close();
-                sqlData.DisposeAsync();
-                
+                sqlData.DisposeAsync();//
             }
-            return result;
-        }
-        catch
-        {
             sqlData.Close();
             sqlData.DisposeAsync();
-            return null;
+            return result;
         }
+        sqlData.Close();
+        sqlData.DisposeAsync();
+        return null;
     }
-    public DateTime timeForNextGame(int mode = 0)
+    public DateTime timeForNextGame(int mode=0)
     {
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -293,7 +268,7 @@ public class SQL_manager : MonoBehaviour
         {
             sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule12] WHERE tag=1";//this is the sql command we use to get data about user
         }
-        if (mode == 1)
+        if(mode==1)
         {
             sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule16] WHERE tag=1";//this is the sql command we use to get data about user
 
@@ -304,6 +279,7 @@ public class SQL_manager : MonoBehaviour
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        print(sqlCmnd.CommandText);
         if (sqlData.Read())
         {
             if (sqlData["g_time"] != null)
@@ -321,7 +297,7 @@ public class SQL_manager : MonoBehaviour
             }
             else
             {
-                //("no tag 1");
+                print("no tag 1");
                 sqlData.Close();
                 sqlData.DisposeAsync();
                 return DateTime.Now;
