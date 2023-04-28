@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using ZXing.QrCode.Internal;
 
-public class bihari16 : timeManager
+public class bet16 : timeManager
 {
     [Header("Balance and Info")]
     [SerializeField] GameObject noinputpanel;

@@ -54,8 +54,8 @@ public class Betbuttons : MonoBehaviour
         if (mode == 1)
         {
 
-            GameObject.FindObjectOfType<bihari16>().win0.text = "0";
-            GameObject.FindObjectOfType<bihari16>().win1.text = "0";
+            GameObject.FindObjectOfType<bet16>().win0.text = "0";
+            GameObject.FindObjectOfType<bet16>().win1.text = "0";
         }
       
 
@@ -79,7 +79,7 @@ public class Betbuttons : MonoBehaviour
             }
             if (mode == 1)
             {
-                if ((this.gettotalbetplaced() + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<bihari16>().totalbalance)
+                if ((this.gettotalbetplaced() + GameObject.FindObjectOfType<timeManager>().selectedcoinamount) <= GameObject.FindObjectOfType<bet16>().totalbalance)
                 {
                     betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
                     updateBetButtonData();
@@ -88,7 +88,7 @@ public class Betbuttons : MonoBehaviour
                 }
                 else
                 {
-                    GameObject.FindObjectOfType<bihari16>().showstat("Not enough balance");
+                    GameObject.FindObjectOfType<bet16>().showstat("Not enough balance");
                 }
             }
 
@@ -170,7 +170,7 @@ public class Betbuttons : MonoBehaviour
         }
         if (mode == 1)
         {
-            GameObject.FindObjectOfType<bihari16>().FakeUpdateBalance();
+            GameObject.FindObjectOfType<bet16>().FakeUpdateBalance();
         }
 
     }

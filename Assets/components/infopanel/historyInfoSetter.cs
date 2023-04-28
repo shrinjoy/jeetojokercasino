@@ -20,16 +20,26 @@ public class historyInfoSetter : MonoBehaviour
         gameid.text = barcode;
         playtext.text = play;
         wintext.text = win;
+
         resulttext.text = result;
         if(status.ToLower() == "//" )
         {
             status = "N/W";
         }
         statustxt.text = status;
+        int winpoint = 0;
+        if (win==null || win.ToString().Trim().Length==0 ) {
 
+            winpoint = 0;
+        }
+        else
+        {
+             winpoint = Convert.ToInt32(win);
+
+        }
         int start = Convert.ToInt32(stpoint);
         int totalplayed = (Convert.ToInt32(play));
-        int end = start-totalplayed;
+        int end = start-totalplayed+winpoint;
 
         start_point_txt.text = stpoint;
         end_point_txt.text =end.ToString();

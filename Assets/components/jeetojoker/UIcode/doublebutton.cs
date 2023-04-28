@@ -21,7 +21,7 @@ public class doublebutton : MonoBehaviour
             }
             else if(mode==1)
             {
-                if ((bt.betamount * 2) < GameObject.FindObjectOfType<bihari16>().totalbalance)
+                if ((bt.betamount * 2) < GameObject.FindObjectOfType<bet16>().totalbalance)
                 {
                     bt.betamount *= 2;
                     bt.updateBetButtonData();//
