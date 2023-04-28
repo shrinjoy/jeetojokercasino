@@ -16,17 +16,31 @@ public class SQL_manager : MonoBehaviour
     public DateTime server_day;
     private void Awake()
     {
-        SQLconn = new SqlConnection();
-        DontDestroyOnLoad(this);
-        SQLconn = initSQL();
-        print(SQLconn.State);
-        print(DateTime.Today.ToString("yyyy-MM-dd"));
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+      ConnecttoServer();
 
+    }
+    public void ConnecttoServer()
+    {
+        try
+        {
+            SQLconn = new SqlConnection();
+            DontDestroyOnLoad(this);
+            SQLconn = initSQL();
+            print(SQLconn.State);
+            print(DateTime.Today.ToString("yyyy-MM-dd"));
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        }
+        catch (Exception ex)
+        {
+            Awake();
+        }
     }
     public void Update()
     {
-       
+        if (SQLconn.State == ConnectionState.Closed)
+        {
+            ConnecttoServer();
+        }
 
     }
     public DateTime get_time()
