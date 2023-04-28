@@ -1,23 +1,23 @@
 [LOG] [9:44:37] Open
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:66)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [9:44:37] SELECT * FROM[taas].[dbo].[g_master] WHERE term_id ='P122801' and pass =12345
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:68)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [9:44:37] pass found with id
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:74)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
 
 [LOG] [9:44:37] mac id found
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 SQL_manager:canLogin (string,string,string) (at Assets/components/SQL_component/SQL_manager.cs:77)
 login:loginuser () (at Assets/components/loginPanel/code/login.cs:59)
 UnityEngine.EventSystems.EventSystem:Update () (at Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:517)
@@ -28,43 +28,43 @@ TMPro.TextMeshProUGUI:LoadFontAsset () (at Library/PackageCache/com.unity.textme
 TMPro.TextMeshProUGUI:Awake () (at Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs:121)
 
 [LOG] [9:44:43] time till next game:2/5/2023 9:46:00 AM
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 timeManager:Start () (at Assets/components/SQL_component/timeManager.cs:22)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:53)
 
 [LOG] [9:44:43] server time:2/5/2023 9:44:48 AM
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 timeManager:Start () (at Assets/components/SQL_component/timeManager.cs:23)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:53)
 
 [LOG] [9:44:43] 72
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 timeManager:Start () (at Assets/components/SQL_component/timeManager.cs:27)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:53)
 
 [LOG] [9:44:43] time till next game:2/5/2023 9:46:00 AM
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 timeManager:resetTimer () (at Assets/components/SQL_component/timeManager.cs:61)
 jeetoJoker_GAMEMANAGER/<UpdateBalanceAndInfo>d__41:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:311)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:54)
 
 [LOG] [9:44:43] server time:2/5/2023 9:44:53 AM
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 timeManager:resetTimer () (at Assets/components/SQL_component/timeManager.cs:62)
 jeetoJoker_GAMEMANAGER/<UpdateBalanceAndInfo>d__41:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:311)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:54)
 
 [LOG] [9:44:43] 67
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 timeManager:resetTimer () (at Assets/components/SQL_component/timeManager.cs:66)
 jeetoJoker_GAMEMANAGER/<UpdateBalanceAndInfo>d__41:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:311)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:54)
 
 [LOG] [9:44:43]   SELECT  * FROM [taas].[dbo].[resultsTaa] where  g_time between '09:26:00 AM' and '09:42:00 AM' and g_date='02/05/2023 00:00:00.000'
-UnityEngine.MonoBehaviour:print (object)
+UnityEngine.MonoBehaviour:// (object)
 jeetoJoker_GAMEMANAGER/<addlast9gameresults>d__39:MoveNext () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:183)
 UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
 jeetoJoker_GAMEMANAGER:Start () (at Assets/components/jeetojoker/jeetoJoker_GAMEMANAGER.cs:55)

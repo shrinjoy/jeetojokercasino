@@ -21,7 +21,7 @@ public class historyInfoSetter : MonoBehaviour
         playtext.text = play;
         wintext.text = win;
         resulttext.text = result;
-        if(status.ToLower() == "print" )
+        if(status.ToLower() == "//" )
         {
             status = "N/W";
         }

@@ -73,7 +73,7 @@ public class Betbuttons : MonoBehaviour
                 }
                 else
                 {
-                    print("not enough points");
+                    //("not enough points");
                     GameObject.FindObjectOfType<jeetoJoker_GAMEMANAGER>().showstat("Not enough balance");
                 }
             }
@@ -95,7 +95,7 @@ public class Betbuttons : MonoBehaviour
         }
        else  if (GameObject.FindObjectOfType<RemoveButton>().removebets == true)
         {
-            print("1 remove bet");
+            //("1 remove bet");
             if (betamount > 0)
             {
                 betamount -= FindObjectOfType<timeManager>().selectedcoinamount;

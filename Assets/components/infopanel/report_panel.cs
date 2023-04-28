@@ -43,7 +43,7 @@ public class report_panel : MonoBehaviour
                 "'group by n.ter_id,g.term_name,g.comm;";
             //
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            print(sqlCmnd.CommandText);
+            //(sqlCmnd.CommandText);
             if (sqlData.Read())
             {
 
@@ -85,7 +85,7 @@ public class report_panel : MonoBehaviour
                 "'group by n.ter_id,g.term_name,g.comm;";
             //
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            print(sqlCmnd.CommandText);
+            //(sqlCmnd.CommandText);
             if (sqlData.Read())
             {
 
@@ -127,7 +127,7 @@ public class report_panel : MonoBehaviour
                 "'group by n.ter_id,g.term_name,g.comm;";
             //
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            print(sqlCmnd.CommandText);
+            //(sqlCmnd.CommandText);
             if (sqlData.Read())
             {
 
@@ -157,7 +157,7 @@ public class report_panel : MonoBehaviour
                 commipoint.text = npoint.ToString();
                 ntppoint.text = ppoints.ToString();
                 operatorpoint.text = epoint.ToString();
-                print(sqlData["plyid"].ToString());
+                //(sqlData["plyid"].ToString());
             }
             sqlData.Close();
             sqlData.DisposeAsync();
