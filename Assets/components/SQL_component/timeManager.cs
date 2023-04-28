@@ -43,9 +43,15 @@ public class timeManager : MonoBehaviour
             if (realtime <= 0.0f)
             {
 
+                try
+                {
+                    GameSequence();
 
-                GameSequence();
-
+                }
+                catch
+                {
+                    print("lost internet");
+                }
             }
             else
             {

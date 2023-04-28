@@ -160,66 +160,72 @@ public class bet16 : timeManager
     }
     public void sendResult()
     {
-      
-        currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
+        try
         {
-            
-            if ((totalbalance-totalbetplaced) >= 0 && totalbalance>0 && totalbetplaced > 0)
+            currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+            if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
             {
-                string status = "Print";
-                string gm = "gm";
-                string barcode = generatebarcode();
-                string command = "INSERT INTO [taas].[dbo].[bet16] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15," +
-                    "tot,qty," +
-                    "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag,st_point) values ("
-                    + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount + "," + bet_buttons[12].betamount + "," + bet_buttons[13].betamount + "," + bet_buttons[14].betamount + "," + bet_buttons[15].betamount
-                    + "," + totalbetplaced + "," + totalbetplaced + ","
-                    + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 +","+totalbalance+ ")";
-                print(command);
-                SqlCommand sqlCmnd = new SqlCommand();
-                SqlDataReader sqldata = null;
-                sqlCmnd.CommandTimeout = 60;
-                sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-                sqlCmnd.CommandType = CommandType.Text;
-                sqlCmnd.CommandText = command;
-                sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-               
-                sqldata.Close();
-                sqldata.DisposeAsync();
-                print(totalbetplaced);
-                GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
 
-                GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
-                foreach (Betbuttons btns in bet_buttons)
+                if ((totalbalance - totalbetplaced) >= 0 && totalbalance > 0 && totalbetplaced > 0)
                 {
+                    string status = "Print";
+                    string gm = "gm";
+                    string barcode = generatebarcode();
+                    string command = "INSERT INTO [taas].[dbo].[bet16] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15," +
+                        "tot,qty," +
+                        "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag,st_point) values ("
+                        + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount + "," + bet_buttons[12].betamount + "," + bet_buttons[13].betamount + "," + bet_buttons[14].betamount + "," + bet_buttons[15].betamount
+                        + "," + totalbetplaced + "," + totalbetplaced + ","
+                        + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + "," + totalbalance + ")";
+                    print(command);
+                    SqlCommand sqlCmnd = new SqlCommand();
+                    SqlDataReader sqldata = null;
+                    sqlCmnd.CommandTimeout = 60;
+                    sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+                    sqlCmnd.CommandType = CommandType.Text;
+                    sqlCmnd.CommandText = command;
+                    sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+
+                    sqldata.Close();
+                    sqldata.DisposeAsync();
+                    print(totalbetplaced);
+                    GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
+
+                    GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
+                    foreach (Betbuttons btns in bet_buttons)
+                    {
 
 
-                    BetbuttonData2 data = new BetbuttonData2();
-                    data.betbutton = btns;
-                    data.betamount = btns.betamount;
-                  
-                    GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
-                    btns.resetBetbutton();
+                        BetbuttonData2 data = new BetbuttonData2();
+                        data.betbutton = btns;
+                        data.betamount = btns.betamount;
+
+                        GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
+                        btns.resetBetbutton();
+                    }
+
+
+
+
+                    StartCoroutine(UpdateBalanceAndInfo());
+                    betplaced = true;
+                    showstat("Your Bets have been accepted ID:" + barcode);
+
                 }
-              
-                
-              
-              
-                StartCoroutine(UpdateBalanceAndInfo());
-                betplaced = true;
-                showstat("Your Bets have been accepted ID:"+barcode);
-               
-            }
-           
-        }
 
-        else
-        {
-            SceneManager.LoadScene(0);
+            }
+
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
+            GameObject.FindObjectOfType<clearbutton>().clear();
+            StartCoroutine(UpdateBalanceAndInfo());
         }
-        GameObject.FindObjectOfType<clearbutton>().clear();
-        StartCoroutine(UpdateBalanceAndInfo());
+        catch
+        {
+            showstat("no internet trying to reconnect");
+        }
     }
     
     public string generatebarcode()
