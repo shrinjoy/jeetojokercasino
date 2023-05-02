@@ -35,15 +35,15 @@ public class Results_panel : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (mode == 0)
         {
-            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[resultsTaa] WHERE g_date='" + (cal.datetimeyear) + "'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[resultsTaa] WHERE g_date='" + (cal.datetimeyear) + "' order by id desc ";//this is the sql command we use to get data about user
         }
         if (mode == 1)
         {
-            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[results16] WHERE g_date='" + (cal.datetimeyear) + "'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[results16] WHERE g_date='" + (cal.datetimeyear) + "' order by id desc";//this is the sql command we use to get data about user
         }
         if (mode == 2)
         {
-            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[results] WHERE g_date='" + (cal.datetimeyear) + "'";//this is the sql command we use to get data about user
+            sqlCmnd.CommandText = "SELECT  * FROM [taas].[dbo].[results] WHERE g_date='" + (cal.datetimeyear) + "'order by id desc";//this is the sql command we use to get data about user
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
 
