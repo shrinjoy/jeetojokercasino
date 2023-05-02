@@ -30,17 +30,17 @@ public class historypanel : MonoBehaviour
         sqlCmnd.CommandType = CommandType.Text;
         if (mode == 0)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tasp].st_point,[taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,[taas].[dbo].[tasp].clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tasp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tasp].clm_tm,[taas].[dbo].[tasp].st_point,[taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,[taas].[dbo].[tasp].clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tasp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
         
         }
         if (mode == 1)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[bet16].st_point,[taas].[dbo].[bet16].id,[taas].[dbo].[bet16].bar,[taas].[dbo].[bet16].g_id,[taas].[dbo].[bet16].g_date,[taas].[dbo].[bet16].ter_id,[taas].[dbo].[bet16].clm,[taas].[dbo].[bet16].tot,[taas].[dbo].[bet16].status,[taas].[dbo].[bet16].g_time,[taas].[dbo].[bet16].p_time,[taas].[dbo].[results16].result as gameresult FROM [taas].[dbo].[bet16],[taas].[dbo].[results16] WHERE results16.g_date=bet16.g_date and results16.g_time=bet16.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[bet16].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[bet16].clm_tm,[taas].[dbo].[bet16].st_point,[taas].[dbo].[bet16].id,[taas].[dbo].[bet16].bar,[taas].[dbo].[bet16].g_id,[taas].[dbo].[bet16].g_date,[taas].[dbo].[bet16].ter_id,[taas].[dbo].[bet16].clm,[taas].[dbo].[bet16].tot,[taas].[dbo].[bet16].status,[taas].[dbo].[bet16].g_time,[taas].[dbo].[bet16].p_time,[taas].[dbo].[results16].result as gameresult FROM [taas].[dbo].[bet16],[taas].[dbo].[results16] WHERE results16.g_date=bet16.g_date and results16.g_time=bet16.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[bet16].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
 
         }
         if (mode == 2)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].clm_tm,[taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
@@ -52,7 +52,7 @@ public class historypanel : MonoBehaviour
              GameObject gb = (GameObject)Instantiate(prefabitem);
              gb.transform.SetParent(content.transform,false);
              
-             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), converttoresult(sqlData["gameresult"].ToString()), sqlData["status"].ToString(), sqlData["st_point"].ToString());
+             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), converttoresult(sqlData["gameresult"].ToString()), sqlData["status"].ToString(), sqlData["st_point"].ToString(), sqlData["clm_tm"].ToString());
         }
         sqlData.Close();
         sqlData.DisposeAsync();

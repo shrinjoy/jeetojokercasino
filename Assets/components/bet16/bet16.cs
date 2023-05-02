@@ -523,7 +523,7 @@ public class bet16 : timeManager
     void removestat()
     {
         //
-        string command = "UPDATE [taas].[dbo].[bet16] set status='Claimed' WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+        string command = "UPDATE [taas].[dbo].[bet16] set status='Claimed',clm_tm='"+DateTime.Now+"'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
 
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -574,7 +574,7 @@ public class bet16 : timeManager
     }
     void removestat2()
     {
-        string command = "UPDATE [taas].[dbo].[bet16] set status='Claimed' WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+        string command = "UPDATE [taas].[dbo].[bet16] set status='Claimed',clm_tm='"+DateTime.Now+"'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;

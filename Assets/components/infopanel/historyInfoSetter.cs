@@ -13,8 +13,9 @@ public class historyInfoSetter : MonoBehaviour
     public TMPro.TMP_Text statustxt;
     public TMPro.TMP_Text start_point_txt;
     public TMPro.TMP_Text end_point_txt;
+    public TMPro.TMP_Text claimtime;
     //
-    public void setdata(string sno,string barcode,string play,string win,string result,string status,string stpoint)
+    public void setdata(string sno,string barcode,string play,string win,string result,string status,string stpoint,string claimdatetime)
     {
         serialnumber.text = sno;    
         gameid.text = barcode;
@@ -40,7 +41,7 @@ public class historyInfoSetter : MonoBehaviour
         int start = Convert.ToInt32(stpoint);
         int totalplayed = (Convert.ToInt32(play));
         int end = start-totalplayed+winpoint;
-
+        claimtime.text = DateTime.Parse(claimdatetime).ToString("ddMMM|hh:mmtt");
         start_point_txt.text = stpoint;
         end_point_txt.text =end.ToString();
 

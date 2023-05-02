@@ -838,6 +838,7 @@ MonoBehaviour:
   statustxt: {fileID: 8354320294592348448}
   start_point_txt: {fileID: 9165042007151969051}
   end_point_txt: {fileID: 5054338041862891667}
+  claimtime: {fileID: 2054331883016364860}
 --- !u!1 &4851643272578597992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1256,7 @@ GameObject:
   - component: {fileID: 8202765923279513100}
   - component: {fileID: 2054331883016364860}
   m_Layer: 5
-  m_Name: status (1)
+  m_Name: claimtime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1340,7 +1341,7 @@ MonoBehaviour:
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 0
   m_fontSizeMax: 25
   m_fontStyle: 1
   m_HorizontalAlignment: 2
