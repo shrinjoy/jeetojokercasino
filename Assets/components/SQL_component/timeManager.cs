@@ -15,6 +15,7 @@ public class timeManager : MonoBehaviour
     bool isGameSequenceRunning = false;
     public int selectedcoinamount=2;
    [SerializeField] int mode = 0;
+    bool nonbetversion = false;
     public void Start()
     {
         timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
