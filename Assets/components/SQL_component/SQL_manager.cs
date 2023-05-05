@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Data;
 using System.Data.SqlClient;
-
+using UnityEngine.SceneManagement;
 using System;
 
 
@@ -41,7 +41,11 @@ public class SQL_manager : MonoBehaviour
         {
             ConnecttoServer();
         }
-
+        if(SceneManager.GetActiveScene().buildIndex==0 &&( warningtext ==null || badmacid ==null))
+        {
+            badmacid = GameObject.FindGameObjectWithTag("WN");
+            warningtext = GameObject.FindGameObjectWithTag("WT").GetComponent<TMPro.TMP_Text>();    
+        }
     }
     public DateTime get_time()
     {
@@ -122,6 +126,12 @@ public class SQL_manager : MonoBehaviour
                 return false;
             }
 
+        }
+        else
+        {
+           
+            warningtext.text = "wrong username or password";
+            showmacnogowarning();
         }
         sqlData.Close();
         sqlData.DisposeAsync();
