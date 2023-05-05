@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using UnityEngine;
-using static UnityEditor.ShaderData;
+
 using UnityEngine.SceneManagement;
 
 public class Forgotpassword : MonoBehaviour
