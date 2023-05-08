@@ -242,11 +242,17 @@ public class SQL_manager : MonoBehaviour
             sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[results].result,[taas].[dbo].[results].status FROM [taas].[dbo].[results] WHERE g_time='" + time + "'and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
 
         }
+        if (gamename == "doubletrouble")
+        {
+
+            sqlCmnd.CommandText = "SELECT top(1) [taas].[dbo].[resultsdou].result,[taas].[dbo].[resultsdou].status FROM [taas].[dbo].[resultsdou] WHERE g_time='" + time + "'and g_date='" + server_day.ToString("dd-MMM-yyyy") + "' ORDER by id desc";//this is the sql command we use to get data about user
+
+        }
         print(sqlCmnd.CommandText);//
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if (sqlData.Read())
         {
-            
+          //idk why i did this back then but pretty sure there was a reason so just follow the ritual
             string result = "";
             if (gamename == "joker")
             {
@@ -266,6 +272,14 @@ public class SQL_manager : MonoBehaviour
                 sqlData.DisposeAsync();//
             }
             if (gamename == "spin2win")
+            {
+                result = sqlData["result"].ToString() + sqlData["status"].ToString();
+
+                print("results:" + result);
+                sqlData.Close();
+                sqlData.DisposeAsync();//
+            }
+            if (gamename == "doubletrouble")
             {
                 result = sqlData["result"].ToString() + sqlData["status"].ToString();
 
