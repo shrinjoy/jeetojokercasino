@@ -302,6 +302,11 @@ public class SQL_manager : MonoBehaviour
             sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule10] WHERE tag=1";//this is the sql command we use to get data about user
 
         }
+        if (mode == 3)
+        {
+            sqlCmnd.CommandText = "SELECT * FROM [taas].[dbo].[g_rule99] WHERE tag=1";//this is the sql command we use to get data about user
+
+        }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         print(sqlCmnd.CommandText);
         if (sqlData.Read())

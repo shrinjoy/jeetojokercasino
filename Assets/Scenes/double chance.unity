@@ -41557,6 +41557,7 @@ GameObject:
   - component: {fileID: 1861112849}
   - component: {fileID: 1861112848}
   - component: {fileID: 1861112847}
+  - component: {fileID: 1861112850}
   - component: {fileID: 1861112846}
   m_Layer: 5
   m_Name: Canvas
@@ -41648,6 +41649,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1861112850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861112845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e8731421afc9846b3d3594e6cdc8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTime: 0
+  selectedcoinamount: 2
+  mode: 3
+  timer: {fileID: 1027395446}
+  datetimetext: {fileID: 1663729667}
 --- !u!1 &1862450407
 GameObject:
   m_ObjectHideFlags: 0
