@@ -39643,6 +39643,8 @@ MonoBehaviour:
   datetimetext: {fileID: 1663729667}
   ResultPanel_content: {fileID: 58007393}
   last10resultprefab: {fileID: 5011137159715126277, guid: 90ac2e43dc7b6734786791461466f5ab, type: 3}
+  singles_wheel: {fileID: 1410899832}
+  doubles_wheel: {fileID: 437078751}
 --- !u!1 &1862450407
 GameObject:
   m_ObjectHideFlags: 0
