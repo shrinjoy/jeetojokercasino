@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class doublechance_gamemanager : timeManager
 {
-    bool sequenceended=true;
+    bool sequenceended = true;
     string result;
     [SerializeField] TMPro.TMP_Text timer;
     [SerializeField] TMPro.TMP_Text datetimetext;
@@ -15,12 +15,20 @@ public class doublechance_gamemanager : timeManager
     [SerializeField] GameObject last10resultprefab;
     [SerializeField] FortuneWheelManager singles_wheel;
     [SerializeField] FortuneWheelManager doubles_wheel;
+    [SerializeField] GameObject multiplieranimationobject;
+    [SerializeField] marquee multiplierscrollanimationobject;
+    [SerializeField] TMPro.TMP_Text resultstring;
 
     // Start is called before the first frame update
     void Start()
     {
+        resultstring.enabled=true;
         base.Start();
+        multiplieranimationobject.SetActive(false);
+
         StartCoroutine(addlastgameresults());
+        multiplierscrollanimationobject.enabled = false;
+        resultstring.text = " ";
     }
 
     // Update is called once per frame
@@ -29,7 +37,7 @@ public class doublechance_gamemanager : timeManager
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
 
-       
+
 
     }
     public IEnumerator addlastgameresults()
@@ -61,7 +69,7 @@ public class doublechance_gamemanager : timeManager
         while (sqlData.Read())
         {
             GameObject gb = GameObject.Instantiate(last10resultprefab, ResultPanel_content.transform, false);
-          
+
             gb.GetComponent<last10resultobjectsetter>().setdata(sqlData["result"].ToString() + sqlData["status"].ToString());
 
         }
@@ -97,15 +105,24 @@ public class doublechance_gamemanager : timeManager
     IEnumerator doublechancesequence()
     {
         print(result);
+        multiplieranimationobject.SetActive(true);
+        multiplieranimationobject.GetComponent<MultiplierAnimation>().resetstate();
+        resultstring.enabled=true;
 
-            Vector2 sector = resulttosectorconvert(result);
-            singles_wheel.TurnWheel((int)sector.y);
-            doubles_wheel.TurnWheel((int)sector.x);
-            while(singles_wheel.isspinning && doubles_wheel.isspinning)
-            {
-                yield return new WaitForSeconds(0.001f);
-            }
-
+        Vector2 sector = resulttosectorconvert(result);
+        singles_wheel.TurnWheel((int)sector.y);
+        doubles_wheel.TurnWheel((int)sector.x);
+        multiplierscrollanimationobject.enabled = true;
+        while (singles_wheel.isspinning && doubles_wheel.isspinning)
+        {
+            yield return new WaitForSeconds(0.001f);
+        }
+        multiplierscrollanimationobject.enabled = false;
+        
+        StartCoroutine(multiplieranimationobject.GetComponent<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
+        yield return new WaitForSeconds(0.3f);
+        print(result.Substring(2,2));
+        resultstring.text = result.Substring(2,2);
 
         yield return new WaitForFixedUpdate();
         resetTimer();
@@ -116,92 +133,92 @@ public class doublechance_gamemanager : timeManager
     public Vector2 resulttosectorconvert(string result)
     {
         //8=0 3=1 7=2 4=3 6=4 0=5 5=6 1=7 9=8 2=9
-        
-    Vector2 xy = Vector2.zero;;
-    int singles= Convert.ToInt32(result.Substring(3,1));
-    int doubles= Convert.ToInt32(result.Substring(2,1));
-    //cause fuck you i am not getting paid enough 
-    if(singles==8)
-    {
-        xy.y= 0;
-    }
-    else if(singles==3)
-    {
-        xy.y= 1;
-    }
-     else if(singles==7)
-    {
-        xy.y= 2;
-    }
-     else if(singles==4)
-    {
-        xy.y= 3;
-    }
-     else if(singles==6)
-    {
-        xy.y= 4;
-    }
-     else if(singles==0)
-    {
-        xy.y= 5;
-    }
-     else if(singles==5)
-    {
-        xy.y= 6;
-    }
-     else if(singles==1)
-    {
-        xy.y= 7;
-    }
-     else if(singles==9)
-    {
-        xy.y= 8;
-    }
-     else if(singles==2)
-    {
-        xy.y= 9;
-    }
-    if(doubles==8)
-    {
-        xy.x= 0;
-    }
-    else if(doubles==3)
-    {
-        xy.x= 1;
-    }
-     else if(doubles==7)
-    {
-        xy.x= 2;
-    }
-     else if(doubles==4)
-    {
-        xy.x= 3;
-    }
-     else if(doubles==6)
-    {
-        xy.x= 4;
-    }
-     else if(doubles==0)
-    {
-        xy.x= 5;
-    }
-      if(doubles==5)
-    {
-        xy.x= 6;
-    }
-     else if(doubles==1)
-    {
-        xy.x= 7;
-    }
-     else if(doubles==9)
-    {
-        xy.x= 8;
-    }
-     else if(doubles==2)
-    {
-        xy.x= 9;
-    }
-    return xy;
+
+        Vector2 xy = Vector2.zero; ;
+        int singles = Convert.ToInt32(result.Substring(3, 1));
+        int doubles = Convert.ToInt32(result.Substring(2, 1));
+        //cause fuck you i am not getting paid enough 
+        if (singles == 8)
+        {
+            xy.y = 0;
+        }
+        else if (singles == 3)
+        {
+            xy.y = 1;
+        }
+        else if (singles == 7)
+        {
+            xy.y = 2;
+        }
+        else if (singles == 4)
+        {
+            xy.y = 3;
+        }
+        else if (singles == 6)
+        {
+            xy.y = 4;
+        }
+        else if (singles == 0)
+        {
+            xy.y = 5;
+        }
+        else if (singles == 5)
+        {
+            xy.y = 6;
+        }
+        else if (singles == 1)
+        {
+            xy.y = 7;
+        }
+        else if (singles == 9)
+        {
+            xy.y = 8;
+        }
+        else if (singles == 2)
+        {
+            xy.y = 9;
+        }
+        if (doubles == 8)
+        {
+            xy.x = 0;
+        }
+        else if (doubles == 3)
+        {
+            xy.x = 1;
+        }
+        else if (doubles == 7)
+        {
+            xy.x = 2;
+        }
+        else if (doubles == 4)
+        {
+            xy.x = 3;
+        }
+        else if (doubles == 6)
+        {
+            xy.x = 4;
+        }
+        else if (doubles == 0)
+        {
+            xy.x = 5;
+        }
+        if (doubles == 5)
+        {
+            xy.x = 6;
+        }
+        else if (doubles == 1)
+        {
+            xy.x = 7;
+        }
+        else if (doubles == 9)
+        {
+            xy.x = 8;
+        }
+        else if (doubles == 2)
+        {
+            xy.x = 9;
+        }
+        return xy;
 
     }
 }
