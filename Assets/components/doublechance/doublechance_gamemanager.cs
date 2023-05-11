@@ -18,6 +18,10 @@ public class doublechance_gamemanager : timeManager
     [SerializeField] GameObject multiplieranimationobject;
     [SerializeField] marquee multiplierscrollanimationobject;
     [SerializeField] TMPro.TMP_Text resultstring;
+    public TMPro.TMP_Text balance;
+    public int totalbalance;
+    public int totalbetplaced;
+    public TMPro.TMP_Text totalplay;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +31,34 @@ public class doublechance_gamemanager : timeManager
         multiplieranimationobject.SetActive(false);
 
         StartCoroutine(addlastgameresults());
+        StartCoroutine(UpdateBalanceAndInfo());
         multiplierscrollanimationobject.enabled = false;
         resultstring.text = " ";
     }
 
     // Update is called once per frame
+    IEnumerator UpdateBalanceAndInfo()
+    {
+
+        totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
+       if(totalbalance<0)
+        {
+            totalbalance = 0;
+        }
+        
+        balance.text = totalbalance.ToString();
+        
+      
+
+        yield return null;
+
+    }
+
     void Update()
     {
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
-
+    totalplay.text=totalbetplaced.ToString();
 
 
     }
