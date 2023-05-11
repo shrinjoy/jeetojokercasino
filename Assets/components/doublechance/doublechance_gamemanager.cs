@@ -14,6 +14,7 @@ public class doublechance_gamemanager : timeManager
     [SerializeField] GameObject ResultPanel_content;
     [SerializeField] GameObject last10resultprefab;
     [SerializeField] FortuneWheelManager singles_wheel;
+
     [SerializeField] FortuneWheelManager doubles_wheel;
     [SerializeField] GameObject multiplieranimationobject;
     [SerializeField] marquee multiplierscrollanimationobject;
@@ -24,33 +25,46 @@ public class doublechance_gamemanager : timeManager
     public TMPro.TMP_Text totalplay;
     public GameObject singlebutton_panel;
     public GameObject doublebutton_panel;
+    public Dictionary<string, doublechance_button> btns_dict = new Dictionary<string, doublechance_button>();
 
-    [SerializeField] public doublechance_button[] single_buttons = new doublechance_button[10];
-    
+    [SerializeField] public List<doublechance_button> single_buttons_list = new List<doublechance_button>();
 
-    [SerializeField] public doublechance_button[] double_buttons = new doublechance_button[100];
+
+    [SerializeField] public List<doublechance_button> double_buttons_list = new List<doublechance_button>();
 
     // Start is called before the first frame update
     public void gamesetup()
     {
-        int i = 0;
-        print("setting single buttons");
+      
+       
         foreach (doublechance_button btn in singlebutton_panel.GetComponentsInChildren<doublechance_button>())
         {
-            single_buttons[i] = btn;
-            i += 1;
+            single_buttons_list.Add(btn);
+        
         }
-    
-        i = 0;
-        print("setting double buttons");
-
         foreach (doublechance_button btn in doublebutton_panel.GetComponentsInChildren<doublechance_button>())
         {
-            print("found double");
-            double_buttons[i] = btn;
-            i += 1;
+           
+            double_buttons_list.Add(btn);
+      
         }
-       // Array.Sort(double_buttons);
+        foreach (doublechance_button btn in single_buttons_list)
+        {
+            btns_dict.Add(btn.name, btn);
+        }
+        print("doublebtns lenght:"+double_buttons_list.Count);
+        foreach (doublechance_button btn in double_buttons_list)
+        {
+             
+                btns_dict.Add("d" + btn.name, btn);
+                   print("added  a btn double");
+        }
+          print("dict setupdone");
+        foreach(string bt in btns_dict.Keys)
+        {
+            print(bt);
+        }
+        // Array.Sort(double_buttons);
         print("setup is done");
     }
     void Start()
