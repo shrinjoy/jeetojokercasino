@@ -35,38 +35,44 @@ public class doublechance_gamemanager : timeManager
     // Start is called before the first frame update
     public void gamesetup()
     {
-      
-       
+
+
         foreach (doublechance_button btn in singlebutton_panel.GetComponentsInChildren<doublechance_button>())
         {
             single_buttons_list.Add(btn);
-        
+
         }
         foreach (doublechance_button btn in doublebutton_panel.GetComponentsInChildren<doublechance_button>())
         {
-           
+
             double_buttons_list.Add(btn);
-      
+
         }
         foreach (doublechance_button btn in single_buttons_list)
         {
             btns_dict.Add(btn.name, btn);
         }
-        print("doublebtns lenght:"+double_buttons_list.Count);
+        print("doublebtns lenght:" + double_buttons_list.Count);
         foreach (doublechance_button btn in double_buttons_list)
         {
-             
-                btns_dict.Add("d" + btn.name, btn);
-                   print("added  a btn double");
+
+            btns_dict.Add("d" + btn.name, btn);
+            print("added  a btn double");
         }
-          print("dict setupdone");
-        foreach(string bt in btns_dict.Keys)
+        print("dict setupdone");
+        foreach (string bt in btns_dict.Keys)
         {
             print(bt);
         }
         // Array.Sort(double_buttons);
         print("setup is done");
     }
+
+
+
+
+
+
     void Start()
     {
         gamesetup();
@@ -78,8 +84,71 @@ public class doublechance_gamemanager : timeManager
         StartCoroutine(UpdateBalanceAndInfo());
         multiplierscrollanimationobject.enabled = false;
         resultstring.text = " ";
+        sendresult();
     }
+    public void sendresult()
+    {
+        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
 
+        string betbuttondata = null;
+        string key = null;
+        int internalkey = -1;
+        bool resetinternalkey = false;
+        for (int i = 0; i < btns_dict.Count; i++)
+        {
+            if (i < 9)
+            {
+                internalkey += 1;
+                key = internalkey.ToString();
+            }
+
+
+            if (i > 9 && i < 20)
+            {
+                if (resetinternalkey == false)
+                {
+                    internalkey = -1;
+                    resetinternalkey = true;
+                }
+                internalkey += 1;
+                key = "d0" + internalkey.ToString();
+
+            }
+            if (i > 19)
+            {
+                internalkey += 1;
+                key = "d" + internalkey.ToString();
+            }
+            print(key);
+            betbuttondata += btns_dict[key].betamount.ToString();
+            betbuttondata += ",";
+        }
+        print(betbuttondata);
+        string sqlquerytosend = "INSERT INTO [taas].[dbo].[doup]  ([a0],[a1],[a2],[a3],[a4],[a5],[a6],[a7],[a8],[a9],[a00],[a01],[a02],[a03],[a04],[a05],[a06],[a07],[a08],[a09],[a10],[a11],[a12],[a13],[a14],[a15],[a16],[a17],[a18],[a19],[a20],[a21],[a22],[a23],[a24],[a25],[a26],[a27],[a28],[a29],[a30],[a31],[a32],[a33],[a34],[a35],[a36],[a37],[a38],[a39],[a40],[a41] ,[a42],[a43],[a44],[a45],[a46],[a47],[a48],[a49],[a50],[a51],[a52],[a53],[a54],[a55],[a56],[a57],[a58],[a59] ,[a60] ,[a61],[a62],[a63],[a64],[a65],[a66],[a67],[a68],[a69],[a70],[a71],[a72],[a73],[a74],[a75],[a76],[a77],[a78],[a79],[a80],[a81],[a82] ,[a83] ,[a84],[a85],[a86],[a87],[a88],[a89],[a90],[a91],[a92],[a93],[a94],[a95],[a96],[a97],[a98],[a99],[tot],[qty],[g_date],[status],[ter_id],[g_id],[g_time],[p_time],[bar],[gm],[flag])" +
+            "VALUES(" + betbuttondata + totalbetplaced + "," + totalbetplaced + ",'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + ",'Print'," + "'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + generatebarcode() + "'" + "," + "' gm '" + "," + 1 + ")";
+        print(sqlquerytosend);
+        SqlCommand sqlCmnd = new SqlCommand();
+        SqlDataReader sqldata = null;
+        sqlCmnd.CommandTimeout = 60;
+        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+        sqlCmnd.CommandType = CommandType.Text;
+        sqlCmnd.CommandText = sqlquerytosend;
+        sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+
+        sqldata.Close();
+        sqldata.DisposeAsync();
+        print(totalbetplaced);
+
+    }
+    public string generatebarcode()
+    {
+        string output = null;
+        string[] alphabets = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+
+        output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
+        print(output);
+        return output;
+    }
     // Update is called once per frame
     IEnumerator UpdateBalanceAndInfo()
     {
