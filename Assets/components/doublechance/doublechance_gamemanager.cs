@@ -22,11 +22,41 @@ public class doublechance_gamemanager : timeManager
     public int totalbalance;
     public int totalbetplaced;
     public TMPro.TMP_Text totalplay;
+    public GameObject singlebutton_panel;
+    public GameObject doublebutton_panel;
+
+    [SerializeField] public doublechance_button[] single_buttons = new doublechance_button[10];
+    
+
+    [SerializeField] public doublechance_button[] double_buttons = new doublechance_button[100];
 
     // Start is called before the first frame update
+    public void gamesetup()
+    {
+        int i = 0;
+        print("setting single buttons");
+        foreach (doublechance_button btn in singlebutton_panel.GetComponentsInChildren<doublechance_button>())
+        {
+            single_buttons[i] = btn;
+            i += 1;
+        }
+    
+        i = 0;
+        print("setting double buttons");
+
+        foreach (doublechance_button btn in doublebutton_panel.GetComponentsInChildren<doublechance_button>())
+        {
+            print("found double");
+            double_buttons[i] = btn;
+            i += 1;
+        }
+       // Array.Sort(double_buttons);
+        print("setup is done");
+    }
     void Start()
     {
-        resultstring.enabled=true;
+        gamesetup();
+        resultstring.enabled = true;
         base.Start();
         multiplieranimationobject.SetActive(false);
 
@@ -41,14 +71,14 @@ public class doublechance_gamemanager : timeManager
     {
 
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
-       if(totalbalance<0)
+        if (totalbalance < 0)
         {
             totalbalance = 0;
         }
-        
+
         balance.text = totalbalance.ToString();
-        
-      
+
+
 
         yield return null;
 
@@ -58,7 +88,7 @@ public class doublechance_gamemanager : timeManager
     {
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
-    totalplay.text=totalbetplaced.ToString();
+        totalplay.text = totalbetplaced.ToString();
 
 
     }
@@ -129,7 +159,7 @@ public class doublechance_gamemanager : timeManager
         print(result);
         multiplieranimationobject.SetActive(true);
         multiplieranimationobject.GetComponent<MultiplierAnimation>().resetstate();
-        resultstring.enabled=true;
+        resultstring.enabled = true;
 
         Vector2 sector = resulttosectorconvert(result);
         singles_wheel.TurnWheel((int)sector.y);
@@ -140,11 +170,11 @@ public class doublechance_gamemanager : timeManager
             yield return new WaitForSeconds(0.001f);
         }
         multiplierscrollanimationobject.enabled = false;
-        
+
         StartCoroutine(multiplieranimationobject.GetComponent<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
         yield return new WaitForSeconds(0.3f);
-        print(result.Substring(2,2));
-        resultstring.text = result.Substring(2,2);
+        print(result.Substring(2, 2));
+        resultstring.text = result.Substring(2, 2);
 
         yield return new WaitForFixedUpdate();
         resetTimer();
