@@ -62647,9 +62647,11 @@ MonoBehaviour:
   coinflipobject: {fileID: 1372823122}
   coindanceobject: {fileID: 0}
   win0: {fileID: 1048664430}
+  singletext: {fileID: 1906004511}
+  doubletext: {fileID: 698718187}
   win1: {fileID: 1009294905}
-  win2: {fileID: 26208613}
-  win3: {fileID: 1388401406}
+  win2_single: {fileID: 1009294905}
+  win3_double: {fileID: 26208613}
 --- !u!1 &1862941563
 GameObject:
   m_ObjectHideFlags: 0

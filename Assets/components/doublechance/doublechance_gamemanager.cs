@@ -109,82 +109,88 @@ public class doublechance_gamemanager : timeManager
         resultstring.text = " ";
         sendresult();
         setstatus("place your chip");
+        placebetonall();
     }
     public void sendresult()
     {
 
-        if(totalbetplaced>0){
-        if (totalbetplaced <= totalbalance)
+        if (totalbetplaced > 0)
         {
-            DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-            string bar = generatebarcode();
-            string betbuttondata = null;
-            string key = null;
-            int internalkey = -1;
-            bool resetinternalkey = false;
-            for (int i = 0; i < btns_dict.Count; i++)
+            if (totalbetplaced <= totalbalance)
             {
-                if (i < 9)
+                DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+                string bar = generatebarcode();
+                string betbuttondata = null;
+                string key = null;
+                int internalkey = -1;
+                bool resetinternalkey = false;
+                for (int i = 0; i < btns_dict.Count; i++)
                 {
-                    internalkey += 1;
-                    key = internalkey.ToString();
-                }
-
-
-                if (i > 9 && i < 20)
-                {
-                    if (resetinternalkey == false)
+                    if (i < 9)
                     {
-                        internalkey = -1;
-                        resetinternalkey = true;
+                        internalkey += 1;
+                        key = internalkey.ToString();
                     }
-                    internalkey += 1;
-                    key = "d0" + internalkey.ToString();
+
+
+                    if (i > 9 && i < 20)
+                    {
+                        if (resetinternalkey == false)
+                        {
+                            internalkey = -1;
+                            resetinternalkey = true;
+                        }
+                        internalkey += 1;
+                        key = "d0" + internalkey.ToString();
+
+                    }
+                    if (i > 19)
+                    {
+                        internalkey += 1;
+                        key = "d" + internalkey.ToString();
+                    }
+                    print(key);
+                    betbuttondata += btns_dict[key].betamount.ToString();
+                    betbuttondata += ",";
 
                 }
-                if (i > 19)
+                print(betbuttondata);
+                string sqlquerytosend = "INSERT INTO [taas].[dbo].[doup]  ([a0],[a1],[a2],[a3],[a4],[a5],[a6],[a7],[a8],[a9],[a00],[a01],[a02],[a03],[a04],[a05],[a06],[a07],[a08],[a09],[a10],[a11],[a12],[a13],[a14],[a15],[a16],[a17],[a18],[a19],[a20],[a21],[a22],[a23],[a24],[a25],[a26],[a27],[a28],[a29],[a30],[a31],[a32],[a33],[a34],[a35],[a36],[a37],[a38],[a39],[a40],[a41] ,[a42],[a43],[a44],[a45],[a46],[a47],[a48],[a49],[a50],[a51],[a52],[a53],[a54],[a55],[a56],[a57],[a58],[a59] ,[a60] ,[a61],[a62],[a63],[a64],[a65],[a66],[a67],[a68],[a69],[a70],[a71],[a72],[a73],[a74],[a75],[a76],[a77],[a78],[a79],[a80],[a81],[a82] ,[a83] ,[a84],[a85],[a86],[a87],[a88],[a89],[a90],[a91],[a92],[a93],[a94],[a95],[a96],[a97],[a98],[a99],[tot],[qty],[g_date],[status],[ter_id],[g_id],[g_time],[p_time],[bar],[gm],[flag])" +
+                    "VALUES(" + betbuttondata + totalbetplaced + "," + totalbetplaced + ",'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + ",'Print'," + "'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + bar + "'" + "," + "' gm '" + "," + 1 + ")";
+                print(sqlquerytosend);
+                SqlCommand sqlCmnd = new SqlCommand();
+                SqlDataReader sqldata = null;
+                sqlCmnd.CommandTimeout = 60;
+                sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+                sqlCmnd.CommandType = CommandType.Text;
+                sqlCmnd.CommandText = sqlquerytosend;
+                sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+
+                sqldata.Close();
+                sqldata.DisposeAsync();
+                  
+                print(totalbetplaced);
+
+                foreach (doublechance_button btn in btns_dict.Values)
                 {
-                    internalkey += 1;
-                    key = "d" + internalkey.ToString();
+                    btn.ResetBetButton();
                 }
-                print(key);
-                betbuttondata += btns_dict[key].betamount.ToString();
-                betbuttondata += ",";
+                setstatus("your bet have been accepted " + bar);
+                    GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
 
             }
-            print(betbuttondata);
-            string sqlquerytosend = "INSERT INTO [taas].[dbo].[doup]  ([a0],[a1],[a2],[a3],[a4],[a5],[a6],[a7],[a8],[a9],[a00],[a01],[a02],[a03],[a04],[a05],[a06],[a07],[a08],[a09],[a10],[a11],[a12],[a13],[a14],[a15],[a16],[a17],[a18],[a19],[a20],[a21],[a22],[a23],[a24],[a25],[a26],[a27],[a28],[a29],[a30],[a31],[a32],[a33],[a34],[a35],[a36],[a37],[a38],[a39],[a40],[a41] ,[a42],[a43],[a44],[a45],[a46],[a47],[a48],[a49],[a50],[a51],[a52],[a53],[a54],[a55],[a56],[a57],[a58],[a59] ,[a60] ,[a61],[a62],[a63],[a64],[a65],[a66],[a67],[a68],[a69],[a70],[a71],[a72],[a73],[a74],[a75],[a76],[a77],[a78],[a79],[a80],[a81],[a82] ,[a83] ,[a84],[a85],[a86],[a87],[a88],[a89],[a90],[a91],[a92],[a93],[a94],[a95],[a96],[a97],[a98],[a99],[tot],[qty],[g_date],[status],[ter_id],[g_id],[g_time],[p_time],[bar],[gm],[flag])" +
-                "VALUES(" + betbuttondata + totalbetplaced + "," + totalbetplaced + ",'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + ",'Print'," + "'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + bar + "'" + "," + "' gm '" + "," + 1 + ")";
-            print(sqlquerytosend);
-            SqlCommand sqlCmnd = new SqlCommand();
-            SqlDataReader sqldata = null;
-            sqlCmnd.CommandTimeout = 60;
-            sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-            sqlCmnd.CommandType = CommandType.Text;
-            sqlCmnd.CommandText = sqlquerytosend;
-            sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-
-            sqldata.Close();
-            sqldata.DisposeAsync();
-            print(totalbetplaced);
-
-            foreach (doublechance_button btn in btns_dict.Values)
+            else
             {
-                btn.ResetBetButton();
-            }
-            setstatus("your bet have been accepted " + bar);
-        }
-        else
-        {
-            setstatus("not enough balance");
+                setstatus("not enough balance");
 
-            print("not enough balance");
-        }
+                print("not enough balance");
+            }
         }
         else
         {
-              setstatus("no chip placed");
+            setstatus("no chip placed");
         }
+          StartCoroutine(UpdateBalanceAndInfo());
     }
     public string generatebarcode()
     {
@@ -218,7 +224,7 @@ public class doublechance_gamemanager : timeManager
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
         totalplay.text = totalbetplaced.ToString();
-       
+
 
     }
     public IEnumerator addlastgameresults()
@@ -305,16 +311,20 @@ public class doublechance_gamemanager : timeManager
         print(result.Substring(2, 2));
         resultstring.text = result.Substring(2, 2);
 
-        yield return new WaitForFixedUpdate();
-        resetTimer();
-        sequenceended = true;
-        
+
+
+
+
         getwinamount();
         yield return new WaitForSeconds(1.0f);
         coinflipobject.SetActive(false);
         yield return new WaitForSeconds(4.0f);
         winamount_panel.SetActive(false);
         //GetComponent<AudioSource>().Stop();
+
+
+        sequenceended = true;
+        resetTimer();
         StartCoroutine(addlastgameresults());
 
     }
@@ -409,20 +419,29 @@ public class doublechance_gamemanager : timeManager
         return xy;
 
     }
-[Header("win settings")]
+    [Header("win settings")]
     public GameObject winamount_panel;
-    public TMPro.TMP_Text   winamount_panel_wintext;
+    public TMPro.TMP_Text winamount_panel_wintext;
     public GameObject uwinanimation;
-    public GameObject  coinflipobject;
-    public GameObject  coindanceobject;
-     public TMPro.TMP_Text   win0;
-     public TMPro.TMP_Text   win1;
-     public TMPro.TMP_Text   win2;
-     public TMPro.TMP_Text   win3;
+    public GameObject coinflipobject;
+    public GameObject coindanceobject;
+    public TMPro.TMP_Text win0;
+    public TMPro.TMP_Text singletext;
+    public TMPro.TMP_Text doubletext;
+
+    public TMPro.TMP_Text win1;
+    public TMPro.TMP_Text win2_single;
+    public TMPro.TMP_Text win3_double;
 
 
-
-        void getwinamount()
+    public void placebetonall()
+    {
+        foreach (doublechance_button btn in FindObjectsOfType<doublechance_button>())
+        {
+            btn.onBetbuttonclicked();
+        }
+    }
+    void getwinamount()
     {
 
         SqlCommand sqlCmnd = new SqlCommand();
@@ -430,16 +449,27 @@ public class doublechance_gamemanager : timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[doup] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "'";//this is the sql command we use to get data about user
+        sqlCmnd.CommandText = "select r.result,'a' + SUBSTRING(r.result, 3, 2)  result,sum(d.clm) as total,sum(a" + result.Substring(2, 2) + ")*90 as doublecol,sum(d.clm)-(sum(a" + result.Substring(2, 2) + ")*90) as single from doup d, resultsDou r WHERE r.g_date=d.g_date and r.g_time=d.g_time and d.g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "' and d.g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' AND ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' GROUP BY r.result";
         print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
+        int singlewinamount = 0;
+        int doublewinamount = 0;
 
-        while (sqlData.Read())
+        if (sqlData.Read())
         {
-            if (sqlData["clm"] != null || sqlData["clm"] != "Null")
+            if (sqlData["total"] != null || sqlData["total"] != "Null")
             {
-                intwinamount += Convert.ToInt32(sqlData["clm"].ToString());
+                intwinamount = Convert.ToInt32(sqlData["total"].ToString());
+                  if(sqlData["single"] != null || sqlData["single"] != "Null")
+                {
+                singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
+                }
+                if(sqlData["doublecol"] != null || sqlData["doublecol"] != "Null")
+                {
+                doublewinamount = Convert.ToInt32(sqlData["doublecol"].ToString());
+                }
+                
                 winamount_panel.SetActive(true);
                 winamount_panel_wintext.text = intwinamount.ToString();
             }
@@ -452,13 +482,13 @@ public class doublechance_gamemanager : timeManager
         if (intwinamount > 0)
         {
 
-           // GetComponent<AudioSource>().clip = winaudio;
-          //  GetComponent<AudioSource>().Play();
+            // GetComponent<AudioSource>().clip = winaudio;
+            //  GetComponent<AudioSource>().Play();
             uwinanimation.SetActive(true);
             coinflipobject.SetActive(true);
             if (intwinamount > 900)
             {
-                
+
                 coindanceobject.SetActive(true);
 
             }
@@ -469,6 +499,10 @@ public class doublechance_gamemanager : timeManager
             GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
             win0.text = intwinamount.ToString();
             win1.text = intwinamount.ToString();
+            singletext.text = singlewinamount.ToString();
+            doubletext.text = doublewinamount.ToString();
+            win2_single.text = singlewinamount.ToString();
+            win3_double.text= doublewinamount.ToString();
         }
         if (intwinamount <= 0)
         {
@@ -483,7 +517,7 @@ public class doublechance_gamemanager : timeManager
     void removestat()
     {
         //
-        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='"+DateTime.Now+"'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='" + DateTime.Now + "'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
 
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -493,14 +527,15 @@ public class doublechance_gamemanager : timeManager
         sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         print(command);
-        if (sqlData.Read()) { 
-        
+        if (sqlData.Read())
+        {
+
         }
 
         sqlData.Close();
         sqlData.DisposeAsync();
     }
-     public void claimbets()
+    public void claimbets()
     {
 
         string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[doup]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
