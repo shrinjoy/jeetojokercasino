@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c642bbd9419a7694987a703649765bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnableConsole: 1
+  m_EnableConsole: 0
   m_ToggleKey: 289
   m_ShowTimestamps: 1
   m_DontDestroyOnLoad: 1

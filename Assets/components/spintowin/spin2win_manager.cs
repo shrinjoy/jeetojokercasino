@@ -461,7 +461,11 @@ public class spin2win_manager : timeManager
     }
     void removestat()
     {
-        string command = "UPDATE [taas].[dbo].[tengp] set status='Claimed' ,clm_tm='"+DateTime.Now+"'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+
+     DateTime   currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+
+
+        string command = "UPDATE [taas].[dbo].[tengp] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -507,22 +511,8 @@ public class spin2win_manager : timeManager
         sqlData.DisposeAsync();
         GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, betamountwon);
       
-        removestat2();
+        removestat();
 
     }
-    void removestat2()
-    {
-        string command = "UPDATE [taas].[dbo].[tengp] set status='Claimed',clm_tm='"+DateTime.Now+"'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-        SqlCommand sqlCmnd = new SqlCommand();
-        SqlDataReader sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
-        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        while (sqlData.Read()) { }
-
-        sqlData.Close();
-        sqlData.DisposeAsync();
-    }
+   
 }
