@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using ZXing.QrCode.Internal;
+
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 

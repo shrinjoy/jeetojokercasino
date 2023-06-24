@@ -6,7 +6,7 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using ZXing.QrCode.Internal;
+
 
 public class bet16 : timeManager
 {

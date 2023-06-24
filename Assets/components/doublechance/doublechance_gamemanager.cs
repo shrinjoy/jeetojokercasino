@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using UnityEngine;
+using TMPro;
 
 public class doublechance_gamemanager : timeManager
 {
@@ -32,7 +33,40 @@ public class doublechance_gamemanager : timeManager
 
     [SerializeField] public List<doublechance_button> double_buttons_list = new List<doublechance_button>();
 
+    [SerializeField] public List<betdata> buttons_list_rebet = new List<betdata>();
+    [SerializeField] GameObject single_hightlight,double_highlight;
+    [SerializeField] TMP_Text single_text_highlight;
+    [SerializeField] TMP_Text double_text_highlight;
+    [SerializeField] TMP_Text singlebets;
+    [SerializeField] TMP_Text doublebets;
+
+
     Coroutine statuscr;
+
+
+    public void updateplayamount()
+    {
+
+        int s = 0;
+        int d = 0;
+        foreach(doublechance_button sb in single_buttons_list)
+        {
+            s += sb.betamount;
+        }
+        foreach (doublechance_button db in double_buttons_list)
+        {
+            d += db.betamount;
+        }
+        singlebets.text = s.ToString();
+        doublebets.text = d.ToString();
+    }
+
+   public struct betdata
+    {
+        public doublechance_button betbtn;
+        public int btnvalue;
+    }
+
     public void setstatus(string s)
     {
         if (statuscr != null)
@@ -90,12 +124,6 @@ public class doublechance_gamemanager : timeManager
         // Array.Sort(double_buttons);
         print("setup is done");
     }
-
-
-
-
-
-
     void Start()
     {
         gamesetup();
@@ -109,7 +137,7 @@ public class doublechance_gamemanager : timeManager
         resultstring.text = " ";
         sendresult();
         setstatus("place your chip");
-        placebetonall();
+         // placebetonall();
     }
     public void sendresult()
     {
@@ -168,15 +196,27 @@ public class doublechance_gamemanager : timeManager
 
                 sqldata.Close();
                 sqldata.DisposeAsync();
-                  
+
                 print(totalbetplaced);
 
+                int totalbet = totalbetplaced;
+
+                buttons_list_rebet.Clear();
                 foreach (doublechance_button btn in btns_dict.Values)
                 {
+                    if (btn.betamount > 0)
+                    {
+                        betdata btd = new betdata();
+                        btd.betbtn = btn;
+                        btd.btnvalue = btn.betamount;
+                        buttons_list_rebet.Add(btd);
+                    }
+
                     btn.ResetBetButton();
                 }
                 setstatus("your bet have been accepted " + bar);
-                    GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
+
+                GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbet);
 
             }
             else
@@ -190,7 +230,7 @@ public class doublechance_gamemanager : timeManager
         {
             setstatus("no chip placed");
         }
-          StartCoroutine(UpdateBalanceAndInfo());
+        StartCoroutine(UpdateBalanceAndInfo());
     }
     public string generatebarcode()
     {
@@ -201,6 +241,15 @@ public class doublechance_gamemanager : timeManager
         print(output);
         return output;
     }
+
+    public void rebet()
+    {
+        foreach (betdata btn in buttons_list_rebet)
+        {
+            btn.betbtn.Updatebetdata(btn.btnvalue);
+        }
+    }
+
     // Update is called once per frame
     IEnumerator UpdateBalanceAndInfo()
     {
@@ -224,7 +273,7 @@ public class doublechance_gamemanager : timeManager
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
         totalplay.text = totalbetplaced.ToString();
-
+        totalbetplaced = Mathf.Clamp(totalbetplaced, 0, 9999999);
 
     }
     public IEnumerator addlastgameresults()
@@ -294,8 +343,9 @@ public class doublechance_gamemanager : timeManager
         print(result);
         multiplieranimationobject.SetActive(true);
         multiplieranimationobject.GetComponent<MultiplierAnimation>().resetstate();
-        resultstring.enabled = true;
-
+        resultstring.enabled = false;
+        single_hightlight.SetActive(false);
+        double_highlight.SetActive(false);
         Vector2 sector = resulttosectorconvert(result);
         singles_wheel.TurnWheel((int)sector.y);
         doubles_wheel.TurnWheel((int)sector.x);
@@ -309,10 +359,15 @@ public class doublechance_gamemanager : timeManager
         StartCoroutine(multiplieranimationobject.GetComponent<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
         yield return new WaitForSeconds(0.3f);
         print(result.Substring(2, 2));
+        resultstring.enabled = true ;
+
         resultstring.text = result.Substring(2, 2);
-
-
-
+        single_hightlight.SetActive(true);
+        double_highlight.SetActive(true);
+        single_text_highlight.text = Convert.ToInt32(result.Substring(3, 1)).ToString(); 
+        double_text_highlight.text= Convert.ToInt32(result.Substring(2, 1)).ToString();
+        // int singles = Convert.ToInt32(result.Substring(3, 1));
+        // int doubles = Convert.ToInt32(result.Substring(2, 1));
 
 
         getwinamount();
@@ -461,15 +516,15 @@ public class doublechance_gamemanager : timeManager
             if (sqlData["total"] != null || sqlData["total"] != "Null")
             {
                 intwinamount = Convert.ToInt32(sqlData["total"].ToString());
-                  if(sqlData["single"] != null || sqlData["single"] != "Null")
+                if (sqlData["single"] != null || sqlData["single"] != "Null")
                 {
-                singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
+                    singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
                 }
-                if(sqlData["doublecol"] != null || sqlData["doublecol"] != "Null")
+                if (sqlData["doublecol"] != null || sqlData["doublecol"] != "Null")
                 {
-                doublewinamount = Convert.ToInt32(sqlData["doublecol"].ToString());
+                    doublewinamount = Convert.ToInt32(sqlData["doublecol"].ToString());
                 }
-                
+
                 winamount_panel.SetActive(true);
                 winamount_panel_wintext.text = intwinamount.ToString();
             }
@@ -502,7 +557,7 @@ public class doublechance_gamemanager : timeManager
             singletext.text = singlewinamount.ToString();
             doubletext.text = doublewinamount.ToString();
             win2_single.text = singlewinamount.ToString();
-            win3_double.text= doublewinamount.ToString();
+            win3_double.text = doublewinamount.ToString();
         }
         if (intwinamount <= 0)
         {
@@ -517,7 +572,8 @@ public class doublechance_gamemanager : timeManager
     void removestat()
     {
         //
-        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='" + DateTime.Now + "'  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+      DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='"  + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000")  + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id +"' and status = 'Prize'";
 
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -539,6 +595,7 @@ public class doublechance_gamemanager : timeManager
     {
 
         string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[doup]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
+
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;

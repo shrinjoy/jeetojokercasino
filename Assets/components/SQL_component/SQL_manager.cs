@@ -14,37 +14,54 @@ public class SQL_manager : MonoBehaviour
     [SerializeField] GameObject badmacid;
     [SerializeField] TMPro.TMP_Text warningtext;
     public DateTime server_day;
-    private void Awake()
+    bool setupdone = false;
+    private void Start()
     {
-      ConnecttoServer();
+        try
+        {
+            ConnecttoServer();
+            setupdone = true;
+        }
+        catch(Exception ex){
+        print("failed to connect..... retrying");
+            ConnecttoServer();
+        }
 
     }
     public void ConnecttoServer()
     {
-        try
-        {
+       
             SQLconn = new SqlConnection();
             DontDestroyOnLoad(this);
             SQLconn = initSQL();
-            print(SQLconn.State);
-            print(DateTime.Today.ToString("yyyy-MM-dd"));
+            
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        }
-        catch (Exception ex)
-        {
-            Awake();
-        }
+        print("connecting to server...");
+          
     }
     public void Update()
     {
-        if (SQLconn.State == ConnectionState.Closed)
+        if (setupdone == true)
         {
-            ConnecttoServer();
-        }
-        if(SceneManager.GetActiveScene().buildIndex==0 &&( warningtext ==null || badmacid ==null))
-        {
-            badmacid = GameObject.FindGameObjectWithTag("WN");
-            warningtext = GameObject.FindGameObjectWithTag("WT").GetComponent<TMPro.TMP_Text>();    
+            
+                if (SQLconn.State == ConnectionState.Closed)
+                {
+                try
+                {
+                    ConnecttoServer();
+                }
+                catch (Exception ex)
+                {
+                    print("failed to reconnect in update loop trying to reconnect.....");
+                }
+            }
+                if (SceneManager.GetActiveScene().buildIndex == 0 && (warningtext == null || badmacid == null))
+                {
+                    badmacid = GameObject.FindGameObjectWithTag("WN");
+                    warningtext = GameObject.FindGameObjectWithTag("WT").GetComponent<TMPro.TMP_Text>();
+                }
+            
+           
         }
     }
     public DateTime get_time()
@@ -70,7 +87,7 @@ public class SQL_manager : MonoBehaviour
     //initSQL() inits the sql connection and opens it for other methods dependend on sql to run 
     public SqlConnection initSQL()
     {
-        string sqlConnectionString = @"Data Source=103.76.228.21\SA,1433;User ID = sa; Password=cron@123#;Initial Catalog = taas";
+        string sqlConnectionString = @"Data Source=103.76.228.21,1433;User ID = sa; Password=cron@123#;Initial Catalog = taas";
         SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
         sqlConnection.Open();
         return sqlConnection;

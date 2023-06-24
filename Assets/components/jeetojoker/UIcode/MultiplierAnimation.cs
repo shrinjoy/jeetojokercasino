@@ -11,13 +11,16 @@ public class MultiplierAnimation : MonoBehaviour
     public RectTransform multiplierlisttextobject;
     float fontsizefinal;
     float fontsizeinitial;
-    Vector3 startingpos;
-   
+    [SerializeField]Vector3 startingpos;
+    private void Awake()
+    {
+        startingpos = multiplier.transform.position;
+
+    }
     private void Start()
     {
         fontsizeinitial = multiplier.fontSize;
         fontsizefinal = multiplier.fontSize - 5;
-        startingpos = multiplier.transform.gameObject.transform.position;
 
 
     }
