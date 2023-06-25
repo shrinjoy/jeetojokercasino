@@ -187,7 +187,7 @@ public class spin2win_manager : timeManager
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[results] order by [taas].[dbo].[results].id desc";
-        print(sqlCmnd.CommandText);
+        //print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
         {
@@ -210,7 +210,7 @@ public class spin2win_manager : timeManager
                 result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("spin2win");
                 if (result != null && sequenceended == true)
                 {
-                    print("game sequnce started");
+                    //print("game sequnce started");
 
                     sequenceended = false;
                     StartCoroutine(Spin2Win());
@@ -219,7 +219,7 @@ public class spin2win_manager : timeManager
         }
         catch (Exception ex)
         {
-            print("failed to get result");
+            //print("failed to get result");
             this.GameSequence();
         }
 
@@ -299,7 +299,7 @@ public class spin2win_manager : timeManager
             sector= 7;
         }
 #endregion
-        print(sector);
+        //print(sector);
         GameObject.FindObjectOfType<AudioSource>().clip = wheelspinningsound;
         GameObject.FindObjectOfType<AudioSource>().Play();
         fortunewheelobject.TurnWheel(sector);
@@ -343,7 +343,7 @@ public class spin2win_manager : timeManager
        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
         {
-            print("called sebt result");
+            //print("called sebt result");
             if ((totalbalance -totalbetplaced)>=0 && totalbalance>0&&  totalbetplaced > 0)
             {
                 anybetsplaced = true;
@@ -356,7 +356,7 @@ public class spin2win_manager : timeManager
                     + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount
                     + "," + totalbetplaced + "," + totalbetplaced + ","
                     + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 +","+totalbalance+ ")";
-                print(command);
+                //print(command);
                 SqlCommand sqlCmnd = new SqlCommand();
                 SqlDataReader sqldata = null;
                 sqlCmnd.CommandTimeout = 60;
@@ -379,7 +379,7 @@ public class spin2win_manager : timeManager
                     GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Add(data);
                     btns.resetbet();
                 }
-                print(totalbetplaced);
+                //print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
                 showstatus("your bet has been accepted ID:"+barcode);
@@ -400,7 +400,7 @@ public class spin2win_manager : timeManager
         string[] alphabets = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
         output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
-        print(output);
+        //print(output);
         return output;
     }
     void getwinamount()
@@ -412,7 +412,7 @@ public class spin2win_manager : timeManager
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[tengp] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "'";//this is the sql command we use to get data about user
-        print(sqlCmnd.CommandText);
+        //print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
 
@@ -443,7 +443,7 @@ public class spin2win_manager : timeManager
             GameObject.FindObjectOfType<AudioSource>().Play();
 
 
-            print("winamount:" + intwinamount);
+            //print("winamount:" + intwinamount);
             GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
           
             wintext.text = intwinamount.ToString();
@@ -452,7 +452,7 @@ public class spin2win_manager : timeManager
         }
         if (intwinamount <= 0)
         {
-            print("no win amount");
+            //print("no win amount");
             wintext.text = " "; 
         }
 
@@ -477,7 +477,7 @@ public class spin2win_manager : timeManager
         {
 
         }
-        print(command);
+        //print(command);
         sqlData.Close();
         sqlData.DisposeAsync();
     }
@@ -503,7 +503,7 @@ public class spin2win_manager : timeManager
             }
             catch
             {
-                print("no amount claimed");
+                //print("no amount claimed");
             }
 
         }

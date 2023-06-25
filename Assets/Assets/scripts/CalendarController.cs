@@ -147,7 +147,7 @@ public class CalendarController : MonoBehaviour
         datetimeyear = (day + "-" +GetMonth(_monthNumText.text)+ "-" + _yearNumText.text);
        // datetimeyear = DateTime.Parse(datetimeyear).ToString("dd-MMM-yyyy");
 
-        print(calendertext.name);
+        //print(calendertext.name);
         calendertext.text = datetimeyear;
         _calendarPanel.SetActive(false);
 

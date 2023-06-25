@@ -12,22 +12,27 @@ public class doublechance_button : MonoBehaviour
 
     public int betamount;
     public int previousbetamount = 0;
-
+    doublechance_gamemanager dbgm;
+    double_chance_removebutton dbrb;
+    timeManager timeManager;
     public void ResetBetButton()
     {
         backgroundimage.SetActive(false);
         buttonbetamounttext.enabled = false;
-        GameObject.FindObjectOfType<doublechance_gamemanager>().totalbetplaced -= betamount;
+       dbgm.totalbetplaced -= betamount;
         betamount = 0;
         previousbetamount = 0;
-        GameObject.FindObjectOfType<doublechance_gamemanager>().updateplayamount();
+       
+        StartCoroutine(dbgm.updateplayamount());
 
 
     }
     public void Start()
     {
         betbuttonID.text = this.transform.name;
-
+        dbgm = GameObject.FindObjectOfType<doublechance_gamemanager>();
+        dbrb = GameObject.FindObjectOfType<double_chance_removebutton>();
+        timeManager = GameObject.FindObjectOfType<timeManager>();
 
     }
     public void Updatebetdata(int betvalue)
@@ -36,36 +41,36 @@ public class doublechance_button : MonoBehaviour
         backgroundimage.SetActive(true);
         buttonbetamounttext.enabled = true;
         buttonbetamounttext.text = betamount.ToString();
-        GameObject.FindObjectOfType<doublechance_gamemanager>().totalbetplaced += betamount - previousbetamount;
+        dbgm.totalbetplaced += betamount - previousbetamount;
         previousbetamount = betamount;
     }
 
     public void onBetbuttonclicked()
     {
-        if (GameObject.FindAnyObjectByType<double_chance_removebutton>().removebet == false)
+        if (dbrb.removebet == false)
         {
-            if ((betamount + GameObject.FindObjectOfType<timeManager>().selectedcoinamount + GameObject.FindObjectOfType<doublechance_gamemanager>().totalbetplaced) < GameObject.FindObjectOfType<doublechance_gamemanager>().totalbalance)
+            if ((betamount + timeManager.selectedcoinamount + dbgm.totalbetplaced) < dbgm.totalbalance)
             {
-                betamount += GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                betamount += timeManager.selectedcoinamount;
                 backgroundimage.SetActive(true);
                 buttonbetamounttext.enabled = true;
                 buttonbetamounttext.text = betamount.ToString();
-                GameObject.FindObjectOfType<doublechance_gamemanager>().totalbetplaced += betamount - previousbetamount;
+                dbgm.totalbetplaced += betamount - previousbetamount;
                 previousbetamount = betamount;
             }
             else
             {
-                print("not enough balance");
+                //print("not enough balance");
             }
         }
-        else if (GameObject.FindAnyObjectByType<double_chance_removebutton>().removebet == true)
+        else if (dbrb.removebet == true)
         {
             if (betamount > 0)
             {
-                betamount -= GameObject.FindObjectOfType<timeManager>().selectedcoinamount;
+                betamount -= timeManager.selectedcoinamount;
             } 
 
-            GameObject.FindObjectOfType<doublechance_gamemanager>().totalbetplaced -= previousbetamount-betamount;
+           dbgm.totalbetplaced -= previousbetamount-betamount;
             previousbetamount = betamount;
 
             buttonbetamounttext.text = betamount.ToString();
@@ -75,6 +80,6 @@ public class doublechance_button : MonoBehaviour
                 buttonbetamounttext.enabled = false;
             }
         }
-        GameObject.FindObjectOfType<doublechance_gamemanager>().updateplayamount();
+        StartCoroutine(dbgm.updateplayamount());
     }
 }

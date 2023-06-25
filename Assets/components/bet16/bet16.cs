@@ -177,7 +177,7 @@ public class bet16 : timeManager
                         + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount + "," + bet_buttons[10].betamount + "," + bet_buttons[11].betamount + "," + bet_buttons[12].betamount + "," + bet_buttons[13].betamount + "," + bet_buttons[14].betamount + "," + bet_buttons[15].betamount
                         + "," + totalbetplaced + "," + totalbetplaced + ","
                         + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 + "," + totalbalance + ")";
-                    print(command);
+                    //print(command);
                     SqlCommand sqlCmnd = new SqlCommand();
                     SqlDataReader sqldata = null;
                     sqlCmnd.CommandTimeout = 60;
@@ -188,7 +188,7 @@ public class bet16 : timeManager
 
                     sqldata.Close();
                     sqldata.DisposeAsync();
-                    print(totalbetplaced);
+                    //print(totalbetplaced);
                     GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
 
                     GameObject.FindObjectOfType<clearbutton>().betbuttons2.Clear();
@@ -234,7 +234,7 @@ public class bet16 : timeManager
         string[] alphabets = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
         output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
-        print(output);
+        //print(output);
         return output;
     }
     public void FakeUpdateBalance()
@@ -263,7 +263,7 @@ public class bet16 : timeManager
                 result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("bihari16");
                 if (result != null && sequenceended == true)
                 {
-                    print("game sequnce started");
+                    //print("game sequnce started");
 
                     sequenceended = false;
                     StartCoroutine(bihari6sequence());
@@ -272,7 +272,7 @@ public class bet16 : timeManager
         }
         catch (Exception ex)
         {
-            print("failed to get result");
+            //print("failed to get result");
             this.GameSequence();
         }
 
@@ -293,14 +293,14 @@ public class bet16 : timeManager
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[results16]   order by [taas].[dbo].[results16].id desc";
-        print(sqlCmnd.CommandText);
+        //print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         while (sqlData.Read())
         {
 
             if (i < resultsetter.Length)
             {
-                print(sqlData["id"].ToString());
+                //print(sqlData["id"].ToString());
 
                 resultsetter[i].setResult(sqlData["result"].ToString());
                 resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
@@ -318,7 +318,7 @@ public class bet16 : timeManager
     }
     IEnumerator bihari6sequence()
     {
-        print(result);
+        //print(result);
         markerimage.enabled = false;
 
         resultobject.SetActive(false);
@@ -471,7 +471,7 @@ public class bet16 : timeManager
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = "SELECT [clm] FROM [taas].[dbo].[bet16] where g_id=" + GameObject.FindObjectOfType<betManager>().gameResultId + " and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status='Prize' and g_time='" + GameObject.FindObjectOfType<betManager>().gameResultTime.ToString() + "' and g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "'";//this is the sql command we use to get data about user
-        print(sqlCmnd.CommandText);
+        //print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
 
@@ -505,14 +505,14 @@ public class bet16 : timeManager
 
 
 
-            print("winamount:" + intwinamount);
+            //print("winamount:" + intwinamount);
             GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
             win0.text = intwinamount.ToString();
             win1.text = intwinamount.ToString();
         }
         if (intwinamount <= 0)
         {
-            print("no win amount");
+            //print("no win amount");
             win0.text = "";
             win1.text = "";
         }
@@ -538,7 +538,7 @@ public class bet16 : timeManager
         {
 
         }
-        print(command);
+        //print(command);
         sqlData.Close();
         sqlData.DisposeAsync();
     }
@@ -563,7 +563,7 @@ public class bet16 : timeManager
             }
             catch
             {
-                print("no amount claimed");
+                //print("no amount claimed");
             }
 
         }

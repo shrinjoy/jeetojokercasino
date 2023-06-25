@@ -66,7 +66,7 @@ public class CameraAnchor : MonoBehaviour
         }
         if (cameraWaitCycles > 0)
         {
-            print(string.Format("CameraAnchor found ViewportHandler instance after waiting {0} frame(s). You might want to check that ViewportHandler has an earlie execution order.", cameraWaitCycles));
+            //print(string.Format("CameraAnchor found ViewportHandler instance after waiting {0} frame(s). You might want to check that ViewportHandler has an earlie execution order.", cameraWaitCycles));
         }
         UpdateAnchor();
         updateAnchorRoutine = null;

@@ -21,7 +21,7 @@ public class Forgotpassword : MonoBehaviour
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = "UPDATE [taas].[dbo].[g_master] set pass = '" + newpassword.text + "' where term_id='" + username.text + "' and pass='" + oldpassword.text + "'";
-        print(sqlCmnd.CommandText);
+        //print(sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         if(sqlData.Read())
         {
