@@ -263,7 +263,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         catch (Exception ex)
         {
             //print("failed to get result");
-            this.GameSequence();
+           // this.GameSequence();
         }
 
     }

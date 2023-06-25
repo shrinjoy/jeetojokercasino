@@ -31,17 +31,16 @@ public class timeManager : MonoBehaviour
         double ts =timetillnextgame.Subtract(servertime).TotalSeconds;
         realtime = ts;
         print(realtime);
-        StartCoroutine(timeloop());
+        InvokeRepeating(nameof(timeloop), 1, 1);
 
     }
 
     // Update is called once per frame
-    public IEnumerator timeloop()
+    public void timeloop()
     {
 
-        while (true)
-        {
-            if (realtime <= 0.0f)
+       
+            if (realtime <= 0.0f )
             {
 
                 try
@@ -61,8 +60,8 @@ public class timeManager : MonoBehaviour
 
 
             }
-            yield return new WaitForSeconds(1.0f);
-        }
+          
+        
 
     }
     public void resetTimer()

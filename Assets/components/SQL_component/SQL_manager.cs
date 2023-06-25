@@ -362,13 +362,13 @@ public class SQL_manager : MonoBehaviour
                 //print("no tag 1");
                 sqlData.Close();
                 sqlData.DisposeAsync();
-                return DateTime.Now;
+                return get_time();
             }
 
         }
         sqlData.Close();
         sqlData.DisposeAsync();
-        return DateTime.Now;
+        return get_time();
     }
 
 }

@@ -220,7 +220,7 @@ public class spin2win_manager : timeManager
         catch (Exception ex)
         {
             //print("failed to get result");
-            this.GameSequence();
+           // this.GameSequence();
         }
 
     }

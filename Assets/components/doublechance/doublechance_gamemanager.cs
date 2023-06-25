@@ -350,8 +350,8 @@ public class doublechance_gamemanager : timeManager
         }
         catch (Exception ex)
         {
-            //print("failed to get result");
-            this.GameSequence();
+            print("failed to get result");
+           // this.GameSequence();
         }
 
     }

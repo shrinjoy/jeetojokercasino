@@ -273,7 +273,7 @@ public class bet16 : timeManager
         catch (Exception ex)
         {
             //print("failed to get result");
-            this.GameSequence();
+          //  this.GameSequence();
         }
 
     }
