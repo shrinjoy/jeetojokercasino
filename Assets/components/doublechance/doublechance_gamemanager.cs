@@ -46,7 +46,7 @@ public class doublechance_gamemanager : timeManager
     Coroutine statuscr;
 
 
-    public IEnumerator  updateplayamount()
+    public void  updateplayamount()
     {
 
         int s = 0;
@@ -54,17 +54,17 @@ public class doublechance_gamemanager : timeManager
         foreach(doublechance_button sb in single_buttons_list)
         {
             s += sb.betamount;
-            yield return new WaitForSeconds(0.001f);
+            
         }
         foreach (doublechance_button db in double_buttons_list)
         {
             d += db.betamount;
-            yield return new WaitForSeconds(0.001f);
+         
 
         }
         singlebets.text = s.ToString();
         doublebets.text = d.ToString();
-        yield return null;
+        
     }
 
    public struct betdata
@@ -122,11 +122,7 @@ public class doublechance_gamemanager : timeManager
             btns_dict.Add("d" + btn.name, btn);
             //print("added  a btn double");
         }
-        //print("dict setupdone");
-        foreach (string bt in btns_dict.Keys)
-        {
-            //print(bt);
-        }
+       
         // Array.Sort(double_buttons);
         //print("setup is done");
     }
@@ -258,6 +254,7 @@ public class doublechance_gamemanager : timeManager
         {
             btn.betbtn.Updatebetdata(btn.btnvalue);
         }
+        updateplayamount();
     }
 
     // Update is called once per frame
@@ -295,12 +292,13 @@ public class doublechance_gamemanager : timeManager
             {
                 Destroy(gb.gameObject);
             }
+         
         }
      
 
 
         
-        int i = 0;
+       
 
         SqlCommand sqlCmnd = new SqlCommand();
         
@@ -311,21 +309,16 @@ public class doublechance_gamemanager : timeManager
         sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsDou] order by [taas].[dbo].[resultsDou].id desc";
       
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        if (sqlData.Read())
-        {
+        
             while (sqlData.Read())
             {
                 GameObject gb = GameObject.Instantiate(last10resultprefab, ResultPanel_content.transform, false);
-
+            print("LAST 10 RESULTS:" + sqlData["result"].ToString() + sqlData["status"].ToString());
                 gb.GetComponent<last10resultobjectsetter>().setdata(sqlData["result"].ToString() + sqlData["status"].ToString());
                 yield return null;
 
             }
-        }
-        else
-        {
-            print("previous results not found");
-        }
+        
         sqlData.Close();
         sqlData.DisposeAsync();
 
@@ -357,6 +350,23 @@ public class doublechance_gamemanager : timeManager
     }
     IEnumerator doublechancesequence()
     {
+        uwinanimation.SetActive(false);
+
+        foreach (doublechance_button btn in single_buttons_list)
+        {
+            btn.ResetBetButton();
+        }
+        foreach (doublechance_button btn in double_buttons_list)
+        {
+            btn.ResetBetButton();
+        }
+        foreach(buttonpanelanimaion btnanim in GameObject.FindObjectsOfType<buttonpanelanimaion>())
+        {
+            if(btnanim.isactive==true)
+            {
+                btnanim.setpanelstate();
+            }
+        }
         //print(result);
         multiplieranimationobject.SetActive(true);
         multiplieranimationobject.GetComponent<MultiplierAnimation>().resetstate();
@@ -392,6 +402,8 @@ public class doublechance_gamemanager : timeManager
         coinflipobject.SetActive(false);
         yield return new WaitForSeconds(4.0f);
         winamount_panel.SetActive(false);
+        uwinanimation.SetActive(false);
+
         //GetComponent<AudioSource>().Stop();
 
 
@@ -530,20 +542,27 @@ public class doublechance_gamemanager : timeManager
 
         if (sqlData.Read())
         {
-            if (sqlData["total"] != null || sqlData["total"] != "Null")
+            if (sqlData["total"] != null || sqlData["total"].ToString() != "Null" || sqlData["total"].ToString().Trim() != string.Empty)
             {
-                intwinamount = Convert.ToInt32(sqlData["total"].ToString());
-                if (sqlData["single"] != null || sqlData["single"] != "Null")
+                try
                 {
-                    singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
-                }
-                if (sqlData["doublecol"] != null || sqlData["doublecol"] != "Null")
-                {
-                    doublewinamount = Convert.ToInt32(sqlData["doublecol"].ToString());
-                }
+                    print("win amount:" + sqlData["total"].ToString());
+                    intwinamount = Convert.ToInt32(sqlData["total"].ToString()); ;
+                    if (sqlData["single"] != null || sqlData["single"].ToString() != "Null")
+                    {
+                        singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
+                    }
+                    if (sqlData["doublecol"] != null || sqlData["doublecol"].ToString() != "Null")
+                    {
+                        doublewinamount = Convert.ToInt32(sqlData["doublecol"].ToString());
+                    }
 
-                winamount_panel.SetActive(true);
-                winamount_panel_wintext.text = intwinamount.ToString();
+                    winamount_panel.SetActive(true);
+                    winamount_panel_wintext.text = intwinamount.ToString();
+                }
+                catch (Exception ex){
+                
+                }
             }
 
 

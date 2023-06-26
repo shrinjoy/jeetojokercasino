@@ -12,16 +12,12 @@ public class MultiplierAnimation : MonoBehaviour
     float fontsizefinal;
     float fontsizeinitial;
     [SerializeField]Vector3 startingpos;
-    private void Awake()
-    {
-        startingpos = multiplier.transform.position;
-
-    }
-    private void Start()
+   
+    private void OnEnable()
     {
         fontsizeinitial = multiplier.fontSize;
         fontsizefinal = multiplier.fontSize - 5;
-
+        startingpos = multiplier.transform.position;
 
     }
     public void resetstate()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class buttonpanelanimaion : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isactive=false;
+    [HideInInspector]public bool isactive=false;
     public GameObject target;
     public GameObject panel;
     public Vector3 startpos;

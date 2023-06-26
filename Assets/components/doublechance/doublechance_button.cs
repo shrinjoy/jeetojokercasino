@@ -22,8 +22,8 @@ public class doublechance_button : MonoBehaviour
        dbgm.totalbetplaced -= betamount;
         betamount = 0;
         previousbetamount = 0;
-       
-        StartCoroutine(dbgm.updateplayamount());
+
+        dbgm.updateplayamount();
 
 
     }
@@ -61,6 +61,7 @@ public class doublechance_button : MonoBehaviour
             else
             {
                 //print("not enough balance");
+                dbgm.setstatus("not enough balance");
             }
         }
         else if (dbrb.removebet == true)
@@ -80,6 +81,6 @@ public class doublechance_button : MonoBehaviour
                 buttonbetamounttext.enabled = false;
             }
         }
-        StartCoroutine(dbgm.updateplayamount());
+        dbgm.updateplayamount();
     }
 }
