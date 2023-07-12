@@ -604,7 +604,8 @@ public class doublechance_gamemanager : timeManager
                 try
                 {
                     print("win amount:" + sqlData["total"].ToString());
-                    intwinamount = Convert.ToInt32(sqlData["total"].ToString()); ;
+                    intwinamount = Convert.ToInt32(sqlData["total"].ToString());
+                    print("win amount is " + intwinamount);
                     if (sqlData["single"] != null || sqlData["single"].ToString() != "Null")
                     {
                         singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
@@ -614,8 +615,7 @@ public class doublechance_gamemanager : timeManager
                         doublewinamount = Convert.ToInt32(sqlData["doublecol"].ToString());
                     }
 
-                    winamount_panel.SetActive(true);
-                    winamount_panel_wintext.text = intwinamount.ToString();
+                   
                 }
                 catch (Exception ex)
                 {
@@ -630,6 +630,8 @@ public class doublechance_gamemanager : timeManager
 
         if (intwinamount > 0)
         {
+            winamount_panel.SetActive(true);
+            winamount_panel_wintext.text = intwinamount.ToString();
             audiosource.clip = winsound;
             audiosource.Play();
             uwinanimation.SetActive(true);
