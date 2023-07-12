@@ -59,6 +59,13 @@ public class betdetails_prefab : MonoBehaviour
             wontext.text = w;   
             
         }
+        if (mode == 3)
+        {
+            iconpng.gameObject.SetActive(false);
+            betpositiontext.text = bp;
+            playamount.text = pa;
+            wontext.text = w;
+        }
     }
 
 

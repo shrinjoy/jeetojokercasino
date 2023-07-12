@@ -34,7 +34,7 @@ public class doublechance_gamemanager : timeManager
     [SerializeField] public List<doublechance_button> double_buttons_list = new List<doublechance_button>();
 
     [SerializeField] public List<betdata> buttons_list_rebet = new List<betdata>();
-    [SerializeField] GameObject single_hightlight,double_highlight;
+    [SerializeField] GameObject single_hightlight, double_highlight;
     [SerializeField] TMP_Text single_text_highlight;
     [SerializeField] TMP_Text double_text_highlight;
     [SerializeField] TMP_Text singlebets;
@@ -44,30 +44,55 @@ public class doublechance_gamemanager : timeManager
     userManager usermanager;
     betManager betmanager;
     Coroutine statuscr;
+    [SerializeField] GameObject noinputpanel;
 
+    bool nomorebets = false;
+    [Header("win settings")]
+    public GameObject winamount_panel;
+    public TMPro.TMP_Text winamount_panel_wintext;
+    public GameObject uwinanimation;
+    public GameObject coinflipobject;
+    public GameObject coindanceobject;
+    public TMPro.TMP_Text win0;
+    public TMPro.TMP_Text singletext;
+    public TMPro.TMP_Text doubletext;
 
-    public void  updateplayamount()
+    public TMPro.TMP_Text win1;
+    public TMPro.TMP_Text win2_single;
+    public TMPro.TMP_Text win3_double;
+
+    bool resultsetupdone = false;
+    float swc;
+    float dwc;
+    [SerializeField] AudioClip nomorebetsplease;
+    [SerializeField] AudioClip placeyourbets;
+    [SerializeField] AudioClip winsound;
+    [SerializeField] AudioClip wheelspin;
+
+    AudioSource audiosource;
+
+    public void updateplayamount()
     {
 
         int s = 0;
         int d = 0;
-        foreach(doublechance_button sb in single_buttons_list)
+        foreach (doublechance_button sb in single_buttons_list)
         {
             s += sb.betamount;
-            
+
         }
         foreach (doublechance_button db in double_buttons_list)
         {
             d += db.betamount;
-         
+
 
         }
         singlebets.text = s.ToString();
         doublebets.text = d.ToString();
-        
+
     }
 
-   public struct betdata
+    public struct betdata
     {
         public doublechance_button betbtn;
         public int btnvalue;
@@ -122,19 +147,23 @@ public class doublechance_gamemanager : timeManager
             btns_dict.Add("d" + btn.name, btn);
             //print("added  a btn double");
         }
-       
+
         // Array.Sort(double_buttons);
         //print("setup is done");
     }
     void Start()
     {
+         audiosource = gameObject.AddComponent<AudioSource>();
+         swc = singles_wheel.duration;
+         dwc = doubles_wheel.duration;
         base.Start();
         sqlmanager = GameObject.FindObjectOfType<SQL_manager>();
         usermanager = GameObject.FindObjectOfType<userManager>();
         betmanager = GameObject.FindObjectOfType<betManager>();
+        claimbets();
         gamesetup();
         resultstring.enabled = true;
-       
+
         multiplieranimationobject.SetActive(false);
 
         StartCoroutine(addlastgameresults());
@@ -143,7 +172,9 @@ public class doublechance_gamemanager : timeManager
         resultstring.text = " ";
         sendresult();
         setstatus("place your chip");
-         // placebetonall();
+        audiosource.clip = placeyourbets;
+        audiosource.Play();
+        // placebetonall();
     }
     public void sendresult()
     {
@@ -189,8 +220,8 @@ public class doublechance_gamemanager : timeManager
 
                 }
                 //print(betbuttondata);
-                string sqlquerytosend = "INSERT INTO [taas].[dbo].[doup]  ([a0],[a1],[a2],[a3],[a4],[a5],[a6],[a7],[a8],[a9],[a00],[a01],[a02],[a03],[a04],[a05],[a06],[a07],[a08],[a09],[a10],[a11],[a12],[a13],[a14],[a15],[a16],[a17],[a18],[a19],[a20],[a21],[a22],[a23],[a24],[a25],[a26],[a27],[a28],[a29],[a30],[a31],[a32],[a33],[a34],[a35],[a36],[a37],[a38],[a39],[a40],[a41] ,[a42],[a43],[a44],[a45],[a46],[a47],[a48],[a49],[a50],[a51],[a52],[a53],[a54],[a55],[a56],[a57],[a58],[a59] ,[a60] ,[a61],[a62],[a63],[a64],[a65],[a66],[a67],[a68],[a69],[a70],[a71],[a72],[a73],[a74],[a75],[a76],[a77],[a78],[a79],[a80],[a81],[a82] ,[a83] ,[a84],[a85],[a86],[a87],[a88],[a89],[a90],[a91],[a92],[a93],[a94],[a95],[a96],[a97],[a98],[a99],[tot],[qty],[g_date],[status],[ter_id],[g_id],[g_time],[p_time],[bar],[gm],[flag])" +
-                    "VALUES(" + betbuttondata + totalbetplaced + "," + totalbetplaced + ",'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + ",'Print'," + "'" + usermanager.getUserData().id + "'," + betmanager.gameResultId + "," + "'" + betmanager.gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + bar + "'" + "," + "' gm '" + "," + 1 + ")";
+                string sqlquerytosend = "INSERT INTO [taas].[dbo].[doup]  ([a0],[a1],[a2],[a3],[a4],[a5],[a6],[a7],[a8],[a9],[a00],[a01],[a02],[a03],[a04],[a05],[a06],[a07],[a08],[a09],[a10],[a11],[a12],[a13],[a14],[a15],[a16],[a17],[a18],[a19],[a20],[a21],[a22],[a23],[a24],[a25],[a26],[a27],[a28],[a29],[a30],[a31],[a32],[a33],[a34],[a35],[a36],[a37],[a38],[a39],[a40],[a41] ,[a42],[a43],[a44],[a45],[a46],[a47],[a48],[a49],[a50],[a51],[a52],[a53],[a54],[a55],[a56],[a57],[a58],[a59] ,[a60] ,[a61],[a62],[a63],[a64],[a65],[a66],[a67],[a68],[a69],[a70],[a71],[a72],[a73],[a74],[a75],[a76],[a77],[a78],[a79],[a80],[a81],[a82] ,[a83] ,[a84],[a85],[a86],[a87],[a88],[a89],[a90],[a91],[a92],[a93],[a94],[a95],[a96],[a97],[a98],[a99],[tot],[qty],[g_date],[status],[ter_id],[g_id],[g_time],[p_time],[bar],[gm],[flag],[st_point])" +
+                    "VALUES(" + betbuttondata + totalbetplaced + "," + totalbetplaced + ",'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + ",'Print'," + "'" + usermanager.getUserData().id + "'," + betmanager.gameResultId + "," + "'" + betmanager.gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + bar + "'" + "," + "' gm '" + "," + 1 + "," + totalbalance + ")";
                 //print(sqlquerytosend);
                 SqlCommand sqlCmnd = new SqlCommand();
                 SqlDataReader sqldata = null;
@@ -281,6 +312,29 @@ public class doublechance_gamemanager : timeManager
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
         totalplay.text = totalbetplaced.ToString();
         totalbetplaced = Mathf.Clamp(totalbetplaced, 0, 9999999);
+        if (realtime < 10 && nomorebets == false)
+        {
+            noinputpanel.SetActive(true);
+            audiosource.clip = nomorebetsplease;
+            audiosource.Play(); 
+            setstatus("no more bets please");
+            nomorebets = true;
+            foreach (doublechance_button btn in single_buttons_list)
+            {
+                btn.ResetBetButton();
+            }
+            foreach (doublechance_button btn in double_buttons_list)
+            {
+                btn.ResetBetButton();
+            }
+            foreach (buttonpanelanimaion btnanim in GameObject.FindObjectsOfType<buttonpanelanimaion>())
+            {
+                if (btnanim.isactive == true)
+                {
+                    btnanim.setpanelstate();
+                }
+            }
+        }
 
     }
     public IEnumerator addlastgameresults()
@@ -292,33 +346,51 @@ public class doublechance_gamemanager : timeManager
             {
                 Destroy(gb.gameObject);
             }
-         
+
         }
-     
 
 
-        
-       
+
+
+
 
         SqlCommand sqlCmnd = new SqlCommand();
-        
+
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection =sqlmanager.SQLconn;
+        sqlCmnd.Connection = sqlmanager.SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[resultsDou] order by [taas].[dbo].[resultsDou].id desc";
-      
-        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        
-            while (sqlData.Read())
-            {
-                GameObject gb = GameObject.Instantiate(last10resultprefab, ResultPanel_content.transform, false);
-            print("LAST 10 RESULTS:" + sqlData["result"].ToString() + sqlData["status"].ToString());
-                gb.GetComponent<last10resultobjectsetter>().setdata(sqlData["result"].ToString() + sqlData["status"].ToString());
-                yield return null;
 
-            }
+        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+        string lastresult = null;
         
+        while (sqlData.Read())
+        {
+            GameObject gb = GameObject.Instantiate(last10resultprefab, ResultPanel_content.transform, false);
+            gb.GetComponent<last10resultobjectsetter>().setdata(sqlData["result"].ToString() + sqlData["status"].ToString());
+            if (resultsetupdone == false)
+            {
+                lastresult = sqlData["result"].ToString() + sqlData["status"].ToString();
+                Vector2 sector = resulttosectorconvert(lastresult);
+
+                singles_wheel.duration = 0.1f;
+                doubles_wheel.duration = 0.1f;
+                singles_wheel.TurnWheel((int)sector.y);
+                doubles_wheel.TurnWheel((int)sector.x);
+                while (singles_wheel.isspinning == true && singles_wheel.isspinning == true)
+                {
+                    yield return null;
+                }
+
+                resultsetupdone = true;
+            }
+            
+            yield return null;
+
+        }
+
+       
         sqlData.Close();
         sqlData.DisposeAsync();
 
@@ -326,6 +398,7 @@ public class doublechance_gamemanager : timeManager
     }
     public override void GameSequence()
     {
+
         //print("game sequence");
         try
         {
@@ -344,29 +417,17 @@ public class doublechance_gamemanager : timeManager
         catch (Exception ex)
         {
             print("failed to get result");
-           // this.GameSequence();
+            // this.GameSequence();
         }
 
     }
     IEnumerator doublechancesequence()
     {
         uwinanimation.SetActive(false);
+        singles_wheel.duration = swc;
+         doubles_wheel.duration = dwc;
 
-        foreach (doublechance_button btn in single_buttons_list)
-        {
-            btn.ResetBetButton();
-        }
-        foreach (doublechance_button btn in double_buttons_list)
-        {
-            btn.ResetBetButton();
-        }
-        foreach(buttonpanelanimaion btnanim in GameObject.FindObjectsOfType<buttonpanelanimaion>())
-        {
-            if(btnanim.isactive==true)
-            {
-                btnanim.setpanelstate();
-            }
-        }
+
         //print(result);
         multiplieranimationobject.SetActive(true);
         multiplieranimationobject.GetComponent<MultiplierAnimation>().resetstate();
@@ -376,6 +437,9 @@ public class doublechance_gamemanager : timeManager
         Vector2 sector = resulttosectorconvert(result);
         singles_wheel.TurnWheel((int)sector.y);
         doubles_wheel.TurnWheel((int)sector.x);
+        audiosource.clip = wheelspin;
+        audiosource.Play();
+
         multiplierscrollanimationobject.enabled = true;
         while (singles_wheel.isspinning && doubles_wheel.isspinning)
         {
@@ -386,13 +450,13 @@ public class doublechance_gamemanager : timeManager
         StartCoroutine(multiplieranimationobject.GetComponent<MultiplierAnimation>().multiplieranimation(result.Substring(4)));
         yield return new WaitForSeconds(0.3f);
         //print(result.Substring(2, 2));
-        resultstring.enabled = true ;
+        resultstring.enabled = true;
 
         resultstring.text = result.Substring(2, 2);
         single_hightlight.SetActive(true);
         double_highlight.SetActive(true);
-        single_text_highlight.text = Convert.ToInt32(result.Substring(3, 1)).ToString(); 
-        double_text_highlight.text= Convert.ToInt32(result.Substring(2, 1)).ToString();
+        single_text_highlight.text = Convert.ToInt32(result.Substring(3, 1)).ToString();
+        double_text_highlight.text = Convert.ToInt32(result.Substring(2, 1)).ToString();
         // int singles = Convert.ToInt32(result.Substring(3, 1));
         // int doubles = Convert.ToInt32(result.Substring(2, 1));
 
@@ -410,7 +474,11 @@ public class doublechance_gamemanager : timeManager
         sequenceended = true;
         resetTimer();
         StartCoroutine(addlastgameresults());
-
+        noinputpanel.SetActive(false);
+        nomorebets = false;
+        audiosource.clip = placeyourbets;
+        audiosource.Play();
+        setstatus("place your chip");
     }
     public Vector2 resulttosectorconvert(string result)
     {
@@ -503,19 +571,7 @@ public class doublechance_gamemanager : timeManager
         return xy;
 
     }
-    [Header("win settings")]
-    public GameObject winamount_panel;
-    public TMPro.TMP_Text winamount_panel_wintext;
-    public GameObject uwinanimation;
-    public GameObject coinflipobject;
-    public GameObject coindanceobject;
-    public TMPro.TMP_Text win0;
-    public TMPro.TMP_Text singletext;
-    public TMPro.TMP_Text doubletext;
 
-    public TMPro.TMP_Text win1;
-    public TMPro.TMP_Text win2_single;
-    public TMPro.TMP_Text win3_double;
 
 
     public void placebetonall()
@@ -533,8 +589,9 @@ public class doublechance_gamemanager : timeManager
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = sqlmanager.SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = "select r.result,'a' + SUBSTRING(r.result, 3, 2)  result,sum(d.clm) as total,sum(a" + result.Substring(2, 2) + ")*90 as doublecol,sum(d.clm)-(sum(a" + result.Substring(2, 2) + ")*90) as single from doup d, resultsDou r WHERE r.g_date=d.g_date and r.g_time=d.g_time and d.g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "' and d.g_time='" + betmanager.gameResultTime.ToString() + "' AND ter_id='" + usermanager.getUserData().id + "' GROUP BY r.result";
-        //print(sqlCmnd.CommandText);
+        sqlCmnd.CommandText = "select r.result,'a' + SUBSTRING(r.result, 3, 2)  result,sum(isnull(d.clm,0)) + sum(isnull(d.sclm,0)) as total,sum(isnull(d.clm,0)) as doublecol,sum(isnull(d.sclm,0)) as single from doup d, resultsDou r WHERE r.g_date=d.g_date and r.g_time=d.g_time and d.g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("yyyy-MMM-dd") + "' and d.g_time='" + betmanager.gameResultTime.ToString() + "'   AND ter_id='" + usermanager.getUserData().id + "' GROUP BY r.result";
+        
+            print("get win amount:"+sqlCmnd.CommandText);
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
         int intwinamount = 0;
         int singlewinamount = 0;
@@ -560,8 +617,9 @@ public class doublechance_gamemanager : timeManager
                     winamount_panel.SetActive(true);
                     winamount_panel_wintext.text = intwinamount.ToString();
                 }
-                catch (Exception ex){
-                
+                catch (Exception ex)
+                {
+
                 }
             }
 
@@ -572,20 +630,21 @@ public class doublechance_gamemanager : timeManager
 
         if (intwinamount > 0)
         {
-
+            audiosource.clip = winsound;
+            audiosource.Play();
             uwinanimation.SetActive(true);
             coinflipobject.SetActive(true);
             if (intwinamount > 900)
             {
 
-                coindanceobject.SetActive(true);
+                //  coindanceobject.SetActive(true);
 
             }
 
 
 
             //print("winamount:" + intwinamount);
-           sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
+            sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
             win0.text = intwinamount.ToString();
             win1.text = intwinamount.ToString();
             singletext.text = singlewinamount.ToString();
@@ -606,13 +665,13 @@ public class doublechance_gamemanager : timeManager
     void removestat()
     {
         //
-      DateTime currenttime =sqlmanager.get_time();
-        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='"  + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000")  + "'   WHERE  ter_id='" + usermanager.getUserData().id +"' and status = 'Prize'";
+        DateTime currenttime = sqlmanager.get_time();
+        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + usermanager.getUserData().id + "' and status = 'Prize'";
 
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection =sqlmanager.SQLconn;
+        sqlCmnd.Connection = sqlmanager.SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
         sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
@@ -628,7 +687,7 @@ public class doublechance_gamemanager : timeManager
     public void claimbets()
     {
 
-        string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[doup]  WHERE  ter_id='" + usermanager.getUserData().id + "' and status = 'Prize'";
+        string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[doup]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
 
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;

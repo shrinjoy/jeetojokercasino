@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class historypanel : MonoBehaviour
 {
-   [SerializeField] GameObject content;
+    [SerializeField] GameObject content;
 
     [SerializeField] GameObject prefabitem;
     public string barcode;
@@ -22,7 +22,7 @@ public class historypanel : MonoBehaviour
                 Destroy(tf.gameObject);
             }
         }
-        
+
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         sqlCmnd.CommandTimeout = 60;
@@ -31,7 +31,7 @@ public class historypanel : MonoBehaviour
         if (mode == 0)
         {
             sqlCmnd.CommandText = "SELECT [taas].[dbo].[tasp].clm_tm,[taas].[dbo].[tasp].st_point,[taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,[taas].[dbo].[tasp].clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tasp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
-        
+
         }
         if (mode == 1)
         {
@@ -40,19 +40,31 @@ public class historypanel : MonoBehaviour
         }
         if (mode == 2)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].clm_tm,[taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].clm_tm,[taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
+
+        }
+        if (mode == 2)
+        {
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].clm_tm,[taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
+
+        }
+        if (mode == 3)
+        {
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[doup].clm_tm,[taas].[dbo].[doup].st_point,[taas].[dbo].[doup].id,[taas].[dbo].[doup].bar,[taas].[dbo].[doup].g_id,[taas].[dbo].[doup].g_date,[taas].[dbo].[doup].ter_id,[taas].[dbo].[doup].clm,[taas].[dbo].[doup].tot,[taas].[dbo].[doup].status,[taas].[dbo].[doup].g_time,[taas].[dbo].[doup].p_time,[taas].[dbo].[resultsDou].result as gameresult FROM [taas].[dbo].[doup],[taas].[dbo].[resultsDou] WHERE resultsDou.g_date=doup.g_date and resultsDou.g_time=doup.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[doup].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
+
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        //print(sqlCmnd.CommandText);
-       
+        print(sqlCmnd.CommandText);
+
         ////
         while (sqlData.Read())
         {
-             GameObject gb = (GameObject)Instantiate(prefabitem);
-             gb.transform.SetParent(content.transform,false);
-             
-             gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"].ToString(), sqlData["bar"].ToString(), sqlData["tot"].ToString(), sqlData["clm"].ToString(), converttoresult(sqlData["gameresult"].ToString()), sqlData["status"].ToString(), sqlData["st_point"].ToString(), sqlData["clm_tm"].ToString());
+
+            GameObject gb = (GameObject)Instantiate(prefabitem);
+            gb.transform.SetParent(content.transform, false);
+
+            gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"]?.ToString(), sqlData["bar"]?.ToString(), sqlData["tot"]?.ToString(), sqlData["clm"]?.ToString(), converttoresult(sqlData["gameresult"]?.ToString()), sqlData["status"]?.ToString(), sqlData["st_point"]?.ToString(), sqlData["clm_tm"]?.ToString());
         }
         sqlData.Close();
         sqlData.DisposeAsync();
@@ -60,60 +72,61 @@ public class historypanel : MonoBehaviour
     }
     public string converttoresult(string result)
     {
-        if (mode == 0) { 
-        if (result == "NR00")
+        if (mode == 0)
         {
-            return "JH";
-        }
-        else if (result == "NR01")
-        {
-            return "JS";
-        }
-        else if (result == "NR02")
-        {
-            return  "JD";
-        }
-        //
-        else if (result == "NR03")
-        {
-            return "JC";
-        }
-        //
-        else if (result == "NR04")
-        {
-            return "QH";
-        }
-        else if (result == "NR05")
-        {
-            return "QS";
-        }
-        else if (result == "NR06")
-        {
-            return "QD";
-        }
-        else if (result == "NR07")
-        {
-            return "QC";
-        }
-        //
-        else if (result == "NR08")
-        {
-            return "KH";
-        }
-        else if (result == "NR09")
-        {
-            return "KS";
-        }
-        else if (result == "NR10")
-        {
-            return "KD";
-        }
-        else if (result == "NR11")
-        {
-            return "KC";
-        }
-        return "Null";
+            if (result == "NR00")
+            {
+                return "JH";
             }
+            else if (result == "NR01")
+            {
+                return "JS";
+            }
+            else if (result == "NR02")
+            {
+                return "JD";
+            }
+            //
+            else if (result == "NR03")
+            {
+                return "JC";
+            }
+            //
+            else if (result == "NR04")
+            {
+                return "QH";
+            }
+            else if (result == "NR05")
+            {
+                return "QS";
+            }
+            else if (result == "NR06")
+            {
+                return "QD";
+            }
+            else if (result == "NR07")
+            {
+                return "QC";
+            }
+            //
+            else if (result == "NR08")
+            {
+                return "KH";
+            }
+            else if (result == "NR09")
+            {
+                return "KS";
+            }
+            else if (result == "NR10")
+            {
+                return "KD";
+            }
+            else if (result == "NR11")
+            {
+                return "KC";
+            }
+            return "Null";
+        }
         if (mode == 1)
         {
             if (result == "NR00")
@@ -184,7 +197,7 @@ public class historypanel : MonoBehaviour
             {
                 return "JC";
             }
-           //
+            //
         }
         if (mode == 2)
         {
@@ -231,8 +244,12 @@ public class historypanel : MonoBehaviour
             {
                 return "9";
             }
-            
+
             return "Null";
+        }
+        if (mode == 3)
+        {
+            return result.Substring(2, 2);
         }
         return "Null";
     }

@@ -212,6 +212,16 @@ public class Results_object_info : MonoBehaviour
             {
                 textresult.text = "9";
             }
+            //no shit now that i am looking back i feel dumb well one more thing added to todo
+        }
+        if(mode==3)
+        {
+            datetime.text = timestring;
+
+            print("result :" + result.Substring(2, 2));
+            icon.enabled = false;
+            textresult.transform.position += new Vector3(8, 0, 0);
+            textresult.text = result.Substring(2, 2);
         }
     }
   

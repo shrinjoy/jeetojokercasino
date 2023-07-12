@@ -9,12 +9,14 @@ public class doublechance_button : MonoBehaviour
 
     [SerializeField] TMPro.TMP_Text betbuttonID;
     [SerializeField] TMPro.TMP_Text buttonbetamounttext;
-
+    AudioSource ASA;
     public int betamount;
     public int previousbetamount = 0;
     doublechance_gamemanager dbgm;
     double_chance_removebutton dbrb;
     timeManager timeManager;
+    [SerializeField] AudioClip betplaceaudio;
+    [SerializeField] AudioClip betremoveaudio;
     public void ResetBetButton()
     {
         backgroundimage.SetActive(false);
@@ -33,7 +35,7 @@ public class doublechance_button : MonoBehaviour
         dbgm = GameObject.FindObjectOfType<doublechance_gamemanager>();
         dbrb = GameObject.FindObjectOfType<double_chance_removebutton>();
         timeManager = GameObject.FindObjectOfType<timeManager>();
-
+       ASA= gameObject.AddComponent<AudioSource>();
     }
     public void Updatebetdata(int betvalue)
     {
@@ -43,12 +45,14 @@ public class doublechance_button : MonoBehaviour
         buttonbetamounttext.text = betamount.ToString();
         dbgm.totalbetplaced += betamount - previousbetamount;
         previousbetamount = betamount;
+        ASA.playOnAwake = false;
     }
 
     public void onBetbuttonclicked()
     {
         if (dbrb.removebet == false)
         {
+            ASA.clip = betplaceaudio;
             if ((betamount + timeManager.selectedcoinamount + dbgm.totalbetplaced) < dbgm.totalbalance)
             {
                 betamount += timeManager.selectedcoinamount;
@@ -66,6 +70,7 @@ public class doublechance_button : MonoBehaviour
         }
         else if (dbrb.removebet == true)
         {
+            ASA.clip = betremoveaudio;
             if (betamount > 0)
             {
                 betamount -= timeManager.selectedcoinamount;
@@ -81,6 +86,7 @@ public class doublechance_button : MonoBehaviour
                 buttonbetamounttext.enabled = false;
             }
         }
+        ASA.Play();
         dbgm.updateplayamount();
     }
 }

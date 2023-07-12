@@ -8,6 +8,7 @@ public class double_random : MonoBehaviour
     public int betsplaceable = 0;
     List<doublechance_button> allbuttons;
     public List<int> generatednumbers;
+   
     private void Start()
     {
         generatednumbers = new List<int>();

@@ -152,6 +152,57 @@ public class report_panel : MonoBehaviour
                 {
                     ppoints += Convert.ToInt32(sqlData["ppoints"].ToString());
                 }
+
+                salepoint.text = ppoint.ToString();
+                winpoint.text = wpoint.ToString();
+                commipoint.text = npoint.ToString();
+                ntppoint.text = ppoints.ToString();
+                operatorpoint.text = epoint.ToString();
+                //print(sqlData["plyid"].ToString());
+            }
+            sqlData.Close();
+            sqlData.DisposeAsync();
+
+
+            sqlCmnd = new SqlCommand();
+            sqlData = null;
+            sqlCmnd.CommandTimeout = 60;
+            sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
+            sqlCmnd.CommandType = CommandType.Text;
+            sqlCmnd.CommandText = "select distinct g.term_name,n.ter_id plyid,ISNULL(sum(qty),0) as ppoint" +
+                ",ISNULL(sum(clm),0) as wpoint,ISNULL(sum(qty),0)-ISNULL(sum(clm),0) as epoint," +
+                "ISNULL(sum(qty),0)-ISNULL(sum(clm),0)-(ISNULL(sum(qty),0)*g.comm/100) as npoint," +
+                "ISNULL(sum(qty),0)*g.comm/100 as ppoints from doup n, " +
+                "g_master g where g.term_id=n.ter_id and n.id is not null and n.status not in('Canceled') and g_date between '" + fromcalender.datetimeyear + "' and  '" + tocalender.datetimeyear + "' and term_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id +
+                "'group by n.ter_id,g.term_name,g.comm;";
+            //
+            sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
+            //print(sqlCmnd.CommandText);
+            if (sqlData.Read())
+            {
+
+
+                if (sqlData["ppoint"] != null || sqlData["ppoint"].ToString().Trim() != string.Empty)
+                {
+                    ppoint += Convert.ToInt32(sqlData["ppoint"].ToString());
+                }
+                if (sqlData["wpoint"] != null || sqlData["wpoint"].ToString().Trim() != string.Empty)
+                {
+                    wpoint += Convert.ToInt32(sqlData["wpoint"].ToString());
+                }
+                if (sqlData["epoint"] != null || sqlData["epoint"].ToString().Trim() != string.Empty)
+                {
+                    epoint += Convert.ToInt32(sqlData["epoint"].ToString());
+                }
+                if (sqlData["npoint"] != null || sqlData["npoint"].ToString().Trim() != string.Empty)
+                {
+                    npoint += Convert.ToInt32(sqlData["npoint"].ToString());
+                }
+                if (sqlData["ppoints"] != null || sqlData["ppoints"].ToString().Trim() != string.Empty)
+                {
+                    ppoints += Convert.ToInt32(sqlData["ppoints"].ToString());
+                }
+
                 salepoint.text = ppoint.ToString();
                 winpoint.text = wpoint.ToString();
                 commipoint.text = npoint.ToString();

@@ -9,8 +9,8 @@ public class last10resultobjectsetter : MonoBehaviour
 
     public void setdata(string result)
     {
-        singletext.text = result.Substring(3, 1);
-        doubletext.text = result.Substring(2,1);
+        singletext.text = result.Substring(2, 1);
+        doubletext.text =  result.Substring(3, 1);
 
     }
 }
