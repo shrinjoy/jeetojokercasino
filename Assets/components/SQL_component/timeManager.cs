@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class timeManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -34,7 +34,13 @@ public class timeManager : MonoBehaviour
         InvokeRepeating(nameof(timeloop), 1, 1);
 
     }
-
+    void OnApplicationFocus(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
     // Update is called once per frame
     public void timeloop()
     {
