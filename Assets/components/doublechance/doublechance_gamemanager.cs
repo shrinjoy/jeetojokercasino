@@ -114,10 +114,13 @@ public class doublechance_gamemanager : timeManager
         if (realtime < 10)
         {
             status.text = "no more bets please";
+            status.color = Color.red;
         }
         if (realtime > 10)
         {
             status.text = "place you chip";
+            status.color = Color.white;
+
         }
     }
     // Start is called before the first frame update
@@ -453,11 +456,13 @@ public class doublechance_gamemanager : timeManager
         resultstring.enabled = true;
 
         resultstring.text = result.Substring(2, 2);
-        single_hightlight.SetActive(true);
-        double_highlight.SetActive(true);
         single_text_highlight.text = Convert.ToInt32(result.Substring(3, 1)).ToString();
         double_text_highlight.text = Convert.ToInt32(result.Substring(2, 1)).ToString();
-        // int singles = Convert.ToInt32(result.Substring(3, 1));
+
+        double_highlight.SetActive(true);       
+        yield return new WaitForSeconds(0.3f);
+        single_hightlight.SetActive(true);
+         // int singles = Convert.ToInt32(result.Substring(3, 1));
         // int doubles = Convert.ToInt32(result.Substring(2, 1));
 
 
