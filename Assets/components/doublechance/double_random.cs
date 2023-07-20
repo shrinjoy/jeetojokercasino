@@ -6,15 +6,14 @@ using UnityEngine;
 public class double_random : MonoBehaviour
 {
     public int betsplaceable = 0;
-    List<doublechance_button> allbuttons;
+    List<GameObject> allbuttons;
     public List<int> generatednumbers;
    
     private void Start()
     {
         generatednumbers = new List<int>();
-        allbuttons = new List<doublechance_button>();
-        allbuttons = GameObject.FindObjectsOfType<doublechance_button>().ToList();
-
+        allbuttons = new List<GameObject>();
+        allbuttons = GameObject.FindGameObjectsWithTag("double_double_button").ToList();
     }
     public void placerandombets()
     {
@@ -22,7 +21,7 @@ public class double_random : MonoBehaviour
         generatednumbers.Clear();
         for (int i = 0; i < betsplaceable; i++)
         {
-            allbuttons[getrandombutton()].onBetbuttonclicked();
+            allbuttons[getrandombutton()].GetComponent<doublechance_button>().onBetbuttonclicked();
         }
 
     }

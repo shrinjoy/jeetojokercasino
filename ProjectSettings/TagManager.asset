@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WN
   - WT
+  - double_double_button
   layers:
   - Default
   - TransparentFX

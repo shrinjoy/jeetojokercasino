@@ -483,7 +483,13 @@ public class doublechance_gamemanager : timeManager
         nomorebets = false;
         audiosource.clip = placeyourbets;
         audiosource.Play();
+        status.color = Color.white;
         setstatus("place your chip");
+        win0.text = "";
+        win1.text = "";
+        win2_single.text = "";
+        win3_double.text = "";
+       
     }
     public Vector2 resulttosectorconvert(string result)
     {
