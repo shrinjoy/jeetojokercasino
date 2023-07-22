@@ -392,6 +392,7 @@ public class spin2win_manager : timeManager
             SceneManager.LoadScene(0);
         }
         betplacedtext.text = "0";
+        resetTimer();
        yield return null;
     }
     public string generatebarcode()

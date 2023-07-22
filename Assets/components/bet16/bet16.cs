@@ -226,6 +226,7 @@ public class bet16 : timeManager
         {
             showstat("no internet trying to reconnect");
         }
+        resetTimer();
     }
     
     public string generatebarcode()

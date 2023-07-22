@@ -61,7 +61,7 @@ public class timeManager : MonoBehaviour
             }
             else
             {
-
+                resetTimer();
                 realtime -= 1;
 
 

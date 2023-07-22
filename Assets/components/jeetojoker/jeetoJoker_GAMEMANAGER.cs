@@ -158,8 +158,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         if(realtime>15)
         betinfotext.text = "Place your chips";
     }
+
     public void sendResult()
     {
+
       
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
@@ -216,6 +218,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             SceneManager.LoadScene(0);
         }
         GameObject.FindObjectOfType<clearbutton>().clear();
+        resetTimer();
 
     }
         public string generatebarcode()

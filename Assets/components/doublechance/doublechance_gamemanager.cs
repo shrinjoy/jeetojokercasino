@@ -271,6 +271,8 @@ public class doublechance_gamemanager : timeManager
             setstatus("no chip placed");
         }
         StartCoroutine(UpdateBalanceAndInfo());
+        resetTimer();
+        
     }
     public string generatebarcode()
     {
