@@ -10,8 +10,7 @@ using System.Globalization;
 public class report_panel : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] TMPro.TMP_Text from_time;
-    [SerializeField] TMPro.TMP_Text to_time;
+
     [SerializeField] TMPro.TMP_Text salepoint;
     [SerializeField] TMPro.TMP_Text winpoint;
     [SerializeField] TMPro.TMP_Text commipoint;
@@ -27,7 +26,7 @@ public class report_panel : MonoBehaviour
         int epoint = 0;
         int npoint = 0;
         int ppoints = 0;
-
+        print("report ");
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
         try
@@ -43,7 +42,8 @@ public class report_panel : MonoBehaviour
                 "'group by n.ter_id,g.term_name,g.comm;";
             //
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            //print(sqlCmnd.CommandText);
+          
+
             if (sqlData.Read())
             {
 
@@ -68,11 +68,15 @@ public class report_panel : MonoBehaviour
                 {
                     ppoints += Convert.ToInt32(sqlData["ppoints"].ToString());
                 }
+                print(ppoints + ";" + wpoint + ";" + epoint + ";" + npoint + ";" + ppoints);
 
             }
             sqlData.Close();
             sqlData.DisposeAsync();
-            sqlCmnd = new SqlCommand();
+
+
+
+           
             sqlData = null;
             sqlCmnd.CommandTimeout = 60;
             sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
@@ -85,7 +89,7 @@ public class report_panel : MonoBehaviour
                 "'group by n.ter_id,g.term_name,g.comm;";
             //
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            //print(sqlCmnd.CommandText);
+           
             if (sqlData.Read())
             {
 
@@ -110,11 +114,16 @@ public class report_panel : MonoBehaviour
                 {
                     ppoints += Convert.ToInt32(sqlData["ppoints"].ToString());
                 }
+                print(ppoints + ";" + wpoint+ ";" + epoint + ";" + npoint + ";" + ppoints);
+
 
             }
             sqlData.Close();
-            sqlData.DisposeAsync();
-            sqlCmnd = new SqlCommand();
+         
+
+
+
+          
             sqlData = null;
             sqlCmnd.CommandTimeout = 60;
             sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
@@ -127,7 +136,7 @@ public class report_panel : MonoBehaviour
                 "'group by n.ter_id,g.term_name,g.comm;";
             //
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            //print(sqlCmnd.CommandText);
+           
             if (sqlData.Read())
             {
 
@@ -158,26 +167,29 @@ public class report_panel : MonoBehaviour
                 commipoint.text = npoint.ToString();
                 ntppoint.text = ppoints.ToString();
                 operatorpoint.text = epoint.ToString();
+                print(ppoints + ";" + wpoint + ";" + epoint + ";" + npoint + ";" + ppoints);
+
                 //print(sqlData["plyid"].ToString());
             }
             sqlData.Close();
-            sqlData.DisposeAsync();
 
 
-            sqlCmnd = new SqlCommand();
+            print("all good before dc");
+             
             sqlData = null;
             sqlCmnd.CommandTimeout = 60;
             sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
             sqlCmnd.CommandType = CommandType.Text;
             sqlCmnd.CommandText = "select distinct g.term_name,n.ter_id plyid,ISNULL(sum(qty),0) as ppoint" +
-                ",ISNULL(sum(clm),0) as wpoint,ISNULL(sum(sclm),0) as sclmpoint,ISNULL(sum(qty),0)-(ISNULL(sum(clm),0)+ISNULL(sum(sclm),0)),0) as epoint," +
+                ",ISNULL(sum(clm),0) as wpoint,ISNULL(sum(sclm),0) as sclmpoint,ISNULL(sum(qty),0)-(ISNULL(sum(clm),0)+ISNULL(sum(sclm),0)) as epoint," +
                 "ISNULL(sum(qty),0)-(ISNULL(sum(clm),0)+ISNULL(sum(sclm),0))-(ISNULL(sum(qty),0)*g.comm/100) as npoint," +
                 "ISNULL(sum(qty),0)*g.comm/100 as ppoints from doup n, " +
                 "g_master g where g.term_id=n.ter_id and n.id is not null and n.status not in('Canceled') and g_date between '" + fromcalender.datetimeyear + "' and  '" + tocalender.datetimeyear + "' and term_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id +
                 "'group by n.ter_id,g.term_name,g.comm;";
-            //
+            //''
+           
             sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-            //print(sqlCmnd.CommandText);
+           
             if (sqlData.Read())
             {
 
@@ -207,17 +219,25 @@ public class report_panel : MonoBehaviour
                     ppoints += Convert.ToInt32(sqlData["ppoints"].ToString());
                 }
 
-                salepoint.text = ppoint.ToString();
-                winpoint.text = wpoint.ToString();
-                commipoint.text = npoint.ToString();
-                ntppoint.text = ppoints.ToString();
-                operatorpoint.text = epoint.ToString();
+
+                print(ppoints + ";" + wpoint + ";" + epoint + ";" + npoint + ";" + ppoints);
+
                 //print(sqlData["plyid"].ToString());
             }
             sqlData.Close();
             sqlData.DisposeAsync();
+            salepoint.text = ppoint.ToString();
+            winpoint.text = wpoint.ToString();
+            commipoint.text = npoint.ToString();
+            ntppoint.text = ppoints.ToString();
+            operatorpoint.text = epoint.ToString();
+            print("report good");
         }
-        catch
+        catch(Exception ex)
+        {
+            print("report" + ex);   
+        }
+        if (sqlData !=null&&sqlData.IsClosed == false)
         {
             sqlData.Close();
             sqlData.DisposeAsync();

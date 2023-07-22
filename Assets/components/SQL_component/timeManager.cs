@@ -75,8 +75,7 @@ public class timeManager : MonoBehaviour
         timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
 
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(5);
-        print("time till next game:" + timetillnextgame);
-        print("server time:" + servertime);
+      
         if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             //patch; 
@@ -85,7 +84,7 @@ public class timeManager : MonoBehaviour
         double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
 
         realtime = ts;
-        print(realtime);
+        
     }
 
     public virtual void GameSequence() { }

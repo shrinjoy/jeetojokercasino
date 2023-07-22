@@ -50,7 +50,7 @@ public class historypanel : MonoBehaviour
         }
         if (mode == 3)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[doup].clm_tm,[taas].[dbo].[doup].sclm,[taas].[dbo].[doup].st_point,[taas].[dbo].[doup].id,[taas].[dbo].[doup].bar,[taas].[dbo].[doup].g_id,[taas].[dbo].[doup].g_date,[taas].[dbo].[doup].ter_id,[taas].[dbo].[doup].clm,[taas].[dbo].[doup].tot,[taas].[dbo].[doup].status,[taas].[dbo].[doup].g_time,[taas].[dbo].[doup].p_time,[taas].[dbo].[resultsDou].result as gameresult FROM [taas].[dbo].[doup],[taas].[dbo].[resultsDou] WHERE resultsDou.g_date=doup.g_date and resultsDou.g_time=doup.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[doup].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[doup].clm_tm, ISNULL([taas].[dbo].[doup].sclm, 0) as sclm, [taas].[dbo].[doup].st_point, [taas].[dbo].[doup].id, [taas].[dbo].[doup].bar, [taas].[dbo].[doup].g_id, [taas].[dbo].[doup].g_date, [taas].[dbo].[doup].ter_id, ISNULL([taas].[dbo].[doup].clm, 0) as clm, [taas].[dbo].[doup].tot, [taas].[dbo].[doup].status, [taas].[dbo].[doup].g_time, [taas].[dbo].[doup].p_time, [taas].[dbo].[resultsDou].result as gameresult\r\nFROM [taas].[dbo].[doup], [taas].[dbo].[resultsDou]\r\nWHERE resultsDou.g_date = doup.g_date\r\nAND resultsDou.g_time = doup.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[doup].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
 
 
         }
@@ -70,6 +70,7 @@ public class historypanel : MonoBehaviour
             if(mode ==3)
             {
                 string totalclm = (Convert.ToInt32(sqlData["clm"]?.ToString()) + Convert.ToInt32(sqlData["sclm"]?.ToString())).ToString();
+
 
                 gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"]?.ToString(), sqlData["bar"]?.ToString(), sqlData["tot"]?.ToString(), totalclm, converttoresult(sqlData["gameresult"]?.ToString()), sqlData["status"]?.ToString(), sqlData["st_point"]?.ToString(), sqlData["clm_tm"]?.ToString());
 

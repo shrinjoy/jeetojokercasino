@@ -39,6 +39,11 @@ public class historyInfoSetter : MonoBehaviour
 
         }
         print("start point:" + stpoint);
+
+        if(stpoint.ToString().Trim() ==string.Empty)
+        {
+            stpoint = "0";        }
+
         int start = Convert.ToInt32(stpoint);
         int totalplayed = (Convert.ToInt32(play));
         int end = start - totalplayed + winpoint;

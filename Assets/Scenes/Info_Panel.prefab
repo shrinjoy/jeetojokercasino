@@ -4680,7 +4680,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6625318329091534307}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9844712
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4852,7 +4852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6625318328179303541
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4934,8 +4934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d6bde466d51174fb91a0e1ac7d7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  from_time: {fileID: 0}
-  to_time: {fileID: 0}
   salepoint: {fileID: 6625318328942740684}
   winpoint: {fileID: 6625318327897190160}
   commipoint: {fileID: 6625318327639271597}
