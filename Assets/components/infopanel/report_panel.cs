@@ -170,8 +170,8 @@ public class report_panel : MonoBehaviour
             sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
             sqlCmnd.CommandType = CommandType.Text;
             sqlCmnd.CommandText = "select distinct g.term_name,n.ter_id plyid,ISNULL(sum(qty),0) as ppoint" +
-                ",ISNULL(sum(clm),0) as wpoint,ISNULL(sum(qty),0)-ISNULL(sum(clm),0) as epoint," +
-                "ISNULL(sum(qty),0)-ISNULL(sum(clm),0)-(ISNULL(sum(qty),0)*g.comm/100) as npoint," +
+                ",ISNULL(sum(clm),0) as wpoint,ISNULL(sum(sclm),0) as sclmpoint,ISNULL(sum(qty),0)-(ISNULL(sum(clm),0)+ISNULL(sum(sclm),0)),0) as epoint," +
+                "ISNULL(sum(qty),0)-(ISNULL(sum(clm),0)+ISNULL(sum(sclm),0))-(ISNULL(sum(qty),0)*g.comm/100) as npoint," +
                 "ISNULL(sum(qty),0)*g.comm/100 as ppoints from doup n, " +
                 "g_master g where g.term_id=n.ter_id and n.id is not null and n.status not in('Canceled') and g_date between '" + fromcalender.datetimeyear + "' and  '" + tocalender.datetimeyear + "' and term_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id +
                 "'group by n.ter_id,g.term_name,g.comm;";
@@ -189,6 +189,10 @@ public class report_panel : MonoBehaviour
                 if (sqlData["wpoint"] != null || sqlData["wpoint"].ToString().Trim() != string.Empty)
                 {
                     wpoint += Convert.ToInt32(sqlData["wpoint"].ToString());
+                }
+                if (sqlData["sclmpoint"] != null || sqlData["sclmpoint"].ToString().Trim() != string.Empty)
+                {
+                    wpoint += Convert.ToInt32(sqlData["sclmpoint"].ToString());
                 }
                 if (sqlData["epoint"] != null || sqlData["epoint"].ToString().Trim() != string.Empty)
                 {

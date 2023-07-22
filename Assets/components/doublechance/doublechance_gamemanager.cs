@@ -313,7 +313,17 @@ public class doublechance_gamemanager : timeManager
 
     void Update()
     {
+        if(realtime>10)
+        {
+            timer.color = Color.white;
+        }
+        else if(realtime<10)
+        {
+            timer.color = Color.red;
+        }
+
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
+        
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
         totalplay.text = totalbetplaced.ToString();
         totalbetplaced = Mathf.Clamp(totalbetplaced, 0, 9999999);
