@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class timeManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    bool betversion = false;
     DateTime timetillnextgame;
     DateTime servertime;
     [HideInInspector]

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,14 @@ public class ResultSetter : MonoBehaviour
     [SerializeField] Image icon;
     [SerializeField] Sprite[] sprites;
     [SerializeField] TMPro.TMP_Text textresult;
+    [SerializeField] TMPro.TMP_Text time;
     [SerializeField]int mode = 0;
-    public void setResult(string result)
+    public void setResult(string result,string rtime="")
     {
+        if (time != null)
+        {
+            time.text = DateTime.Parse(rtime).ToString("HH:mm");
+        }
         if (mode == 0)
         {
             if (result == "NR00")

@@ -40,14 +40,12 @@ public class historyInfoSetter : MonoBehaviour
         }
         print("start point:" + stpoint);
 
-        if(stpoint.ToString().Trim() ==string.Empty)
-        {
-            stpoint = "0";        }
+     
 
         int start = Convert.ToInt32(stpoint);
         int totalplayed = (Convert.ToInt32(play));
         int end = start - totalplayed + winpoint;
-        if (claimdatetime == null || claimdatetime.ToString().Trim().Length == 0)
+        if (claimdatetime == null || claimdatetime.ToString().Trim().Length == 0 || claimdatetime.ToString().ToUpper() == "NULL")
         {
             claimtime.text = " ";
         }
@@ -62,6 +60,15 @@ public class historyInfoSetter : MonoBehaviour
     public void onclickhistory()
     {
         GameObject.FindObjectOfType<historypanel>().barcode =gameid.text;
+        if(resulttext.text.ToUpper() == "NULL")
+        {
+            GameObject.FindObjectOfType<historypanel>().canremove = true;
+        }
+        else
+        {
+            GameObject.FindObjectOfType<historypanel>().canremove = false;
+
+        }
     }
 
 

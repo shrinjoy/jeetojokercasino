@@ -148,7 +148,7 @@ public class spin2win_manager : timeManager
         yield return new WaitForSecondsRealtime(2.0f);
         statusobject.SetActive(false);
     }
-    IEnumerator UpdateBalanceAndInfo()
+   public IEnumerator UpdateBalanceAndInfo()
     {
 
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
@@ -192,7 +192,7 @@ public class spin2win_manager : timeManager
         while (sqlData.Read())
         {
             GameObject gb = GameObject.Instantiate(ResultsPanel_content_object, ResultPanel_content.transform, false);
-            gb.GetComponent<ResultPanel_resultObject_s2w>().SetResult(sqlData["result"].ToString() + sqlData["status"].ToString());
+            gb.GetComponent<ResultPanel_resultObject_s2w>().SetResult(sqlData["result"].ToString() + sqlData["status"].ToString(), sqlData["g_time"].ToString());
 
             
         }
@@ -402,7 +402,7 @@ public class spin2win_manager : timeManager
 
         output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
         //print(output);
-        return output;
+        return output + "M";
     }
     void getwinamount()
     {

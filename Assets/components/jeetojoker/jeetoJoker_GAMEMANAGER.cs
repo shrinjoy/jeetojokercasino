@@ -162,8 +162,9 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     public void sendResult()
     {
 
+        
+            currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
       
-        currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
         if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
             {
                 
@@ -228,7 +229,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
             output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
             //print(output);
-            return output;
+            return output+"M";
         }
         public void FakeUpdateBalance()
     {
@@ -295,7 +296,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             {
                 //print(sqlData["id"].ToString());
 
-                resultsetter[i].setResult(sqlData["result"].ToString());
+                resultsetter[i].setResult(sqlData["result"].ToString(), sqlData["g_time"].ToString());
                 resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
 
 
@@ -427,7 +428,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         betplaced= false;
         yield return null;
     }
-    IEnumerator  UpdateBalanceAndInfo()
+  public  IEnumerator  UpdateBalanceAndInfo()
     {
        
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);

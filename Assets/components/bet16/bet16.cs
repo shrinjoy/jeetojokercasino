@@ -236,7 +236,7 @@ public class bet16 : timeManager
 
         output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
         //print(output);
-        return output;
+        return output + "M";
     }
     public void FakeUpdateBalance()
     {
@@ -303,7 +303,7 @@ public class bet16 : timeManager
             {
                 //print(sqlData["id"].ToString());
 
-                resultsetter[i].setResult(sqlData["result"].ToString());
+                resultsetter[i].setResult(sqlData["result"].ToString(), sqlData["g_time"].ToString());
                 resultsetter[i].GetComponent<multiplier_resultpanel>().ShowMultiplier(sqlData["status"].ToString());
 
 
@@ -445,7 +445,7 @@ public class bet16 : timeManager
         updatedata = true;
         yield return null;
     }
-    IEnumerator UpdateBalanceAndInfo()
+    public IEnumerator UpdateBalanceAndInfo()
     {
 
         totalbalance = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);

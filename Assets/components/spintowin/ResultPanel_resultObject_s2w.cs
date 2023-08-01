@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,13 @@ public class ResultPanel_resultObject_s2w : MonoBehaviour
     [SerializeField] TMPro.TMP_Text multiplieResultText;
     [SerializeField] TMPro.TMP_Text multiplierText;
     [SerializeField] Color[] color;
-
-    public void SetResult(string Result)
+    [SerializeField] TMP_Text timertext;
+    public void SetResult(string Result,string rtimer="")
     {
+        if (timertext != null)
+        {
+            timertext.text = DateTime.Parse(rtimer).ToString("HH:mm"); ;
+        }
         this.GetComponent<Image>().color = color[Convert.ToInt32(ResultConverters.S2w_ResultConverter(Result.Substring(0, 4)))];
 
         if(Result.Substring(4)=="N")

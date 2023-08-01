@@ -11,6 +11,7 @@ public class historypanel : MonoBehaviour
 
     [SerializeField] GameObject prefabitem;
     public string barcode;
+    public bool canremove = false;
     public int mode = 0;
     public void onResultsbuttonClicked()
     {
@@ -28,30 +29,32 @@ public class historypanel : MonoBehaviour
         sqlCmnd.CommandTimeout = 60;
         sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
         sqlCmnd.CommandType = CommandType.Text;
+        //'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'
+        //'" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "'
         if (mode == 0)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tasp].clm_tm,[taas].[dbo].[tasp].st_point,[taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,[taas].[dbo].[tasp].clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tasp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
+            //tasp
+            //resultsTaa
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tasp].status,[taas].[dbo].[tasp].clm_tm,ISNULL([taas].[dbo].[tasp].st_point,0) as st_point,[taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,ISNULL([taas].[dbo].[tasp].clm,0) as clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,[taas].[dbo].[resultsTaa].result as gameresult FROM [taas].[dbo].[tasp],[taas].[dbo].[resultsTaa] WHERE resultsTaa.g_date=tasp.g_date and resultsTaa.g_time=tasp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tasp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' union all SELECT [taas].[dbo].[tasp].status,[taas].[dbo].[tasp].clm_tm,ISNULL([taas].[dbo].[tasp].st_point,0) as st_point,[taas].[dbo].[tasp].id,[taas].[dbo].[tasp].bar,[taas].[dbo].[tasp].g_id,[taas].[dbo].[tasp].g_date,[taas].[dbo].[tasp].ter_id,ISNULL([taas].[dbo].[tasp].clm,0) as clm,[taas].[dbo].[tasp].tot,[taas].[dbo].[tasp].status,[taas].[dbo].[tasp].g_time,[taas].[dbo].[tasp].p_time,'' as gameresult FROM [taas].[dbo].[tasp] WHERE   ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tasp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' and tasp.id >(SELECT isnull(max(n.id),0) as id  FROM tasp n, resultsTaa r  where n.g_date=r.g_date and n.g_time=r.g_time  and n.ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' ) order by g_id desc";
 
-        }
+
+                }
         if (mode == 1)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[bet16].clm_tm,[taas].[dbo].[bet16].st_point,[taas].[dbo].[bet16].id,[taas].[dbo].[bet16].bar,[taas].[dbo].[bet16].g_id,[taas].[dbo].[bet16].g_date,[taas].[dbo].[bet16].ter_id,[taas].[dbo].[bet16].clm,[taas].[dbo].[bet16].tot,[taas].[dbo].[bet16].status,[taas].[dbo].[bet16].g_time,[taas].[dbo].[bet16].p_time,[taas].[dbo].[results16].result as gameresult FROM [taas].[dbo].[bet16],[taas].[dbo].[results16] WHERE results16.g_date=bet16.g_date and results16.g_time=bet16.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[bet16].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' order by g_id desc";
-
+            //bet16
+            //results16
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[bet16].status,[taas].[dbo].[bet16].clm_tm,ISNULL([taas].[dbo].[bet16].st_point,0) as st_point,[taas].[dbo].[bet16].id,[taas].[dbo].[bet16].bar,[taas].[dbo].[bet16].g_id,[taas].[dbo].[bet16].g_date,[taas].[dbo].[bet16].ter_id,ISNULL([taas].[dbo].[bet16].clm,0) as clm,[taas].[dbo].[bet16].tot,[taas].[dbo].[bet16].status,[taas].[dbo].[bet16].g_time,[taas].[dbo].[bet16].p_time,[taas].[dbo].[results16].result as gameresult FROM [taas].[dbo].[bet16],[taas].[dbo].[results16] WHERE results16.g_date=bet16.g_date and results16.g_time=bet16.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[bet16].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' union all SELECT [taas].[dbo].[bet16].status,[taas].[dbo].[bet16].clm_tm,ISNULL([taas].[dbo].[bet16].st_point,0) as st_point,[taas].[dbo].[bet16].id,[taas].[dbo].[bet16].bar,[taas].[dbo].[bet16].g_id,[taas].[dbo].[bet16].g_date,[taas].[dbo].[bet16].ter_id,ISNULL([taas].[dbo].[bet16].clm,0) as clm,[taas].[dbo].[bet16].tot,[taas].[dbo].[bet16].status,[taas].[dbo].[bet16].g_time,[taas].[dbo].[bet16].p_time,'' as gameresult FROM [taas].[dbo].[bet16] WHERE   ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[bet16].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' and bet16.id >(SELECT isnull(max(n.id),0) as id  FROM bet16 n, results16 r  where n.g_date=r.g_date and n.g_time=r.g_time  and n.ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' ) order by g_id desc";
         }
         if (mode == 2)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].clm_tm,[taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
-
+            //tengp
+            //results
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].status,[taas].[dbo].[tengp].clm_tm,ISNULL([taas].[dbo].[tengp].st_point,0) as st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,ISNULL([taas].[dbo].[tengp].clm,0) as clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' union all SELECT [taas].[dbo].[tengp].status,[taas].[dbo].[tengp].clm_tm,ISNULL([taas].[dbo].[tengp].st_point,0) as st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,ISNULL([taas].[dbo].[tengp].clm,0) as clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,'' as gameresult FROM [taas].[dbo].[tengp] WHERE   ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' and tengp.id >(SELECT isnull(max(n.id),0) as id  FROM tengp n, results r  where n.g_date=r.g_date and n.g_time=r.g_time  and n.ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' ) order by g_id desc";
         }
-        if (mode == 2)
-        {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[tengp].clm_tm,[taas].[dbo].[tengp].st_point,[taas].[dbo].[tengp].id,[taas].[dbo].[tengp].bar,[taas].[dbo].[tengp].g_id,[taas].[dbo].[tengp].g_date,[taas].[dbo].[tengp].ter_id,[taas].[dbo].[tengp].clm,[taas].[dbo].[tengp].tot,[taas].[dbo].[tengp].status,[taas].[dbo].[tengp].g_time,[taas].[dbo].[tengp].p_time,[taas].[dbo].[results].result as gameresult FROM [taas].[dbo].[tengp],[taas].[dbo].[results] WHERE results.g_date=tengp.g_date and results.g_time=tengp.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[tengp].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
 
-        }
         if (mode == 3)
         {
-            sqlCmnd.CommandText = "SELECT [taas].[dbo].[doup].clm_tm, ISNULL([taas].[dbo].[doup].sclm, 0) as sclm, [taas].[dbo].[doup].st_point, [taas].[dbo].[doup].id, [taas].[dbo].[doup].bar, [taas].[dbo].[doup].g_id, [taas].[dbo].[doup].g_date, [taas].[dbo].[doup].ter_id, ISNULL([taas].[dbo].[doup].clm, 0) as clm, [taas].[dbo].[doup].tot, [taas].[dbo].[doup].status, [taas].[dbo].[doup].g_time, [taas].[dbo].[doup].p_time, [taas].[dbo].[resultsDou].result as gameresult\r\nFROM [taas].[dbo].[doup], [taas].[dbo].[resultsDou]\r\nWHERE resultsDou.g_date = doup.g_date\r\nAND resultsDou.g_time = doup.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[doup].g_date='" + DateTime.Today.ToString("yyyy-MM-dd") + "' order by g_id desc";
-
+            sqlCmnd.CommandText = "SELECT [taas].[dbo].[doup].status,[taas].[dbo].[doup].clm_tm,ISNULL([taas].[dbo].[doup].st_point,0) as st_point,[taas].[dbo].[doup].id,[taas].[dbo].[doup].bar,[taas].[dbo].[doup].g_id,[taas].[dbo].[doup].g_date,[taas].[dbo].[doup].ter_id,ISNULL([taas].[dbo].[doup].clm,0) as clm,ISNULL([taas].[dbo].[doup].sclm,0) as sclm,[taas].[dbo].[doup].tot,[taas].[dbo].[doup].status,[taas].[dbo].[doup].g_time,[taas].[dbo].[doup].p_time,[taas].[dbo].[resultsDou].result as gameresult FROM [taas].[dbo].[doup],[taas].[dbo].[resultsDou] WHERE resultsDou.g_date=doup.g_date and resultsDou.g_time=doup.g_time and ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[doup].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' union all SELECT [taas].[dbo].[doup].status,[taas].[dbo].[doup].clm_tm,ISNULL([taas].[dbo].[doup].st_point,0) as st_point,[taas].[dbo].[doup].id,[taas].[dbo].[doup].bar,[taas].[dbo].[doup].g_id,[taas].[dbo].[doup].g_date,[taas].[dbo].[doup].ter_id,ISNULL([taas].[dbo].[doup].clm,0) as clm,ISNULL([taas].[dbo].[doup].sclm,0) as sclm,[taas].[dbo].[doup].tot,[taas].[dbo].[doup].status,[taas].[dbo].[doup].g_time,[taas].[dbo].[doup].p_time,'' as gameresult FROM [taas].[dbo].[doup] WHERE   ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and [taas].[dbo].[doup].g_date='" + GameObject.FindObjectOfType<SQL_manager>().server_day.ToString("dd-MMM-yyyy") + "' and doup.id >(SELECT isnull(max(n.id),0) as id  FROM doup n, resultsDou r  where n.g_date=r.g_date and n.g_time=r.g_time  and n.ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' ) order by g_id desc";
 
         }
         sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
@@ -60,20 +63,22 @@ public class historypanel : MonoBehaviour
         ////
         while (sqlData.Read())
         {
-
-            GameObject gb = (GameObject)Instantiate(prefabitem);
-            gb.transform.SetParent(content.transform, false);
-            if (mode < 3)
+            if (sqlData["status"].ToString().ToUpper() != "CANCELED")
             {
-                gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"]?.ToString(), sqlData["bar"]?.ToString(), sqlData["tot"]?.ToString(), sqlData["clm"]?.ToString(), converttoresult(sqlData["gameresult"]?.ToString()), sqlData["status"]?.ToString(), sqlData["st_point"]?.ToString(), sqlData["clm_tm"]?.ToString());
-            }
-            if(mode ==3)
-            {
-                string totalclm = (Convert.ToInt32(sqlData["clm"]?.ToString()) + Convert.ToInt32(sqlData["sclm"]?.ToString())).ToString();
+                GameObject gb = (GameObject)Instantiate(prefabitem);
+                gb.transform.SetParent(content.transform, false);
+                if (mode < 3)
+                {
+                    gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"]?.ToString(), sqlData["bar"]?.ToString(), sqlData["tot"]?.ToString(), sqlData["clm"]?.ToString(), converttoresult(sqlData["gameresult"].ToString()), sqlData["status"].ToString(), sqlData["st_point"].ToString(), sqlData["clm_tm"].ToString());
+                }
+                if (mode == 3)
+                {
+                    string totalclm = (Convert.ToInt32(sqlData["clm"]?.ToString()) + Convert.ToInt32(sqlData["sclm"]?.ToString())).ToString();
 
 
-                gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"]?.ToString(), sqlData["bar"]?.ToString(), sqlData["tot"]?.ToString(), totalclm, converttoresult(sqlData["gameresult"]?.ToString()), sqlData["status"]?.ToString(), sqlData["st_point"]?.ToString(), sqlData["clm_tm"]?.ToString());
+                    gb.GetComponent<historyInfoSetter>().setdata(sqlData["id"]?.ToString(), sqlData["bar"]?.ToString(), sqlData["tot"]?.ToString(), totalclm, converttoresult(sqlData["gameresult"]?.ToString()), sqlData["status"]?.ToString(), sqlData["st_point"]?.ToString(), sqlData["clm_tm"]?.ToString());
 
+                }
             }
         }
         sqlData.Close();
@@ -259,7 +264,15 @@ public class historypanel : MonoBehaviour
         }
         if (mode == 3)
         {
-            return result.Substring(2, 2);
+            print(result);
+            if (result.ToUpper() == "NULL" || result.Trim() == string.Empty)
+            {
+                return "NULL";
+            }
+            else
+            {
+                return result.Substring(2, 2);
+            }
         }
         return "Null";
     }

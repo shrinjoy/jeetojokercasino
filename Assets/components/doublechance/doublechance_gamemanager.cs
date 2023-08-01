@@ -167,12 +167,12 @@ public class doublechance_gamemanager : timeManager
         gamesetup();
         resultstring.enabled = true;
 
-        multiplieranimationobject.SetActive(false);
+       
 
         StartCoroutine(addlastgameresults());
-        StartCoroutine(UpdateBalanceAndInfo());
         multiplierscrollanimationobject.enabled = false;
-        resultstring.text = " ";
+        StartCoroutine(UpdateBalanceAndInfo());
+
         sendresult();
         setstatus("place your chip");
         audiosource.clip = placeyourbets;
@@ -281,7 +281,7 @@ public class doublechance_gamemanager : timeManager
 
         output = alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + DateTime.Now.ToString("ss") + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + UnityEngine.Random.Range(0, 9999) + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)] + alphabets[UnityEngine.Random.Range(0, alphabets.Length)];
         //print(output);
-        return output;
+        return output + "M";
     }
 
     public void rebet()
@@ -294,7 +294,7 @@ public class doublechance_gamemanager : timeManager
     }
 
     // Update is called once per frame
-    IEnumerator UpdateBalanceAndInfo()
+   public IEnumerator UpdateBalanceAndInfo()
     {
 
         totalbalance = sqlmanager.balance(usermanager.getUserData().id);
@@ -383,11 +383,16 @@ public class doublechance_gamemanager : timeManager
         while (sqlData.Read())
         {
             GameObject gb = GameObject.Instantiate(last10resultprefab, ResultPanel_content.transform, false);
-            gb.GetComponent<last10resultobjectsetter>().setdata(sqlData["result"].ToString() + sqlData["status"].ToString());
+            gb.GetComponent<last10resultobjectsetter>().setdata(sqlData["result"].ToString() + sqlData["status"].ToString(), sqlData["status"].ToString(), sqlData["g_time"].ToString());
             if (resultsetupdone == false)
             {
                 lastresult = sqlData["result"].ToString() + sqlData["status"].ToString();
                 Vector2 sector = resulttosectorconvert(lastresult);
+                multiplierscrollanimationobject.enabled = true;
+                resultstring.enabled = true;
+
+                resultstring.text = sqlData["result"].ToString().Substring(2);
+                StartCoroutine(multiplieranimationobject.GetComponent<MultiplierAnimation>().multiplieranimation(lastresult.Substring(4)));
 
                 singles_wheel.duration = 0.1f;
                 doubles_wheel.duration = 0.1f;
