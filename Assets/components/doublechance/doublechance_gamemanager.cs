@@ -506,7 +506,7 @@ public class doublechance_gamemanager : timeManager
         win1.text = "";
         win2_single.text = "";
         win3_double.text = "";
-       
+        StartCoroutine(UpdateBalanceAndInfo());
     }
     public Vector2 resulttosectorconvert(string result)
     {
