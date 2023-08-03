@@ -332,7 +332,7 @@ public class doublechance_gamemanager : timeManager
             noinputpanel.SetActive(true);
             audiosource.clip = nomorebetsplease;
             audiosource.Play(); 
-            setstatus("no more bets please");
+           // setstatus("no more bets please");
             nomorebets = true;
             sendresult();
             foreach (doublechance_button btn in single_buttons_list)
