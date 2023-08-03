@@ -334,13 +334,14 @@ public class doublechance_gamemanager : timeManager
             audiosource.Play(); 
             setstatus("no more bets please");
             nomorebets = true;
+            sendresult();
             foreach (doublechance_button btn in single_buttons_list)
             {
-                btn.ResetBetButton();
+               // btn.ResetBetButton();
             }
             foreach (doublechance_button btn in double_buttons_list)
             {
-                btn.ResetBetButton();
+                ///               btn.ResetBetButton();
             }
             foreach (buttonpanelanimaion btnanim in GameObject.FindObjectsOfType<buttonpanelanimaion>())
             {
@@ -506,7 +507,15 @@ public class doublechance_gamemanager : timeManager
         win1.text = "";
         win2_single.text = "";
         win3_double.text = "";
-       
+        foreach (doublechance_button btn in single_buttons_list)
+        {
+             btn.ResetBetButton();
+        }
+        foreach (doublechance_button btn in double_buttons_list)
+        {
+                           btn.ResetBetButton();
+        }
+
     }
     public Vector2 resulttosectorconvert(string result)
     {
@@ -633,7 +642,8 @@ public class doublechance_gamemanager : timeManager
                 {
                     print("win amount:" + sqlData["total"].ToString());
                     intwinamount = Convert.ToInt32(sqlData["total"].ToString());
-                    print("win amount is " + intwinamount);
+                    print("win amount is " + intwinamount); 
+
                     if (sqlData["single"] != null || sqlData["single"].ToString() != "Null")
                     {
                         singlewinamount = Convert.ToInt32(sqlData["single"].ToString());
@@ -677,6 +687,7 @@ public class doublechance_gamemanager : timeManager
             sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
             win0.text = intwinamount.ToString();
             win1.text = intwinamount.ToString();
+            UpdateBalanceAndInfo();
             singletext.text = singlewinamount.ToString();
             doubletext.text = doublewinamount.ToString();
             win2_single.text = singlewinamount.ToString();

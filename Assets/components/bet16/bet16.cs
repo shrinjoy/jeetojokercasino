@@ -135,12 +135,12 @@ public class bet16 : timeManager
             GetComponent<AudioSource>().Play();
            infopanel.SetActive(false);
             noinputpanel.SetActive(true);
-        
+            sendResult();
             resultsentdone = true;
             foreach (Betbuttons btns in bet_buttons)
             {
 
-                btns.resetBetbutton();
+             //   btns.resetBetbutton();
             }
         }
         if (realtime < 10 && betplaced)
@@ -201,7 +201,7 @@ public class bet16 : timeManager
                         data.betamount = btns.betamount;
 
                         GameObject.FindObjectOfType<clearbutton>().betbuttons2.Add(data);
-                        btns.resetBetbutton();
+                      //  btns.resetBetbutton();
                     }
 
 
@@ -219,7 +219,7 @@ public class bet16 : timeManager
             {
                 SceneManager.LoadScene(0);
             }
-            GameObject.FindObjectOfType<clearbutton>().clear();
+          //  GameObject.FindObjectOfType<clearbutton>().clear();
             StartCoroutine(UpdateBalanceAndInfo());
         }
         catch
@@ -261,6 +261,9 @@ public class bet16 : timeManager
         {
             if (sequenceended == true)
             {
+
+                  
+
                 result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("bihari16");
                 if (result != null && sequenceended == true)
                 {
@@ -281,6 +284,8 @@ public class bet16 : timeManager
     bool firstrun=true;
     public IEnumerator addlast9gameresults()
     {
+
+
         string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
 
 
@@ -320,6 +325,7 @@ public class bet16 : timeManager
     IEnumerator bihari6sequence()
     {
         //print(result);
+ 
         markerimage.enabled = false;
 
         resultobject.SetActive(false);
@@ -443,6 +449,7 @@ public class bet16 : timeManager
         GetComponent<AudioSource>().clip = gamestartaudiosource;
         GetComponent<AudioSource>().Play();
         updatedata = true;
+        GameObject.FindObjectOfType<clearbutton>().clear();
         yield return null;
     }
     public IEnumerator UpdateBalanceAndInfo()

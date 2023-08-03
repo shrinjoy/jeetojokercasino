@@ -126,10 +126,11 @@ public class spin2win_manager : timeManager
         if(realtime<11 && betplaced==false)
         {
             betplaced = true;
+            sendbetdata();
             foreach (S2Pbutton btns in bet_buttons)
             {
 
-                btns.resetbet();
+               // btns.resetbet();
             }
             FakeUpdateBalance();
 
@@ -243,6 +244,8 @@ public class spin2win_manager : timeManager
     }
     IEnumerator Spin2Win()
     {
+       
+
         marker.SetActive(false);
         resulttext.text = "";
         int sector = 0;
@@ -332,6 +335,11 @@ public class spin2win_manager : timeManager
         winpanel.SetActive(false);
         yield return new WaitForSeconds(4.0f);
         ResetData = true;
+        foreach (S2Pbutton btns in bet_buttons)
+        {
+
+            btns.resetbet();
+        }
         yield return null;
     }
     public void sendbetdata()
@@ -377,7 +385,7 @@ public class spin2win_manager : timeManager
                     data.betamount = btns.betamount;
                     data.clicks = btns.clickcount;
                     GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Add(data);
-                    btns.resetbet();
+                   // btns.resetbet();
                 }
                 //print(totalbetplaced);
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);

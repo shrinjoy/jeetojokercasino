@@ -90,10 +90,13 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             uwinanimationcircle.SetActive(false);
             updatedata = false;
             placeyourbetsshow = false;
+            playamount.text = "0";
+            playamount2.text = "0";
+
         }
 
 
-        if(realtime >= 15 &&placeyourbetsshow==false)
+        if (realtime >= 15 &&placeyourbetsshow==false)
         {
             
             showstat("Place your chips");
@@ -116,12 +119,8 @@ public class jeetoJoker_GAMEMANAGER :timeManager
             GetComponent<AudioSource>().Play();
             infopanel.SetActive(false);
             noinputpanel.SetActive(true);
-            foreach (Betbuttons btns in bet_buttons)
-            {
-
-
-                btns.resetBetbutton();
-            }
+            sendResult();
+           
             resultsentdone =true;
         }
         if (realtime < 10 && betplaced)
@@ -207,10 +206,10 @@ public class jeetoJoker_GAMEMANAGER :timeManager
                 GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
                 StartCoroutine(UpdateBalanceAndInfo());
                 betplaced = true;
-                playamount.text = "0";
-                playamount2.text = "0";
+               // playamount.text = "0";
+                //playamount2.text = "0";
                 showstat("Your bets have been accepted ID:"+barcode);
-                GameObject.FindObjectOfType<clearbutton>().clear();
+                //GameObject.FindObjectOfType<clearbutton>().clear();
             }
         }
         
@@ -218,7 +217,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             SceneManager.LoadScene(0);
         }
-        GameObject.FindObjectOfType<clearbutton>().clear();
+      //  GameObject.FindObjectOfType<clearbutton>().clear();
         resetTimer();
 
     }
@@ -254,6 +253,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         {
             if (sequenceended == true)
             {
+                
                 result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("joker");
                 if (result != null && sequenceended == true)
                 {
@@ -312,6 +312,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
     }
     IEnumerator jeetojokersequence()
     {
+        
         markerimage.enabled = false;
         
         resultobject.SetActive(false);
@@ -426,6 +427,14 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         GetComponent<AudioSource>().Play();
         updatedata = true;
         betplaced= false;
+        try
+        {
+            GameObject.FindObjectOfType<clearbutton>().clear();
+        }
+        catch
+        {
+
+        }
         yield return null;
     }
   public  IEnumerator  UpdateBalanceAndInfo()
