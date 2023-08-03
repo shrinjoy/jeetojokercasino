@@ -252,7 +252,7 @@ public class doublechance_gamemanager : timeManager
                         buttons_list_rebet.Add(btd);
                     }
 
-                    btn.ResetBetButton();
+                   // btn.ResetBetButton();
                 }
                 setstatus("your bet have been accepted " + bar);
 
@@ -513,8 +513,9 @@ public class doublechance_gamemanager : timeManager
         }
         foreach (doublechance_button btn in double_buttons_list)
         {
-                           btn.ResetBetButton();
+          btn.ResetBetButton();
         }
+        StartCoroutine(UpdateBalanceAndInfo());
 
     }
     public Vector2 resulttosectorconvert(string result)
