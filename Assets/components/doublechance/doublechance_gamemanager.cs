@@ -178,6 +178,17 @@ public class doublechance_gamemanager : timeManager
         audiosource.clip = placeyourbets;
         audiosource.Play();
         // placebetonall();
+        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
+
+    }
+    Coroutine crx = null;
+    public void autoupdatebalance()
+    {
+        if (crx != null)
+        {
+            StopCoroutine(crx);
+        }
+        crx = StartCoroutine(UpdateBalanceAndInfo());
     }
     public void sendresult()
     {
