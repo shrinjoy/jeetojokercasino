@@ -715,59 +715,6 @@ public class doublechance_gamemanager : timeManager
 
         //
     }
-    void removestat()
-    {
-        //
-        DateTime currenttime = sqlmanager.get_time();
-        string command = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + usermanager.getUserData().id + "' and status = 'Prize'";
-
-        SqlCommand sqlCmnd = new SqlCommand();
-        SqlDataReader sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = sqlmanager.SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
-        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        //print(command);
-        if (sqlData.Read())
-        {
-
-        }
-
-        sqlData.Close();
-        sqlData.DisposeAsync();
-    }
-    public void claimbets()
-    {
-
-        string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[doup]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-
-        SqlCommand sqlCmnd = new SqlCommand();
-        SqlDataReader sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
-        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        int betamountwon = 0;
-        if (sqlData.Read())
-        {
-            try
-            {
-
-                betamountwon = Convert.ToInt32(sqlData["totalclaim"].ToString());
-            }
-            catch
-            {
-                //print("no amount claimed");
-            }
-
-        }
-        sqlData.Close();
-        sqlData.DisposeAsync();
-        sqlmanager.addubalanceindatabase(usermanager.getUserData().id, betamountwon);
-
-        removestat();
-
-    }
+  
+  
 }
