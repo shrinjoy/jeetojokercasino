@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class timeManager : MonoBehaviour
@@ -16,8 +14,8 @@ public class timeManager : MonoBehaviour
     [HideInInspector]
     protected double realtime = 0;
     bool isGameSequenceRunning = false;
-    public int selectedcoinamount = 2;
-    [SerializeField] int mode = 0;
+    public int selectedcoinamount=2;
+   [SerializeField] int mode = 0;
     bool nonbetversion = false;
     public void Start()
     {
@@ -29,18 +27,13 @@ public class timeManager : MonoBehaviour
         if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             //patch; 
-            timetillnextgame = timetillnextgame.AddDays(1);
+        timetillnextgame=    timetillnextgame.AddDays(1);
         }
-        double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
+        double ts =timetillnextgame.Subtract(servertime).TotalSeconds;
         realtime = ts;
         print(realtime);
         InvokeRepeating(nameof(timeloop), 1, 1);
-        InvokeRepeating(nameof(updatebalanceloop), 0, 5);
 
-    }
-    public void updatebalanceloop()
-    {
-        claimbets();
     }
     void OnApplicationFocus(bool pauseStatus)
     {
@@ -53,39 +46,37 @@ public class timeManager : MonoBehaviour
     public void timeloop()
     {
 
-        if (realtime <= 0.0f)
-        {
-
-            try
+       
+            if (realtime <= 0.0f )
             {
-                GameSequence();
+
+                try
+                {
+                    GameSequence();
+
+                }
+                catch
+                {
+                    print("lost internet");
+                }
+            }
+            else
+            {
+                resetTimer();
+                realtime -= 1;
+
 
             }
-            catch
-            {
-                print("lost internet");
-            }
-        }
-        else
-        {
-            resetTimer();
-            realtime -= 1;
-
-
-        }
-
+          
+        
 
     }
-
-
-
-
     public void resetTimer()
     {
         timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
 
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(5);
-
+      
         if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             //patch; 
@@ -94,189 +85,10 @@ public class timeManager : MonoBehaviour
         double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
 
         realtime = ts;
-
+        
     }
 
     public virtual void GameSequence() { }
-
-
-
-    public async void removestat()
-    {
-
-        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-
-
-        string command = "UPDATE [taas].[dbo].[tengp] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-        string command1 = "UPDATE [taas].[dbo].[tasp] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-        string command2 = "UPDATE [taas].[dbo].[bet16] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-        string command3 = "UPDATE [taas].[dbo].[doup] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-
-        SqlCommand sqlCmnd = new SqlCommand();
-        SqlDataReader sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-
-        if (sqlData.Read())
-        {
-
-        }
-        sqlData.Close();
-
-        //
-        sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command1;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-        if (sqlData.Read())
-        {
-
-        }
-        sqlData.Close();
-
-        //
-        sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command2;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-
-        if (sqlData.Read())
-        {
-
-        }
-        sqlData.Close();
-
-        //
-        sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command2;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-
-        if (sqlData.Read())
-        {
-
-        }
-        //print(command);
-        sqlData.Close();
-        await sqlData.DisposeAsync();
-    }
-    public async void claimbets()
-    {
-
-        string command = "SELECT ISNULL(SUM(clm),0) as totalclaim  FROM [taas].[dbo].[bet16]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-
-        string command1 = "SELECT ISNULL(SUM(clm),0) as totalclaim  FROM [taas].[dbo].[tasp]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-
-        string command2 = "SELECT ISNULL(SUM(clm),0) as totalclaim  FROM [taas].[dbo].[tengp]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-
-        string command3 = "SELECT ISNULL(SUM(clm)+SUM(sclm),0) as totalclaim  FROM [taas].[dbo].[doup]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
-
-        SqlCommand sqlCmnd = new SqlCommand();
-        SqlDataReader sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-        int betamountwon = 0;
-        if (sqlData.Read())
-        {
-            try
-            {
-
-                betamountwon = Convert.ToInt32(sqlData["totalclaim"].ToString());
-            }
-            catch
-            {
-                //print("no amount claimed");
-            }
-
-        }
-        sqlData.Close();
-
-        GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, betamountwon);
-        //
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command1;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-        betamountwon = 0;
-        if (sqlData.Read())
-        {
-            try
-            {
-
-                betamountwon = Convert.ToInt32(sqlData["totalclaim"].ToString());
-            }
-            catch
-            {
-                //print("no amount claimed");
-            }
-
-        }
-        sqlData.Close();
-
-        GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, betamountwon);
-        //
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command2;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-        betamountwon = 0;
-        if (sqlData.Read())
-        {
-            try
-            {
-
-                betamountwon = Convert.ToInt32(sqlData["totalclaim"].ToString());
-            }
-            catch
-            {
-                //print("no amount claimed");
-            }
-
-        }
-        sqlData.Close();
-
-        GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, betamountwon);
-        //
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = command3;//this is the sql command we use to get data about user
-        sqlData = await sqlCmnd.ExecuteReaderAsync(CommandBehavior.SingleResult);
-        betamountwon = 0;
-        if (sqlData.Read())
-        {
-            try
-            {
-
-                betamountwon = Convert.ToInt32(sqlData["totalclaim"].ToString());
-            }
-            catch
-            {
-                //print("no amount claimed");
-            }
-
-        }
-        sqlData.Close();
-        await sqlData.DisposeAsync();
-        GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, betamountwon);
-
-        removestat();
-
-    }
 
 
 }
