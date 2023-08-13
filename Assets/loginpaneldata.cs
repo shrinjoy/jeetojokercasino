@@ -11,19 +11,15 @@ public class loginpaneldata : MonoBehaviour
     
     private void Start()
     {
-        
-            id.text =GameObject.FindObjectOfType<userManager>().getUserData().id;
-        InvokeRepeating(nameof(updatedata),0,1);
-    }
-    public void updatedata()
-    {
         int bal = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
-        if (bal < 0)
+        if(bal < 0)
 
         {
             bal = 0;
         }
         balance.text = bal.ToString();
+            id.text =GameObject.FindObjectOfType<userManager>().getUserData().id;
+
     }
     public void exitGame()
     {

@@ -56,17 +56,6 @@ public class spin2win_manager : timeManager
         GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
         GameObject.FindObjectOfType<AudioSource>().Play();
         showstatus("Place your bets");
-        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
-
-    }
-    Coroutine crx = null;
-    public void autoupdatebalance()
-    {
-        if (crx != null)
-        {
-            StopCoroutine(crx);
-        }
-        crx = StartCoroutine(UpdateBalanceAndInfo());
     }
     private void Update()
     {
