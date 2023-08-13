@@ -171,7 +171,7 @@ public class spin2win_manager : timeManager
         gameIDtext.text = GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
         fakebalance = totalbalance;
 
-        resetTimer();
+      
         yield return null;
 
     }
@@ -343,6 +343,7 @@ public class spin2win_manager : timeManager
         winpanel.SetActive(false);
         yield return new WaitForSeconds(4.0f);
         ResetData = true;
+        resetTimer();
         yield return null;
     }
     public void sendbetdata()
