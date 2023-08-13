@@ -72,7 +72,17 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         StartCoroutine(UpdateBalanceAndInfo());
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
           StartCoroutine(addlast9gameresults());
+        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
+    }
 
+    Coroutine crx = null;
+    public void autoupdatebalance()
+    {
+        if (crx != null)
+        {
+            StopCoroutine(crx);
+        }
+        crx = StartCoroutine(UpdateBalanceAndInfo());
     }
     // Update is called once per frame
     bool placeyourbetsshow = false;
