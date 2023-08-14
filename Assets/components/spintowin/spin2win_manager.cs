@@ -56,12 +56,24 @@ public class spin2win_manager : timeManager
         GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
         GameObject.FindObjectOfType<AudioSource>().Play();
         showstatus("Place your bets");
+        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
+
+    }
+    Coroutine crx = null;
+    public void autoupdatebalance()
+    {
+        if (crx != null)
+        {
+            StopCoroutine(crx);
+        }
+        crx = StartCoroutine(UpdateBalanceAndInfo());
     }
     private void Update()
     {
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt"); 
         if (ResetData==true)
         {
+            resetTimer();
             StartCoroutine(addlastgameresults());
             uwinanimation.SetActive(false);
             StartCoroutine(UpdateBalanceAndInfo());
@@ -161,7 +173,7 @@ public class spin2win_manager : timeManager
         gameIDtext.text = GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
         fakebalance = totalbalance;
 
-        resetTimer();
+       
         yield return null;
 
     }
@@ -400,7 +412,7 @@ public class spin2win_manager : timeManager
             SceneManager.LoadScene(0);
         }
         betplacedtext.text = "0";
-        resetTimer();
+       
        yield return null;
     }
     public string generatebarcode()

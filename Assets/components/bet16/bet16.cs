@@ -72,7 +72,17 @@ public class bet16 : timeManager
         StartCoroutine(UpdateBalanceAndInfo());
         StartCoroutine(addlast9gameresults());
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
 
+    }
+    Coroutine crx = null;
+    public void autoupdatebalance()
+    {
+        if (crx != null)
+        {
+            StopCoroutine(crx);
+        }
+        crx = StartCoroutine(UpdateBalanceAndInfo());
     }
     // Update is called once per frame
     Coroutine cr;
