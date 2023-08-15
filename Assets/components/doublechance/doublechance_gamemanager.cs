@@ -696,7 +696,8 @@ public class doublechance_gamemanager : timeManager
 
 
             //print("winamount:" + intwinamount);
-            sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
+            // sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
+            claimbets();
             win0.text = intwinamount.ToString();
             win1.text = intwinamount.ToString();
             UpdateBalanceAndInfo();
