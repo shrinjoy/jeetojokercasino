@@ -675,17 +675,13 @@ public class doublechance_gamemanager : timeManager
             audiosource.Play();
             uwinanimation.SetActive(true);
             coinflipobject.SetActive(true);
-            if (intwinamount > 900)
-            {
-
-                //  coindanceobject.SetActive(true);
-
-            }
+          
 
 
 
             //print("winamount:" + intwinamount);
-            sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
+            // sqlmanager.addubalanceindatabase(usermanager.getUserData().id, intwinamount);
+            claimbets();
             win0.text = intwinamount.ToString();
             win1.text = intwinamount.ToString();
             singletext.text = singlewinamount.ToString();
