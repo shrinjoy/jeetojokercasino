@@ -44,7 +44,8 @@ public class historyInfoSetter : MonoBehaviour
 
         int start = Convert.ToInt32(stpoint);
         int totalplayed = (Convert.ToInt32(play));
-        int end = start - totalplayed + winpoint;
+        int end = start - totalplayed;
+        end += winpoint;
         if (claimdatetime == null || claimdatetime.ToString().Trim().Length == 0 || claimdatetime.ToString().ToUpper() == "NULL")
         {
             claimtime.text = " ";
