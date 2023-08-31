@@ -258,13 +258,13 @@ public class jeetoJoker_GAMEMANAGER :timeManager
        // balance.text = bet.ToString();
        // balance2.text = bet.ToString();
     }
-    public override void GameSequence()
+    public override async void GameSequence()
     {
         try
         {
             if (sequenceended == true)
             {
-                result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("joker");
+                result =await GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("joker");
                 if (result != null && sequenceended == true)
                 {
                     //print("game sequnce started");

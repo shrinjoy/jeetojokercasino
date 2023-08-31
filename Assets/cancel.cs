@@ -83,7 +83,7 @@ public class cancel : MonoBehaviour
             }
             if (mode == 2)
             {
-                StartCoroutine(GameObject.FindObjectOfType<spin2win_manager>().UpdateBalanceAndInfo());
+              GameObject.FindObjectOfType<spin2win_manager>().UpdateBalanceAndInfo();
 
             }
             if (mode == 3)

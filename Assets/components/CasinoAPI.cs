@@ -52,7 +52,34 @@ public class CasinoAPI : MonoBehaviour
         {
             return null;
         }
+     }
+
+    public async Task<string> getresultbyid(int id)
+    {
+        gameresultbyidRequest data = new gameresultbyidRequest {gameid=id };
+       
+        string jsonpayload = JsonConvert.SerializeObject(data);
+        
+        
+        StringContent stringcontent = new StringContent(jsonpayload, Encoding.UTF8, "application/json");
+
+        HttpResponseMessage message = await client.PostAsync("http://191.101.3.139:3000/s2w/getresult/", stringcontent);
+        if (message.IsSuccessStatusCode)
+        {
+            gameresultbyidResponse pdrs = JsonConvert.DeserializeObject<gameresultbyidResponse>(await message.Content.ReadAsStringAsync());
+            print("result status:"+message.StatusCode);
+
+            print("result :" +await message.Content.ReadAsStringAsync());
+            print("PDRS:" + pdrs.result);
+            return pdrs.result;
         }
+        else
+        {
+            return null;
+        }
+    }
+
+
     public async Task<int> gettimeleft(string timeroute)
     {
         HttpResponseMessage message = await client.GetAsync(timeroute);
@@ -64,6 +91,20 @@ public class CasinoAPI : MonoBehaviour
         else
         {
             return 999999;
+        }
+    }
+    public async Task<gamedata> getgamedata(string gamedataroute)
+    {
+       // //http://191.101.3.139:3000/s2w/getgameinfo/
+        HttpResponseMessage message = await client.GetAsync(gamedataroute);
+        if (message.StatusCode == HttpStatusCode.OK)
+        {
+            gamedata res = JsonConvert.DeserializeObject<gamedata>(await message.Content.ReadAsStringAsync());
+            return res;
+        }
+        else
+        {
+            return null;
         }
     }
     public async Task<last10result> getlast10result(string route)
@@ -79,9 +120,66 @@ public class CasinoAPI : MonoBehaviour
             return null;
         }
     }
+    
+
+    public async Task<int> getwinamount(string username,int gameid)
+    {
+        getwinbyIDRequest data = new getwinbyIDRequest
+        {
+            username= username,
+            gameid= gameid
+        };
+        string jsonpayload = JsonConvert.SerializeObject(data);
+
+
+      
+
+        StringContent stringcontent = new StringContent(jsonpayload, Encoding.UTF8, "application/json");
+
+        HttpResponseMessage message = await client.PostAsync("http://191.101.3.139:3000/s2w/getresult/", stringcontent);
+        if (message.IsSuccessStatusCode)
+        {
+            getwinbyIDResponse pdrs = JsonConvert.DeserializeObject<getwinbyIDResponse>(await message.Content.ReadAsStringAsync());
+            return pdrs.claim;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
 }
 
+public class setbetRequest
+{
+    public int NR0,NR1, NR2,NR3,NR4,NR5,NR6,NR7,NR8,NR9,totalbet;
+    public string username;
+}
 
+public class gamedata
+{
+    public int gameid;
+    public int serverbalance;
+    public string currentgametime;
+    public string currentgamedrawtime;
+}
+public class getwinbyIDRequest
+{
+    public string username;
+    public int gameid;
+}
+public class getwinbyIDResponse
+{
+   public int claim;
+}
+public class gameresultbyidRequest
+{
+    public int gameid;
+}
+public class gameresultbyidResponse
+{
+    public string result;
+}
 public class PlayerdataResponse
 {
    public string status;

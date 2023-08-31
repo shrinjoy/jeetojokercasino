@@ -427,7 +427,7 @@ public class doublechance_gamemanager : timeManager
 
         yield return null;
     }
-    public override void GameSequence()
+    public override async void GameSequence()
     {
 
         //print("game sequence");
@@ -435,7 +435,7 @@ public class doublechance_gamemanager : timeManager
         {
             if (sequenceended == true)
             {
-                result = GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("doubletrouble");
+                result =await GameObject.FindObjectOfType<SQL_manager>().GetComponent<betManager>().getResult("doubletrouble");
                 if (result != null && sequenceended == true)
                 {
                     //print("game sequnce started");

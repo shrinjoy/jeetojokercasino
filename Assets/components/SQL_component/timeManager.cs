@@ -52,9 +52,14 @@ public class timeManager : MonoBehaviour
             }
             else
             {
+            if (realtime > 10.0f)
+            {
                 resetTimer();
+            }
+            else
+            {
                 realtime -= 1;
-
+            }
 
             }
           
@@ -69,7 +74,7 @@ public class timeManager : MonoBehaviour
 
     }
 
-    public virtual void GameSequence() { }
+    public virtual async void GameSequence() { }
 
 
 }
