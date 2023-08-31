@@ -20,20 +20,20 @@ public class ResultPanel_resultObject_s2w : MonoBehaviour
         {
             timertext.text = DateTime.Parse(rtimer).ToString("HH:mm"); ;
         }
-        this.GetComponent<Image>().color = color[Convert.ToInt32(ResultConverters.S2w_ResultConverter(Result.Substring(0, 4)))];
+        this.GetComponent<Image>().color = color[Convert.ToInt32(ResultConverters.S2w_ResultConverter(Result.Substring(0, 3)))];
 
         if(Result.Substring(4)=="N")
         {
             //normal mode
             normalobject.SetActive(true);
-            NormalResulttext.text =  ResultConverters.S2w_ResultConverter(Result.Substring(0,4));
+            NormalResulttext.text =  ResultConverters.S2w_ResultConverter(Result.Substring(0,3));
         }
         if (Result.Substring(4) != "N")
         {
             //normal mode
             normalobject.SetActive(false);
             multiplierobject.SetActive(true);
-            multiplieResultText.text = ResultConverters.S2w_ResultConverter(Result.Substring(0,4));
+            multiplieResultText.text = ResultConverters.S2w_ResultConverter(Result.Substring(0,3));
             multiplierText.text = Result.Substring(4);
         }
 

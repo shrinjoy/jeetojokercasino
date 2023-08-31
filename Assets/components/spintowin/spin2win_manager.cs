@@ -51,7 +51,7 @@ public class spin2win_manager : timeManager
     {
         claimbets();
        base.Start();
-       StartCoroutine(addlastgameresults());
+       addlastgameresults();
        StartCoroutine(UpdateBalanceAndInfo());
         GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
         GameObject.FindObjectOfType<AudioSource>().Play();
@@ -73,7 +73,7 @@ public class spin2win_manager : timeManager
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt"); 
         if (ResetData==true)
         {
-            StartCoroutine(addlastgameresults());
+            addlastgameresults();
             uwinanimation.SetActive(false);
             StartCoroutine(UpdateBalanceAndInfo());
             GameObject.FindObjectOfType<S2Wclear_repeat>().clear();
@@ -175,42 +175,29 @@ public class spin2win_manager : timeManager
         yield return null;
 
     }
-    public IEnumerator addlastgameresults()
+    public async void addlastgameresults()
     {
 
-        foreach(Transform gb in ResultPanel_content.GetComponentsInChildren<Transform>())
+        foreach(Transform xgb in ResultPanel_content.GetComponentsInChildren<Transform>())
         {
-            if(gb!= ResultPanel_content.transform)
+            if(xgb!= ResultPanel_content.transform)
             {
-                Destroy(gb.gameObject);
+                Destroy(xgb.gameObject);
             }
         }
-        string endtime = GameObject.FindObjectOfType<betManager>().gameResultTime;
+        last10result res = await GameObject.FindObjectOfType<CasinoAPI>().getlast10result("http://191.101.3.139:3000/s2w/getlastresults/");
 
-
-        string starttime = DateTime.Parse(endtime).AddMinutes(-30).ToString("hh:mm:ss tt");
-        int i = 0;
-
-        SqlCommand sqlCmnd = new SqlCommand();
-        //
-        SqlDataReader sqlData = null;
-        sqlCmnd.CommandTimeout = 60;
-        sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-        sqlCmnd.CommandType = CommandType.Text;
-        sqlCmnd.CommandText = " SELECT top(10) * FROM [taas].[dbo].[results] order by [taas].[dbo].[results].id desc";
-        //print(sqlCmnd.CommandText);
-        sqlData = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-        while (sqlData.Read())
+        foreach (last10ResultItem item in res.Results)
         {
+
+
             GameObject gb = GameObject.Instantiate(ResultsPanel_content_object, ResultPanel_content.transform, false);
-            gb.GetComponent<ResultPanel_resultObject_s2w>().SetResult(sqlData["result"].ToString() + sqlData["status"].ToString(), sqlData["g_time"].ToString());
+            print(item.Result);
+            gb.GetComponent<ResultPanel_resultObject_s2w>().SetResult(item.Result+"N", item.Time);
 
-            
-        }
-        sqlData.Close();
-        sqlData.DisposeAsync();
+        } 
 
-        yield return null;
+        
     }
     public override void GameSequence()
     {

@@ -13,7 +13,7 @@ public class login : MonoBehaviour
     [SerializeField] TMPro.TMP_InputField username;
     [SerializeField]TMPro.TMP_InputField  password;
     [SerializeField] TMPro.TMP_Text warningtext;
-    SQL_manager sqlm;
+    CasinoAPI sqlm;
     [SerializeField] Toggle rememberme;
     [SerializeField]string macid;
     [SerializeField] AudioSource asa;
@@ -26,7 +26,7 @@ public class login : MonoBehaviour
 
     private void Start()
     {
-        sqlm = GameObject.FindObjectOfType<SQL_manager>();
+        sqlm = GameObject.FindObjectOfType<CasinoAPI>();
         macid = GetMACAddress();
         if(PlayerPrefs.GetString("storedata") =="yes")
         {
@@ -46,11 +46,13 @@ public class login : MonoBehaviour
             }
         }
     }                                                                              
-    public void loginuser()
+    public async void loginuser()
     {
         //print(macid);
-        if(sqlm.canLogin(username.text.ToString(),password.text.ToString(),macid))
+        LoginDataResponse response= await sqlm.canlogin(username.text.ToString(), password.text.ToString());
+        if(response!=null)
         {
+            GameObject.FindObjectOfType<userManager>().setUserData(response.username, response.username, response.password, response.UUID, "");
             asa.Play();
             SceneManager.LoadScene(1);
         }

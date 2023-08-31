@@ -15,10 +15,11 @@ public class loginpaneldata : MonoBehaviour
             id.text =GameObject.FindObjectOfType<userManager>().getUserData().id;
         InvokeRepeating(nameof(updatedata),0,1);
     }
-    public void updatedata()
+    public async void updatedata()
     {
-        int bal = GameObject.FindObjectOfType<SQL_manager>().balance(GameObject.FindObjectOfType<userManager>().getUserData().id);
-        if (bal < 0)
+        PlayerdataResponse response=await GameObject.FindObjectOfType<CasinoAPI>().getuserdata(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password);
+        int bal = response.balance;
+            if (bal < 0)
 
         {
             bal = 0;

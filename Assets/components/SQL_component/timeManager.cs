@@ -17,21 +17,11 @@ public class timeManager : MonoBehaviour
     public int selectedcoinamount=2;
    [SerializeField] int mode = 0;
     bool nonbetversion = false;
-    public void Start()
+    public async void Start()
     {
-        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
+        int d = await GameObject.FindObjectOfType<CasinoAPI>().gettimeleft("http://191.101.3.139:3000/s2w/gettimeleft/");
 
-        servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(5);
-        print("time till next game:" + timetillnextgame);
-        print("server time:" + servertime);//time patch 
-        if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
-        {
-            //patch; 
-        timetillnextgame=    timetillnextgame.AddDays(1);
-        }
-        double ts =timetillnextgame.Subtract(servertime).TotalSeconds;
-        realtime = ts;
-        print(realtime);
+        realtime = (double)d;
         InvokeRepeating(nameof(timeloop), 1, 1);
 
     }
@@ -71,21 +61,12 @@ public class timeManager : MonoBehaviour
         
 
     }
-    public void resetTimer()
+    public async void resetTimer()
     {
-        timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
+        int d = await GameObject.FindObjectOfType<CasinoAPI>().gettimeleft("http://191.101.3.139:3000/s2w/gettimeleft/");
 
-        servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(5);
-      
-        if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
-        {
-            //patch; 
-            timetillnextgame = timetillnextgame.AddDays(1);
-        }
-        double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
+        realtime = (double)d;
 
-        realtime = ts;
-        
     }
 
     public virtual void GameSequence() { }
