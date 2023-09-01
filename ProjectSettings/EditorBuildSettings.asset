@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/joker.unity
     guid: c8799ce1ede494949acaf1309995a621
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/16Card.unity
     guid: cac9b82c0c85e584d8d33e3c64bb33aa
