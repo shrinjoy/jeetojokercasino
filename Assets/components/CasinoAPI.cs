@@ -53,7 +53,6 @@ public class CasinoAPI : MonoBehaviour
             return null;
         }
      }
-
     public async Task<string> getresultbyid(int id)
     {
         gameresultbyidRequest data = new gameresultbyidRequest {gameid=id };
@@ -78,8 +77,6 @@ public class CasinoAPI : MonoBehaviour
             return null;
         }
     }
-
-
     public async Task<int> gettimeleft(string timeroute)
     {
         HttpResponseMessage message = await client.GetAsync(timeroute);
@@ -120,8 +117,6 @@ public class CasinoAPI : MonoBehaviour
             return null;
         }
     }
-    
-
     public async Task<int> getwinamount(string username,int gameid)
     {
         getwinbyIDRequest data = new getwinbyIDRequest
@@ -136,7 +131,7 @@ public class CasinoAPI : MonoBehaviour
 
         StringContent stringcontent = new StringContent(jsonpayload, Encoding.UTF8, "application/json");
 
-        HttpResponseMessage message = await client.PostAsync("http://191.101.3.139:3000/s2w/getresult/", stringcontent);
+        HttpResponseMessage message = await client.PostAsync("http://191.101.3.139:3000/s2w/getwinbyid/", stringcontent);
         if (message.IsSuccessStatusCode)
         {
             getwinbyIDResponse pdrs = JsonConvert.DeserializeObject<getwinbyIDResponse>(await message.Content.ReadAsStringAsync());
@@ -147,7 +142,27 @@ public class CasinoAPI : MonoBehaviour
             return 0;
         }
     }
+    public async Task<string> setbet(string username,int NR0, int NR1, int NR2, int NR3, int NR4, int NR5, int NR6, int NR7, int NR8, int NR9,int totalbet)
+    {
+        setbetRequest data = new setbetRequest { username = username, NR0 = NR0, NR1 = NR1, NR2 = NR2, NR3 = NR3, NR4 = NR4, NR5 = NR5, NR6 = NR6, NR7 = NR7, NR8 = NR8, NR9 = NR9,totalbet=totalbet };
+        string jsonpayload = JsonConvert.SerializeObject(data);
+        print("bet data to place:" + jsonpayload);
+        StringContent stringcontent = new StringContent(jsonpayload, Encoding.UTF8, "application/json");
 
+        HttpResponseMessage message = await client.PostAsync("http://191.101.3.139:3000/s2w/setbet/", stringcontent);
+        print("bet placed data :" + await message.Content.ReadAsStringAsync());
+        if(message.IsSuccessStatusCode)
+        {
+            setbetResponse pdrs = JsonConvert.DeserializeObject<setbetResponse>(await message.Content.ReadAsStringAsync());
+            return pdrs.status;
+
+        }
+        else
+        {
+
+            return null;
+        }
+    }
 }
 
 public class setbetRequest
@@ -155,8 +170,11 @@ public class setbetRequest
     public int NR0,NR1, NR2,NR3,NR4,NR5,NR6,NR7,NR8,NR9,totalbet;
     public string username;
 }
-
-public class gamedata
+public class setbetResponse
+{
+   public string status;
+}
+    public class gamedata
 {
     public int gameid;
     public int serverbalance;

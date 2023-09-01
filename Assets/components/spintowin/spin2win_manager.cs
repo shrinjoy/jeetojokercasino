@@ -346,64 +346,40 @@ public class spin2win_manager : timeManager
     }
     public void sendbetdata()
     {
-        StartCoroutine(sendResult());
+       sendResult();
     }
-    IEnumerator sendResult()
+   async void sendResult()
     {
        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid))
-        {
+        
             //print("called sebt result");
             if ((totalbalance -totalbetplaced)>=0 && totalbalance>0&&  totalbetplaced > 0)
             {
-                anybetsplaced = true;
-                string status = "Print";
-                string gm = "gm";
+             
                 string barcode = generatebarcode();
-                string command = "INSERT INTO [taas].[dbo].[tengp] (a00,a01,a02,a03,a04,a05,a06,a07,a08,a09," +
-                    "tot,qty," +
-                    "g_date,status,ter_id,g_id,g_time,p_time,bar,gm,flag,st_point) values ("
-                    + bet_buttons[0].betamount + "," + bet_buttons[1].betamount + "," + bet_buttons[2].betamount + "," + bet_buttons[3].betamount + "," + bet_buttons[4].betamount + "," + bet_buttons[5].betamount + "," + bet_buttons[6].betamount + "," + bet_buttons[7].betamount + "," + bet_buttons[8].betamount + "," + bet_buttons[9].betamount
-                    + "," + totalbetplaced + "," + totalbetplaced + ","
-                    + "'" + DateTime.Today.ToString("yyyy-MM-dd 00:00:00.000") + "'" + "," + "'" + status + "'" + ",'" + GameObject.FindObjectOfType<userManager>().getUserData().id + "'," + GameObject.FindObjectOfType<betManager>().gameResultId + "," + "'" + GameObject.FindObjectOfType<betManager>().gameResultTime + "'" + "," + "'" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'" + "," + "'" + barcode + "'" + "," + "'" + gm + "'" + "," + 1 +","+totalbalance+ ")";
-                //print(command);
-                SqlCommand sqlCmnd = new SqlCommand();
-                SqlDataReader sqldata = null;
-                sqlCmnd.CommandTimeout = 60;
-                sqlCmnd.Connection = GameObject.FindObjectOfType<SQL_manager>().SQLconn;
-                sqlCmnd.CommandType = CommandType.Text;
-                sqlCmnd.CommandText = command;
-                sqldata = sqlCmnd.ExecuteReader(CommandBehavior.SingleResult);
-
-                sqldata.Close();
-                sqldata.DisposeAsync();
-                GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Clear();
-                foreach (S2Pbutton btns in bet_buttons)
-                {
-
-                    
-                    BetbuttonData data = new BetbuttonData();
-                    data.betbutton = btns;
-                    data.betamount = btns.betamount;
-                    data.clicks = btns.clickcount;
-                    GameObject.FindObjectOfType<S2Wclear_repeat>().betbuttons2.Add(data);
-                    btns.resetbet();
-                }
-                //print(totalbetplaced);
-                GameObject.FindObjectOfType<SQL_manager>().updatebalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, totalbetplaced);
+                string d = await GameObject.FindObjectOfType<CasinoAPI>().setbet(GameObject.FindObjectOfType<userManager>().getUserData().id, bet_buttons[0].betamount, bet_buttons[1].betamount, bet_buttons[2].betamount, bet_buttons[3].betamount, bet_buttons[4].betamount, bet_buttons[5].betamount, bet_buttons[6].betamount,bet_buttons[7].betamount, bet_buttons[8].betamount, bet_buttons[9].betamount,totalbetplaced);
                 UpdateBalanceAndInfo();
-                showstatus("your bet has been accepted ID:"+barcode);
-               
+                if (d != null)
+                {
+                    showstatus("your bet has been accepted ID:" + barcode);
+                }
+                else
+                {
+                    showstatus("failed to place bets");
+
+                }
+
             }
+
+        foreach (S2Pbutton btns in bet_buttons)
+        {
+
+            btns.resetbet();
         }
 
-        else
-        {
-            SceneManager.LoadScene(0);
-        }
         betplacedtext.text = "0";
         resetTimer();
-       yield return null;
+     
     }
     public string generatebarcode()
     {
