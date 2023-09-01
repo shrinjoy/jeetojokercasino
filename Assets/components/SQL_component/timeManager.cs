@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class timeManager : MonoBehaviour
@@ -66,12 +67,12 @@ public class timeManager : MonoBehaviour
         
 
     }
-    public async void resetTimer()
+    public async Task<bool> resetTimer()
     {
         int d = await GameObject.FindObjectOfType<CasinoAPI>().gettimeleft("http://191.101.3.139:3000/s2w/gettimeleft/");
 
         realtime = (double)d;
-
+        return true;
     }
 
     public virtual async void GameSequence() { }

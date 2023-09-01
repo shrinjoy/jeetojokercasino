@@ -65,13 +65,13 @@ public class spin2win_manager : timeManager
     {
        UpdateBalanceAndInfo();
     }
-    private void Update()
+    private async void Update()
     {
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt"); 
         if (ResetData==true)
         {
             GameObject.FindObjectOfType<betManager>().setResultData();
-            resetTimer();
+           await resetTimer();
             addlastgameresults();
             uwinanimation.SetActive(false);
             UpdateBalanceAndInfo();
@@ -150,7 +150,7 @@ public class spin2win_manager : timeManager
     }
      public void showstatus(string st)
     {
-     StartCoroutine(statusanim(st));
+    // StartCoroutine(statusanim(st));
     }
     IEnumerator statusanim(string text)
     {
