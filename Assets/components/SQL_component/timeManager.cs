@@ -67,8 +67,11 @@ public class timeManager : MonoBehaviour
 
 
             }
-          
-        
+        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid) == false)
+        {
+            SceneManager.LoadScene(0);
+        }
+
 
     }
     public void resetTimer()

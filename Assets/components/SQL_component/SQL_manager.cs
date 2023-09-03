@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using UnityEngine.SceneManagement;
 using System;
-
+using UnityEngine.UI;
 
 public class SQL_manager : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class SQL_manager : MonoBehaviour
     bool setupdone = false;
     private void Start()
     {
+
         try
         {
             ConnecttoServer();
@@ -122,18 +123,28 @@ public class SQL_manager : MonoBehaviour
 
                         return true;
                     }
+                    return false;
                 }
                 else if (sqlData["macid"].ToString() != macid || Convert.ToInt32(sqlData["flag"].ToString()) == 5)
                 {
                     //print("invalid mac id");
-                    StartCoroutine(showmacnogowarning());
+                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                    {
+                        StartCoroutine(showmacnogowarning());
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(0);
+                        StartCoroutine(showmacnogowarning());
+
+                    }
                     warningtext.text = "Please Contact Office";
                     sqlData.Close();
                     sqlData.DisposeAsync();
                     addmacid(macid, id);
                     return false;
                 }
-
+                return false;
 
             }
             if (sqlData["pass"].ToString() != pass || sqlData["term_id"].ToString() != id || sqlData["pass"].ToString() == null || sqlData["term_id"].ToString() == null)
@@ -144,6 +155,7 @@ public class SQL_manager : MonoBehaviour
                 sqlData.DisposeAsync();
                 return false;
             }
+            return false;
 
         }
         else
@@ -151,6 +163,7 @@ public class SQL_manager : MonoBehaviour
 
             warningtext.text = "wrong username or password";
             showmacnogowarning();
+            return false;
         }
         sqlData.Close();
         sqlData.DisposeAsync();
@@ -158,9 +171,13 @@ public class SQL_manager : MonoBehaviour
     }
     IEnumerator showmacnogowarning()
     {
-        badmacid.SetActive(true);
-        yield return new WaitForSecondsRealtime(2.0f);
-        badmacid.SetActive(false);
+        badmacid = GameObject.FindWithTag("WN");
+        if (badmacid != null)
+        {
+            badmacid.GetComponent<Image>().enabled = true;
+            yield return new WaitForSecondsRealtime(2.0f);
+            badmacid.GetComponent<Image>().enabled = false;
+        }
 
     }
     public void addmacid(string macid, string termid)
