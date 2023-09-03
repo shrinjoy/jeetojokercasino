@@ -67,16 +67,17 @@ public class timeManager : MonoBehaviour
 
 
             }
-          
+        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid)==false)
+        {
+            SceneManager.LoadScene(0);
+        }
         
 
     }
     public void resetTimer()
     {
         timetillnextgame = GameObject.FindObjectOfType<SQL_manager>().timeForNextGame(mode);//this.GetComponent<SQL_manager>().timeTillNextGame().Subtract(DateTime.Now);
-
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(5);
-      
         if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             //patch; 
