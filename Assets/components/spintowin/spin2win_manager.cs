@@ -14,7 +14,7 @@ public class spin2win_manager : timeManager
     [SerializeField] TMPro.TMP_Text betplacedtext;
     [SerializeField] TMPro.TMP_Text balance;
 
-    [SerializeField]public TMPro.TMP_Text wintext;
+    [SerializeField] public TMPro.TMP_Text wintext;
     [SerializeField] TMPro.TMP_Text timetext;
     [SerializeField] Image Timerprogressbar;
     [SerializeField] FortuneWheelManager fortunewheelobject;
@@ -22,13 +22,13 @@ public class spin2win_manager : timeManager
     [SerializeField] GameObject ResultPanel_content;
     [SerializeField] GameObject ResultsPanel_content_object;
     [SerializeField] S2Pbutton[] bet_buttons;
-   public bool sequenceended = true;
+    public bool sequenceended = true;
     bool ResetData = false;
     string result;
     public int totalbetplaced;
     public int totalbalance;
     public int fakebalance;
-    bool betplaced=false;
+    bool betplaced = false;
     [SerializeField] GameObject statusobject;
     [SerializeField] TMP_Text datetimetext;
     [SerializeField] GameObject winpanel;
@@ -44,16 +44,16 @@ public class spin2win_manager : timeManager
     [SerializeField] AudioClip winsound;
     [SerializeField] AudioClip nowinsound;
     bool anybetsplaced = false;
-    bool lastbettextshown=false;
+    bool lastbettextshown = false;
     bool betplacedshown = false;
     bool nomorebetsshown = false;
     private void Start()
     {
         claimbets();
-       base.Start();
-       addlastgameresults();
+        base.Start();
+        addlastgameresults();
         GameObject.FindObjectOfType<betManager>().setResultData();
-      UpdateBalanceAndInfo();
+        UpdateBalanceAndInfo();
         GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
         GameObject.FindObjectOfType<AudioSource>().Play();
         showstatus("Place your bets");
@@ -63,69 +63,69 @@ public class spin2win_manager : timeManager
     Coroutine crx = null;
     public void autoupdatebalance()
     {
-       UpdateBalanceAndInfo();
+        UpdateBalanceAndInfo();
     }
     private async void Update()
     {
-        datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt"); 
-        if (ResetData==true)
+        datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
+        if (ResetData == true)
         {
             GameObject.FindObjectOfType<betManager>().setResultData();
-           await resetTimer();
+            await resetTimer();
             addlastgameresults();
             uwinanimation.SetActive(false);
             UpdateBalanceAndInfo();
             GameObject.FindObjectOfType<S2Wclear_repeat>().clear();
-            showstatus("Place your bets");
+            showstatus("Place your Bets");
             ResetData = false;
-            
+
             betplacedtext.text = "0";
             GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
             GameObject.FindObjectOfType<AudioSource>().Play();
             betplaced = false;
-            lastbettextshown= false;
+            lastbettextshown = false;
             betplacedshown = false;
             nomorebetsshown = false;
             anybetsplaced = false;
         }
-        if(realtime<10)
+        if (realtime < 10)
         {
-           noinput.SetActive(true);
+            noinput.SetActive(true);
         }
         if (realtime > 10)
         {
             sequenceended = true;
             noinput.SetActive(false);
         }
-            realtime = Mathf.Clamp((float)realtime, 0, 999);
+        realtime = Mathf.Clamp((float)realtime, 0, 999);
         int minutes = Mathf.FloorToInt((float)realtime / 60F);
         int seconds = Mathf.FloorToInt((float)realtime - minutes * 60);
-       
+
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-        
-        Timerprogressbar.fillAmount =1.0f- (float)(realtime /120.0);
-        if(realtime<=15 && lastbettextshown==false)
+
+        Timerprogressbar.fillAmount = 1.0f - (float)(realtime / 120.0);
+        if (realtime <= 15 && lastbettextshown == false)
         {
-            lastbettextshown= true;
+            lastbettextshown = true;
             GameObject.FindObjectOfType<AudioSource>().clip = lastchance;
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("Last Chance");
         }
-        if(realtime <10 && totalbetplaced >0 && betplacedshown==false && anybetsplaced==true)
+        if (realtime < 10 && totalbetplaced > 0 && betplacedshown == false && anybetsplaced == true)
         {
             betplacedshown = true;
-          
+
             // showstatus("Your bets have been accepted");
         }
-        if(realtime <10 && totalbetplaced <1 && nomorebetsshown==false)
+        if (realtime < 10 && totalbetplaced < 1 && nomorebetsshown == false)
         {
-            nomorebetsshown= true;
+            nomorebetsshown = true;
             GameObject.FindObjectOfType<AudioSource>().clip = nomorebets;
             GameObject.FindObjectOfType<AudioSource>().Play();
             showstatus("No more bet please");
-           
+
         }
-        if (realtime < 8 && totalbetplaced > 0 && nomorebetsshown==false)
+        if (realtime < 8 && totalbetplaced > 0 && nomorebetsshown == false)
         {
             nomorebetsshown = true;
 
@@ -134,7 +134,7 @@ public class spin2win_manager : timeManager
             showstatus("No more bet please");
         }
         timetext.text = niceTime;
-        if(realtime<11 && betplaced==false)
+        if (realtime < 11 && betplaced == false)
         {
             betplaced = true;
             foreach (S2Pbutton btns in bet_buttons)
@@ -145,12 +145,12 @@ public class spin2win_manager : timeManager
             FakeUpdateBalance();
 
         }
-       
+
 
     }
-     public void showstatus(string st)
+    public void showstatus(string st)
     {
-    // StartCoroutine(statusanim(st));
+        // StartCoroutine(statusanim(st));
     }
     IEnumerator statusanim(string text)
     {
@@ -159,9 +159,9 @@ public class spin2win_manager : timeManager
         yield return new WaitForSecondsRealtime(2.0f);
         statusobject.SetActive(false);
     }
-   public async void UpdateBalanceAndInfo()
+    public async void UpdateBalanceAndInfo()
     {
-     PlayerdataResponse pdr=   await GameObject.FindObjectOfType<CasinoAPI>().getuserdata(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password);
+        PlayerdataResponse pdr = await GameObject.FindObjectOfType<CasinoAPI>().getuserdata(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password);
 
         totalbalance = pdr.balance;
 
@@ -171,21 +171,21 @@ public class spin2win_manager : timeManager
             totalbalance = 0;
         }
         balance.text = totalbalance.ToString();
-       
+
 
         gameIDtext.text = GameObject.FindObjectOfType<betManager>().gameResultId.ToString();
         fakebalance = totalbalance;
 
-      
-        
+
+
 
     }
     public async void addlastgameresults()
     {
 
-        foreach(Transform xgb in ResultPanel_content.GetComponentsInChildren<Transform>())
+        foreach (Transform xgb in ResultPanel_content.GetComponentsInChildren<Transform>())
         {
-            if(xgb!= ResultPanel_content.transform)
+            if (xgb != ResultPanel_content.transform)
             {
                 Destroy(xgb.gameObject);
             }
@@ -198,11 +198,11 @@ public class spin2win_manager : timeManager
 
             GameObject gb = GameObject.Instantiate(ResultsPanel_content_object, ResultPanel_content.transform, false);
             print(item.Result);
-            gb.GetComponent<ResultPanel_resultObject_s2w>().SetResult(item.Result+"N", item.Time);
+            gb.GetComponent<ResultPanel_resultObject_s2w>().SetResult(item.Result + "N", item.Time);
 
-        } 
+        }
 
-        
+
     }
     public override async void GameSequence()
     {
@@ -210,18 +210,18 @@ public class spin2win_manager : timeManager
         {
             if (sequenceended == true)
             {
-                result =await GameObject.FindObjectOfType<betManager>().getResult("spin2win");
-              
+                result = await GameObject.FindObjectOfType<betManager>().getResult("spin2win");
+
                 if (result != null && sequenceended == true)
                 {
-                 
+
                     result += "N";
                     sequenceended = false;
                     StartCoroutine(Spin2Win());
                 }
                 else
                 {
-                  
+
 
                 }
             }
@@ -240,14 +240,14 @@ public class spin2win_manager : timeManager
             totalbetplaced += bt.betamount;
         }
         betplacedtext.text = totalbetplaced.ToString();
-       
+
 
 
         int bet = (totalbalance - totalbetplaced);
         fakebalance = bet;
         bet = Mathf.Clamp(bet, 0, 999999999);
-      //  balance.text = bet.ToString();
-      
+        //  balance.text = bet.ToString();
+
     }
     IEnumerator Spin2Win()
     {
@@ -257,7 +257,7 @@ public class spin2win_manager : timeManager
         string xresult = result.Substring(0, 3);
         #region RESULT_CONVERSION
         print(xresult);
-        if (xresult=="NR0")
+        if (xresult == "NR0")
         {
             //0
             sector = 6;
@@ -275,22 +275,22 @@ public class spin2win_manager : timeManager
         if (xresult == "NR3")
         {
             //3
-            sector=3;
+            sector = 3;
         }
         if (xresult == "NR4")
         {
             //4
-            sector=2;
+            sector = 2;
         }
         if (xresult == "NR5")
         {
             //5
-            sector=1;
+            sector = 1;
         }
         if (xresult == "NR6")
         {
             //6
-            sector=0;
+            sector = 0;
         }
         if (xresult == "NR7")
         {
@@ -300,14 +300,14 @@ public class spin2win_manager : timeManager
         if (xresult == "NR8")
         {
             //8
-            sector= 8;
+            sector = 8;
         }
         if (xresult == "NR9")
         {
             //9
-            sector= 7;
+            sector = 7;
         }
-#endregion
+        #endregion
         //print(sector);
         GameObject.FindObjectOfType<AudioSource>().clip = wheelspinningsound;
         GameObject.FindObjectOfType<AudioSource>().Play();
@@ -317,59 +317,59 @@ public class spin2win_manager : timeManager
         {
             yield return new WaitForEndOfFrame();
         }
-        
+
         resulttext.text = ResultConverters.S2w_ResultConverter(xresult);
         resulttext.enabled = true;
         GameObject.FindObjectOfType<AudioSource>().clip = nowinsound;
         GameObject.FindObjectOfType<AudioSource>().Play();
         yield return new WaitForSeconds(1.5f);
         getwinamount();
-       
+
         yield return new WaitForSeconds(1);
         coinflipanimation.SetActive(false);
         yield return new WaitForSeconds(3);
-       
-       
+
+
 
         marker.SetActive(true);
-        
-        
-       
-        
-        
-        
+
+
+
+
+
+
         winpanel.SetActive(false);
         yield return new WaitForSeconds(4.0f);
         ResetData = true;
-       
+
         yield return null;
     }
     public void sendbetdata()
     {
-       sendResult();
+        sendResult();
     }
-   async void sendResult()
+    async void sendResult()
     {
-       DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-        
-            //print("called sebt result");
-            if ((totalbalance -totalbetplaced)>=0 && totalbalance>0&&  totalbetplaced > 0)
-            {
-             
-                string barcode = generatebarcode();
-                string d = await GameObject.FindObjectOfType<CasinoAPI>().setbet(GameObject.FindObjectOfType<userManager>().getUserData().id, bet_buttons[0].betamount, bet_buttons[1].betamount, bet_buttons[2].betamount, bet_buttons[3].betamount, bet_buttons[4].betamount, bet_buttons[5].betamount, bet_buttons[6].betamount,bet_buttons[7].betamount, bet_buttons[8].betamount, bet_buttons[9].betamount,totalbetplaced);
-                UpdateBalanceAndInfo();
-                if (d != null)
-                {
-                    showstatus("your bet has been accepted ID:" + barcode);
-                }
-                else
-                {
-                    showstatus("failed to place bets");
+        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
 
-                }
+        //print("called sebt result");
+        if ((totalbalance - totalbetplaced) >= 0 && totalbalance > 0 && totalbetplaced > 0)
+        {
+
+            string barcode = generatebarcode();
+            string d = await GameObject.FindObjectOfType<CasinoAPI>().setbet(GameObject.FindObjectOfType<userManager>().getUserData().id, bet_buttons[0].betamount, bet_buttons[1].betamount, bet_buttons[2].betamount, bet_buttons[3].betamount, bet_buttons[4].betamount, bet_buttons[5].betamount, bet_buttons[6].betamount, bet_buttons[7].betamount, bet_buttons[8].betamount, bet_buttons[9].betamount, totalbetplaced);
+            UpdateBalanceAndInfo();
+            if (d != null)
+            {
+                showstatus("Your Bet has been Accepted. Transaction ID:" + barcode);
+            }
+            else
+            {
+                showstatus("Failed to Place Bets");
 
             }
+
+        }
 
         foreach (S2Pbutton btns in bet_buttons)
         {
@@ -379,7 +379,7 @@ public class spin2win_manager : timeManager
 
         betplacedtext.text = "0";
         resetTimer();
-     
+
     }
     public string generatebarcode()
     {
@@ -390,14 +390,14 @@ public class spin2win_manager : timeManager
         //print(output);
         return output + "M";
     }
-   async void getwinamount()
+    async void getwinamount()
     {
 
-      
-        int intwinamount = await GameObject.FindObjectOfType<CasinoAPI>().getwinamount(GameObject.FindObjectOfType<userManager>().getUserData().id,GameObject.FindObjectOfType<betManager>().gameResultId);
 
-       
-       
+        int intwinamount = await GameObject.FindObjectOfType<CasinoAPI>().getwinamount(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<betManager>().gameResultId);
+
+
+
 
         if (intwinamount > 0)
         {
@@ -414,24 +414,24 @@ public class spin2win_manager : timeManager
 
             //print("winamount:" + intwinamount);
             GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, intwinamount);
-          
+
             wintext.text = intwinamount.ToString();
-            wintextonwinpanel.text = intwinamount.ToString();   
-            winpanel.SetActive(true);   
+            wintextonwinpanel.text = intwinamount.ToString();
+            winpanel.SetActive(true);
         }
         if (intwinamount <= 0)
         {
             //print("no win amount");
-            wintext.text = " "; 
+            wintext.text = " ";
         }
 
-        
+
 
     }
     void removestat()
     {
 
-     DateTime   currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
+        DateTime currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
 
 
         string command = "UPDATE [taas].[dbo].[tengp] set status='Claimed',clm_tm='" + DateTime.Today.ToString("yyyy-MM-dd") + " " + currenttime.ToString("HH:mm:ss.000") + "'   WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
@@ -453,7 +453,7 @@ public class spin2win_manager : timeManager
     public void claimbets()
     {
 
-       
+
         string command = "SELECT SUM(clm) as totalclaim  FROM [taas].[dbo].[tengp]  WHERE  ter_id='" + GameObject.FindObjectOfType<userManager>().getUserData().id + "' and status = 'Prize'";
         SqlCommand sqlCmnd = new SqlCommand();
         SqlDataReader sqlData = null;
@@ -479,9 +479,9 @@ public class spin2win_manager : timeManager
         sqlData.Close();
         sqlData.DisposeAsync();
         GameObject.FindObjectOfType<SQL_manager>().addubalanceindatabase(GameObject.FindObjectOfType<userManager>().getUserData().id, betamountwon);
-      
+
         removestat();
 
     }
-   
+
 }
