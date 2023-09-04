@@ -80,8 +80,9 @@ public class timeManager : MonoBehaviour
 
         servertime = GameObject.FindObjectOfType<SQL_manager>().get_time().AddSeconds(5);
       
-        if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
+        if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "12:01:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "11:59:00 PM")
         {
+            bloackbet();
             //patch; 
             timetillnextgame = timetillnextgame.AddDays(1);
         }
@@ -90,7 +91,7 @@ public class timeManager : MonoBehaviour
         realtime = ts;
         
     }
-
+    public virtual void bloackbet() { }
     public virtual void GameSequence() { }
 
 

@@ -364,6 +364,11 @@ public class doublechance_gamemanager : timeManager
         }
 
     }
+    public override void bloackbet()
+    {
+        noinputpanel.SetActive(true);
+        setstatus("game will resume in 2 mins");
+    }
     public IEnumerator addlastgameresults()
     {
 

@@ -6,6 +6,7 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 
 public class bet16 : timeManager
@@ -264,6 +265,11 @@ public class bet16 : timeManager
         bet = Mathf.Clamp(bet, 0, 999999999);
       //  balance.text = bet.ToString();
        // balance2.text = bet.ToString();
+    }
+    public override void bloackbet()
+    {
+        noinputpanel.SetActive(true);
+       showstat("game will resume in 2 mins");
     }
     public override void GameSequence()
     {

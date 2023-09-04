@@ -85,6 +85,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         crx = StartCoroutine(UpdateBalanceAndInfo());
     }
+ 
     // Update is called once per frame
     bool placeyourbetsshow = false;
     void Update()
@@ -168,7 +169,11 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         if(realtime>15)
         betinfotext.text = "Place your chips";
     }
-
+    public override void bloackbet()
+    {
+        noinputpanel.SetActive(true);
+        showstat("game will resume in 2 mins");
+    }
     public void sendResult()
     {
 
