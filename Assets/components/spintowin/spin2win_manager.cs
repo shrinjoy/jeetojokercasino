@@ -88,6 +88,7 @@ public class spin2win_manager : timeManager
             betplacedshown = false;
             nomorebetsshown = false;
             anybetsplaced = false;
+            noinput.SetActive(false);
         }
         if(realtime<10)
         {
@@ -95,7 +96,7 @@ public class spin2win_manager : timeManager
         }
         if (realtime > 10)
         {
-            noinput.SetActive(false);
+            
         }
             realtime = Mathf.Clamp((float)realtime, 0, 999);
         int minutes = Mathf.FloorToInt((float)realtime / 60F);
@@ -148,9 +149,19 @@ public class spin2win_manager : timeManager
        
 
     }
-     public void showstatus(string st)
+
+    public override void blockbet()
     {
-     StartCoroutine(statusanim(st));
+        showstatus("game will resume in 2 mins");
+        noinput.SetActive(true) ;
+    }
+    Coroutine cr = null;
+    public void showstatus(string st)
+    {
+        if (cr == null)
+        {
+            cr = StartCoroutine(statusanim(st));
+        }
     }
     IEnumerator statusanim(string text)
     {
@@ -158,6 +169,7 @@ public class spin2win_manager : timeManager
         statusobject.GetComponentInChildren<TMP_Text>().text = text;
         yield return new WaitForSecondsRealtime(2.0f);
         statusobject.SetActive(false);
+        cr = null;
     }
    public IEnumerator UpdateBalanceAndInfo()
     {

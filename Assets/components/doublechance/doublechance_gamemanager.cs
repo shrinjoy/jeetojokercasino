@@ -363,6 +363,11 @@ public class doublechance_gamemanager : timeManager
         }
 
     }
+    public override void blockbet()
+    {
+        setstatus("game will resume in 2mins");
+        noinputpanel.SetActive (true);
+    }
     public IEnumerator addlastgameresults()
     {
 

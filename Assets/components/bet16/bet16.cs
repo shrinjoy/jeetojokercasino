@@ -169,6 +169,11 @@ public class bet16 : timeManager
         }
 
     }
+    public override void blockbet()
+    {
+        showstat("game will resume in 2 mins");
+        noinputpanel.SetActive(true);
+    }
     public void sendResult()
     {
         try

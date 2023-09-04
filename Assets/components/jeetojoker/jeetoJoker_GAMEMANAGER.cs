@@ -84,6 +84,11 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         }
         crx = StartCoroutine(UpdateBalanceAndInfo());
     }
+    public override void blockbet()
+    {
+        showstat("game will resume in 2 mins");
+        noinputpanel.SetActive(true);
+    }
     // Update is called once per frame
     bool placeyourbetsshow = false;
     void Update()
