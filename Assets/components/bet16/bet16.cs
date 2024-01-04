@@ -72,7 +72,7 @@ public class bet16 : timeManager
         StartCoroutine(UpdateBalanceAndInfo());
         StartCoroutine(addlast9gameresults());
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
-        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
+      
     }
 
     Coroutine crx=null;
@@ -436,6 +436,7 @@ public class bet16 : timeManager
 
 
         getwinamount();
+        autoupdatebalance();
         yield return new WaitForSeconds(1.0f);
         coinflipobject.SetActive(false);
         yield return new WaitForSeconds(4.0f);

@@ -56,7 +56,6 @@ public class spin2win_manager : timeManager
         GameObject.FindObjectOfType<AudioSource>().clip = placeyourbets;
         GameObject.FindObjectOfType<AudioSource>().Play();
         showstatus("Place your bets");
-        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
     }
 
     Coroutine crx = null;
@@ -338,7 +337,7 @@ public class spin2win_manager : timeManager
         GameObject.FindObjectOfType<AudioSource>().Play();
         yield return new WaitForSeconds(1.5f);
         getwinamount();
-       
+        autoupdatebalance();
         yield return new WaitForSeconds(1);
         coinflipanimation.SetActive(false);
         yield return new WaitForSeconds(3);

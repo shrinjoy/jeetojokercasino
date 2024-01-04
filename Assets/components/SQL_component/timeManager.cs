@@ -14,8 +14,8 @@ public class timeManager : MonoBehaviour
     [HideInInspector]
     protected double realtime = 0;
     bool isGameSequenceRunning = false;
-    public int selectedcoinamount=2;
-   [SerializeField] int mode = 0;
+    public int selectedcoinamount = 2;
+    [SerializeField] int mode = 0;
     bool nonbetversion = false;
     public void Start()
     {
@@ -27,9 +27,9 @@ public class timeManager : MonoBehaviour
         if (timetillnextgame.ToString("hh:mm:ss tt") == "12:00:00 AM" || timetillnextgame.ToString("hh:mm:ss tt") == "01:00:00 AM")
         {
             //patch; 
-        timetillnextgame=    timetillnextgame.AddDays(1);
+            timetillnextgame = timetillnextgame.AddDays(1);
         }
-        double ts =timetillnextgame.Subtract(servertime).TotalSeconds;
+        double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
         realtime = ts;
         print(realtime);
         InvokeRepeating(nameof(timeloop), 1, 1);
@@ -46,32 +46,33 @@ public class timeManager : MonoBehaviour
     public void timeloop()
     {
 
-       
-            if (realtime <= 0.0f )
+
+        if (realtime <= 0.0f)
+        {
+
+            try
             {
+                GameSequence();
 
-                try
-                {
-                    GameSequence();
-
-                }
-                catch
-                {
-                    print("lost internet");
-                }
             }
-            else
+            catch
+            {
+                print("lost internet");
+            }
+        }
+        else
+        {
+
+            if (realtime > 11.0f)
             {
                 resetTimer();
-                realtime -= 1;
-
-
             }
-        if (GameObject.FindObjectOfType<SQL_manager>().canLogin(GameObject.FindObjectOfType<userManager>().getUserData().id, GameObject.FindObjectOfType<userManager>().getUserData().password, GameObject.FindObjectOfType<userManager>().getUserData().macid)==false)
-        {
-            SceneManager.LoadScene(0);
+            realtime -= 1;
+
+
         }
-        
+
+
 
     }
     public void resetTimer()
@@ -87,9 +88,9 @@ public class timeManager : MonoBehaviour
         double ts = timetillnextgame.Subtract(servertime).TotalSeconds;
 
         realtime = ts;
-        
+
     }
-    public  virtual void blockbet()
+    public virtual void blockbet()
     { }
     public virtual void GameSequence() { }
 

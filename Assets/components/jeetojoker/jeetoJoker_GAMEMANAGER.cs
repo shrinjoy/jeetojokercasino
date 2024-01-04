@@ -72,7 +72,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
         StartCoroutine(UpdateBalanceAndInfo());
         currenttime = GameObject.FindObjectOfType<SQL_manager>().get_time();
           StartCoroutine(addlast9gameresults());
-        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
+        
     }
 
     Coroutine crx = null;
@@ -416,6 +416,7 @@ public class jeetoJoker_GAMEMANAGER :timeManager
 
 
         getwinamount();
+        autoupdatebalance();
         yield return new WaitForSeconds(1.0f);
         coinflipobject.SetActive(false);
         yield return new WaitForSeconds(4.0f);

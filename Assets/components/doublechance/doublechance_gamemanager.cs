@@ -12,6 +12,7 @@ public class doublechance_gamemanager : timeManager
     string result;
     [SerializeField] TMPro.TMP_Text timer;
     [SerializeField] TMPro.TMP_Text datetimetext;
+    [SerializeField] TMPro.TMP_Text date;
     [SerializeField] GameObject ResultPanel_content;
     [SerializeField] GameObject last10resultprefab;
     [SerializeField] FortuneWheelManager singles_wheel;
@@ -178,7 +179,7 @@ public class doublechance_gamemanager : timeManager
         audiosource.clip = placeyourbets;
         audiosource.Play();
         // placebetonall();
-        InvokeRepeating(nameof(autoupdatebalance), 0, 3);
+       
     }
 
     Coroutine crx = null;
@@ -336,6 +337,8 @@ public class doublechance_gamemanager : timeManager
         timer.text = Mathf.Clamp((int)realtime, 0, 999).ToString();
         
         datetimetext.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd hh:mm:ss tt");
+        date.text = DateTime.Now.AddSeconds(40).ToString("yyyy-MM-dd");
+
         totalplay.text = totalbetplaced.ToString();
         totalbetplaced = Mathf.Clamp(totalbetplaced, 0, 9999999);
         if (realtime < 10 && nomorebets == false)
@@ -500,6 +503,7 @@ public class doublechance_gamemanager : timeManager
 
 
         getwinamount();
+        autoupdatebalance();
         yield return new WaitForSeconds(1.0f);
         coinflipobject.SetActive(false);
         yield return new WaitForSeconds(4.0f);
